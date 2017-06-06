@@ -89,10 +89,10 @@
             this.groupPanel1.Controls.Add(this.dtiStartDate);
             this.groupPanel1.Controls.Add(this.labelX1);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(8, 8);
-            this.groupPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupPanel1.Location = new System.Drawing.Point(6, 6);
+            this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(1070, 671);
+            this.groupPanel1.Size = new System.Drawing.Size(802, 537);
             // 
             // 
             // 
@@ -137,11 +137,10 @@
             this.ID});
             this.treeList1.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.treeList1.Location = new System.Drawing.Point(0, 85);
-            this.treeList1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeList1.Location = new System.Drawing.Point(0, 66);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.Editable = false;
-            this.treeList1.Size = new System.Drawing.Size(1064, 559);
+            this.treeList1.Size = new System.Drawing.Size(796, 447);
             this.treeList1.TabIndex = 7;
             // 
             // Namee
@@ -182,8 +181,6 @@
             this.Manager.Caption = "负责人";
             this.Manager.FieldName = "Manager";
             this.Manager.Name = "Manager";
-            this.Manager.Visible = true;
-            this.Manager.VisibleIndex = 4;
             // 
             // Progress
             // 
@@ -191,7 +188,7 @@
             this.Progress.FieldName = "Progress";
             this.Progress.Name = "Progress";
             this.Progress.Visible = true;
-            this.Progress.VisibleIndex = 5;
+            this.Progress.VisibleIndex = 4;
             // 
             // WBSNo
             // 
@@ -199,7 +196,7 @@
             this.WBSNo.FieldName = "WBSNo";
             this.WBSNo.Name = "WBSNo";
             this.WBSNo.Visible = true;
-            this.WBSNo.VisibleIndex = 6;
+            this.WBSNo.VisibleIndex = 5;
             // 
             // ID
             // 
@@ -211,10 +208,10 @@
             // 
             this.btnExport.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnExport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExport.Location = new System.Drawing.Point(709, 42);
-            this.btnExport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExport.Location = new System.Drawing.Point(532, 34);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(2);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 22);
+            this.btnExport.Size = new System.Drawing.Size(56, 18);
             this.btnExport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnExport.TabIndex = 6;
             this.btnExport.Text = "导出计划";
@@ -224,10 +221,10 @@
             // 
             this.btnSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSearch.Location = new System.Drawing.Point(709, 2);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSearch.Location = new System.Drawing.Point(532, 2);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 22);
+            this.btnSearch.Size = new System.Drawing.Size(56, 18);
             this.btnSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnSearch.TabIndex = 5;
             this.btnSearch.Text = "生成计划";
@@ -239,10 +236,10 @@
             this.cmbFinishStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbFinishStatus.FormattingEnabled = true;
             this.cmbFinishStatus.ItemHeight = 19;
-            this.cmbFinishStatus.Location = new System.Drawing.Point(451, 40);
-            this.cmbFinishStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbFinishStatus.Location = new System.Drawing.Point(338, 32);
+            this.cmbFinishStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cmbFinishStatus.Name = "cmbFinishStatus";
-            this.cmbFinishStatus.Size = new System.Drawing.Size(200, 25);
+            this.cmbFinishStatus.Size = new System.Drawing.Size(151, 25);
             this.cmbFinishStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbFinishStatus.TabIndex = 4;
             // 
@@ -252,10 +249,10 @@
             this.cmbManager.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbManager.FormattingEnabled = true;
             this.cmbManager.ItemHeight = 19;
-            this.cmbManager.Location = new System.Drawing.Point(451, 1);
-            this.cmbManager.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbManager.Location = new System.Drawing.Point(338, 1);
+            this.cmbManager.Margin = new System.Windows.Forms.Padding(2);
             this.cmbManager.Name = "cmbManager";
-            this.cmbManager.Size = new System.Drawing.Size(200, 25);
+            this.cmbManager.Size = new System.Drawing.Size(151, 25);
             this.cmbManager.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbManager.TabIndex = 2;
             // 
@@ -269,8 +266,8 @@
             this.dtiEndDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtiEndDate.ButtonDropDown.Visible = true;
             this.dtiEndDate.IsPopupCalendarOpen = false;
-            this.dtiEndDate.Location = new System.Drawing.Point(109, 40);
-            this.dtiEndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtiEndDate.Location = new System.Drawing.Point(82, 32);
+            this.dtiEndDate.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -305,7 +302,7 @@
             this.dtiEndDate.MonthCalendar.TodayButtonVisible = true;
             this.dtiEndDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtiEndDate.Name = "dtiEndDate";
-            this.dtiEndDate.Size = new System.Drawing.Size(200, 25);
+            this.dtiEndDate.Size = new System.Drawing.Size(150, 21);
             this.dtiEndDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtiEndDate.TabIndex = 3;
             // 
@@ -315,10 +312,10 @@
             // 
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(347, 42);
-            this.labelX4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX4.Location = new System.Drawing.Point(260, 34);
+            this.labelX4.Margin = new System.Windows.Forms.Padding(2);
             this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(97, 22);
+            this.labelX4.Size = new System.Drawing.Size(73, 18);
             this.labelX4.TabIndex = 1;
             this.labelX4.Text = "完成比例：";
             // 
@@ -328,10 +325,10 @@
             // 
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(7, 42);
-            this.labelX2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX2.Location = new System.Drawing.Point(5, 34);
+            this.labelX2.Margin = new System.Windows.Forms.Padding(2);
             this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(97, 22);
+            this.labelX2.Size = new System.Drawing.Size(73, 18);
             this.labelX2.TabIndex = 1;
             this.labelX2.Text = "结束时间：";
             // 
@@ -341,10 +338,10 @@
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(347, 2);
-            this.labelX3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX3.Location = new System.Drawing.Point(260, 2);
+            this.labelX3.Margin = new System.Windows.Forms.Padding(2);
             this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(97, 22);
+            this.labelX3.Size = new System.Drawing.Size(73, 18);
             this.labelX3.TabIndex = 1;
             this.labelX3.Text = "负责人：";
             // 
@@ -359,8 +356,8 @@
             this.dtiStartDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtiStartDate.ButtonDropDown.Visible = true;
             this.dtiStartDate.IsPopupCalendarOpen = false;
-            this.dtiStartDate.Location = new System.Drawing.Point(109, 0);
-            this.dtiStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtiStartDate.Location = new System.Drawing.Point(82, 0);
+            this.dtiStartDate.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
             // 
@@ -395,7 +392,7 @@
             this.dtiStartDate.MonthCalendar.TodayButtonVisible = true;
             this.dtiStartDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtiStartDate.Name = "dtiStartDate";
-            this.dtiStartDate.Size = new System.Drawing.Size(200, 25);
+            this.dtiStartDate.Size = new System.Drawing.Size(150, 21);
             this.dtiStartDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtiStartDate.TabIndex = 1;
             // 
@@ -405,10 +402,10 @@
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(7, 2);
-            this.labelX1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX1.Location = new System.Drawing.Point(5, 2);
+            this.labelX1.Margin = new System.Windows.Forms.Padding(2);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(97, 22);
+            this.labelX1.Size = new System.Drawing.Size(73, 18);
             this.labelX1.TabIndex = 1;
             this.labelX1.Text = "开始时间：";
             // 
@@ -496,11 +493,11 @@
             // 
             // Report_Plan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 648);
+            this.ClientSize = new System.Drawing.Size(801, 488);
             this.Controls.Add(this.groupPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "Report_Plan";
             this.Text = "项目计划报表";
             this.groupPanel1.ResumeLayout(false);

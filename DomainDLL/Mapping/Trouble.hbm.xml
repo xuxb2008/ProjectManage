@@ -23,14 +23,8 @@
     <property name="Level" type="Int32">
       <column name="`Level`" sql-type="int" not-null="false"/>
     </property>
-    <property name="Weight" type="Int32">
-      <column name="`Weight`" sql-type="int" not-null="false"/>
-    </property>
-    <property name="HandleMan" type="String">
-      <column name="HandleMan" sql-type="nvarchar" not-null="false"/>
-    </property>
-    <property name="Workload" type="decimal">
-      <column name="Workload" sql-type="decimal" not-null="true"/>
+    <property name="Workload" type="Int32">
+      <column name="Workload" sql-type="int" not-null="true"/>
     </property>
     <property name="HandleStatus" type="Int32">
       <column name="HandleStatus" sql-type="int" not-null="false"/>

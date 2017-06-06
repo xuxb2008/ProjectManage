@@ -47,6 +47,38 @@ namespace BussinessDLL
         }
 
         /// <summary>
+        /// 项目问题保存
+        /// 2017/06/05(zhuguanjun)
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="listWork"></param>
+        /// <returns></returns>
+        public JsonResult SaveTrouble(Trouble entity, List<TroubleWork> listWork)
+        {
+            JsonResult jsonreslut = new JsonResult();
+            try
+            {
+                //如果是新增
+                if (string.IsNullOrEmpty(entity.ID))
+                    dao.AddTrouble(entity, listWork);
+                //编辑
+                else
+                {
+                    dao.UpdateTrouble(entity, listWork);
+                }
+                jsonreslut.result = true;
+                jsonreslut.msg = "保存成功！";
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteException(ex, LogType.BussinessDLL);
+                jsonreslut.result = false;
+                jsonreslut.msg = ex.Message;
+            }
+            return jsonreslut;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="entity"></param>
@@ -174,6 +206,17 @@ namespace BussinessDLL
                 list = new Repository<TroubleFiles>().GetList(qf, sf) as List<TroubleFiles>;
             }
             return list;
+        }
+
+        /// <summary>
+        /// 获取责任人列表
+        /// 2017/06/05(zhuguanjun)
+        /// </summary>
+        /// <param name="TroubleID"></param>
+        /// <returns></returns>
+        public DataTable GetTroubleWorkList(string TroubleID)
+        {
+            return new TroubleDAO().GetTroubleWorkList(TroubleID.Substring(0, 36));
         }
     }
 }

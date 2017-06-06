@@ -91,7 +91,11 @@ namespace CommonDLL
         /// <summary>
         /// 主表数据不存在提示
         /// </summary>
-        W000000006
+        W000000006,
+        /// <summary>
+        /// 有子节点的节点不能转为交付物
+        /// </summary>
+        W000000007
     }
 
 

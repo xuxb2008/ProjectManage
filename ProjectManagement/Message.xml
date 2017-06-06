@@ -19,4 +19,5 @@
   <message code="W000000004">工作目录不存在，请在基本配置中进行配置！</message>
   <message code="W000000005">文件不存在，请先上传文件！</message>
   <message code="W000000006">{0}还未创建，请先保存！</message>
+  <message code="W000000007">当前节点下不为空，不能转为交付物！</message>
 </messages>

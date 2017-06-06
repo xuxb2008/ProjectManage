@@ -11,11 +11,11 @@
     <property name="SID" type="String">
       <column name="SID" sql-type="varchar" not-null="true"/>
     </property>
-    <property name="Frequency" type="Int32">
-      <column name="Frequency" sql-type="int" not-null="false"/>
+    <property name="Frequency" type="String">
+      <column name="Frequency" sql-type="nvarchar" not-null="false"/>
     </property>
-    <property name="StarteDate" type="DateTime">
-      <column name="StarteDate" sql-type="date" not-null="false"/>
+    <property name="CommunicateDate" type="String">
+      <column name="CommunicateDate" sql-type="nvarchar" not-null="false"/>
     </property>
     <property name="Addr" type="String">
       <column name="Addr" sql-type="nvarchar" not-null="false"/>

@@ -24,23 +24,67 @@ namespace DataAccessDLL
             {
                 s.BeginTransaction();
                 string sql;
+
                 if (string.IsNullOrEmpty(oldParentID))
                 {
-                    sql = string.Format("Update PNode set No=No-1 where ParentID='{0}' and No<={1} and No>{2} ;",
-                        node.ParentID, node.No, oldNode.No);
-                    s.CreateSQLQuery(sql).ExecuteUpdate();
-                    sql = string.Format("Update PNode set No=No+1 where ParentID='{0}' and No<{1} and No>={2} ;",
-                       node.ParentID, oldNode.No, node.No);
-                    s.CreateSQLQuery(sql).ExecuteUpdate();
+                    //父节点不变
+                    sql = string.Format("select WBSNo from PNode where substr(ID,1,36)='{0}'", node.ParentID);
+                    string wbsno = s.CreateSQLQuery(sql).DynamicList().FirstOrDefault().WBSNo;
+                    if (!string.IsNullOrEmpty(wbsno))
+                        wbsno += ".";
+                    if (node.No < oldNode.No)
+                    {
+                        #region 向上移动
+                        sql = string.Format("Update PNode set WBSNo='{0}'||(No+1)  where ParentID='{1}' and No>={2} and No<{3}  ;",
+                      wbsno, node.ParentID, node.No, oldNode.No);
+                        s.CreateSQLQuery(sql).ExecuteUpdate();
+
+                        sql = string.Format("Update PNode set No=No+1 where ParentID='{0}' and No>={1} and No<{2} ;",
+                      node.ParentID, node.No, oldNode.No);
+                        s.CreateSQLQuery(sql).ExecuteUpdate();
+                        #endregion
+                    }
+                    else
+                    {
+                        #region 向下移动
+                        sql = string.Format("Update PNode set No=No-1 where ParentID='{0}' and No>{1} and No<={2} ;",
+                            node.ParentID, node.No, oldNode.No);
+                        s.CreateSQLQuery(sql).ExecuteUpdate();
+                        sql = string.Format("Update PNode set WBSNo='{0}'||(No-1) where ParentID='{0}' and No>{1} and No<={2} ;",
+                     wbsno, node.ParentID, node.No, oldNode.No);
+                        s.CreateSQLQuery(sql).ExecuteUpdate();
+                        #endregion
+                    }
                 }
                 else
                 {
+                    #region 更新新同级编号
+                    sql = string.Format("select WBSNo from PNode where substr(ID,1,36)='{0}'", node.ParentID);
+                    string wbsno = s.CreateSQLQuery(sql).DynamicList().FirstOrDefault().WBSNo;
+                    if (!string.IsNullOrEmpty(wbsno))
+                        wbsno += ".";
+                    sql = string.Format("Update PNode set WBSNo='{0}'||(No+1) where ParentID='{1}'  and No>={2} ;",
+                     wbsno, node.ParentID, node.No);
+                    s.CreateSQLQuery(sql).ExecuteUpdate();
+                    #endregion
+                    sql = string.Format("Update PNode set No=No+1 where ParentID='{0}' and No>={1} ;",
+                     node.ParentID, node.No);
+                    s.CreateSQLQuery(sql).ExecuteUpdate();
+
+                    #region 更新原同级编号
+                    sql = string.Format("select WBSNo from PNode where substr(ID,1,36)='{0}'", oldParentID);
+                    wbsno = s.CreateSQLQuery(sql).DynamicList().FirstOrDefault().WBSNo;
+                    if (!string.IsNullOrEmpty(wbsno))
+                        wbsno += ".";
+                    sql = string.Format("Update PNode set WBSNo='{0}'||(No-1) where ParentID='{1}' and No>{2} ;",
+                     wbsno, oldParentID, oldNode.No);
+                    s.CreateSQLQuery(sql).ExecuteUpdate();
+                    #endregion
+
                     sql = string.Format("Update PNode set No=No-1 where ParentID='{0}' and No>{1} ;",
                        oldParentID, oldNode.No);
                     s.CreateSQLQuery(sql).ExecuteUpdate();
-                    sql = string.Format("Update PNode set No=No+1 where ParentID='{0}' and No>={1} ;",
-                      node.ParentID, node.No);
-                    s.CreateSQLQuery(sql).ExecuteUpdate();
+
                 }
                 s.Save(node);
                 s.Update(oldNode);

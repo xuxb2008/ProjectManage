@@ -40,7 +40,7 @@ namespace DataAccessDLL
         public DataTable GetDataTable(List<QueryField> qf)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append(" select s1.ID,s2.Name||'('||s2.CompanyName||')' as Name from stakeholders s1, stakeholders s2");
+            sql.Append(" select s1.ID,s2.Name||'('||s2.CompanyName||')' as Name,s2.IsPublic from stakeholders s1, stakeholders s2");
             sql.Append(" where substr(s1.ID, 38) = '1' and substr(s1.ID, 1, 37) = substr(s2.ID, 1, 37)");
             sql.Append(" and s2.PID=@PID  and s2.status=@Status order by s2.updated desc,s2.created desc");
             DataTable dt = NHHelper.ExecuteDataTable(sql.ToString(), qf);

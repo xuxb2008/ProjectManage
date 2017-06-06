@@ -97,7 +97,7 @@ namespace BussinessDLL
         {
             int step = 0;//层级
 
-            List<PNode> listNode = new WBSBLL().GetNodes(ProjectID);
+            List<PNode> listNode = new WBSBLL().GetNodes(ProjectID,null);
             IEnumerable<PNode> parentNode = null;
             parentNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.No);
 

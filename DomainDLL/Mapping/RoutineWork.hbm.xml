@@ -11,14 +11,11 @@
     <property name="Workload" type="decimal">
       <column name="Workload" sql-type="decimal" not-null="true"/>
     </property>
+    <property name="ActualWorkload" type="decimal">
+      <column name="ActualWorkload" sql-type="decimal" not-null="true"/>
+    </property>
     <property name="Manager" type="String">
       <column name="Manager" sql-type="varchar" not-null="false"/>
-    </property>
-    <property name="StarteDate" type="DateTime">
-      <column name="StarteDate" sql-type="datetime" not-null="false"/>
-    </property>
-    <property name="EndDate" type="DateTime">
-      <column name="EndDate" sql-type="datetime" not-null="false"/>
     </property>
     <property name="CREATED" type="DateTime">
       <column name="CREATED" sql-type="datetime" not-null="false"/>

@@ -72,26 +72,26 @@ namespace ProjectManagement.Forms.Stakeholder
             {
                 txtAddress1.Text = list[0].Addr;
                 txtContent1.Text = list[0].Content;
-                dtiStarteDate1.Value = (DateTime)list[0].StarteDate;
+                txtCommunicateDate1.Text = list[0].CommunicateDate;
+                txtFrenquence1.Text = list[0].Frequency;
                 DataHelper.SetComboBoxSelectItemByValue(cmbCommunication1, list[0].CID);
-                DataHelper.SetComboBoxSelectItemByValue(cmbFrequency1, list[0].Frequency.ToString());
                 FXFAID1 = list[0].ID;
                 if (list.Count > 1)
                 {
                     txtAddress2.Text = list[1].Addr;
                     txtContent2.Text = list[1].Content;
-                    dtiStarteDate2.Value = (DateTime)list[1].StarteDate;
+                    txtConmunicateDate2.Text = list[0].CommunicateDate;
+                    txtFrenquence2.Text = list[0].Frequency;
                     DataHelper.SetComboBoxSelectItemByValue(cmbCommunication2, list[1].CID);
-                    DataHelper.SetComboBoxSelectItemByValue(cmbFrequency2, list[1].Frequency.ToString());
                     FXFAID2 = list[1].ID;
                 }
                 if (list.Count > 2)
                 {
                     txtAddress3.Text = list[2].Addr;
                     txtContent3.Text = list[2].Content;
-                    dtiStarteDate3.Value = (DateTime)list[2].StarteDate;
+                    txtConmunicateDate3.Text = list[0].CommunicateDate;
+                    txtFrenquence3.Text = list[0].Frequency;
                     DataHelper.SetComboBoxSelectItemByValue(cmbCommunication3, list[2].CID);
-                    DataHelper.SetComboBoxSelectItemByValue(cmbFrequency3, list[2].Frequency.ToString());
                     FXFAID3 = list[2].ID;
                 }
             }
@@ -141,26 +141,26 @@ namespace ProjectManagement.Forms.Stakeholder
             {
                 txtAddress1.Text = list[0].Addr;
                 txtContent1.Text = list[0].Content;
-                dtiStarteDate1.Value = (DateTime)list[0].StarteDate;
+                txtCommunicateDate1.Text = list[0].CommunicateDate;
+                txtFrenquence1.Text = list[0].Frequency;
                 DataHelper.SetComboBoxSelectItemByValue(cmbCommunication1, list[0].CID);
-                DataHelper.SetComboBoxSelectItemByValue(cmbFrequency1, list[0].Frequency.ToString());
                 FXFAID1 = list[0].ID;
                 if (list.Count > 1)
                 {
                     txtAddress2.Text = list[1].Addr;
                     txtContent2.Text = list[1].Content;
-                    dtiStarteDate2.Value = (DateTime)list[1].StarteDate;
+                    txtConmunicateDate2.Text = list[0].CommunicateDate;
+                    txtFrenquence2.Text = list[0].Frequency;
                     DataHelper.SetComboBoxSelectItemByValue(cmbCommunication2, list[1].CID);
-                    DataHelper.SetComboBoxSelectItemByValue(cmbFrequency2, list[1].Frequency.ToString());
                     FXFAID2 = list[1].ID;
                 }
                 if (list.Count > 2)
                 {
                     txtAddress3.Text = list[2].Addr;
                     txtContent3.Text = list[2].Content;
-                    dtiStarteDate3.Value = (DateTime)list[2].StarteDate;
+                    txtConmunicateDate3.Text = list[0].CommunicateDate;
+                    txtFrenquence3.Text = list[0].Frequency;
                     DataHelper.SetComboBoxSelectItemByValue(cmbCommunication3, list[2].CID);
-                    DataHelper.SetComboBoxSelectItemByValue(cmbFrequency3, list[2].Frequency.ToString());
                     FXFAID3 = list[2].ID;
                 }
             }
@@ -174,11 +174,29 @@ namespace ProjectManagement.Forms.Stakeholder
         private void btnSaveStakeholders_Click(object sender, EventArgs e)
         {
             #region 检查
-            //if (listBoxAdv1.SelectedItem == null)
-            //{
-            //    MessageBox.Show("未选择干系人！");
-            //    return;
-            //}
+            int flag = 0;//没有选项目经理
+            string flagid = string.Empty;//项目经理id
+            if (superGridControl1.PrimaryGrid.Rows.Count != 0)
+            {
+                foreach (var item in superGridControl1.PrimaryGrid.Rows)
+                {
+                    string s = item.ToString();
+                    s = s.Replace("{", ",");
+                    s = s.Replace("}", ",");
+                    string[] listS = s.Split(',');
+                    if (int.Parse(listS[4].Trim()) != 0)
+                    {
+                        flag = 1;
+                        flagid = listS[3].Trim();
+                    }
+                }
+            }
+            if (flag != 0 && cbIspublic.Checked && flagid != ID)
+            {
+                MessageBox.Show("不能存在多个项目经理");
+                return;
+            }
+
             var rows = superGridControl1.PrimaryGrid.GetSelectedRows();
             if (rows.Count != 1)
             {
@@ -228,11 +246,6 @@ namespace ProjectManagement.Forms.Stakeholder
         /// <param name="e"></param>
         private void btnSaveCommunicationFXFA_Click(object sender, EventArgs e)
         {
-            //if (listBoxAdv1.SelectedItem == null)
-            //{
-            //    MessageBox.Show("未选择干系人！");
-            //    return;
-            //}
             var rows = superGridControl1.PrimaryGrid.GetSelectedRows();
             if (rows.Count != 1)
             {
@@ -248,8 +261,8 @@ namespace ProjectManagement.Forms.Stakeholder
                     CID = (ComboItem)cmbCommunication1.SelectedItem != null ? ((ComboItem)cmbCommunication1.SelectedItem).Value.ToString() : "",
                     Content = txtContent1.Text.ToString(),
                     SID = ID.Substring(0, 37) + "1",
-                    StarteDate = dtiStarteDate1.Value,
-                    Frequency = (ComboItem)cmbFrequency1.SelectedItem != null ? Convert.ToInt32(((ComboItem)cmbFrequency1.SelectedItem).Value) : 0,
+                    CommunicateDate = txtCommunicateDate1.Text,
+                    Frequency = txtFrenquence1.Text,
                     ID = FXFAID1
                 };
                 list.Add(fxfa);
@@ -262,8 +275,8 @@ namespace ProjectManagement.Forms.Stakeholder
                     CID = (ComboItem)cmbCommunication2.SelectedItem != null ? ((ComboItem)cmbCommunication2.SelectedItem).Value.ToString() : "",
                     Content = txtContent2.Text.ToString(),
                     SID = ID.Substring(0, 37) + "1",
-                    StarteDate = dtiStarteDate2.Value,
-                    Frequency = (ComboItem)cmbFrequency2.SelectedItem != null ? Convert.ToInt32(((ComboItem)cmbFrequency2.SelectedItem).Value) : 0,
+                    CommunicateDate = txtConmunicateDate2.Text,
+                    Frequency = txtFrenquence2.Text,
                     ID = FXFAID2
                 };
                 list.Add(fxfa);
@@ -276,8 +289,8 @@ namespace ProjectManagement.Forms.Stakeholder
                     CID = (ComboItem)cmbCommunication3.SelectedItem != null ? ((ComboItem)cmbCommunication3.SelectedItem).Value.ToString() : "",
                     Content = txtContent3.Text.ToString(),
                     SID = ID.Substring(0, 37) + "1",
-                    StarteDate = dtiStarteDate3.Value,
-                    Frequency = (ComboItem)cmbFrequency3.SelectedItem != null ? Convert.ToInt32(((ComboItem)cmbFrequency3.SelectedItem).Value) : 0,
+                    CommunicateDate = txtConmunicateDate3.Text,
+                    Frequency = txtFrenquence3.Text,
                     ID = FXFAID3
                 };
                 list.Add(fxfa);
@@ -304,10 +317,10 @@ namespace ProjectManagement.Forms.Stakeholder
         /// </summary>
         private void LoadDropList()
         {
-            //频率下拉框
-            DataHelper.LoadDictItems(cmbFrequency1, DictCategory.Frequency);
-            DataHelper.LoadDictItems(cmbFrequency2, DictCategory.Frequency);
-            DataHelper.LoadDictItems(cmbFrequency3, DictCategory.Frequency);
+            ////频率下拉框
+            //DataHelper.LoadDictItems(cmbFrequency1, DictCategory.Frequency);
+            //DataHelper.LoadDictItems(cmbFrequency2, DictCategory.Frequency);
+            //DataHelper.LoadDictItems(cmbFrequency3, DictCategory.Frequency);
             LoadCommunicationItems(cmbCommunication1, "");
             LoadCommunicationItems(cmbCommunication2, "");
             LoadCommunicationItems(cmbCommunication3, "");
@@ -351,23 +364,23 @@ namespace ProjectManagement.Forms.Stakeholder
 
             txtAddress3.Clear();
             txtContent3.Clear();
-            dtiStarteDate3.Value = DateTime.MinValue;
+            txtConmunicateDate3.Clear();
             cmbCommunication3.SelectedIndex = -1;
-            cmbFrequency3.SelectedIndex = -1;
+            txtFrenquence3.Clear();
             FXFAID3 = null;
 
             txtAddress2.Clear();
             txtContent2.Clear();
-            dtiStarteDate2.Value = DateTime.MinValue;
+            txtFrenquence2.Clear();
+            txtConmunicateDate2.Clear();
             cmbCommunication2.SelectedIndex = -1;
-            cmbFrequency2.SelectedIndex = -1;
             FXFAID2 = null;
 
             txtAddress1.Clear();
             txtContent1.Clear();
-            dtiStarteDate1.Value = DateTime.MinValue;
+            txtCommunicateDate1.Clear();
+            txtFrenquence1.Clear();
             cmbCommunication1.SelectedIndex = -1;
-            cmbFrequency1.SelectedIndex = -1;
             FXFAID1 = null;
         }
         #endregion

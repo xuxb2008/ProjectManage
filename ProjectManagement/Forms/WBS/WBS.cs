@@ -31,7 +31,6 @@ namespace ProjectManagement.Forms.WBS
         DeliverablesJBXX _SelectJBXX;
         List<DeliverablesWork> listWork;
         bool IsRightClick = false;//当前对左侧树是否为右击选择
-        bool IsEditDate = true;//是否在编辑交付物时间
         #endregion
 
         #region 事件
@@ -69,7 +68,7 @@ namespace ProjectManagement.Forms.WBS
                 FileHelper.WBSMoveFloder(_SelectNode.ID);//迁移文件夹
                 //主框更新
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
-                mainForm.ReloadCurrentNode(node);
+                mainForm.RelaodTree();
 
             }
             else
@@ -104,8 +103,7 @@ namespace ProjectManagement.Forms.WBS
                 PID = ProjectId,
                 Name = txtNode.Text,
                 ParentID = txtParent.Tag == null ? "" : txtParent.Tag.ToString(),
-                IsMilestone = ckMilestone.Checked ? 1 : 0,
-                IsJFW = 0
+                PType = 0
             };
 
             #region 检查
@@ -150,7 +148,7 @@ namespace ProjectManagement.Forms.WBS
         /// <param name="e"></param>
         private void btnClear2_Click(object sender, EventArgs e)
         {
-            if (_SelectNode.IsJFW == 1)
+            if (_SelectNode.PType == 1)
             {
                 LoadJFW();
             }
@@ -171,7 +169,7 @@ namespace ProjectManagement.Forms.WBS
         {
             if (GetEditManager(true))//如果填写无误
             {
-                if (_SelectNode.IsJFW == 1)
+                if (_SelectNode.PType == 1)
                     UpdateJFW(listWork);
                 else
                     AddJFW(listWork);
@@ -222,7 +220,14 @@ namespace ProjectManagement.Forms.WBS
         private void toolNodeExchange_Click(object sender, EventArgs e)
         {
             PNode node = JsonHelper.StringToEntity<PNode>(EditNodeMenu.Tag.ToString());
-            node.IsJFW = 1 - node.IsJFW;
+            #region 如果不是交付物 或有子节点
+            if (node.PType == 0 && bll.GetChildren(node.ID).Count > 0)
+            {
+                MessageHelper.ShowMsg(MessageID.W000000007, MessageType.Alert);
+                return;
+            }
+            #endregion
+            node.PType = node.PType == 0 ? 1 : 0;
             JsonResult result = bll.SaveNode(node);
             if (result.result)
             {
@@ -280,6 +285,13 @@ namespace ProjectManagement.Forms.WBS
                     return;//顶级节点不能修改
                 DataHelper.SetTreeSelectByValue(advTree1, node.ID);
                 Point point = advTree1.PointToClient(Cursor.Position);
+                this.toolNodeExchange.Visible = true;
+                if (node.PType == 0)
+                    this.toolNodeExchange.Text = "转为交付物";
+                else if (node.PType == 1)
+                    this.toolNodeExchange.Text = "转为节点";
+                else
+                    this.toolNodeExchange.Visible = false;
                 this.EditNodeMenu.Tag = e.Node.Tag;
                 this.EditNodeMenu.Show(advTree1, point);
 
@@ -312,7 +324,7 @@ namespace ProjectManagement.Forms.WBS
         {
             _SelectNode = JsonHelper.StringToEntity<PNode>(e.Node.Tag.ToString());
             _SelectJBXX = new DeliverablesJBXX();
-            if (_SelectNode.IsJFW == 1)
+            if (_SelectNode.PType == 1)
                 LoadJFW();
             else
                 LoadNode();
@@ -365,7 +377,34 @@ namespace ProjectManagement.Forms.WBS
             ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager("", tmp < 0 ? 0 : tmp, tmp < 0 ? 0 : tmp);
             if (fmNewManager.ShowDialog() == DialogResult.OK)
             {
-                AddManager(fmNewManager.ReturnValue);
+                GetEditManager(false);//更新责任人列表
+                bool IsExist = false;//是否列表中存在该责任人
+                #region 查找该责任人 存在即修改
+                foreach (var t in listWork)
+                {
+                    if (t.Manager.Equals(fmNewManager.ReturnValue.Manager.Substring(0, 36)))
+                    {
+                        IsExist = true;
+                        t.ManagerName = fmNewManager.ReturnValue.ManagerName;
+                        t.Workload += fmNewManager.ReturnValue.Workload;
+                        t.ActualWorkload += fmNewManager.ReturnValue.ActualWorkload;
+                        break;
+                    }
+                }
+                #endregion
+                #region 不存在即新增
+                if (!IsExist)
+                {
+                    listWork.Add(new DeliverablesWork()
+                    {
+                        Manager = fmNewManager.ReturnValue.Manager.Substring(0, 36),
+                        ManagerName = fmNewManager.ReturnValue.ManagerName,
+                        Workload = fmNewManager.ReturnValue.Workload,
+                        ActualWorkload = fmNewManager.ReturnValue.ActualWorkload
+                    });
+                }
+                #endregion
+                gridManager.PrimaryGrid.DataSource = listWork;
             }
         }
 
@@ -400,7 +439,7 @@ namespace ProjectManagement.Forms.WBS
         /// <param name="e"></param>
         private void dt_ValueChanged(object sender, EventArgs e)
         {
-            if (IsEditDate && dtStart.Value != null && dtEnd.Value != null)
+            if (dtStart.Value != null && dtEnd.Value != null)
             {
                 if (dtEnd.Value < dtStart.Value)
                     dtEnd.Value = dtStart.Value;
@@ -419,8 +458,6 @@ namespace ProjectManagement.Forms.WBS
         /// </summary>
         void LoadJFW()
         {
-            IsEditDate = false;
-
             DevComponents.AdvTree.Node JFW_Node = advTree1.SelectedNode;
             panelNode.Enabled = false;
 
@@ -445,7 +482,6 @@ namespace ProjectManagement.Forms.WBS
             listWork = bll.GetManagerWorks(_SelectJBXX.ID);
             gridManager.PrimaryGrid.DataSource = listWork;
 
-            IsEditDate = true;
         }
 
         /// <summary>
@@ -483,7 +519,6 @@ namespace ProjectManagement.Forms.WBS
         /// </summary>
         private void ClearJFW()
         {
-            IsEditDate = false;
             //txtJFWParent.Clear();
             //txtJFWParent.Tag = "";
             txtJFW.Clear();
@@ -495,7 +530,6 @@ namespace ProjectManagement.Forms.WBS
             sdWeight.Value = 1;
             listWork = null;
             gridManager.PrimaryGrid.DataSource = listWork;
-            IsEditDate = true;
         }
 
         /// <summary>
@@ -509,8 +543,7 @@ namespace ProjectManagement.Forms.WBS
                 PID = ProjectId,
                 Name = txtJFW.Text,
                 ParentID = txtJFWParent.Tag == null ? "" : txtJFWParent.Tag.ToString(),
-                IsMilestone = 0,
-                IsJFW = 1
+                PType = 1
             };
             DeliverablesJBXX entity = new DeliverablesJBXX()
             {
@@ -638,39 +671,6 @@ namespace ProjectManagement.Forms.WBS
             return true;
         }
 
-        /// <summary>
-        /// 添加责任人
-        /// Created:20170601(ChengMengjia)
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        private void AddManager(WorkloadEntity entity)
-        {
-            if (listWork == null)
-                listWork = new List<DeliverablesWork>();
-            bool IsExist = false;//是否列表中存在该责任人
-            listWork.ForEach(t =>
-            {
-                if (t.Manager.Equals(entity.Manager.Substring(0, 36)))
-                {
-                    t.ManagerName = entity.ManagerName;
-                    t.Workload += entity.Workload;
-                    t.ActualWorkload += entity.ActualWorkload;
-                    IsExist = true;
-                }
-            });
-            if (!IsExist)
-            {
-                listWork.Add(new DeliverablesWork()
-                {
-                    Manager = entity.Manager.Substring(0, 36),
-                    ManagerName = entity.ManagerName,
-                    Workload = entity.Workload,
-                    ActualWorkload = entity.ActualWorkload
-                });
-            }
-            gridManager.PrimaryGrid.DataSource = listWork;
-        }
         #endregion
 
 

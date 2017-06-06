@@ -36,10 +36,19 @@ namespace ProjectManagement.Forms.WBS
             LoadManager(ManagerID, WorkLoad, ActualWorkLoad);
             cbManager.Focus();
         }
-
+        /// <summary>
+        /// 预计工作量变化时间
+        /// Created:20170605(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void intWorkload_ValueChanged(object sender, EventArgs e)
+        {
+            intActualWorkload.Value = intWorkload.Value;
+        }
         /// <summary>
         /// 保存
-        /// Created:20170406(ChengMengjia)
+        /// Created:20170526(ChengMengjia)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -67,7 +76,7 @@ namespace ProjectManagement.Forms.WBS
 
         /// <summary>
         /// 取消
-        /// Created:20170406(ChengMengjia)
+        /// Created:20170526(ChengMengjia)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -109,5 +118,6 @@ namespace ProjectManagement.Forms.WBS
             cbManager.SelectedIndex = SelectedIndex;
         }
         #endregion
+
     }
 }

@@ -42,7 +42,7 @@ namespace ProjectManagement.Forms.InfomationPublish
         void LoadTree()
         {
             wbsTree.Nodes.Clear();
-            List<PNode> listNode = wbsBll.GetNodes(ProjectId);
+            List<PNode> listNode = wbsBll.GetNodes(ProjectId,null);
             IEnumerable<PNode> parentNode = null;
             parentNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.No);
             foreach (PNode parent in parentNode)

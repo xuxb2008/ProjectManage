@@ -51,17 +51,20 @@ namespace DomainDLL
             set;
         }
         /// <summary>
-        /// 是否为里程碑
+        /// 节点类型：0普通节点 1交付物节点 2日常工作 3问题
         /// </summary>
-        public virtual int? IsMilestone
+        public virtual int? PType
         {
             get;
             set;
         }
+
         /// <summary>
-        /// 是否为交付物
+        /// 未开始（0），已完成（1），正在执行（2），超期（3）
+        /// 未开始的没有背景色（值为0），已完成的为绿色（1），正在执行的为黄色（2），超期的为红色（3）
+        /// 非数据库字段
         /// </summary>
-        public virtual int? IsJFW
+        public virtual int? FinishStatus
         {
             get;
             set;

@@ -234,6 +234,63 @@ namespace CommonDLL
         Number = 3
     }
 
+    /// <summary>
+    /// 更新进度
+    /// </summary>
+    public enum ProgressType
+    {
+        /// <summary>
+        /// 0%
+        /// </summary>
+        [EnumDesc("0%")]
+        Type1 = 1,
+        /// <summary>
+        /// 25%
+        /// </summary>
+        [EnumDesc("25%")]
+        Type2 = 2,
+        /// <summary>
+        /// 50%
+        /// </summary>
+        [EnumDesc("50%")]
+        Type3 = 3,
+        /// <summary>
+        /// 75%
+        /// </summary>
+        [EnumDesc("75%")]
+        Type4 = 4,
+        /// <summary>
+        /// 100%
+        /// </summary>
+        [EnumDesc("100%")]
+        Type5 = 5
+    }
 
+    /// <summary>
+    /// wbs代码-序列
+    /// </summary>
+    public enum WBSPType
+    {
+        /// <summary>
+        /// 普通节点
+        /// </summary>
+        [EnumDesc("普通节点")]
+        PType0 = 0,
+        /// <summary>
+        /// 交付物
+        /// </summary>
+        [EnumDesc("交付物")]
+        PType1= 1,
+        /// <summary>
+        /// 日常工作
+        /// </summary>
+        [EnumDesc("日常")]
+        PType2 = 2,
+        /// <summary>
+        /// 问题
+        /// </summary>
+        [EnumDesc("问题")]
+        PType3 = 3
+    }
     #endregion
 }

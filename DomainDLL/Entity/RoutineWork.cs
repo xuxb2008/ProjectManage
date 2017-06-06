@@ -18,10 +18,18 @@ namespace DomainDLL
             set;
         }
         /// <summary>
-        /// <summary>
         /// 工作量（天）
         /// </summary>
-        public virtual decimal Workload
+        public virtual int? Workload
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// <summary>
+        /// 实际工作量（天）
+        /// </summary>
+        public virtual int? ActualWorkload
         {
             get;
             set;
@@ -30,24 +38,6 @@ namespace DomainDLL
         /// 负责人
         /// </summary>
         public virtual string Manager
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 开始时间
-        /// </summary>
-        public virtual DateTime? StarteDate
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 结束时间
-        /// </summary>
-        public virtual DateTime? EndDate
         {
             get;
             set;

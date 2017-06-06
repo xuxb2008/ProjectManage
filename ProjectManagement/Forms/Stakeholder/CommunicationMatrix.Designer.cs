@@ -34,6 +34,7 @@
             this.gridColumn1 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn2 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn3 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.IsPublic = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.txtCompanyName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
@@ -71,9 +72,6 @@
             this.labelX17 = new DevComponents.DotNetBar.LabelX();
             this.labelX20 = new DevComponents.DotNetBar.LabelX();
             this.cmbCommunication1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.cmbFrequency1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.cmbFrequency2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.cmbFrequency3 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.txtAddress1 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtContent1 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtContent2 = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -83,16 +81,16 @@
             this.cmbCommunication2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.cmbCommunication3 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.btnSaveCommunicationFXFA = new DevComponents.DotNetBar.ButtonX();
-            this.dtiStarteDate1 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
-            this.dtiStarteDate2 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
-            this.dtiStarteDate3 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtConmunicateDate3 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtFrenquence3 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtConmunicateDate2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtFrenquence2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtCommunicateDate1 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtFrenquence1 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtiCREATED)).BeginInit();
             this.groupPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtiStarteDate1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtiStarteDate2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtiStarteDate3)).BeginInit();
             this.groupPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,6 +171,7 @@
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn1);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn2);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn3);
+            this.superGridControl1.PrimaryGrid.Columns.Add(this.IsPublic);
             this.superGridControl1.PrimaryGrid.MultiSelect = false;
             this.superGridControl1.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
             this.superGridControl1.Size = new System.Drawing.Size(294, 591);
@@ -200,6 +199,11 @@
             this.gridColumn3.HeaderText = "ID";
             this.gridColumn3.Name = "ID";
             this.gridColumn3.Visible = false;
+            // 
+            // IsPublic
+            // 
+            this.IsPublic.Name = "IsPublic";
+            this.IsPublic.Visible = false;
             // 
             // labelX1
             // 
@@ -827,45 +831,6 @@
             this.cmbCommunication1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbCommunication1.TabIndex = 11;
             // 
-            // cmbFrequency1
-            // 
-            this.cmbFrequency1.DisplayMember = "Text";
-            this.cmbFrequency1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbFrequency1.FormattingEnabled = true;
-            this.cmbFrequency1.ItemHeight = 19;
-            this.cmbFrequency1.Location = new System.Drawing.Point(96, 34);
-            this.cmbFrequency1.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbFrequency1.Name = "cmbFrequency1";
-            this.cmbFrequency1.Size = new System.Drawing.Size(190, 25);
-            this.cmbFrequency1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbFrequency1.TabIndex = 12;
-            // 
-            // cmbFrequency2
-            // 
-            this.cmbFrequency2.DisplayMember = "Text";
-            this.cmbFrequency2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbFrequency2.FormattingEnabled = true;
-            this.cmbFrequency2.ItemHeight = 19;
-            this.cmbFrequency2.Location = new System.Drawing.Point(96, 212);
-            this.cmbFrequency2.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbFrequency2.Name = "cmbFrequency2";
-            this.cmbFrequency2.Size = new System.Drawing.Size(190, 25);
-            this.cmbFrequency2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbFrequency2.TabIndex = 17;
-            // 
-            // cmbFrequency3
-            // 
-            this.cmbFrequency3.DisplayMember = "Text";
-            this.cmbFrequency3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbFrequency3.FormattingEnabled = true;
-            this.cmbFrequency3.ItemHeight = 19;
-            this.cmbFrequency3.Location = new System.Drawing.Point(96, 378);
-            this.cmbFrequency3.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbFrequency3.Name = "cmbFrequency3";
-            this.cmbFrequency3.Size = new System.Drawing.Size(190, 25);
-            this.cmbFrequency3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbFrequency3.TabIndex = 22;
-            // 
             // txtAddress1
             // 
             this.txtAddress1.BackColor = System.Drawing.Color.White;
@@ -1013,166 +978,25 @@
             this.btnSaveCommunicationFXFA.Text = "保存";
             this.btnSaveCommunicationFXFA.Click += new System.EventHandler(this.btnSaveCommunicationFXFA_Click);
             // 
-            // dtiStarteDate1
-            // 
-            // 
-            // 
-            // 
-            this.dtiStarteDate1.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtiStarteDate1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate1.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
-            this.dtiStarteDate1.ButtonDropDown.Visible = true;
-            this.dtiStarteDate1.Format = DevComponents.Editors.eDateTimePickerFormat.ShortTime;
-            this.dtiStarteDate1.IsPopupCalendarOpen = false;
-            this.dtiStarteDate1.Location = new System.Drawing.Point(95, 65);
-            // 
-            // 
-            // 
-            this.dtiStarteDate1.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtiStarteDate1.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate1.MonthCalendar.CalendarDimensions = new System.Drawing.Size(1, 1);
-            this.dtiStarteDate1.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtiStarteDate1.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtiStarteDate1.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtiStarteDate1.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtiStarteDate1.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtiStarteDate1.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtiStarteDate1.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtiStarteDate1.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate1.MonthCalendar.DisplayMonth = new System.DateTime(2017, 3, 1, 0, 0, 0, 0);
-            this.dtiStarteDate1.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtiStarteDate1.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtiStarteDate1.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtiStarteDate1.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtiStarteDate1.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtiStarteDate1.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate1.MonthCalendar.TodayButtonVisible = true;
-            this.dtiStarteDate1.MonthCalendar.Visible = false;
-            this.dtiStarteDate1.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
-            this.dtiStarteDate1.Name = "dtiStarteDate1";
-            this.dtiStarteDate1.Size = new System.Drawing.Size(191, 21);
-            this.dtiStarteDate1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.dtiStarteDate1.TabIndex = 13;
-            // 
-            // dtiStarteDate2
-            // 
-            // 
-            // 
-            // 
-            this.dtiStarteDate2.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtiStarteDate2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate2.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
-            this.dtiStarteDate2.ButtonDropDown.Visible = true;
-            this.dtiStarteDate2.Format = DevComponents.Editors.eDateTimePickerFormat.ShortTime;
-            this.dtiStarteDate2.IsPopupCalendarOpen = false;
-            this.dtiStarteDate2.Location = new System.Drawing.Point(95, 242);
-            // 
-            // 
-            // 
-            this.dtiStarteDate2.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtiStarteDate2.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate2.MonthCalendar.CalendarDimensions = new System.Drawing.Size(1, 1);
-            this.dtiStarteDate2.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtiStarteDate2.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtiStarteDate2.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtiStarteDate2.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtiStarteDate2.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtiStarteDate2.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtiStarteDate2.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtiStarteDate2.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate2.MonthCalendar.DisplayMonth = new System.DateTime(2017, 3, 1, 0, 0, 0, 0);
-            this.dtiStarteDate2.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtiStarteDate2.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtiStarteDate2.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtiStarteDate2.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtiStarteDate2.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtiStarteDate2.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate2.MonthCalendar.TodayButtonVisible = true;
-            this.dtiStarteDate2.MonthCalendar.Visible = false;
-            this.dtiStarteDate2.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
-            this.dtiStarteDate2.Name = "dtiStarteDate2";
-            this.dtiStarteDate2.Size = new System.Drawing.Size(191, 21);
-            this.dtiStarteDate2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.dtiStarteDate2.TabIndex = 18;
-            // 
-            // dtiStarteDate3
-            // 
-            // 
-            // 
-            // 
-            this.dtiStarteDate3.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtiStarteDate3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate3.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
-            this.dtiStarteDate3.ButtonDropDown.Visible = true;
-            this.dtiStarteDate3.Format = DevComponents.Editors.eDateTimePickerFormat.ShortTime;
-            this.dtiStarteDate3.IsPopupCalendarOpen = false;
-            this.dtiStarteDate3.Location = new System.Drawing.Point(95, 408);
-            // 
-            // 
-            // 
-            this.dtiStarteDate3.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtiStarteDate3.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate3.MonthCalendar.CalendarDimensions = new System.Drawing.Size(1, 1);
-            this.dtiStarteDate3.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtiStarteDate3.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtiStarteDate3.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtiStarteDate3.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtiStarteDate3.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtiStarteDate3.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtiStarteDate3.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtiStarteDate3.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate3.MonthCalendar.DisplayMonth = new System.DateTime(2017, 3, 1, 0, 0, 0, 0);
-            this.dtiStarteDate3.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtiStarteDate3.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtiStarteDate3.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtiStarteDate3.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtiStarteDate3.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtiStarteDate3.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiStarteDate3.MonthCalendar.TodayButtonVisible = true;
-            this.dtiStarteDate3.MonthCalendar.Visible = false;
-            this.dtiStarteDate3.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
-            this.dtiStarteDate3.Name = "dtiStarteDate3";
-            this.dtiStarteDate3.Size = new System.Drawing.Size(191, 21);
-            this.dtiStarteDate3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.dtiStarteDate3.TabIndex = 23;
-            // 
             // groupPanel3
             // 
-            this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupPanel3.AllowDrop = true;
+            this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel3.AutoScroll = true;
+            this.groupPanel3.AutoScrollMargin = new System.Drawing.Size(100, 100);
+            this.groupPanel3.AutoScrollMinSize = new System.Drawing.Size(100, 100);
+            this.groupPanel3.AutoSize = true;
             this.groupPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(242)))));
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel3.Controls.Add(this.dtiStarteDate3);
-            this.groupPanel3.Controls.Add(this.dtiStarteDate2);
-            this.groupPanel3.Controls.Add(this.dtiStarteDate1);
+            this.groupPanel3.Controls.Add(this.txtConmunicateDate3);
+            this.groupPanel3.Controls.Add(this.txtFrenquence3);
+            this.groupPanel3.Controls.Add(this.txtConmunicateDate2);
+            this.groupPanel3.Controls.Add(this.txtFrenquence2);
+            this.groupPanel3.Controls.Add(this.txtCommunicateDate1);
+            this.groupPanel3.Controls.Add(this.txtFrenquence1);
             this.groupPanel3.Controls.Add(this.btnSaveCommunicationFXFA);
             this.groupPanel3.Controls.Add(this.cmbCommunication3);
             this.groupPanel3.Controls.Add(this.cmbCommunication2);
@@ -1182,9 +1006,6 @@
             this.groupPanel3.Controls.Add(this.txtContent2);
             this.groupPanel3.Controls.Add(this.txtContent1);
             this.groupPanel3.Controls.Add(this.txtAddress1);
-            this.groupPanel3.Controls.Add(this.cmbFrequency3);
-            this.groupPanel3.Controls.Add(this.cmbFrequency2);
-            this.groupPanel3.Controls.Add(this.cmbFrequency1);
             this.groupPanel3.Controls.Add(this.cmbCommunication1);
             this.groupPanel3.Controls.Add(this.labelX20);
             this.groupPanel3.Controls.Add(this.labelX17);
@@ -1205,7 +1026,7 @@
             this.groupPanel3.Location = new System.Drawing.Point(595, 6);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(300, 612);
+            this.groupPanel3.Size = new System.Drawing.Size(317, 591);
             // 
             // 
             // 
@@ -1237,25 +1058,126 @@
             this.groupPanel3.TabIndex = 2;
             this.groupPanel3.Text = "干系人分析及沟通方案";
             // 
+            // txtConmunicateDate3
+            // 
+            this.txtConmunicateDate3.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtConmunicateDate3.Border.Class = "TextBoxBorder";
+            this.txtConmunicateDate3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtConmunicateDate3.DisabledBackColor = System.Drawing.Color.White;
+            this.txtConmunicateDate3.ForeColor = System.Drawing.Color.Black;
+            this.txtConmunicateDate3.Location = new System.Drawing.Point(95, 407);
+            this.txtConmunicateDate3.Margin = new System.Windows.Forms.Padding(2);
+            this.txtConmunicateDate3.Name = "txtConmunicateDate3";
+            this.txtConmunicateDate3.PreventEnterBeep = true;
+            this.txtConmunicateDate3.Size = new System.Drawing.Size(189, 21);
+            this.txtConmunicateDate3.TabIndex = 32;
+            // 
+            // txtFrenquence3
+            // 
+            this.txtFrenquence3.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtFrenquence3.Border.Class = "TextBoxBorder";
+            this.txtFrenquence3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtFrenquence3.DisabledBackColor = System.Drawing.Color.White;
+            this.txtFrenquence3.ForeColor = System.Drawing.Color.Black;
+            this.txtFrenquence3.Location = new System.Drawing.Point(97, 382);
+            this.txtFrenquence3.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFrenquence3.Name = "txtFrenquence3";
+            this.txtFrenquence3.PreventEnterBeep = true;
+            this.txtFrenquence3.Size = new System.Drawing.Size(189, 21);
+            this.txtFrenquence3.TabIndex = 31;
+            // 
+            // txtConmunicateDate2
+            // 
+            this.txtConmunicateDate2.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtConmunicateDate2.Border.Class = "TextBoxBorder";
+            this.txtConmunicateDate2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtConmunicateDate2.DisabledBackColor = System.Drawing.Color.White;
+            this.txtConmunicateDate2.ForeColor = System.Drawing.Color.Black;
+            this.txtConmunicateDate2.Location = new System.Drawing.Point(95, 238);
+            this.txtConmunicateDate2.Margin = new System.Windows.Forms.Padding(2);
+            this.txtConmunicateDate2.Name = "txtConmunicateDate2";
+            this.txtConmunicateDate2.PreventEnterBeep = true;
+            this.txtConmunicateDate2.Size = new System.Drawing.Size(189, 21);
+            this.txtConmunicateDate2.TabIndex = 30;
+            // 
+            // txtFrenquence2
+            // 
+            this.txtFrenquence2.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtFrenquence2.Border.Class = "TextBoxBorder";
+            this.txtFrenquence2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtFrenquence2.DisabledBackColor = System.Drawing.Color.White;
+            this.txtFrenquence2.ForeColor = System.Drawing.Color.Black;
+            this.txtFrenquence2.Location = new System.Drawing.Point(95, 214);
+            this.txtFrenquence2.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFrenquence2.Name = "txtFrenquence2";
+            this.txtFrenquence2.PreventEnterBeep = true;
+            this.txtFrenquence2.Size = new System.Drawing.Size(189, 21);
+            this.txtFrenquence2.TabIndex = 29;
+            // 
+            // txtCommunicateDate1
+            // 
+            this.txtCommunicateDate1.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtCommunicateDate1.Border.Class = "TextBoxBorder";
+            this.txtCommunicateDate1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtCommunicateDate1.DisabledBackColor = System.Drawing.Color.White;
+            this.txtCommunicateDate1.ForeColor = System.Drawing.Color.Black;
+            this.txtCommunicateDate1.Location = new System.Drawing.Point(95, 64);
+            this.txtCommunicateDate1.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCommunicateDate1.Name = "txtCommunicateDate1";
+            this.txtCommunicateDate1.PreventEnterBeep = true;
+            this.txtCommunicateDate1.Size = new System.Drawing.Size(189, 21);
+            this.txtCommunicateDate1.TabIndex = 28;
+            // 
+            // txtFrenquence1
+            // 
+            this.txtFrenquence1.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtFrenquence1.Border.Class = "TextBoxBorder";
+            this.txtFrenquence1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtFrenquence1.DisabledBackColor = System.Drawing.Color.White;
+            this.txtFrenquence1.ForeColor = System.Drawing.Color.Black;
+            this.txtFrenquence1.Location = new System.Drawing.Point(95, 39);
+            this.txtFrenquence1.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFrenquence1.Name = "txtFrenquence1";
+            this.txtFrenquence1.PreventEnterBeep = true;
+            this.txtFrenquence1.Size = new System.Drawing.Size(189, 21);
+            this.txtFrenquence1.TabIndex = 27;
+            // 
             // CommunicationMatrix
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(100, 100);
             this.ClientSize = new System.Drawing.Size(970, 602);
             this.Controls.Add(this.groupPanel3);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CommunicationMatrix";
             this.Text = "沟通分析矩阵";
             this.groupPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtiCREATED)).EndInit();
             this.groupPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtiStarteDate1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtiStarteDate2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtiStarteDate3)).EndInit();
             this.groupPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1300,9 +1222,6 @@
         private DevComponents.DotNetBar.LabelX labelX17;
         private DevComponents.DotNetBar.LabelX labelX20;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cmbCommunication1;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cmbFrequency1;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cmbFrequency2;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cmbFrequency3;
         private DevComponents.DotNetBar.Controls.TextBoxX txtAddress1;
         private DevComponents.DotNetBar.Controls.TextBoxX txtContent1;
         private DevComponents.DotNetBar.Controls.TextBoxX txtContent2;
@@ -1312,13 +1231,17 @@
         private DevComponents.DotNetBar.Controls.ComboBoxEx cmbCommunication2;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cmbCommunication3;
         private DevComponents.DotNetBar.ButtonX btnSaveCommunicationFXFA;
-        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtiStarteDate1;
-        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtiStarteDate2;
-        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtiStarteDate3;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel3;
         private DevComponents.DotNetBar.SuperGrid.SuperGridControl superGridControl1;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn1;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn2;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn3;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn IsPublic;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtConmunicateDate3;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtFrenquence3;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtConmunicateDate2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtFrenquence2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtCommunicateDate1;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtFrenquence1;
     }
 }

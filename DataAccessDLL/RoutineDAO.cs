@@ -13,7 +13,7 @@ namespace DataAccessDLL
     /// 类名：日常工作数据处理类
     /// Created：2017.03.30(xuxb)
     /// </summary>
-    public class RoutineDAO
+    public class RoutineDAO : BaseDao
     {
         /// <summary>
         /// 日常工作查询
@@ -56,16 +56,8 @@ namespace DataAccessDLL
 
             sql.Append(" order by r.StartDate Desc  ");
 
-            DataSet ds = NHHelper.ExecuteDataset(sql.ToString(), qf);
+            return NHHelper.ExecuteDataTable(sql.ToString(), qf);
 
-            if (ds != null && ds.Tables.Count > 0)
-            {
-                return ds.Tables[0];
-            }
-            else
-            {
-                return new DataTable();
-            }
         }
 
         /// <summary>
@@ -73,14 +65,15 @@ namespace DataAccessDLL
         /// </summary>
         /// <param name="entity">日常工作实体</param>
         /// <param name="listWork">责任人列表</param>
-        public virtual void AddRoutine(Routine entity, List<RoutineWork> listWork)
+        public virtual void AddRoutine(Routine entity, PNode node, List<RoutineWork> listWork)
         {
             ISession s = NHHelper.GetCurrentSession();
             try
             {
                 s.BeginTransaction();
-                entity.ID = Guid.NewGuid().ToString() + "-1";
                 s.Save(entity);
+                if (node != null)
+                    s.Save(node);
                 if (listWork != null)
                     foreach (RoutineWork item in listWork)
                     {
@@ -90,6 +83,7 @@ namespace DataAccessDLL
                         item.RoutineID = entity.ID.Substring(0, 36);
                         s.Save(item);
                     }
+                UpdateProject(s);
                 s.Transaction.Commit();
                 s.Close();
             }
@@ -107,26 +101,21 @@ namespace DataAccessDLL
         /// </summary>
         /// <param name="entity">日常工作实体</param>
         /// <param name="listWork">负责人列表</param>
-        public virtual void UpdateRoutine(Routine entity, List<RoutineWork> listWork)
+        public virtual void UpdateRoutine(Routine newEntity, Routine oldeEntity, PNode newNode, PNode oldNode, List<RoutineWork> listWork)
         {
             ISession s = NHHelper.GetCurrentSession();
             try
             {
                 s.BeginTransaction();
-                
-                //删除日常工作
-                var oldRoutine = s.Get<Routine>(entity.ID);
-                oldRoutine.Status = 0;//假删除
-                s.Update(oldRoutine);
+                s.Update(oldeEntity);
+                s.Save(newEntity);
+                if (newNode != null)
+                    s.Save(newNode);
+                if (oldNode != null)
+                    s.Update(oldNode);
 
                 //删除责任人
-                s.CreateQuery("delete from RoutineWork where RoutineID='" + entity.ID.Substring(0, 36) + "';").ExecuteUpdate();
-
-                //保存已经更新的日常工作
-                string hisNo = entity.ID.Substring(37);
-                entity.ID = entity.ID.Substring(0, 36) + "-" + (int.Parse(hisNo) + 1).ToString();
-                s.Save(entity);
-
+                s.CreateQuery("delete from RoutineWork where RoutineID='" + newEntity.ID.Substring(0, 36) + "';").ExecuteUpdate();
                 //保存新的责任人
                 if (listWork != null)
                     foreach (RoutineWork item in listWork)
@@ -134,9 +123,11 @@ namespace DataAccessDLL
                         item.ID = Guid.NewGuid().ToString();
                         item.Status = 1;
                         item.CREATED = DateTime.Now;
-                        item.RoutineID = entity.ID.Substring(0, 36);
+                        item.RoutineID = newEntity.ID.Substring(0, 36);
                         s.Save(item);
                     }
+
+                UpdateProject(s);
                 s.Transaction.Commit();
                 s.Close();
             }
@@ -154,7 +145,7 @@ namespace DataAccessDLL
             qf.Add(new QueryField() { Name = "ROUTINEID", Type = QueryFieldType.String, Value = RoutineID });
             StringBuilder sql = new StringBuilder();
             sql.Append(" SELECT r.*,s.Name as ManagerName FROM ROUTINEWORK r");
-            sql.Append(" LEFT JOIN STAKEHOLDERS s ON r.Manager=s.Id");
+            sql.Append(" LEFT JOIN STAKEHOLDERS s ON r.Manager= substr(s.Id,0,37)");
             sql.Append(" WHERE r.ROUTINEID =@ROUTINEID ");
 
 

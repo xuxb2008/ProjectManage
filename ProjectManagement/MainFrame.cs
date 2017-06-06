@@ -30,6 +30,7 @@ namespace ProjectManagement
         bool IsRightClick = false;//当前对左侧树是否为右击选择
 
         NormalOperation nodePage;
+        ProjectManagement.Forms.Others.Routine nodeRoutine;
 
         string[] NodeTabs = { "NormalOperation" };//切换节点时所需关闭的页面
         #endregion
@@ -70,7 +71,7 @@ namespace ProjectManagement
                 ProjectId = item.Name;
                 ProjectName = item.Text;
                 ProjectNo = item.Tag.ToString();
-                DataHelper.SetTreeDate(WbsTree, ProjectId);//绑定树形数据
+                DataHelper.SetMainTreeDate(WbsTree, ProjectId);//绑定树形数据
                 _SelectedNodeID = null;
                 CurrentNode = null;
                 MainSuperTabControl.Tabs.Clear();//初始化TabControl的Tabs
@@ -85,6 +86,9 @@ namespace ProjectManagement
             CurrentNode = null;//当前无选中节点
         }
 
+
+        #region 左侧WBS节点树
+
         /// <summary>
         /// 左侧WBS节点树上方刷新按钮点击事件
         ///  Created:20170324(ChengMengjia)
@@ -95,7 +99,7 @@ namespace ProjectManagement
         {
             if (MessageHelper.ShowMsg(MessageID.I000000005, MessageType.Confirm) == DialogResult.OK)
             {
-                DataHelper.SetTreeDate(WbsTree, ProjectId);//绑定树形数据
+                DataHelper.SetMainTreeDate(WbsTree, ProjectId);//绑定树形数据
                 _SelectedNodeID = null;
                 CurrentNode = null;
                 CloseTabs(NodeTabs);//关闭对应窗体
@@ -122,6 +126,12 @@ namespace ProjectManagement
                 }
                 else
                 {
+                    if (node.PType == 0)
+                        this.toolNodeExchange.Text = "转为交付物";
+                    else if (node.PType == 1)
+                        this.toolNodeExchange.Text = "转为节点";
+                    else
+                        return;
                     this.EditNodeMenu.Tag = e.Node.Tag;
                     this.EditNodeMenu.Show(WbsTree, point);
                 }
@@ -146,14 +156,34 @@ namespace ProjectManagement
             string SelectedNodeID = e.Node.Name;
             if (string.IsNullOrEmpty(_SelectedNodeID) || !_SelectedNodeID.Equals(SelectedNodeID))
             {
+                //普通节点或交付物
                 CurrentNode = JsonHelper.StringToEntity<PNode>(e.Node.Tag.ToString());
                 _SelectedNodeID = SelectedNodeID;
-                if (nodePage == null)
-                    nodePage = new NormalOperation();
-                else
-                    nodePage.inint();
-                ShowChildForm(nodePage);
-
+                switch (CurrentNode.PType)
+                {
+                    case (int)WBSPType.PType0:
+                    case (int)WBSPType.PType1:
+                        if (nodePage == null)
+                            nodePage = new NormalOperation();
+                        else
+                            nodePage.init();
+                        ShowChildForm(nodePage);
+                        break;
+                    case (int)WBSPType.PType2:
+                        if (nodeRoutine == null)
+                        {
+                            nodeRoutine = new Forms.Others.Routine();
+                            nodeRoutine._nodeID = CurrentNode.ID;
+                        }
+                        else
+                        {
+                            nodeRoutine._nodeID = CurrentNode.ID;
+                            nodeRoutine.init();
+                        }
+                        ShowChildForm(nodeRoutine);
+                        break;
+                    case (int)WBSPType.PType3: ShowChildForm(new Forms.Others.Trouble()); break;
+                }
             }
             else e.Cancel = true;
         }
@@ -169,7 +199,14 @@ namespace ProjectManagement
         private void toolNodeExchange_Click(object sender, EventArgs e)
         {
             PNode node = JsonHelper.StringToEntity<PNode>(EditNodeMenu.Tag.ToString());
-            node.IsJFW = 1 - node.IsJFW;
+            #region 如果不是交付物 检查是否有子节点
+            if (node.PType == 0 && wbsBll.GetChildren(node.ID).Count > 0)
+            {
+                MessageHelper.ShowMsg(MessageID.W000000007, MessageType.Alert);
+                return;
+            }
+            #endregion
+            node.PType = node.PType == 0 ? 1 : 0;
             JsonResult result = wbsBll.SaveNode(node);
             if (result.result)
             {
@@ -227,6 +264,8 @@ namespace ProjectManagement
             }
         }
 
+        #endregion
+
         /// <summary>
         /// 上方菜单tab行右击事件
         /// Created：20170410（ChengMengjia）
@@ -261,7 +300,10 @@ namespace ProjectManagement
             {
                 nodePage = null;
             }
-
+            if (e.Tab.Name == "Routine")
+            {
+                nodeRoutine = null;
+            }
         }
 
         /// <summary>
@@ -717,7 +759,7 @@ namespace ProjectManagement
                 ProjectId = icProlist.SubItems[0].Name;
                 ProjectName = icProlist.SubItems[0].Text;
                 ProjectNo = icProlist.SubItems[0].Tag.ToString();
-                DataHelper.SetTreeDate(WbsTree, ProjectId);//绑定树形数据
+                DataHelper.SetMainTreeDate(WbsTree, ProjectId);//绑定树形数据
                 MainSuperTabControl.Tabs.Clear();//初始化TabControl的Tabs
                 startPage = new StartPage();
                 ShowChildForm(startPage);//创建启动窗体
@@ -860,7 +902,7 @@ namespace ProjectManagement
         /// </summary>
         public void RelaodTree()
         {
-            DataHelper.SetTreeDate(WbsTree, ProjectId);//绑定树形数据
+            DataHelper.SetMainTreeDate(WbsTree, ProjectId);//绑定树形数据
             if (CurrentNode != null)
                 DataHelper.SetTreeSelectByValue(WbsTree, CurrentNode.ID);
         }
@@ -884,7 +926,7 @@ namespace ProjectManagement
                     OpenTab(nodePage);
                 }
                 else
-                    nodePage.inint();
+                    nodePage.init();
             }
         }
         #endregion
@@ -949,7 +991,7 @@ namespace ProjectManagement
                 WBSNo = "",
                 No = 1,
                 Name = proName,
-                IsJFW = 0,
+                PType = 0,
                 Status = 1,
                 CREATED = DateTime.Now
             };
@@ -973,7 +1015,7 @@ namespace ProjectManagement
                         node.WBSNo = no;
                         node.No = int.Parse(no);
                         node.Name = excel.ReadCell(row, 2).Trim();//wbs名称
-                        node.IsJFW = 0;
+                        node.PType = 0;
                         node.Status = 1;
                         node.CREATED = DateTime.Now;
                         #endregion
@@ -993,7 +1035,7 @@ namespace ProjectManagement
                             WBSNo = no,
                             No = int.Parse(noArray[noArray.Length - 1]),
                             Name = excel.ReadCell(row, 2).Trim(),//wbs名称
-                            IsJFW = 0,
+                            PType = 0,
                             Status = 1,
                             CREATED = DateTime.Now
                         };
@@ -1001,7 +1043,7 @@ namespace ProjectManagement
                     }
                     if (excel.ReadCell(row, 3).Trim() == "是")
                     {
-                        node.IsJFW = 1;
+                        node.PType = 1;
                         #region 是交付物
                         DateTime dt1 = DateTime.Now;
                         DateTime dt2 = DateTime.Now;
@@ -1079,7 +1121,8 @@ namespace ProjectManagement
                         #endregion
                         #region 内容
                         int rowIndex = 3;
-                        List<PNode> listNode = new WBSBLL().GetNodes(ProjectId);//所有节点
+                        List<PNode> listNode = new WBSBLL().GetNodes(ProjectId);//所有普通和交付物节点
+                        listNode = listNode.Where(t => t.PType == 0 || t.PType == 1).ToList();//普通节点和交付物节点
                         IEnumerable<PNode> parentNode = null;
                         PNode proNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.No).FirstOrDefault();//顶级项目名节点
                         parentNode = listNode.Where(t => t.ParentID == proNode.ID).OrderBy(t => t.No);//第一级节点列表
@@ -1090,7 +1133,7 @@ namespace ProjectManagement
                             excel.SetCells(rowIndex, 3, "否");
                             //excel.SetCellsBackColor(rowIndex, 1, rowIndex, 4, ColorIndex.灰色25);
                             rowIndex += 1;
-                            SetSubTreeData(listNode, parent, excel,ref rowIndex);
+                            SetSubTreeData(listNode, parent, excel, ref rowIndex);
                         }
                         #endregion
                         excel.SaveAsFile();//文件保存
@@ -1112,7 +1155,7 @@ namespace ProjectManagement
         /// </summary>
         /// <param name="advTree1"></param>
         /// <param name="ProjectID"></param>
-        private void SetSubTreeData(IList<PNode> listNode, PNode parent, ExcelHelper excel,ref int rowIndex)
+        private void SetSubTreeData(IList<PNode> listNode, PNode parent, ExcelHelper excel, ref int rowIndex)
         {
             string parentID = parent.ID.Substring(0, 36);
             IEnumerable<PNode> children = listNode.Where(t => t.ParentID == parentID).OrderBy(t => t.No);
@@ -1124,7 +1167,7 @@ namespace ProjectManagement
             {
                 excel.SetCells(rowIndex, 1, child.WBSNo);
                 excel.SetCells(rowIndex, 2, child.Name);
-                if (child.IsJFW == 1)
+                if (child.PType == 1)//是交付物
                 {
                     excel.SetCells(rowIndex, 3, "是");
                     DeliverablesJBXX jbxx = wbsBll.GetJBXX(child.ID);
@@ -1136,7 +1179,7 @@ namespace ProjectManagement
                 else
                     excel.SetCells(rowIndex, 3, "否");
                 rowIndex += 1;
-                SetSubTreeData(listNode, child, excel,ref rowIndex);
+                SetSubTreeData(listNode, child, excel, ref rowIndex);
             }
         }
 

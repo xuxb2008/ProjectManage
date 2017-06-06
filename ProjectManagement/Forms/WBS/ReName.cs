@@ -60,7 +60,7 @@ namespace ProjectManagement.Forms.WBS
             }
             _node.Name = Name;
             JsonResult result;
-            if (_node.IsJFW == 1)
+            if (_node.PType==1)
             {
                 //如果为交付物节点
                 DeliverablesJBXX jbxx = bll.GetJBXX(_node.ID);

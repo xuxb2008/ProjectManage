@@ -37,7 +37,6 @@
             this.gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn16 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn18 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnWorkClear = new DevComponents.DotNetBar.ButtonX();
@@ -59,13 +58,13 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtFilePath = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtFileName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.btnFileClear = new DevComponents.DotNetBar.ButtonX();
             this.btnFileSave = new DevComponents.DotNetBar.ButtonX();
             this.txtFileDesc = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX12 = new DevComponents.DotNetBar.LabelX();
             this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
-            this.txtFileName = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txtFilePath = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX13 = new DevComponents.DotNetBar.LabelX();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
             this.gridFile = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
@@ -203,7 +202,7 @@
             // 
             this.btnAddManager.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnAddManager.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnAddManager.Location = new System.Drawing.Point(27, 621);
+            this.btnAddManager.Location = new System.Drawing.Point(28, 621);
             this.btnAddManager.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddManager.Name = "btnAddManager";
             this.btnAddManager.Size = new System.Drawing.Size(66, 18);
@@ -219,7 +218,7 @@
             this.gridManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(242)))));
             this.gridManager.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.gridManager.ForeColor = System.Drawing.Color.Black;
-            this.gridManager.Location = new System.Drawing.Point(6, 485);
+            this.gridManager.Location = new System.Drawing.Point(6, 488);
             this.gridManager.Margin = new System.Windows.Forms.Padding(2);
             this.gridManager.Name = "gridManager";
             // 
@@ -232,10 +231,9 @@
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn14);
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn15);
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn16);
-            this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn17);
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn18);
             this.gridManager.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridManager.Size = new System.Drawing.Size(274, 132);
+            this.gridManager.Size = new System.Drawing.Size(300, 129);
             this.gridManager.TabIndex = 20;
             this.gridManager.Text = "superGridControl1";
             this.gridManager.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridManager_CellClick);
@@ -256,20 +254,14 @@
             // gridColumn15
             // 
             this.gridColumn15.DataPropertyName = "Workload";
-            this.gridColumn15.HeaderText = "工作量";
+            this.gridColumn15.HeaderText = "预期工作量";
             this.gridColumn15.Name = "Workload";
             // 
             // gridColumn16
             // 
-            this.gridColumn16.DataPropertyName = "StartDate";
-            this.gridColumn16.HeaderText = "开始时间";
-            this.gridColumn16.Name = "StartDate";
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.DataPropertyName = "EndDate";
-            this.gridColumn17.HeaderText = "结束时间";
-            this.gridColumn17.Name = "EndDate";
+            this.gridColumn16.DataPropertyName = "ActualWorkload";
+            this.gridColumn16.HeaderText = "实际工作量";
+            this.gridColumn16.Name = "ActualWorkload";
             // 
             // gridColumn18
             // 
@@ -397,6 +389,7 @@
             this.txtEndDate.Size = new System.Drawing.Size(208, 21);
             this.txtEndDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.txtEndDate.TabIndex = 10;
+            this.txtEndDate.ValueChanged += new System.EventHandler(this.dt_ValueChanged);
             // 
             // txtStartDate
             // 
@@ -447,6 +440,7 @@
             this.txtStartDate.Size = new System.Drawing.Size(208, 21);
             this.txtStartDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.txtStartDate.TabIndex = 9;
+            this.txtStartDate.ValueChanged += new System.EventHandler(this.dt_ValueChanged);
             // 
             // txtCreateDate
             // 
@@ -663,13 +657,13 @@
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel2.Controls.Add(this.txtFilePath);
+            this.groupPanel2.Controls.Add(this.txtFileName);
             this.groupPanel2.Controls.Add(this.btnFileClear);
             this.groupPanel2.Controls.Add(this.btnFileSave);
             this.groupPanel2.Controls.Add(this.txtFileDesc);
             this.groupPanel2.Controls.Add(this.labelX12);
             this.groupPanel2.Controls.Add(this.buttonX5);
-            this.groupPanel2.Controls.Add(this.txtFileName);
-            this.groupPanel2.Controls.Add(this.txtFilePath);
             this.groupPanel2.Controls.Add(this.labelX13);
             this.groupPanel2.Controls.Add(this.labelX11);
             this.groupPanel2.Controls.Add(this.gridFile);
@@ -709,6 +703,45 @@
             this.groupPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel2.TabIndex = 2;
             this.groupPanel2.Text = "附件信息";
+            // 
+            // txtFilePath
+            // 
+            this.txtFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilePath.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtFilePath.Border.Class = "TextBoxBorder";
+            this.txtFilePath.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtFilePath.DisabledBackColor = System.Drawing.Color.White;
+            this.txtFilePath.Enabled = false;
+            this.txtFilePath.ForeColor = System.Drawing.Color.Black;
+            this.txtFilePath.Location = new System.Drawing.Point(77, 214);
+            this.txtFilePath.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFilePath.Name = "txtFilePath";
+            this.txtFilePath.PreventEnterBeep = true;
+            this.txtFilePath.Size = new System.Drawing.Size(122, 21);
+            this.txtFilePath.TabIndex = 26;
+            // 
+            // txtFileName
+            // 
+            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileName.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtFileName.Border.Class = "TextBoxBorder";
+            this.txtFileName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtFileName.DisabledBackColor = System.Drawing.Color.White;
+            this.txtFileName.ForeColor = System.Drawing.Color.Black;
+            this.txtFileName.Location = new System.Drawing.Point(77, 250);
+            this.txtFileName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.PreventEnterBeep = true;
+            this.txtFileName.Size = new System.Drawing.Size(178, 21);
+            this.txtFileName.TabIndex = 25;
             // 
             // btnFileClear
             // 
@@ -754,7 +787,7 @@
             this.txtFileDesc.Name = "txtFileDesc";
             this.txtFileDesc.PreventEnterBeep = true;
             this.txtFileDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFileDesc.Size = new System.Drawing.Size(69, 90);
+            this.txtFileDesc.Size = new System.Drawing.Size(166, 90);
             this.txtFileDesc.TabIndex = 17;
             // 
             // labelX12
@@ -775,53 +808,14 @@
             this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX5.Location = new System.Drawing.Point(90, 215);
+            this.buttonX5.Location = new System.Drawing.Point(191, 214);
             this.buttonX5.Margin = new System.Windows.Forms.Padding(2);
             this.buttonX5.Name = "buttonX5";
-            this.buttonX5.Size = new System.Drawing.Size(56, 18);
+            this.buttonX5.Size = new System.Drawing.Size(56, 21);
             this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX5.TabIndex = 15;
             this.buttonX5.Text = "选择";
             this.buttonX5.Click += new System.EventHandler(this.buttonX5_Click);
-            // 
-            // txtFileName
-            // 
-            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileName.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.txtFileName.Border.Class = "TextBoxBorder";
-            this.txtFileName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtFileName.DisabledBackColor = System.Drawing.Color.White;
-            this.txtFileName.ForeColor = System.Drawing.Color.Black;
-            this.txtFileName.Location = new System.Drawing.Point(77, 248);
-            this.txtFileName.Margin = new System.Windows.Forms.Padding(2);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.PreventEnterBeep = true;
-            this.txtFileName.Size = new System.Drawing.Size(8, 21);
-            this.txtFileName.TabIndex = 16;
-            // 
-            // txtFilePath
-            // 
-            this.txtFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilePath.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.txtFilePath.Border.Class = "TextBoxBorder";
-            this.txtFilePath.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtFilePath.DisabledBackColor = System.Drawing.Color.White;
-            this.txtFilePath.ForeColor = System.Drawing.Color.Black;
-            this.txtFilePath.Location = new System.Drawing.Point(77, 214);
-            this.txtFilePath.Margin = new System.Windows.Forms.Padding(2);
-            this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.PreventEnterBeep = true;
-            this.txtFilePath.ReadOnly = true;
-            this.txtFilePath.Size = new System.Drawing.Size(8, 21);
-            this.txtFilePath.TabIndex = 15;
             // 
             // labelX13
             // 
@@ -872,7 +866,7 @@
             this.gridFile.PrimaryGrid.Columns.Add(this.gridColumn9);
             this.gridFile.PrimaryGrid.MultiSelect = false;
             this.gridFile.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridFile.Size = new System.Drawing.Size(227, 197);
+            this.gridFile.Size = new System.Drawing.Size(243, 197);
             this.gridFile.TabIndex = 17;
             this.gridFile.Text = "superGridControl2";
             this.gridFile.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridFile_CellClick);
@@ -1047,7 +1041,8 @@
             this.gridRoutine.PrimaryGrid.Columns.Add(this.gridColumn4);
             this.gridRoutine.PrimaryGrid.Columns.Add(this.gridColumn5);
             this.gridRoutine.PrimaryGrid.Columns.Add(this.gridColumn12);
-            this.gridRoutine.Size = new System.Drawing.Size(219, 182);
+            this.gridRoutine.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+            this.gridRoutine.Size = new System.Drawing.Size(296, 544);
             this.gridRoutine.TabIndex = 0;
             this.gridRoutine.Text = "superGridControl1";
             this.gridRoutine.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridRoutine_CellClick);
@@ -1253,7 +1248,6 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Routine";
             this.Text = "日常工作";
-            this.Load += new System.EventHandler(this.Routine_Load);
             this.groupPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.intWorkload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEndDate)).EndInit();
@@ -1306,8 +1300,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtFileDesc;
         private DevComponents.DotNetBar.LabelX labelX12;
         private DevComponents.DotNetBar.ButtonX buttonX5;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtFileName;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtFilePath;
         private DevComponents.DotNetBar.LabelX labelX13;
         private DevComponents.DotNetBar.LabelX labelX11;
         private DevComponents.DotNetBar.SuperGrid.SuperGridControl gridFile;
@@ -1327,12 +1319,13 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn13;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn14;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn15;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn16;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn18;
         private DevComponents.DotNetBar.ButtonX btnAddManager;
         private DevComponents.DotNetBar.LabelX labelX15;
         private DevComponents.Editors.IntegerInput intWorkload;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn16;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtFileName;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtFilePath;
     }
 }

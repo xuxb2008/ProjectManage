@@ -38,12 +38,6 @@ namespace ProjectManagement.Forms.Others
         string _filePath;
         //当前结点ID
         string _nodeID;
-        //问题原因
-        string _fileTroubleReson;
-        //问题分析
-        string _fileTroubleAnalyse;
-        //解决方案
-        string _fileTroubleSolution;
 
         #endregion
 
@@ -86,6 +80,8 @@ namespace ProjectManagement.Forms.Others
 
             //加载画面内容
             LoadPageData();
+            //加载问题列表
+            Search();
         }
 
         /// <summary>
@@ -163,7 +159,7 @@ namespace ProjectManagement.Forms.Others
             //保存前检查
             if (!TroubleCheck()) return;
 
-            List<RoutineWork> listWork = new List<RoutineWork>();
+            List<TroubleWork> listWork = new List<TroubleWork>();
             if (!GetEditManager(ref listWork)) return;//如果填写无误
 
             DomainDLL.Trouble obj = new DomainDLL.Trouble();
@@ -177,14 +173,14 @@ namespace ProjectManagement.Forms.Others
             //结点改变时，移动文件到新的节点
             if (obj.NodeID != _nodeID)
             {
-                //List<TroubleFiles> list = troubleBLL.GetTroubleFiles(TroubleId);
-                //foreach (TroubleFiles file in list)
-                //{
-                //    //取得当前的文件路径
-                //    string filePath = FileHelper.GetFilePath(UploadType.Trouble, ProjectId, _nodeID, file.Path);
-                //    //拷贝文件到新的结点
-                //    if (!FileHelper.CopyFile(filePath, UploadType.Trouble, ProjectId, obj.NodeID, file.Path)) return;
-                //}
+                List<TroubleFiles> list = troubleBLL.GetTroubleFiles(TroubleId,0);
+                foreach (TroubleFiles file in list)
+                {
+                    //取得当前的文件路径
+                    string filePath = FileHelper.GetFilePath(UploadType.Trouble, ProjectId, _nodeID, file.Path);
+                    //拷贝文件到新的结点
+                    if (!FileHelper.CopyFile(filePath, UploadType.Trouble, ProjectId, obj.NodeID, file.Path)) return;
+                }
             }
 
             //问题名称
@@ -201,6 +197,8 @@ namespace ProjectManagement.Forms.Others
                 obj.EndDate = DateTime.Parse(txtEndDate.Text);
             //工作量
             obj.Workload = intWorkload.Value;
+            //状态
+            obj.Status = 1;
 
             #region
             //责任人
@@ -217,10 +215,10 @@ namespace ProjectManagement.Forms.Others
             //处理情况
             if (cmbHandleStatus.SelectedIndex > -1)
                 obj.HandleStatus = int.Parse(((ComboItem)cmbHandleStatus.SelectedItem).Value.ToString());
-            
+
 
             //保存
-            JsonResult result = troubleBLL.SaveTrouble(obj);
+            JsonResult result = troubleBLL.SaveTrouble(obj, listWork);
             TroubleId = result.result ? (string)result.data : TroubleId;
 
             if (result.result)
@@ -332,7 +330,47 @@ namespace ProjectManagement.Forms.Others
                 {
                     //加载画面内容
                     LoadPageData();
+                    //加载责任人列表
+                    var list = troubleBLL.GetTroubleWorkList(TroubleId);
+                    gridManager.PrimaryGrid.DataSource = list;
                 }
+            }
+        }
+
+        /// <summary>
+        /// 责任人-单元格点击事件
+        ///  Created：20170531(zhugaunjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridManager_CellClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs e)
+        {
+            if (e.GridCell.GridColumn.Name == "RowDel")
+                gridManager.PrimaryGrid.Rows.Remove(e.GridCell.GridRow);//删除行
+        }
+
+        /// <summary>
+        /// 责任人双击-修改
+        ///  Created：20170531(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridManager_RowDoubleClick(object sender, DevComponents.DotNetBar.SuperGrid.GridRowDoubleClickEventArgs e)
+        {
+            string tmp = e.GridRow.ToString();
+            tmp = tmp.Substring(tmp.LastIndexOf("{") + 1);
+            tmp = tmp.Substring(0, tmp.LastIndexOf("}"));
+            string[] cells = tmp.Trim().Split(',');
+            int work = 0, acture = 0;
+            int.TryParse(cells[2], out work);
+            int.TryParse(cells[3], out acture);
+            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager(cells[0], work, acture);
+            if (fmNewManager.ShowDialog() == DialogResult.OK)
+            {
+                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 0).Value = fmNewManager.ReturnValue.Manager;
+                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 1).Value = fmNewManager.ReturnValue.ManagerName;
+                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 2).Value = fmNewManager.ReturnValue.Workload;
+                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 3).Value = fmNewManager.ReturnValue.ActualWorkload;
             }
         }
 
@@ -374,116 +412,6 @@ namespace ProjectManagement.Forms.Others
         private void buttonX8_Click(object sender, EventArgs e)
         {
             this.cmbNode.SelectedIndex = -1;
-        }
-
-        /// <summary>
-        /// 相关文件-上传
-        /// Created：20170425(Xuxb)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void File_Upload(object sender, EventArgs e)
-        {
-            ButtonX button = (ButtonX)sender;
-            int Type = int.Parse(button.Name.Substring(9, 1));
-            using (OpenFileDialog dialog = new OpenFileDialog())
-            {
-                dialog.Multiselect = false;
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    TroubleFiles entity = new TroubleFiles();
-                    entity.TroubleID = TroubleId.Substring(0, 36);
-                    switch (Type)
-                    {
-                        case 1:
-                            entity.Path = FileHelper.UploadFile(dialog.FileName, UploadType.TroubleReason, ProjectId, null);
-                            entity.Name = "问题原因";
-                            _fileTroubleReson = entity.Path;
-                            break;
-                        case 2:
-                            entity.Path = FileHelper.UploadFile(dialog.FileName, UploadType.TroubleAnalyse, ProjectId, null);
-                            entity.Name = "问题分析";
-                            _fileTroubleAnalyse = entity.Path;
-                            break;
-                        case 3:
-                            entity.Path = FileHelper.UploadFile(dialog.FileName, UploadType.TroubleSolution, ProjectId, null);
-                            entity.Name = "解决方案";
-                            _fileTroubleSolution = entity.Path;
-                            break;
-                    }
-                    if (string.IsNullOrEmpty(entity.Path))
-                        MessageHelper.ShowRstMsg(false);
-                    else
-                    {
-                        entity.Type = Type;
-                        JsonResult result = troubleBLL.SaveTroubleFile(entity);
-                        MessageHelper.ShowRstMsg(result.result);
-                        //LoadFile();
-                    }
-                }
-            }
-
-
-        }
-
-        /// <summary>
-        /// 相关文件-打开
-        /// Created：20170425(Xuxb)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnFOpen_Click(object sender, EventArgs e)
-        {
-            LinkLabel link = (LinkLabel)sender;
-
-            switch (link.Name)
-            {
-                case "lblFile1":
-                    //FileHelper.OpenFile(UploadType.ContractHTSMJ, ProjectId, null, _fileContractHTSMJName);
-                    break;
-                case "lblFile2":
-                    //FileHelper.OpenFile(UploadType.ContractHTDZD, ProjectId, null, _fileContractHTDZDName);
-                    break;
-                case "lblFile3":
-                    //FileHelper.OpenFile(UploadType.ContractGZSMJ, ProjectId, null, _fileContractGZSMJName);
-                    break;
-            }
-
-        }
-
-        /// <summary>
-        /// 相关文件-下载
-        /// Created：20170425(Xuxb)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void File_DownLoad(object sender, EventArgs e)
-        {
-            ButtonX button = (ButtonX)sender;
-            int Type = int.Parse(button.Name.Substring(7, 1));
-            //List<ContractFiles> list = bll.GetFiles(ProjectId, Type);
-            //if (list.Count <= 0)
-            //{
-            //    MessageHelper.ShowMsg(MessageID.W000000005, MessageType.Alert);
-            //}
-
-            //取得上传文件类型
-           // string fileName = list[0].Path;
-            UploadType uploadType = UploadType.ContractHTSMJ;
-            switch (Type)
-            {
-                case 1:
-                    uploadType = UploadType.ContractHTSMJ;
-                    break;
-                case 2:
-                    uploadType = UploadType.ContractHTDZD;
-                    break;
-                case 3:
-                    uploadType = UploadType.ContractGZSMJ;
-                    break;
-            }
-
-            //FileHelper.DownLoadFile(uploadType, ProjectId, null, fileName);
         }
 
         #endregion
@@ -618,57 +546,12 @@ namespace ProjectManagement.Forms.Others
         /// <summary>
         /// 加载文件列表
         /// Created：2017.04.06(Xuxb)
-        /// Updated:2017.04.25(Xuxb) 追加文件类型
         /// </summary>
         /// <param name="routineId"></param>
         private void LoadFileList(string troubleId)
         {
-            List<TroubleFiles> list = new List<TroubleFiles>();
-
-            //加载项目合同扫描件
-            list = troubleBLL.GetTroubleFiles(troubleId, 1);
-            if (list.Count > 0)
-            {
-                _fileTroubleReson = list[0].Path;
-                //lblFile1.Show();
-                //btnDown1.Show();
-            }
-            else
-            {
-                //lblFile1.Hide();
-                //btnDown1.Hide();
-            }
-
-            //加载项目合同电子档
-            list = troubleBLL.GetTroubleFiles(troubleId, 2);
-            if (list.Count > 0)
-            {
-                //_fileTroubleAnalysis = list[0].Path;
-                //lblFile2.Show();
-                //btnDown2.Show();
-            }
-            else
-            {
-                //lblFile2.Hide();
-                //btnDown2.Hide();
-            }
-
-            //加载项目工作说明书扫描件
-            list = troubleBLL.GetTroubleFiles(troubleId, 3);
-            if (list.Count > 0)
-            {
-                //_fileTroubleResolve = list[0].Path;
-                //lblFile3.Show();
-                //btnDown3.Show();
-            }
-            else
-            {
-                //lblFile3.Hide();
-                //btnDown3.Hide();
-            }
-
             //项目问题文件取得
-            list = troubleBLL.GetTroubleFiles(troubleId, 0);
+            List<TroubleFiles> list = troubleBLL.GetTroubleFiles(troubleId,0);
 
             //附件列表加载
             int? i = 1;
@@ -733,12 +616,12 @@ namespace ProjectManagement.Forms.Others
                 tmp = tmp - int.Parse(cells[2]);
             }
             #endregion
-            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager("", tmp < 0 ? 0 : tmp, tmp < 0 ? 0 : tmp);
+            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager("", tmp < 0 ? 0 : tmp, 0);
             if (fmNewManager.ShowDialog() == DialogResult.OK)
             {
                 gridManager.PrimaryGrid.Rows.Add(new DevComponents.DotNetBar.SuperGrid.GridRow(
                     fmNewManager.ReturnValue.Manager, fmNewManager.ReturnValue.ManagerName, fmNewManager.ReturnValue.Workload,
-                    fmNewManager.ReturnValue.StarteDate.ToShortDateString(), fmNewManager.ReturnValue.EndDate.ToShortDateString(),
+                    fmNewManager.ReturnValue.ActualWorkload,
                     "删除"));
             }
         }
@@ -748,10 +631,10 @@ namespace ProjectManagement.Forms.Others
         /// Created:20170531(zhuguanjun)
         /// </summary>
         /// <returns></returns>
-        bool GetEditManager(ref List<RoutineWork> listWork)
+        bool GetEditManager(ref List<TroubleWork> listWork)
         {
             //责任人
-            decimal totalWork = 0;//总的工作量
+            int totalWork = 0;//总的工作量
             List<DevComponents.DotNetBar.SuperGrid.GridElement> listManager = gridManager.PrimaryGrid.Rows.ToList();
             foreach (DevComponents.DotNetBar.SuperGrid.GridElement row in listManager)
             {
@@ -759,8 +642,8 @@ namespace ProjectManagement.Forms.Others
                 s = s.Substring(s.LastIndexOf("{") + 1);
                 s = s.Substring(0, s.LastIndexOf("}"));
                 string[] cells = s.Trim().Split(',');
-                listWork.Add(new RoutineWork() { Manager = cells[0], Workload = Decimal.Parse(cells[2]) });
-                totalWork += Decimal.Parse(cells[2]);
+                listWork.Add(new TroubleWork() { Manager = cells[0], Workload = int.Parse(cells[2]),ActualWorkload = int.Parse(cells[3]),Status = 1 });
+                totalWork += int.Parse(cells[2]);
                 if (totalWork > intWorkload.Value)
                 {
                     MessageBox.Show("超过设置的总工作量，请检查！");

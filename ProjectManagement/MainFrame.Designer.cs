@@ -156,6 +156,7 @@
             this.buttonItem15 = new DevComponents.DotNetBar.ButtonItem();
             this.EditProMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolProRename = new System.Windows.Forms.ToolStripMenuItem();
+            this.elementStyle2 = new DevComponents.DotNetBar.ElementStyle();
             this.CloseTabContextMenu.SuspendLayout();
             this.EditNodeMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.collapsibleSplitContainer1)).BeginInit();
@@ -269,19 +270,19 @@
             this.CloseAllWindows,
             this.CloseAllWindows_ExcludeSelf});
             this.CloseTabContextMenu.Name = "CloseTabContextMenu";
-            this.CloseTabContextMenu.Size = new System.Drawing.Size(199, 52);
+            this.CloseTabContextMenu.Size = new System.Drawing.Size(173, 48);
             // 
             // CloseAllWindows
             // 
             this.CloseAllWindows.Name = "CloseAllWindows";
-            this.CloseAllWindows.Size = new System.Drawing.Size(198, 24);
+            this.CloseAllWindows.Size = new System.Drawing.Size(172, 22);
             this.CloseAllWindows.Text = "关闭所有窗口";
             this.CloseAllWindows.Click += new System.EventHandler(this.CloseAllWindows_Click);
             // 
             // CloseAllWindows_ExcludeSelf
             // 
             this.CloseAllWindows_ExcludeSelf.Name = "CloseAllWindows_ExcludeSelf";
-            this.CloseAllWindows_ExcludeSelf.Size = new System.Drawing.Size(198, 24);
+            this.CloseAllWindows_ExcludeSelf.Size = new System.Drawing.Size(172, 22);
             this.CloseAllWindows_ExcludeSelf.Text = "除此以外全部关闭";
             this.CloseAllWindows_ExcludeSelf.Click += new System.EventHandler(this.CloseAllWindows_ExcludeSelf_Click);
             // 
@@ -293,33 +294,33 @@
             this.toolNodeExchange,
             this.toolNodeRename});
             this.EditNodeMenu.Name = "EditNodeMenu";
-            this.EditNodeMenu.Size = new System.Drawing.Size(220, 76);
+            this.EditNodeMenu.Size = new System.Drawing.Size(190, 70);
             // 
             // toolNodeUp
             // 
             this.toolNodeUp.Name = "toolNodeUp";
-            this.toolNodeUp.Size = new System.Drawing.Size(219, 24);
+            this.toolNodeUp.Size = new System.Drawing.Size(189, 22);
             this.toolNodeUp.Text = "上移一级";
             this.toolNodeUp.Click += new System.EventHandler(this.toolNodeUp_Click);
             // 
             // toolNodeExchange
             // 
             this.toolNodeExchange.Name = "toolNodeExchange";
-            this.toolNodeExchange.Size = new System.Drawing.Size(219, 24);
+            this.toolNodeExchange.Size = new System.Drawing.Size(189, 22);
             this.toolNodeExchange.Text = "转为结点/转为交付物";
             this.toolNodeExchange.Click += new System.EventHandler(this.toolNodeExchange_Click);
             // 
             // toolNodeRename
             // 
             this.toolNodeRename.Name = "toolNodeRename";
-            this.toolNodeRename.Size = new System.Drawing.Size(219, 24);
+            this.toolNodeRename.Size = new System.Drawing.Size(189, 22);
             this.toolNodeRename.Text = "修改名称";
             this.toolNodeRename.Click += new System.EventHandler(this.toolNodeRename_Click);
             // 
             // collapsibleSplitContainer1
             // 
             this.collapsibleSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.collapsibleSplitContainer1.Location = new System.Drawing.Point(5, 166);
+            this.collapsibleSplitContainer1.Location = new System.Drawing.Point(5, 133);
             this.collapsibleSplitContainer1.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.collapsibleSplitContainer1.Name = "collapsibleSplitContainer1";
             // 
@@ -331,9 +332,9 @@
             // collapsibleSplitContainer1.Panel2
             // 
             this.collapsibleSplitContainer1.Panel2.Controls.Add(this.MainSuperTabControl);
-            this.collapsibleSplitContainer1.Size = new System.Drawing.Size(1439, 99);
-            this.collapsibleSplitContainer1.SplitterDistance = 193;
-            this.collapsibleSplitContainer1.SplitterWidth = 15;
+            this.collapsibleSplitContainer1.Size = new System.Drawing.Size(1065, 131);
+            this.collapsibleSplitContainer1.SplitterDistance = 142;
+            this.collapsibleSplitContainer1.SplitterWidth = 11;
             this.collapsibleSplitContainer1.TabIndex = 9;
             // 
             // WbsTree
@@ -348,16 +349,17 @@
             this.WbsTree.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.WbsTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WbsTree.DragDropEnabled = false;
-            this.WbsTree.Location = new System.Drawing.Point(0, 29);
-            this.WbsTree.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.WbsTree.Location = new System.Drawing.Point(0, 26);
+            this.WbsTree.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.WbsTree.Name = "WbsTree";
             this.WbsTree.Nodes.AddRange(new DevComponents.AdvTree.Node[] {
             this.node1});
             this.WbsTree.NodesConnector = this.nodeConnector1;
             this.WbsTree.NodeStyle = this.elementStyle1;
             this.WbsTree.PathSeparator = ";";
-            this.WbsTree.Size = new System.Drawing.Size(193, 70);
+            this.WbsTree.Size = new System.Drawing.Size(142, 105);
             this.WbsTree.Styles.Add(this.elementStyle1);
+            this.WbsTree.Styles.Add(this.elementStyle2);
             this.WbsTree.TabIndex = 1;
             this.WbsTree.Text = "advTree1";
             this.WbsTree.BeforeNodeSelect += new DevComponents.AdvTree.AdvTreeNodeCancelEventHandler(this.WbsTree_BeforeNodeSelect);
@@ -374,6 +376,7 @@
             this.node5,
             this.node6,
             this.node7});
+            this.node1.Style = this.elementStyle2;
             this.node1.Text = "徐州肉菜项目";
             // 
             // node2
@@ -456,9 +459,9 @@
             this.textBoxItem1,
             this.buttonItem10});
             this.bar1.Location = new System.Drawing.Point(0, 0);
-            this.bar1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.bar1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.bar1.Name = "bar1";
-            this.bar1.Size = new System.Drawing.Size(193, 29);
+            this.bar1.Size = new System.Drawing.Size(142, 26);
             this.bar1.Stretch = true;
             this.bar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.bar1.TabIndex = 0;
@@ -515,7 +518,7 @@
             this.MainSuperTabControl.ReorderTabsEnabled = true;
             this.MainSuperTabControl.SelectedTabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
             this.MainSuperTabControl.SelectedTabIndex = -1;
-            this.MainSuperTabControl.Size = new System.Drawing.Size(1231, 99);
+            this.MainSuperTabControl.Size = new System.Drawing.Size(912, 131);
             this.MainSuperTabControl.TabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MainSuperTabControl.TabIndex = 7;
             this.MainSuperTabControl.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -531,9 +534,9 @@
             this.superTabControlPanel1.AutoScroll = true;
             this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel1.Location = new System.Drawing.Point(0, 30);
-            this.superTabControlPanel1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.superTabControlPanel1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(1231, 69);
+            this.superTabControlPanel1.Size = new System.Drawing.Size(912, 101);
             this.superTabControlPanel1.TabIndex = 0;
             this.superTabControlPanel1.TabItem = this.superTabItem1;
             // 
@@ -556,10 +559,10 @@
             this.metroStatusBar1.Font = new System.Drawing.Font("Segoe UI", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroStatusBar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItem9});
-            this.metroStatusBar1.Location = new System.Drawing.Point(5, 265);
-            this.metroStatusBar1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.metroStatusBar1.Location = new System.Drawing.Point(5, 264);
+            this.metroStatusBar1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.metroStatusBar1.Name = "metroStatusBar1";
-            this.metroStatusBar1.Size = new System.Drawing.Size(1439, 21);
+            this.metroStatusBar1.Size = new System.Drawing.Size(1065, 17);
             this.metroStatusBar1.TabIndex = 8;
             this.metroStatusBar1.Text = "metroStatusBar1";
             // 
@@ -590,13 +593,13 @@
             this.ribbonTabItem2});
             this.MainRibbonControl.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
             this.MainRibbonControl.Location = new System.Drawing.Point(5, 1);
-            this.MainRibbonControl.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.MainRibbonControl.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.MainRibbonControl.Name = "MainRibbonControl";
-            this.MainRibbonControl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.MainRibbonControl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.MainRibbonControl.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItem1,
             this.qatCustomizeItem1});
-            this.MainRibbonControl.Size = new System.Drawing.Size(1439, 165);
+            this.MainRibbonControl.Size = new System.Drawing.Size(1065, 132);
             this.MainRibbonControl.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MainRibbonControl.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
             this.MainRibbonControl.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
@@ -629,11 +632,11 @@
             this.ribbonPanel1.Controls.Add(this.WBSMG);
             this.ribbonPanel1.Controls.Add(this.ribbonBar3);
             this.ribbonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel1.Location = new System.Drawing.Point(0, 56);
-            this.ribbonPanel1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonPanel1.Location = new System.Drawing.Point(0, 53);
+            this.ribbonPanel1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonPanel1.Name = "ribbonPanel1";
-            this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel1.Size = new System.Drawing.Size(1439, 106);
+            this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.ribbonPanel1.Size = new System.Drawing.Size(1065, 77);
             // 
             // 
             // 
@@ -668,10 +671,10 @@
             this.itemContainer7,
             this.RibbonBtn_Weekly,
             this.RibbonBtn_Setting});
-            this.ribbonBar4.Location = new System.Drawing.Point(1204, 0);
-            this.ribbonBar4.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonBar4.Location = new System.Drawing.Point(903, 0);
+            this.ribbonBar4.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonBar4.Name = "ribbonBar4";
-            this.ribbonBar4.Size = new System.Drawing.Size(384, 103);
+            this.ribbonBar4.Size = new System.Drawing.Size(288, 75);
             this.ribbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar4.TabIndex = 3;
             this.ribbonBar4.Text = "其它过程";
@@ -747,10 +750,10 @@
             this.ribbonBar7.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.RibbonBtn_Cost,
             this.itemContainer11});
-            this.ribbonBar7.Location = new System.Drawing.Point(1049, 0);
-            this.ribbonBar7.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonBar7.Location = new System.Drawing.Point(787, 0);
+            this.ribbonBar7.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonBar7.Name = "ribbonBar7";
-            this.ribbonBar7.Size = new System.Drawing.Size(155, 103);
+            this.ribbonBar7.Size = new System.Drawing.Size(116, 75);
             this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar7.TabIndex = 6;
             this.ribbonBar7.Text = "营收管理";
@@ -804,10 +807,10 @@
             this.ribbonBar6.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.RibbonBtn_InfomationPublish,
             this.RibbonBtn_PublishConfigure});
-            this.ribbonBar6.Location = new System.Drawing.Point(886, 0);
-            this.ribbonBar6.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonBar6.Location = new System.Drawing.Point(665, 0);
+            this.ribbonBar6.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonBar6.Name = "ribbonBar6";
-            this.ribbonBar6.Size = new System.Drawing.Size(163, 103);
+            this.ribbonBar6.Size = new System.Drawing.Size(122, 75);
             this.ribbonBar6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar6.TabIndex = 5;
             this.ribbonBar6.Text = "信息发布";
@@ -852,10 +855,10 @@
             this.WarningMG.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.RibbonBtn_WarningConfigure,
             this.RibbonBtn_WarningList});
-            this.WarningMG.Location = new System.Drawing.Point(709, 0);
-            this.WarningMG.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.WarningMG.Location = new System.Drawing.Point(532, 0);
+            this.WarningMG.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.WarningMG.Name = "WarningMG";
-            this.WarningMG.Size = new System.Drawing.Size(177, 103);
+            this.WarningMG.Size = new System.Drawing.Size(133, 75);
             this.WarningMG.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.WarningMG.TabIndex = 4;
             this.WarningMG.Text = "预警管理";
@@ -899,10 +902,10 @@
             this.ContractMG.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.RibbonBtn_Supplier,
             this.RibbonBtn_Contract});
-            this.ContractMG.Location = new System.Drawing.Point(568, 0);
-            this.ContractMG.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ContractMG.Location = new System.Drawing.Point(426, 0);
+            this.ContractMG.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ContractMG.Name = "ContractMG";
-            this.ContractMG.Size = new System.Drawing.Size(141, 103);
+            this.ContractMG.Size = new System.Drawing.Size(106, 75);
             this.ContractMG.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ContractMG.TabIndex = 2;
             this.ContractMG.Text = "分包管理";
@@ -946,10 +949,10 @@
             this.SkateholderMG.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.RibbonBtn_Stakeholder,
             this.itemContainer6});
-            this.SkateholderMG.Location = new System.Drawing.Point(371, 0);
-            this.SkateholderMG.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.SkateholderMG.Location = new System.Drawing.Point(278, 0);
+            this.SkateholderMG.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.SkateholderMG.Name = "SkateholderMG";
-            this.SkateholderMG.Size = new System.Drawing.Size(197, 103);
+            this.SkateholderMG.Size = new System.Drawing.Size(148, 75);
             this.SkateholderMG.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.SkateholderMG.TabIndex = 1;
             this.SkateholderMG.Text = "干系人";
@@ -1003,10 +1006,10 @@
             this.WBSMG.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.RibbonBtn_CreateWBS,
             this.itemContainer12});
-            this.WBSMG.Location = new System.Drawing.Point(190, 0);
-            this.WBSMG.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.WBSMG.Location = new System.Drawing.Point(142, 0);
+            this.WBSMG.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.WBSMG.Name = "WBSMG";
-            this.WBSMG.Size = new System.Drawing.Size(181, 103);
+            this.WBSMG.Size = new System.Drawing.Size(136, 75);
             this.WBSMG.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.WBSMG.TabIndex = 0;
             this.WBSMG.Text = "WBS";
@@ -1072,10 +1075,10 @@
             this.ribbonBar3.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.RibbonBtn_ProjectInfo,
             this.itemContainer10});
-            this.ribbonBar3.Location = new System.Drawing.Point(3, 0);
-            this.ribbonBar3.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonBar3.Location = new System.Drawing.Point(2, 0);
+            this.ribbonBar3.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonBar3.Name = "ribbonBar3";
-            this.ribbonBar3.Size = new System.Drawing.Size(187, 103);
+            this.ribbonBar3.Size = new System.Drawing.Size(140, 75);
             this.ribbonBar3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar3.TabIndex = 7;
             this.ribbonBar3.Text = "项目信息";
@@ -1117,11 +1120,11 @@
             this.ribbonPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonPanel3.Controls.Add(this.ribbonBar2);
             this.ribbonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel3.Location = new System.Drawing.Point(0, 56);
-            this.ribbonPanel3.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonPanel3.Location = new System.Drawing.Point(0, 45);
+            this.ribbonPanel3.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonPanel3.Name = "ribbonPanel3";
-            this.ribbonPanel3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel3.Size = new System.Drawing.Size(1439, 106);
+            this.ribbonPanel3.Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.ribbonPanel3.Size = new System.Drawing.Size(1079, 85);
             // 
             // 
             // 
@@ -1160,10 +1163,10 @@
             this.Ribbon_Report_Weekly,
             this.buttonItem16,
             this.buttonItem7});
-            this.ribbonBar2.Location = new System.Drawing.Point(3, 0);
-            this.ribbonBar2.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonBar2.Location = new System.Drawing.Point(2, 0);
+            this.ribbonBar2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonBar2.Name = "ribbonBar2";
-            this.ribbonBar2.Size = new System.Drawing.Size(803, 103);
+            this.ribbonBar2.Size = new System.Drawing.Size(602, 83);
             this.ribbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar2.TabIndex = 0;
             this.ribbonBar2.Text = "报表";
@@ -1292,11 +1295,11 @@
             this.ribbonPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonPanel4.Controls.Add(this.ribbonBar1);
             this.ribbonPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel4.Location = new System.Drawing.Point(0, 56);
-            this.ribbonPanel4.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonPanel4.Location = new System.Drawing.Point(0, 45);
+            this.ribbonPanel4.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonPanel4.Name = "ribbonPanel4";
-            this.ribbonPanel4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel4.Size = new System.Drawing.Size(1575, 106);
+            this.ribbonPanel4.Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.ribbonPanel4.Size = new System.Drawing.Size(1181, 85);
             // 
             // 
             // 
@@ -1328,10 +1331,10 @@
             this.ribbonBar1.DragDropSupport = true;
             this.ribbonBar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.RibbonBtn_UpdateTemplate});
-            this.ribbonBar1.Location = new System.Drawing.Point(3, 0);
-            this.ribbonBar1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonBar1.Location = new System.Drawing.Point(2, 0);
+            this.ribbonBar1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonBar1.Name = "ribbonBar1";
-            this.ribbonBar1.Size = new System.Drawing.Size(100, 103);
+            this.ribbonBar1.Size = new System.Drawing.Size(75, 83);
             this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar1.TabIndex = 0;
             this.ribbonBar1.Text = "模板管理";
@@ -1355,11 +1358,11 @@
             // 
             this.ribbonPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel2.Location = new System.Drawing.Point(0, 56);
-            this.ribbonPanel2.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.ribbonPanel2.Location = new System.Drawing.Point(0, 45);
+            this.ribbonPanel2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ribbonPanel2.Name = "ribbonPanel2";
-            this.ribbonPanel2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel2.Size = new System.Drawing.Size(1575, 106);
+            this.ribbonPanel2.Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.ribbonPanel2.Size = new System.Drawing.Size(1181, 85);
             // 
             // 
             // 
@@ -1675,25 +1678,30 @@
             this.EditProMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolProRename});
             this.EditProMenu.Name = "contextMenuStrip1";
-            this.EditProMenu.Size = new System.Drawing.Size(139, 28);
+            this.EditProMenu.Size = new System.Drawing.Size(125, 26);
             // 
             // toolProRename
             // 
             this.toolProRename.Name = "toolProRename";
-            this.toolProRename.Size = new System.Drawing.Size(138, 24);
+            this.toolProRename.Size = new System.Drawing.Size(124, 22);
             this.toolProRename.Text = "修改名称";
             this.toolProRename.Click += new System.EventHandler(this.toolProRename_Click);
             // 
+            // elementStyle2
+            // 
+            this.elementStyle2.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.elementStyle2.Name = "elementStyle2";
+            // 
             // MainFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1449, 288);
+            this.ClientSize = new System.Drawing.Size(1075, 283);
             this.Controls.Add(this.collapsibleSplitContainer1);
             this.Controls.Add(this.metroStatusBar1);
             this.Controls.Add(this.MainRibbonControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Name = "MainFrame";
             this.Text = "基于过程的项目管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -1846,6 +1854,7 @@
         private DevComponents.DotNetBar.ButtonItem btnProIn;
         private DevComponents.DotNetBar.ButtonItem btnProOut;
         private DevComponents.DotNetBar.ButtonItem buttonItem7;
+        private DevComponents.DotNetBar.ElementStyle elementStyle2;
 
     }
 }

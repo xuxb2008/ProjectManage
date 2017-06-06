@@ -19,6 +19,18 @@ namespace BussinessDLL
         WBSDao dao = new WBSDao();
 
         /// <summary>
+        /// 获取父节点
+        ///  Created:2017605(ChengMengJia)
+        /// </summary>
+        /// <param name="NodeID"></param>
+        /// <returns></returns>
+        public PNode GetParentNode(string NodeID)
+        {
+            PNode node = GetNode(NodeID);
+            return GetNode(node.ParentID);
+        }
+
+        /// <summary>
         /// WBS节点保存
         /// Created:2017.3.23(ChengMengjia)
         /// </summary>
@@ -34,8 +46,9 @@ namespace BussinessDLL
                     node.ParentID = node.ParentID.Substring(0, 36);
                 if (string.IsNullOrEmpty(node.ID))
                 {
-                    List<PNode> list = GetChildren(node.ParentID);
-                    node.No = list.Count();
+                    List<PNode> list = GetChildren(node.ParentID).Where(t => t.PType == 0 || t.PType == 1).ToList();
+                    node.No = list.Count() + 1;
+                    node.WBSNo = GetWBSNo(node.ParentID) + node.No.ToString();
                     new Repository<PNode>().Insert(node, true, out _id);
                 }
                 else
@@ -52,6 +65,32 @@ namespace BussinessDLL
             }
             return jsonreslut;
         }
+
+        /// <summary>
+        /// WBS节点编号遍历得出
+        /// Created:20170606(ChengMengjia)
+        /// </summary>
+        /// <param name="NodeID"></param>
+        /// <returns></returns>
+        private string GetWBSNo(string NodeID)
+        {
+            PNode node = GetNode(NodeID);
+            if (string.IsNullOrEmpty(node.ParentID))
+            {
+                return "";
+            }
+            string WBSNo = node.No.ToString();
+            while (!string.IsNullOrEmpty(node.ParentID))
+            {
+                node = GetNode(node.ParentID);
+                //如果顶级节点 退出
+                if (string.IsNullOrEmpty(node.ParentID)) break;
+                WBSNo = node.No.ToString() + "." + WBSNo;
+            }
+            WBSNo += ".";
+            return WBSNo;
+        }
+
 
         /// <summary>
         /// WBS节点移动后更新
@@ -74,10 +113,11 @@ namespace BussinessDLL
                 _id = node.ID;
                 node.Status = 1;
                 node.CREATED = DateTime.Now;
-                node.No = newNO;
+                node.No = newNO + 1;
                 node.ParentID = newParentID.Substring(0, 36);
+                node.WBSNo = GetWBSNo(node.ParentID)+node.No.ToString();
 
-                dao.UpdateNode(node, oldNode, node.ParentID.Equals(node.ParentID) ? "" : oldNode.ParentID);
+                dao.UpdateNode(node, oldNode, node.ParentID.Equals(oldNode.ParentID) ? "" : oldNode.ParentID);
                 jsonreslut.result = true;
                 jsonreslut.msg = "保存成功！";
             }
@@ -97,14 +137,15 @@ namespace BussinessDLL
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        public JsonResult AddJFWNode(PNode node, DeliverablesJBXX jbxx,List<DeliverablesWork> list)
+        public JsonResult AddJFWNode(PNode node, DeliverablesJBXX jbxx, List<DeliverablesWork> list)
         {
             JsonResult jsonreslut = new JsonResult();
             try
             {
                 node.ID = Guid.NewGuid().ToString() + "-1";
                 node.ParentID = node.ParentID.Substring(0, 36);
-                node.No = GetChildren(node.ParentID).Count();
+                node.No = GetChildren(node.ParentID).Count() + 1;
+                node.WBSNo = GetWBSNo(node.ParentID) + node.No.ToString();
                 node.Status = 1;
                 node.CREATED = DateTime.Now;
 
@@ -122,7 +163,7 @@ namespace BussinessDLL
                     CREATED = DateTime.Now
                 };
 
-                dao.AddDeliverables(node, jbxx, entity,list);
+                dao.AddDeliverables(node, jbxx, entity, list);
                 jsonreslut.result = true;
                 jsonreslut.msg = "保存成功！";
             }
@@ -141,7 +182,7 @@ namespace BussinessDLL
         /// </summary>
         /// <param name="new_jbxx"></param>
         /// <returns></returns>
-        public JsonResult UpdateJBXX(DeliverablesJBXX new_jbxx, List<DeliverablesWork>  listWorkx)
+        public JsonResult UpdateJBXX(DeliverablesJBXX new_jbxx, List<DeliverablesWork> listWorkx)
         {
             JsonResult jsonreslut = new JsonResult();
             try
@@ -165,7 +206,7 @@ namespace BussinessDLL
                 old_node.Status = 0;
                 old_node.UPDATED = DateTime.Now;
                 #endregion
-                dao.UpdatedDeliverables(new_jbxx, old_jbxx, new_node, old_node,listWorkx);
+                dao.UpdatedDeliverables(new_jbxx, old_jbxx, new_node, old_node, listWorkx);
                 jsonreslut.data = new_node.ID;
                 jsonreslut.result = true;
                 jsonreslut.msg = "保存成功！";
@@ -189,11 +230,11 @@ namespace BussinessDLL
         {
             if (string.IsNullOrEmpty(jbxxID))
                 return new List<DeliverablesWork>();
-            StringBuilder sql=new StringBuilder();
-            sql.Append("select a.*,b.Name ManagerName from DeliverablesWork a inner join Stakeholders b on  substr(a.Manager,1,36)=substr(b.ID,1,36) ");
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select a.*,b.Name ManagerName from DeliverablesWork a inner join Stakeholders b on substr(a.Manager,1,36)=substr(b.ID,1,36) and b.status=1  ");
             sql.Append(" where a.JBXXID=@JBXXID and a.Status=@Status");
             List<QueryField> qf = new List<QueryField>();
-            qf.Add(new QueryField() { Name = "JBXXID", Type = QueryFieldType.String, Value = jbxxID.Substring(0,36) });
+            qf.Add(new QueryField() { Name = "JBXXID", Type = QueryFieldType.String, Value = jbxxID.Substring(0, 36) });
             qf.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
             DataTable dt = NHHelper.ExecuteDataTable(sql.ToString(), qf);
             List<DeliverablesWork> list = JsonHelper.TableToList<DeliverablesWork>(dt);
@@ -202,7 +243,24 @@ namespace BussinessDLL
 
         /// <summary>
         /// WBS节点集合
-        /// Created:2017.3.24(ChengMengjia)
+        /// Created:20170324(ChengMengjia)
+        /// </summary>
+        /// <returns></returns>
+        public List<PNode> GetNodes(string ProjectID, int? PType)
+        {
+            List<QueryField> qf = new List<QueryField>();
+            qf.Add(new QueryField() { Name = "PID", Type = QueryFieldType.String, Value = ProjectID });
+            qf.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
+            if (PType != null)
+                qf.Add(new QueryField() { Name = "PType", Type = QueryFieldType.Numeric, Value = PType });
+            SortField sf = new SortField() { Name = "CREATED", Direction = SortDirection.Asc };
+            List<PNode> list = new Repository<PNode>().GetList(qf, sf) as List<PNode>;
+            return list;
+        }
+
+        /// <summary>
+        /// WBS节点集合 普通节点和交付物节点
+        /// Created:20170605(ChengMengjia)
         /// </summary>
         /// <returns></returns>
         public List<PNode> GetNodes(string ProjectID)
@@ -212,8 +270,10 @@ namespace BussinessDLL
             qf.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
             SortField sf = new SortField() { Name = "CREATED", Direction = SortDirection.Asc };
             List<PNode> list = new Repository<PNode>().GetList(qf, sf) as List<PNode>;
+            list = list.Where(t => t.PType == 0 || t.PType == 1).ToList();
             return list;
         }
+
 
         /// <summary>
         /// WBS子节点集合
@@ -249,8 +309,8 @@ namespace BussinessDLL
             }
 
             List<string> aa = new List<string>();
-            
-            
+
+
             List<QueryField> qf = new List<QueryField>();
             qf.Add(new QueryField() { Name = "ID", Type = QueryFieldType.String, Value = nodeId.Substring(0, 36) + "%", Comparison = QueryFieldComparison.like });
             qf.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
@@ -309,5 +369,37 @@ namespace BussinessDLL
         {
             return dao.GetNodeIdByProjectId(projectId);
         }
+
+
+
+        /// <summary>
+        /// 获取底层节点（带状态）
+        /// Created:20170605(ChengMengjia)
+        /// </summary>
+        /// <param name="ProjectID"></param>
+        /// <returns></returns>
+        public List<PNode> GetNodesWithStatus(string ProjectID)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append(" select a.*,CASE WHEN b.cc is Null and a.PType=1 THEN (case when c.EndDate<date('now') and (d.PType is null or d.PType<>5) then 3");
+            sql.Append(" when c.StarteDate>date('now') and (d.PType is null or d.PType<>5) then 0 when d.PType=5 then 1 else 2 end)");
+            sql.Append(" when b.cc is null and a.PType=2 THEN (case when e.EndDate<date('now') and (e.FinishStatus is null or e.FinishStatus<>3) then 3 ");
+            sql.Append(" when e.StartDate>date('now') and (e.FinishStatus is null or e.FinishStatus<>3) then 0 else ifnull(e.FinishStatus,0) end )");
+            sql.Append(" else null end FinishStatus from pnode a ");
+            sql.Append(" left join (select parentid,count(*)cc from pnode where status=1 and PID=@PID group by parentid)b on a.id=b.parentid   ");
+            sql.Append(" left join DeliverablesJBXX c on c.NodeID=substr(a.ID,1,36) and c.Status=1 and a.PType=1 ");
+            sql.Append(" left join NodeProgress d on d.NodeID=substr(a.ID,1,36) and d.Status=1 ");
+            sql.Append(" left join Routine e on e.NodeID=substr(a.ID,1,36) and e.Status=1 and a.PType=2  ");
+            sql.Append(" where  a.status=1 and a.PID=@PID ");
+            List<QueryField> qf = new List<QueryField>();
+            qf.Add(new QueryField() { Name = "PID", Type = QueryFieldType.String, Value = ProjectID });
+            DataSet ds = NHHelper.ExecuteDataset(sql.ToString(), qf);
+            if (ds == null || ds.Tables.Count == 0)
+                return new List<PNode>();
+            else
+                return JsonHelper.TableToList<PNode>(ds.Tables[0]);
+        }
+
+
     }
 }

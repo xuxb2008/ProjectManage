@@ -70,6 +70,9 @@ namespace DomainDLL
         }
         /// <summary>
         /// 完成情况
+        /// 1 未开始 
+        /// 2 进行中
+        /// 3 已完成
         /// </summary>
         public virtual int? FinishStatus
         {

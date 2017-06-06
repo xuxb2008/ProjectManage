@@ -41,11 +41,10 @@ namespace ProjectManagement
         public NormalOperation()
         {
             InitializeComponent();
-            inint();
+            init();
         }
 
-
-
+        #region 节点
         /// <summary>
         /// 节点信息-清空
         /// Created：20170329（ChengMengjia）
@@ -94,8 +93,9 @@ namespace ProjectManagement
             else
                 CurrentNode = bll.GetNode(CurrentNode.ID);//恢复原有数据
         }
+        #endregion
 
-
+        #region 交付物基本信息
         /// <summary>
         /// 权值变化触发事件
         /// Created:20170329(ChengMengjia)
@@ -106,7 +106,22 @@ namespace ProjectManagement
         {
             sdWeight.Text = sdWeight.Value.ToString();
         }
+        /// <summary>
+        /// 开始或结束时间值变化
+        /// Created:20170606(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dt_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtStart.Value != null && dtEnd.Value != null)
+            {
+                if (dtEnd.Value < dtStart.Value)
+                    dtEnd.Value = dtStart.Value;
+                intWorkload.Value = DateHelper.ComputeWorkDays(dtStart.Value, dtEnd.Value);
+            }
 
+        }
         /// <summary>
         /// 交付物基本信息-保存
         /// Created：20170329（ChengMengjia）
@@ -118,7 +133,7 @@ namespace ProjectManagement
         {
             if (GetEditManager(true))//如果填写无误
             {
-                if (CurrentNode.IsJFW == 1)
+                if (CurrentNode.PType == 1)
                     UpdateJBXX(listWork);
                 else
                     AddJBXX(listWork);
@@ -134,15 +149,16 @@ namespace ProjectManagement
         /// <param name="e"></param>
         private void btnClearJBXX_Click(object sender, EventArgs e)
         {
-            if (CurrentNode.IsJFW == 1)
+            if (CurrentNode.PType == 1)
                 LoadJBXX();
             else
                 ClearJBXX();
 
         }
 
+        #endregion
 
-
+        #region  交付物附件
         /// <summary>
         /// 文件-选择
         /// Created：20170329（ChengMengjia）
@@ -252,6 +268,27 @@ namespace ProjectManagement
         }
 
         /// <summary>
+        /// 附件列表行单击事件 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridFile_RowClick(object sender, DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs e)
+        {
+            DevComponents.DotNetBar.SuperGrid.GridElement list = gridFile.GetSelectedRows()[0];
+            string s = list.ToString();
+            s = s.Replace("{", ",");
+            s = s.Replace("}", ",");
+            string[] listS = s.Split(',');
+            txtFileName.Text = listS[2].Trim();
+            txtFileDesc.Text = listS[3].Trim();
+            txtFileName.Tag = listS[5].Trim();
+            txtFilePath.Text = listS[6].Trim();
+            txtFilePath.Tag = 0;
+        }
+        #endregion
+
+        #region 进度
+        /// <summary>
         ///  进度更改触发事件
         ///  Created：20170330(ChengMengjia)
         ///  Updated：20170414（Xuxb）保存后刷新首页成果图表
@@ -291,26 +328,9 @@ namespace ProjectManagement
             else
                 SaveProgress(null);
         }
+        #endregion
 
-        /// <summary>
-        /// 附件列表行单击事件 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void gridFile_RowClick(object sender, DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs e)
-        {
-            DevComponents.DotNetBar.SuperGrid.GridElement list = gridFile.GetSelectedRows()[0];
-            string s = list.ToString();
-            s = s.Replace("{", ",");
-            s = s.Replace("}", ",");
-            string[] listS = s.Split(',');
-            txtFileName.Text = listS[2].Trim();
-            txtFileDesc.Text = listS[3].Trim();
-            txtFileName.Tag = listS[5].Trim();
-            txtFilePath.Text = listS[6].Trim();
-            txtFilePath.Tag = 0;
-        }
-
+        #region 邮件
         /// <summary>
         ///  发布信息-收件人新增
         /// Created：20170410(ChengMengjia)
@@ -433,6 +453,9 @@ namespace ProjectManagement
                 MessageBox.Show("发送失败！失败原因：" + ex.Message);
             }
         }
+        #endregion
+
+        #region 责任人
 
         /// <summary>
         /// 添加责任人
@@ -457,7 +480,34 @@ namespace ProjectManagement
             ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager("", tmp < 0 ? 0 : tmp, tmp < 0 ? 0 : tmp);
             if (fmNewManager.ShowDialog() == DialogResult.OK)
             {
-                AddManager(fmNewManager.ReturnValue);
+                GetEditManager(false);//更新责任人列表
+                bool IsExist = false;//是否列表中存在该责任人
+                #region 查找该责任人 存在即修改
+                foreach (var t in listWork)
+                {
+                    if (t.Manager.Equals(fmNewManager.ReturnValue.Manager.Substring(0, 36)))
+                    {
+                        IsExist = true;
+                        t.ManagerName = fmNewManager.ReturnValue.ManagerName;
+                        t.Workload += fmNewManager.ReturnValue.Workload;
+                        t.ActualWorkload += fmNewManager.ReturnValue.ActualWorkload;
+                        break;
+                    }
+                }
+                #endregion
+                #region 不存在即新增
+                if (!IsExist)
+                {
+                    listWork.Add(new DeliverablesWork()
+                    {
+                        Manager = fmNewManager.ReturnValue.Manager.Substring(0, 36),
+                        ManagerName = fmNewManager.ReturnValue.ManagerName,
+                        Workload = fmNewManager.ReturnValue.Workload,
+                        ActualWorkload = fmNewManager.ReturnValue.ActualWorkload
+                    });
+                }
+                #endregion
+                gridManager.PrimaryGrid.DataSource = listWork;
             }
         }
 
@@ -471,6 +521,7 @@ namespace ProjectManagement
         {
             if (e.GridCell.GridColumn.Name == "RowDel")
             {
+                GetEditManager(false);//更新责任人列表
                 listWork = listWork.Where(t => t.Manager != e.GridCell.GridRow.GetCell("Manager").Value.ToString()).ToList();
                 gridManager.PrimaryGrid.DataSource = listWork;
             }
@@ -498,6 +549,9 @@ namespace ProjectManagement
                 GetEditManager(false);
             }
         }
+
+        #endregion
+
         #endregion
 
         #region 方法
@@ -506,11 +560,11 @@ namespace ProjectManagement
         ///  初始化
         /// Created：20170525（ChengMengjia）
         /// </summary>
-        public void inint()
+        public void init()
         {
             LoadNodeInfo();//当前节点信息加载
             SetProgress();//当前节点进度
-            if (CurrentNode.IsJFW == 1)
+            if (CurrentNode.PType == 1)
             {
                 //是交付物节点
                 panelNode.Enabled = false;
@@ -569,9 +623,9 @@ namespace ProjectManagement
             txtParent.Text = bll.GetNode(CurrentNode.ParentID).Name;
             txtNode.Text = CurrentNode.Name;
             txtNode2.Text = CurrentNode.Name;
-            //cbIsMilestone.Checked = CurrentNode.IsMilestone == 1;
         }
 
+        #region 交付物基本信息
         /// <summary>
         /// 交付物基本信息-加载
         /// Created：20170329（ChengMengjia）
@@ -588,7 +642,8 @@ namespace ProjectManagement
             intWorkload.Value = _jbxx.Workload == null ? 1 : (int)_jbxx.Workload;
             txtDesc.Text = _jbxx.Desc;
             //责任人
-            gridManager.PrimaryGrid.DataSource = bll.GetManagerWorks(_jbxx.ID);
+            listWork = bll.GetManagerWorks(_jbxx.ID);
+            gridManager.PrimaryGrid.DataSource = listWork;
         }
 
         /// <summary>
@@ -606,8 +661,7 @@ namespace ProjectManagement
                 PID = ProjectId,
                 Name = txtJFW.Text,
                 ParentID = CurrentNode.ID,
-                IsMilestone = 0,
-                IsJFW = 1
+                PType = 1
             };
             DeliverablesJBXX entity = new DeliverablesJBXX()
             {
@@ -691,6 +745,24 @@ namespace ProjectManagement
         }
 
         /// <summary>
+        /// 交付物基本信息-清空
+        /// Created：20170329（ChengMengjia）
+        /// </summary>
+        private void ClearJBXX()
+        {
+            txtJFW.Clear();
+            dtStart.Value = DateTime.Parse("0001/1/1 0:00:00");
+            dtEnd.Value = DateTime.Parse("0001/1/1 0:00:00");
+            intWorkload.Value = 1;
+            sdWeight.Value = 1;
+            txtDesc.Clear();
+            listWork = null;
+            gridManager.PrimaryGrid.DataSource = null;
+        }
+#endregion
+
+        #region 责任人
+        /// <summary>
         /// 获取编辑的责任人列表
         /// Created:20170526(ChengMengjia)
         /// </summary>
@@ -726,57 +798,9 @@ namespace ProjectManagement
             }
             return true;
         }
+        #endregion
 
-        /// <summary>
-        /// 添加责任人
-        /// Created:20170601(ChengMengjia)
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        private void AddManager(WorkloadEntity entity)
-        {
-            if (listWork == null)
-                listWork = new List<DeliverablesWork>();
-            bool IsExist = false;//是否列表中存在该责任人
-            listWork.ForEach(t =>
-            {
-                if (t.Manager.Equals(entity.Manager.Substring(0, 36)))
-                {
-                    t.ManagerName = entity.ManagerName;
-                    t.Workload += entity.Workload;
-                    t.ActualWorkload += entity.ActualWorkload;
-                    IsExist = true;
-                }
-            });
-            if (!IsExist)
-            {
-                listWork.Add(new DeliverablesWork()
-                {
-                    Manager = entity.Manager.Substring(0, 36),
-                    ManagerName = entity.ManagerName,
-                    Workload = entity.Workload,
-                    ActualWorkload = entity.ActualWorkload
-                });
-            }
-            gridManager.PrimaryGrid.DataSource = listWork;
-        }
-
-
-        /// <summary>
-        /// 交付物基本信息-清空
-        /// Created：20170329（ChengMengjia）
-        /// </summary>
-        private void ClearJBXX()
-        {
-            txtJFW.Clear();
-            dtStart.Value = DateTime.Parse("0001/1/1 0:00:00");
-            dtEnd.Value = DateTime.Parse("0001/1/1 0:00:00");
-            intWorkload.Value = 1;
-            sdWeight.Value = 1;
-            txtDesc.Clear();
-            gridManager.PrimaryGrid.DataSource = null;
-        }
-
+        #region 进度
         /// <summary>
         /// 进度设置
         /// Created:20170330(ChengMengjia)
@@ -795,46 +819,7 @@ namespace ProjectManagement
                 item = (ButtonItem)bar1.GetItem("btnProgress" + _progress.PType.ToString());
                 item.Checked = true;
             }
-        }
-
-        /// <summary>
-        /// 交付物附件-列表加载
-        /// Created：20170328(ChengMengjia)
-        /// </summary>
-        /// <param name="IsFirst"></param>
-        private void LoadFile(bool IsFirst)
-        {
-            List<DeliverablesFiles> list = bll.GetFiles(CurrentNode.ID);
-            int? i = 1;
-            foreach (DeliverablesFiles file in list)
-            {
-                file.RowNo = i;
-                i++;
-            }
-            gridFile.PrimaryGrid.DataSource = list;
-            if (IsFirst)
-            {
-                //第一次加载 
-                EmailFiles = list;
-                string headPath = FileHelper.GetFilePath(UploadType.WBS, ProjectId, CurrentNode.ID, "");
-                EmailFiles.ForEach(t => t.Path = headPath + t.Path);
-                gridPFile.PrimaryGrid.DataSource = EmailFiles;
-            }
-        }
-
-        /// <summary>
-        /// 邮件附件-列表加载
-        /// Created：20170411(ChengMengjia)
-        /// </summary>
-        private void LoadEmailFile()
-        {
-            int? i = 1;
-            foreach (DeliverablesFiles file in EmailFiles)
-            {
-                file.RowNo = i;
-                i++;
-            }
-            gridPFile.PrimaryGrid.DataSource = EmailFiles;
+            txtProgressDesc.Text = _progress.Desc;
         }
 
         /// <summary>
@@ -863,6 +848,51 @@ namespace ProjectManagement
                 item.Checked = true;
             }
         }
+        #endregion
+
+        #region 交付物附件
+        /// <summary>
+        /// 交付物附件-列表加载
+        /// Created：20170328(ChengMengjia)
+        /// </summary>
+        /// <param name="IsFirst"></param>
+        private void LoadFile(bool IsFirst)
+        {
+            List<DeliverablesFiles> list = bll.GetFiles(CurrentNode.ID);
+            int? i = 1;
+            foreach (DeliverablesFiles file in list)
+            {
+                file.RowNo = i;
+                i++;
+            }
+            gridFile.PrimaryGrid.DataSource = list;
+            if (IsFirst)
+            {
+                //第一次加载 
+                EmailFiles = list;
+                string headPath = FileHelper.GetFilePath(UploadType.WBS, ProjectId, CurrentNode.ID, "");
+                EmailFiles.ForEach(t => t.Path = headPath + t.Path);
+                gridPFile.PrimaryGrid.DataSource = EmailFiles;
+            }
+        }
+        #endregion
+
+        #region 邮件
+        /// <summary>
+        /// 邮件附件-列表加载
+        /// Created：20170411(ChengMengjia)
+        /// </summary>
+        private void LoadEmailFile()
+        {
+            int? i = 1;
+            foreach (DeliverablesFiles file in EmailFiles)
+            {
+                file.RowNo = i;
+                i++;
+            }
+            gridPFile.PrimaryGrid.DataSource = EmailFiles;
+        }
+
 
         /// <summary>
         ///  发布信息-配置加载
@@ -894,6 +924,9 @@ namespace ProjectManagement
             #endregion
         }
         #endregion
+
+        #endregion
+
 
 
 

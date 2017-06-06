@@ -31,10 +31,11 @@ namespace DataAccessDLL
                 {
                     #region 顶级节点
                     PNode node = new PNode();
-                    node.No = 0;
+                    node.No = 1;
                     node.ID = Guid.NewGuid().ToString();
                     node.PID = project.ID;
                     node.Name = project.Name;
+                    node.PType = 0;
                     node.Status = 1;
                     node.CREATED = DateTime.Now;
                     s.Save(node);

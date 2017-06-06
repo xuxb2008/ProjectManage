@@ -327,6 +327,25 @@ namespace DataAccessDLL
             return result;
         }
 
+        public static List<dynamic> GetDynamicList(string sql, Dictionary<string, string> args)
+        {
+            ISession session = GetCurrentSession();
+            try
+            {
+                ISQLQuery query = session.CreateSQLQuery(sql);
+                foreach (var item in args)
+                {
+                    query.SetString(item.Key, item.Value);
+                }
+                return query.DynamicList().ToList();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteException(ex, LogType.DataAccessDLL);
+                return null;
+            }
+        }
+
         #endregion
 
         #region 私有方法

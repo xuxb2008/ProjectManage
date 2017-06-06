@@ -9,11 +9,113 @@ using DevComponents.DotNetBar;
 using CommonDLL;
 using DevComponents.Editors;
 using System.Data;
+using System.Drawing;
 namespace ProjectManagement
 {
     public static class DataHelper
     {
-        #region 绑定节点树
+
+        /// <summary>
+        /// 根据项目ID取得项目结点ID
+        /// Created:2017.04.07(Xuxb)
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public static string GetNodeIdByProjectId(string projectId)
+        {
+            return new WBSBLL().GetNodeIdByProjectId(projectId);
+        }
+
+
+        #region 首页节点树 展示状态颜色
+        /// <summary>
+        /// WBS节点数加载
+        /// Created:20170602(ChengMengjia)
+        /// </summary>
+        /// <param name="advTree1"></param>
+        /// <param name="ProjectID"></param>
+        public static void SetMainTreeDate(DevComponents.AdvTree.AdvTree advTree1, string ProjectID)
+        {
+            advTree1.Nodes.Clear();
+            List<PNode> listNode = new WBSBLL().GetNodesWithStatus(ProjectID);
+
+
+            IEnumerable<PNode> parentNode = null;
+            parentNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.No);
+            foreach (PNode parent in parentNode)
+            {
+                DevComponents.AdvTree.Node node = new DevComponents.AdvTree.Node()
+                {
+                    Name = parent.ID,
+                    Text = parent.Name,
+                    Tag = JsonHelper.EntityToString<PNode>(parent),
+                };
+                SetMainSubTreeData(listNode, parent, node);
+                node.Style = null;//项目节点
+                advTree1.Nodes.Add(node);
+            }
+            advTree1.ExpandAll();
+        }
+        /// <summary>
+        /// 设定子节点
+        ///  Created:20170602(ChengMengjia)
+        /// </summary>
+        /// <param name="advTree1"></param>
+        /// <param name="ProjectID"></param>
+        private static void SetMainSubTreeData(IList<PNode> listNode, PNode parent, DevComponents.AdvTree.Node node)
+        {
+            string parentID = parent.ID.Substring(0, 36);
+            IEnumerable<PNode> children = listNode.Where(t => t.ParentID == parentID).OrderBy(t => t.No).OrderByDescending(t => t.No.HasValue);
+            if (children.Count<PNode>() < 1)
+            {
+                parent.FinishStatus = parent.FinishStatus == null ? 0 : parent.FinishStatus;
+                node.Style =  MatchColor(parent.FinishStatus) ;
+                return;
+            }
+            DevComponents.AdvTree.Node node2;
+            foreach (PNode child in children)
+            {
+                node2 = new DevComponents.AdvTree.Node()
+                {
+                    Name = child.ID,
+                    Text = string.IsNullOrEmpty(child.WBSNo) ? child.Name + "(" + EnumsHelper.GetDescription((WBSPType)child.PType) + ")" : child.WBSNo + "-" + child.Name,
+                    Tag = JsonHelper.EntityToString<PNode>(child)
+                };
+                #region 交付物需要检查完成情况
+
+                #endregion
+                SetMainSubTreeData(listNode, child, node2);
+                node.Nodes.Add(node2);
+            }
+            parent.FinishStatus = (from p in children select p.FinishStatus).Max();
+            node.Style = MatchColor(parent.FinishStatus);
+        }
+
+        /// <summary>
+        /// 节点背景色
+        /// Created:20170605(ChengMengjia)
+        /// 未开始的没有背景色（值为0），已完成的为绿色（1），正在执行的为黄色（2），超期的为红色（3）
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        private static ElementStyle MatchColor(int? status)
+        {
+            switch (status)
+            {
+                case 1:
+                    return new ElementStyle() { BackColor = Color.ForestGreen };
+                case 2:
+                    return new ElementStyle() { BackColor = Color.SpringGreen };
+                case 3:
+                    return new ElementStyle() { BackColor = Color.Red,TextColor=Color.White };
+                default:
+                    return new ElementStyle() { BackColor = Color.Transparent};
+            }
+        }
+
+        #endregion
+
+        #region WBS节点数 AdvTree
         /// <summary>
         /// WBS节点数加载
         /// Created:20170323(ChengMengjia)
@@ -40,7 +142,6 @@ namespace ProjectManagement
             }
             advTree1.ExpandAll();
         }
-
         /// <summary>
         /// 设定子节点
         /// Created:20170330(Xuxb)
@@ -70,65 +171,6 @@ namespace ProjectManagement
         }
 
         /// <summary>
-        /// 加载下拉结点列表
-        /// Created:20170323(ChengMengjia)
-        /// </summary>
-        /// <param name="advTree1"></param>
-        /// <param name="ProjectID"></param>
-        public static void SetComboxTreeData(DevComponents.DotNetBar.Controls.ComboTree comboTree, string ProjectID)
-        {
-            comboTree.Nodes.Clear();
-            List<PNode> listNode = new WBSBLL().GetNodes(ProjectID);
-            IEnumerable<PNode> parentNode = null;
-            DevComponents.AdvTree.Node node = null;
-            parentNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.CREATED);
-            IEnumerable<PNode> children = listNode.Where(t => t.ParentID == parentNode.First().ID).OrderBy(t => t.No);
-            foreach (PNode child in children)
-            {
-                node = new DevComponents.AdvTree.Node()
-                {
-                    Name = child.ID,
-                    Text = child.Name,
-                    Tag = JsonHelper.EntityToString<PNode>(child)
-                };
-                SetSubTreeData(listNode, child, node);
-                comboTree.Nodes.Add(node);
-            }
-
-        }
-
-
-
-        /// <summary>
-        /// 设定子节点(包含多选框)
-        /// Created:2017/05/22(zhuguanjun)
-        /// </summary>
-        /// <param name="advTree1"></param>
-        /// <param name="ProjectID"></param>
-        private static void SetSubTreeDataWithCheckBox(IList<PNode> listNode, PNode parent, DevComponents.AdvTree.Node node)
-        {
-            string parentID = parent.ID.Substring(0, 36);
-            IEnumerable<PNode> children = listNode.Where(t => t.ParentID == parentID).OrderBy(t => t.No);
-            if (children.Count<PNode>() < 1)
-            {
-                return;
-            }
-            DevComponents.AdvTree.Node node2;
-            foreach (PNode child in children)
-            {
-                node2 = new DevComponents.AdvTree.Node()
-                {
-                    CheckBoxVisible = true,
-                    Name = child.ID,
-                    Text = child.Name,
-                    Tag = JsonHelper.EntityToString<PNode>(child)
-                };
-                SetSubTreeDataWithCheckBox(listNode, child, node2);
-                node.Nodes.Add(node2);
-            }
-        }
-
-        /// <summary>
         /// 加载下拉结点列表(包含多选框)
         /// Created:2017/05/22(zhuguanjun)
         /// </summary>
@@ -137,7 +179,7 @@ namespace ProjectManagement
         public static void SetAdvTreeData(DevComponents.AdvTree.AdvTree advTree1, string ProjectID)
         {
             advTree1.Nodes.Clear();
-            List<PNode> listNode = new WBSBLL().GetNodes(ProjectID);
+            List<PNode> listNode = new WBSBLL().GetNodes(ProjectID, 0);
             IEnumerable<PNode> parentNode = null;
             DevComponents.AdvTree.Node node = null;
             parentNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.CREATED);
@@ -156,7 +198,6 @@ namespace ProjectManagement
             }
 
         }
-
         /// <summary>
         /// 根据CODE设定数的选定值
         /// Created:20170405(Xuxb)
@@ -193,6 +234,38 @@ namespace ProjectManagement
 
                 }
             }
+        }
+        #endregion
+
+        #region 下拉节点树 ComboTree
+
+        /// <summary>
+        /// 加载下拉结点列表
+        /// Created:20170323(ChengMengjia)
+        /// Updated:20170605(ChengMengjia) 只需要普通节点PType=0 
+        /// </summary>
+        /// <param name="advTree1"></param>
+        /// <param name="ProjectID"></param>
+        public static void SetComboxTreeData(DevComponents.DotNetBar.Controls.ComboTree comboTree, string ProjectID)
+        {
+            comboTree.Nodes.Clear();
+            List<PNode> listNode = new WBSBLL().GetNodes(ProjectID, 0);
+            IEnumerable<PNode> parentNode = null;
+            DevComponents.AdvTree.Node node = null;
+            parentNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.CREATED);
+            IEnumerable<PNode> children = listNode.Where(t => t.ParentID == parentNode.First().ID).OrderBy(t => t.No);
+            foreach (PNode child in children)
+            {
+                node = new DevComponents.AdvTree.Node()
+                {
+                    Name = child.ID,
+                    Text = child.Name,
+                    Tag = JsonHelper.EntityToString<PNode>(child)
+                };
+                SetSubTreeData(listNode, child, node);
+                comboTree.Nodes.Add(node);
+            }
+
         }
 
         /// <summary>
@@ -231,17 +304,39 @@ namespace ProjectManagement
                 }
             }
         }
+        #endregion
+
+        #region 绑定节点树
 
         /// <summary>
-        /// 根据项目ID取得项目结点ID
-        /// Created:2017.04.07(Xuxb)
+        /// 设定子节点(包含多选框)
+        /// Created:2017/05/22(zhuguanjun)
         /// </summary>
-        /// <param name="projectId"></param>
-        /// <returns></returns>
-        public static string GetNodeIdByProjectId(string projectId)
+        /// <param name="advTree1"></param>
+        /// <param name="ProjectID"></param>
+        private static void SetSubTreeDataWithCheckBox(IList<PNode> listNode, PNode parent, DevComponents.AdvTree.Node node)
         {
-            return new WBSBLL().GetNodeIdByProjectId(projectId);
+            string parentID = parent.ID.Substring(0, 36);
+            IEnumerable<PNode> children = listNode.Where(t => t.ParentID == parentID).OrderBy(t => t.No);
+            if (children.Count<PNode>() < 1)
+            {
+                return;
+            }
+            DevComponents.AdvTree.Node node2;
+            foreach (PNode child in children)
+            {
+                node2 = new DevComponents.AdvTree.Node()
+                {
+                    CheckBoxVisible = true,
+                    Name = child.ID,
+                    Text = child.Name,
+                    Tag = JsonHelper.EntityToString<PNode>(child)
+                };
+                SetSubTreeDataWithCheckBox(listNode, child, node2);
+                node.Nodes.Add(node2);
+            }
         }
+
 
         /// <summary>
         /// 根据CODE设定下拉树的选定值

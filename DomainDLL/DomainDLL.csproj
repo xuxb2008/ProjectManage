@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\TroubleWork.cs" />
     <Compile Include="Entity\RoutineWork.cs" />
     <Compile Include="Entity\DeliverablesWork.cs" />
     <Compile Include="Entity\PubInfo.cs" />
@@ -298,6 +299,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\RoutineWork.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\TroubleWork.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

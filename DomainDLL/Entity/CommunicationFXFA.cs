@@ -30,7 +30,7 @@ namespace DomainDLL
         /// <summary>
         /// 沟通频率
         /// </summary>
-        public virtual int Frequency
+        public virtual string Frequency
         {
             get;
             set;
@@ -38,7 +38,7 @@ namespace DomainDLL
         /// <summary>
         /// 沟通时间
         /// </summary>
-        public virtual DateTime? StarteDate
+        public virtual string CommunicateDate
         {
             get;
             set;

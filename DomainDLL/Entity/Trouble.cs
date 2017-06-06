@@ -58,17 +58,9 @@ namespace DomainDLL
             set;
         }
         /// <summary>
-        /// 责任人
-        /// </summary>
-        public virtual string HandleMan
-        {
-            get;
-            set;
-        }
-        /// <summary>
         /// 工作量
         /// </summary>
-        public virtual Decimal Workload
+        public virtual int? Workload
         {
             get;
             set;
@@ -93,14 +85,6 @@ namespace DomainDLL
         /// 处理结果
         /// </summary>
         public virtual string HandleResult
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// 权重
-        /// </summary>
-        public virtual int Weight
         {
             get;
             set;

@@ -26,7 +26,8 @@ namespace ProjectManagement.Forms.Others
 
         //日常工作ID
         public string WorkId { get; set; }
-
+        //日常工作对应的NodeID
+        public string _nodeID { get; set; }
         #endregion
 
         #region 变量
@@ -37,8 +38,6 @@ namespace ProjectManagement.Forms.Others
         bool _fileSelectFlg = false;
         //当前选择的文件名称
         string _filePath;
-        //当前结点ID
-        string _nodeID;
 
         #endregion
 
@@ -48,7 +47,6 @@ namespace ProjectManagement.Forms.Others
 
         #endregion
 
-
         #region 事件
 
 
@@ -57,27 +55,10 @@ namespace ProjectManagement.Forms.Others
         /// </summary>
         public Routine()
         {
-            InitializeComponent();          
+            InitializeComponent();
+            init();
         }
 
-        /// <summary>
-        /// 画面加载时
-        /// Created：2017.03.30(Xuxb)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Routine_Load(object sender, EventArgs e)
-        {
-            //加载结点下拉列表
-            DataHelper.SetComboxTreeData(this.cmbNode, ProjectId);
-
-            //加载完成情况下拉列表
-            DataHelper.LoadDictItems(cmbResultStatus, DictCategory.WorkHandleStatus);
-
-            //加载画面内容
-            LoadPageData();
-            Search();
-        }
 
         /// <summary>
         /// 日常工作清空按钮按下时
@@ -87,37 +68,9 @@ namespace ProjectManagement.Forms.Others
         /// <param name="e"></param>
         private void btnWorkClear_Click(object sender, EventArgs e)
         {
-            //节点
-            cmbNode.SelectedIndex = -1;
-            //工作名称
-            txtWorkName.Text = string.Empty;
-            //工作描述
-            txtDesc.Text = string.Empty;
-            //处理结果
-            txtResult.Text = string.Empty;
-            //开始日期
-            txtStartDate.Text = string.Empty;
-            //结束日期
-            txtEndDate.Text = string.Empty;
-            //完成情况
-            cmbResultStatus.SelectedIndex = -1;
-            //添加日期
-            txtCreateDate.Text = DateTime.Now.ToShortDateString();
-            //附件列表加载
-            gridFile.PrimaryGrid.DataSource = new List<RoutineFiles>();
-            //选择附件
-            txtFilePath.Text = string.Empty;
-            //附件名称
-            txtFileName.Text = string.Empty;
-            //附件描述
-            txtFileDesc.Text = string.Empty;
-            //日常工作ID
-            WorkId = string.Empty;
-            //文件ID
-            _fileId = string.Empty;
-            //清空责任人
-            gridManager.PrimaryGrid.DataSource = null;
+            ClearWork();
         }
+
 
         /// <summary>
         /// 文件清空
@@ -146,11 +99,34 @@ namespace ProjectManagement.Forms.Others
         /// <param name="e"></param>
         private void btnWorkSave_Click(object sender, EventArgs e)
         {
-            //保存前检查
-            if (!RoutineCheck()) return;
-
+            #region 保存前检查
+            //项目ID是否存在
+            if (string.IsNullOrEmpty(ProjectId))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "项目");
+                return;
+            }
+            //结点是否选择
+            //if (string.IsNullOrEmpty(cmbNode.SelectedNode.Name))
+            //{
+            //    MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "结点");
+            //    return
+            //}
+            //工作名称是否输入
+            if (string.IsNullOrEmpty(txtWorkName.Text))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "工作名称");
+                return;
+            }
+            //完成情况是否选择
+            if (cmbResultStatus.SelectedItem != null && string.IsNullOrEmpty(((ComboItem)cmbResultStatus.SelectedItem).Value.ToString()))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "完成情况");
+                return;
+            }
+            #endregion
             List<RoutineWork> listWork = new List<RoutineWork>();
-            if (!GetEditManager(ref listWork)) return;//如果填写无误
+            if (!GetEditManager(ref listWork, true)) return;//如果填写无误
 
             DomainDLL.Routine obj = new DomainDLL.Routine();
             //日常工作ID
@@ -160,7 +136,7 @@ namespace ProjectManagement.Forms.Others
                 obj.NodeID = DataHelper.GetNodeIdByProjectId(ProjectId);
             else
                 obj.NodeID = cmbNode.SelectedNode.Name.Substring(0, 36);
-            
+
             //结点改变时，移动文件到新的节点
             if (obj.NodeID != _nodeID)
             {
@@ -170,22 +146,20 @@ namespace ProjectManagement.Forms.Others
                     //取得当前的文件路径
                     string filePath = FileHelper.GetFilePath(UploadType.Routine, ProjectId, _nodeID, file.Path);
                     //拷贝文件到新的结点
-                    if (!FileHelper.CopyFile(filePath, UploadType.Routine, ProjectId, obj.NodeID, file.Path)) return; 
+                    if (!FileHelper.CopyFile(filePath, UploadType.Routine, ProjectId, obj.NodeID, file.Path)) return;
                 }
             }
-            //状态
-            obj.Status = 1;
             //工作名称
             obj.Name = txtWorkName.Text;
             //工作描述
             obj.Desc = txtDesc.Text;
             //处理结果
             obj.DealResult = txtResult.Text;
-            //工作量
+            //预期工作量
             obj.Workload = intWorkload.Value;
             //开始日期
             if (!string.IsNullOrEmpty(txtStartDate.Text))
-            obj.StartDate = DateTime.Parse(txtStartDate.Text);
+                obj.StartDate = DateTime.Parse(txtStartDate.Text);
             //结束日期
             if (!string.IsNullOrEmpty(txtEndDate.Text))
                 obj.EndDate = DateTime.Parse(txtEndDate.Text);
@@ -193,9 +167,7 @@ namespace ProjectManagement.Forms.Others
             if (cmbResultStatus.SelectedIndex > -1)
                 obj.FinishStatus = int.Parse(((ComboItem)cmbResultStatus.SelectedItem).Value.ToString());
 
-            //保存
-            //JsonResult result = routineBLL.SaveRoutine(obj);
-            JsonResult result = routineBLL.SaveRoutine(obj, listWork);
+            JsonResult result = routineBLL.SaveRoutine(ProjectId, obj, listWork);
             WorkId = result.result ? (string)result.data : WorkId;
 
             if (result.result)
@@ -203,10 +175,12 @@ namespace ProjectManagement.Forms.Others
                 _nodeID = obj.NodeID;
                 //一览重新加载
                 Search();
+                ClearWork();//清空
+                //主框更新
+                MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
+                mainForm.RelaodTree();
             }
-
             MessageHelper.ShowRstMsg(result.result);
-
             //重新加载首页的成果列表
             startPage.LoadProjectTroubleList();
         }
@@ -227,14 +201,15 @@ namespace ProjectManagement.Forms.Others
             //文件ID
             file.ID = _fileId;
             //日常工作ID
-            file.RoutineID = WorkId.Substring(0,36);
+            file.RoutineID = WorkId.Substring(0, 36);
             //文件路径
             file.Name = txtFileName.Text;
             //文件描述
             file.Desc = txtFileDesc.Text;
 
             //上传文件名
-            if(_fileSelectFlg){
+            if (_fileSelectFlg)
+            {
                 file.Path = FileHelper.UploadFile(txtFilePath.Text, UploadType.Routine, ProjectId, _nodeID);
             }
             else
@@ -251,7 +226,7 @@ namespace ProjectManagement.Forms.Others
             if (result.result)
             {
                 //附件列表加载
-                LoadFileList(WorkId);
+                LoadFileList();
             }
             MessageHelper.ShowRstMsg(result.result);
         }
@@ -278,7 +253,7 @@ namespace ProjectManagement.Forms.Others
         }
 
         /// <summary>
-        /// 行单击事件
+        /// 文件行单击事件
         /// Created：2017.03.31(Xuxb)
         /// </summary>
         /// <param name="sender"></param>
@@ -325,19 +300,13 @@ namespace ProjectManagement.Forms.Others
         /// <param name="e"></param>
         private void gridRoutine_CellClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs e)
         {
-            WorkId = e.GridCell.GridRow.Cells["ID"].Value.ToString(); 
+            WorkId = e.GridCell.GridRow.Cells["ID"].Value.ToString();
             if (!string.IsNullOrEmpty(WorkId))
             {
                 DialogResult drt = MessageHelper.ShowMsg(MessageID.I000000009, MessageType.Confirm, "日常工作");
 
                 if (drt == DialogResult.OK)
-                {
-                    //加载画面内容
-                    LoadPageData();
-                    //加载责任人列表
-                    var list = routineBLL.GetRoutinWorkList(WorkId);
-                    gridManager.PrimaryGrid.DataSource = list;
-                }
+                    LoadContent();
             }
         }
 
@@ -353,8 +322,26 @@ namespace ProjectManagement.Forms.Others
         }
 
         /// <summary>
+        /// 开始或结束时间值变化
+        /// Created:20170605(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dt_ValueChanged(object sender, EventArgs e)
+        {
+            if (txtStartDate.Value != null && txtEndDate.Value != null)
+            {
+                if (txtEndDate.Value < txtStartDate.Value)
+                    txtEndDate.Value = txtStartDate.Value;
+                intWorkload.Value = DateHelper.ComputeWorkDays(txtStartDate.Value, txtEndDate.Value);
+            }
+        }
+
+
+        /// <summary>
         /// 添加责任人
-        /// 201//05/31(zhuguanjun)
+        /// Created：20170531(zhugaunjun)
+        /// Updated：20170606(ChengMengjia)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -372,13 +359,38 @@ namespace ProjectManagement.Forms.Others
                 tmp = tmp - int.Parse(cells[2]);
             }
             #endregion
-            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager("", tmp < 0 ? 0 : tmp,0);
+            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager("", tmp < 0 ? 0 : tmp, tmp < 0 ? 0 : tmp);
             if (fmNewManager.ShowDialog() == DialogResult.OK)
             {
-                gridManager.PrimaryGrid.Rows.Add(new DevComponents.DotNetBar.SuperGrid.GridRow(
-                    fmNewManager.ReturnValue.Manager, fmNewManager.ReturnValue.ManagerName, fmNewManager.ReturnValue.Workload,
-                    fmNewManager.ReturnValue.StarteDate.ToShortDateString(), fmNewManager.ReturnValue.EndDate.ToShortDateString(),
-                    "删除"));
+                List<RoutineWork> listWork = new List<RoutineWork>();
+                GetEditManager(ref listWork, false);
+                bool IsExist = false;//是否列表中存在该责任人
+                #region 查找该责任人 存在即修改
+                foreach (var t in listWork)
+                {
+                    if (t.Manager.Equals(fmNewManager.ReturnValue.Manager.Substring(0, 36)))
+                    {
+                        IsExist = true;
+                        t.ManagerName = fmNewManager.ReturnValue.ManagerName;
+                        t.Workload += fmNewManager.ReturnValue.Workload;
+                        t.ActualWorkload += fmNewManager.ReturnValue.ActualWorkload;
+                        break;
+                    }
+                }
+                #endregion
+                #region 不存在即新增
+                if (!IsExist)
+                {
+                    listWork.Add(new RoutineWork()
+                    {
+                        Manager = fmNewManager.ReturnValue.Manager.Substring(0, 36),
+                        ManagerName = fmNewManager.ReturnValue.ManagerName,
+                        Workload = fmNewManager.ReturnValue.Workload,
+                        ActualWorkload = fmNewManager.ReturnValue.ActualWorkload
+                    });
+                }
+                #endregion
+                gridManager.PrimaryGrid.DataSource = listWork;
             }
         }
 
@@ -396,7 +408,7 @@ namespace ProjectManagement.Forms.Others
 
         /// <summary>
         /// 责任人双击-修改
-        ///  Created：20170531(Czhuguanjun)
+        ///  Created：20170531(zhuguanjun)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -406,14 +418,16 @@ namespace ProjectManagement.Forms.Others
             tmp = tmp.Substring(tmp.LastIndexOf("{") + 1);
             tmp = tmp.Substring(0, tmp.LastIndexOf("}"));
             string[] cells = tmp.Trim().Split(',');
-            int work = 0;
+            int work = 0, acture = 0;
             int.TryParse(cells[2], out work);
-            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager(cells[0], work,1);
+            int.TryParse(cells[3], out acture);
+            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager(cells[0], work, acture);
             if (fmNewManager.ShowDialog() == DialogResult.OK)
             {
                 gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 0).Value = fmNewManager.ReturnValue.Manager;
                 gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 1).Value = fmNewManager.ReturnValue.ManagerName;
                 gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 2).Value = fmNewManager.ReturnValue.Workload;
+                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 3).Value = fmNewManager.ReturnValue.ActualWorkload;
             }
         }
 
@@ -422,87 +436,70 @@ namespace ProjectManagement.Forms.Others
         #region 方法
 
         /// <summary>
-        /// 加载画面数据
-        /// Created：2017.03.30(Xuxb)
+        /// 页面初始化
+        /// Created：20170606(ChengMengjia)
         /// </summary>
-        private void LoadPageData()
+        public void init()
         {
-            if (!string.IsNullOrEmpty(WorkId))
+            DataHelper.SetComboxTreeData(this.cmbNode, ProjectId);//加载WBS结点下拉列表
+            DataHelper.LoadDictItems(cmbResultStatus, DictCategory.WorkHandleStatus);//加载完成情况下拉列表
+            Search(); //加载日常工作列表
+            if (string.IsNullOrEmpty(WorkId)&&string.IsNullOrEmpty(_nodeID))
             {
-                //日常工作取得
-                DomainDLL.Routine obj = routineBLL.GetRoutineObject(WorkId);
-
-                if (obj != null)
-                {
-                    //节点
-                    DataHelper.SetComboxTreeSelectByValue(cmbNode, obj.NodeID);
-                    _nodeID = obj.NodeID;
-                    //工作名称
-                    txtWorkName.Text = obj.Name;
-                    //工作描述
-                    txtDesc.Text = obj.Desc;
-                    //处理结果
-                    txtResult.Text = obj.DealResult;
-                    //开始日期
-                    if (obj.StartDate.HasValue)
-                        txtStartDate.Text = obj.StartDate.Value.ToShortDateString();
-                    //结束日期
-                    if (obj.EndDate.HasValue)
-                        txtEndDate.Text = obj.EndDate.Value.ToShortDateString();
-                    //完成情况
-                    DataHelper.SetComboBoxSelectItemByValue(cmbResultStatus, obj.FinishStatus.ToString());
-                    //添加日期
-                    txtCreateDate.Text = obj.CREATED.ToShortDateString();
-
-                    //附件列表加载
-                    LoadFileList(obj.ID.Substring(0,36));
-
-                    txtFilePath.Text = string.Empty;
-                    txtFileName.Text = string.Empty;
-                    txtFileDesc.Text = string.Empty;
-                }
+                ClearWork();//清空
             }
             else
             {
-                //添加日期
-                txtCreateDate.Text = DateTime.Now.ToShortDateString();
+                LoadContent();//加载日常工作内容
+                LoadFileList();//加载日常工作文件列表
             }
+        }
+
+
+        /// <summary>
+        /// 加载日常工作内容
+        /// Created：20170606(ChengMengjia)
+        /// </summary>
+        private void LoadContent()
+        {
+            DomainDLL.Routine obj = routineBLL.GetRoutineObject(WorkId,_nodeID);
+            PNode parentNode = new WBSBLL().GetParentNode(obj.NodeID); //日常工作挂靠的节点
+            DataHelper.SetComboxTreeSelectByValue(cmbNode, parentNode.ID);
+            _nodeID = obj.NodeID;
+            txtWorkName.Text = obj.Name;
+            txtDesc.Text = obj.Desc;//工作描述
+            txtResult.Text = obj.DealResult;//处理结果
+            if (obj.StartDate.HasValue)//开始日期
+                txtStartDate.Text = obj.StartDate.Value.ToShortDateString();
+            if (obj.EndDate.HasValue)//结束日期
+                txtEndDate.Text = obj.EndDate.Value.ToShortDateString();
+            DataHelper.SetComboBoxSelectItemByValue(cmbResultStatus, obj.FinishStatus.ToString());//完成情况
+            txtCreateDate.Text = obj.CREATED.ToShortDateString();//添加日期
+
+            //加载责任人列表
+            var list = routineBLL.GetRoutinWorkList(obj.ID);
+            gridManager.PrimaryGrid.DataSource = list;
         }
 
         /// <summary>
-        /// 日常工作保存时检查
-        /// Created：2017.03.30(Xuxb)
+        /// 加载文件列表
+        /// Created：2017.03.31(Xuxb)
         /// </summary>
-        /// <returns></returns>
-        private bool RoutineCheck()
+        /// <param name="routineId"></param>
+        private void LoadFileList()
         {
-            //项目ID是否存在
-            if (string.IsNullOrEmpty(ProjectId))
+            //日常工作文件取得
+            List<RoutineFiles> list = routineBLL.GetRoutineFiles(WorkId);
+            //附件列表加载
+            int? i = 1;
+            foreach (RoutineFiles file in list)
             {
-                MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "项目");
-                return false;
+                file.RowNo = i;
+                i++;
             }
-            //结点是否选择
-            //if (string.IsNullOrEmpty(cmbNode.SelectedNode.Name))
-            //{
-            //    MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "结点");
-            //    return false;
-            //}
-            //工作名称是否输入
-            if (string.IsNullOrEmpty(txtWorkName.Text))
-            {
-                MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "工作名称");
-                return false;
-            }
-            //完成情况是否选择
-            if (cmbResultStatus.SelectedItem != null && string.IsNullOrEmpty(((ComboItem)cmbResultStatus.SelectedItem).Value.ToString()))
-            {
-                MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "完成情况");
-                return false;
-            }
-
-            return true;
+            gridFile.PrimaryGrid.DataSource = list;
         }
+
 
         /// <summary>
         /// 文件保存时检查
@@ -539,51 +536,26 @@ namespace ProjectManagement.Forms.Others
             return true;
         }
 
-        /// <summary>
-        /// 加载文件列表
-        /// Created：2017.03.31(Xuxb)
-        /// </summary>
-        /// <param name="routineId"></param>
-        private void LoadFileList(string routineId)
-        {
-            //日常工作文件取得
-            List<RoutineFiles> list = routineBLL.GetRoutineFiles(routineId);
-
-            //附件列表加载
-            int? i = 1;
-            foreach (RoutineFiles file in list)
-            {
-                file.RowNo = i;
-                i++;
-            }
-            gridFile.PrimaryGrid.DataSource = list;
-        }
 
         /// <summary>
-        /// 查询按钮按下时
+        /// 加载日常工作列表
         /// Created：2017.03.31(Xuxb)
         /// </summary>
         private void Search()
         {
-            //取得数据
-            DataTable dt = routineBLL.GetRoutinList(ProjectId, this.txtSearchStart.Text, this.txtSearchEnd.Text, txtSearchKey.Text);
-
-            //追加行号
-            DataHelper.AddNoCloumn(dt);
-
-            //绑定
-            gridRoutine.PrimaryGrid.DataSource = dt;
+            gridRoutine.PrimaryGrid.DataSource = routineBLL.GetRoutinList(ProjectId, this.txtSearchStart.Text, this.txtSearchEnd.Text, txtSearchKey.Text);
         }
 
         /// <summary>
         /// 获取编辑的责任人列表
         /// Created:20170531(zhuguanjun)
+        /// Updated:20160606(ChengMengjia)
         /// </summary>
         /// <returns></returns>
-        bool GetEditManager(ref List<RoutineWork> listWork)
+        bool GetEditManager(ref List<RoutineWork> listWork, bool NeedCheck)
         {
             //责任人
-            decimal totalWork = 0;//总的工作量
+            int totalWork = 0;//总的工作量
             List<DevComponents.DotNetBar.SuperGrid.GridElement> listManager = gridManager.PrimaryGrid.Rows.ToList();
             foreach (DevComponents.DotNetBar.SuperGrid.GridElement row in listManager)
             {
@@ -591,18 +563,67 @@ namespace ProjectManagement.Forms.Others
                 s = s.Substring(s.LastIndexOf("{") + 1);
                 s = s.Substring(0, s.LastIndexOf("}"));
                 string[] cells = s.Trim().Split(',');
-                listWork.Add(new RoutineWork() { Manager = cells[0], Workload = Decimal.Parse(cells[2]) });
-                totalWork += Decimal.Parse(cells[2]);
+                listWork.Add(new RoutineWork() { Manager = cells[0], ManagerName = cells[1], Workload = int.Parse(cells[2]), ActualWorkload = int.Parse(cells[3]) });
+                totalWork += int.Parse(cells[2]);
+            }
+            if (NeedCheck)
+            {
                 if (totalWork > intWorkload.Value)
                 {
                     MessageBox.Show("超过设置的总工作量，请检查！");
+                    return false;
+                }
+                else if (totalWork < intWorkload.Value)
+                {
+                    MessageBox.Show("小于设置的总工作量，请检查！");
                     return false;
                 }
             }
             return true;
         }
 
+        /// <summary>
+        /// 日常工作清空
+        /// Created：2017.03.31(Xuxb)
+        /// </summary>
+        private void ClearWork()
+        {
+            //节点
+            cmbNode.SelectedIndex = -1;
+            //工作名称
+            txtWorkName.Text = string.Empty;
+            //工作描述
+            txtDesc.Text = string.Empty;
+            //处理结果
+            txtResult.Text = string.Empty;
+            //开始日期
+            txtStartDate.Value = DateTime.Now;
+            //结束日期
+            txtEndDate.Value = DateTime.Now;
+            //工作量
+            intWorkload.Value = 1;
+            //完成情况
+            cmbResultStatus.SelectedIndex = -1;
+            //添加日期
+            txtCreateDate.Text = DateTime.Now.ToShortDateString();
+            //清空责任人
+            gridManager.PrimaryGrid.DataSource = null;
+
+            //附件列表加载
+            gridFile.PrimaryGrid.DataSource = new List<RoutineFiles>();
+            //选择附件
+            txtFilePath.Text = string.Empty;
+            //附件名称
+            txtFileName.Text = string.Empty;
+            //附件描述
+            txtFileDesc.Text = string.Empty;
+            //日常工作ID
+            WorkId = string.Empty;
+            //文件ID
+            _fileId = string.Empty;
+        }
         #endregion
+
 
     }
 }
