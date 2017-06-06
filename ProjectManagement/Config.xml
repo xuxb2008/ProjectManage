@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!--系统设置-->
+
+  <!-- 邮件发送设置 -->
+  <Config name="SmtpHost">smtp.163.com</Config>
+  <Config name="SmtpPort">25</Config>
+  <Config name="FromEmailAddress">18913177228@163.com</Config>
+  <Config name="FormEmailPassword">456789aaa</Config>
+
+
+  <!--基本设置-->
+  <Config name="WorkDir">D:\Project\</Config>
+  <Config name="UserName"></Config>
+
+  <!--周报设置-->
+  <Config name="WeeklySendTo"></Config>
+  <Config name="WeeklyCopyTo"></Config>
+  <Config name="WeeklyCheck">0,0,0,0,0,0,0,0,</Config>
+  <Config name="WeeklyTitle"></Config>
+  <Config name="WeeklyContent"></Config>
+
+  <!--发布设置-->
+  <Config name="PubEmailType"></Config>
+  <Config name="PubEmail"></Config>
+  <Config name="PubSelfInfo"></Config>
+  <Config name="PubQQ"></Config>
+  <Config name="PubWeChat"></Config>
+  <Config name="PubTel"></Config>
+
+  <!--预警设置-->
+  <Config name="WarnCost"></Config>
+  <Config name="WarnPubDay"></Config>
+  <Config name="WarnUpdateDay"></Config>
+  <Config name="WarnJFW1"></Config>
+  <Config name="WarnJFW2"></Config>
+  <Config name="WarnDeal"></Config>
+</configuration>

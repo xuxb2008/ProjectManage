@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="DomainDLL.Change, DomainDLL" table="Change">
+		<id name="ID" type="String" unsaved-value="null">
+			<column name="ID" sql-type="varchar" not-null="true"/>
+			<generator class="assigned" />
+		</id>
+		<property name="PID" type="String">
+			<column name="PID" sql-type="varchar" not-null="true"/>
+		</property>
+		<property name="Type" type="Int32">
+			<column name="Type" sql-type="int" not-null="false"/>
+		</property>
+		<property name="Name" type="String">
+			<column name="Name" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="BeforeInfo" type="String">
+			<column name="BeforeInfo" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="AfterInfo" type="String">
+			<column name="AfterInfo" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="Reason" type="String">
+			<column name="Reason" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="Cost" type="String">
+			<column name="Cost" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Payment" type="String">
+			<column name="Payment" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="Status" type="Int32">
+			<column name="Status" sql-type="int" not-null="false"/>
+		</property>
+		<property name="CREATED" type="DateTime">
+			<column name="CREATED" sql-type="datetime" not-null="false"/>
+		</property>
+		<property name="UPDATED" type="DateTime">
+			<column name="UPDATED" sql-type="datetime" not-null="false"/>
+		</property>
+	</class>
+</hibernate-mapping>

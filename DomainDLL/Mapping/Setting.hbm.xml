@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="DomainDLL.Setting, DomainDLL" table="Setting">
+		<id name="ID" type="String" unsaved-value="null">
+			<column name="ID" sql-type="varchar" not-null="true"/>
+			<generator class="assigned" />
+		</id>
+		<property name="PID" type="String">
+			<column name="PID" sql-type="varchar" not-null="true"/>
+		</property>
+    <property name="WeeklySend" type="String">
+      <column name="WeeklySend" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="WeeklyCC" type="String">
+      <column name="WeeklyCC" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="WeeklyTitle" type="String">
+      <column name="WeeklyTitle" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="WeeklyContent" type="String">
+      <column name="WeeklyContent" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="WeeklyCheck" type="String">
+      <column name="WeeklyCheck" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="PubEmailType" type="Int32">
+      <column name="PubEmailType" sql-type="int" not-null="false"/>
+    </property>
+    <property name="PubEmail" type="String">
+      <column name="PubEmail" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="PubSelfInfo" type="String">
+      <column name="PubSelfInfo" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="PubQQ" type="String">
+      <column name="PubQQ" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="PubWeChat" type="String">
+      <column name="PubWeChat" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="PubTel" type="String">
+      <column name="PubTel" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="WarnCost" type="Int32">
+      <column name="WarnCost" sql-type="int" not-null="false"/>
+    </property>
+    <property name="WarnPubDay" type="Int32">
+      <column name="WarnPubDay" sql-type="int" not-null="false"/>
+    </property>
+    <property name="WarnUpdateDay" type="Int32">
+      <column name="WarnUpdateDay" sql-type="int" not-null="false"/>
+    </property>
+    <property name="WarnOver" type="Int32">
+      <column name="WarnOver" sql-type="int" not-null="false"/>
+    </property>
+    <property name="WarnNearing" type="Int32">
+      <column name="WarnNearing" sql-type="int" not-null="false"/>
+    </property>
+    <property name="WarnNoDeal" type="Int32">
+      <column name="WarnNoDeal" sql-type="int" not-null="false"/>
+    </property>
+		<property name="CREATED" type="DateTime">
+			<column name="CREATED" sql-type="datetime" not-null="false"/>
+		</property>
+		<property name="UPDATED" type="DateTime">
+			<column name="UPDATED" sql-type="datetime" not-null="false"/>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3DF778DA-100B-485D-994D-F3744CF5931D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccessDLL</RootNamespace>
+    <AssemblyName>DataAccessDLL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate">
+      <HintPath>..\Libs\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChangeDao.cs" />
+    <Compile Include="Common\Repository.cs" />
+    <Compile Include="Common\NHibernateExtensions.cs" />
+    <Compile Include="Common\BaseDao.cs" />
+    <Compile Include="Common\Config.cs" />
+    <Compile Include="Common\HttpSessionSource.cs" />
+    <Compile Include="Common\IRepository.cs" />
+    <Compile Include="Common\ISessionStorage.cs" />
+    <Compile Include="Common\ISessionStorageFactory.cs" />
+    <Compile Include="Common\NHHelper.cs" />
+    <Compile Include="Common\ThreadSessionSource.cs" />
+    <Compile Include="CommunicationMatrixDao.cs" />
+    <Compile Include="ContractDao.cs" />
+    <Compile Include="MilestoneDAO.cs" />
+    <Compile Include="NormalOperationDAO.cs" />
+    <Compile Include="ProjectDao.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceivablesDAO.cs" />
+    <Compile Include="ReportCostDao.cs" />
+    <Compile Include="PubInfoDAO.cs" />
+    <Compile Include="ReportDAO.cs" />
+    <Compile Include="ReportEarningDao.cs" />
+    <Compile Include="ReportPlanDao.cs" />
+    <Compile Include="ReportReceivablesDao.cs" />
+    <Compile Include="ReportSubcontractDao.cs" />
+    <Compile Include="ReportSupplierDao.cs" />
+    <Compile Include="RiskDao.cs" />
+    <Compile Include="RoutineDAO.cs" />
+    <Compile Include="SettingDAO.cs" />
+    <Compile Include="StakeholdersDao.cs" />
+    <Compile Include="SupervisorDAO.cs" />
+    <Compile Include="SupplierDao.cs" />
+    <Compile Include="TroubleDAO.cs" />
+    <Compile Include="WBSCodeDao.cs" />
+    <Compile Include="WBSDao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonDLL\CommonDLL.csproj">
+      <Project>{7ef8b16c-3158-4d54-b9cf-6c161546d7ae}</Project>
+      <Name>CommonDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainDLL\DomainDLL.csproj">
+      <Project>{101dea1c-c0f2-4b58-8e19-77475455d700}</Project>
+      <Name>DomainDLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

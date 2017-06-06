@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="DomainDLL.Income, DomainDLL" table="Income">
+    <id name="ID" type="String" unsaved-value="null">
+      <column name="ID" length="40" sql-type="varchar" not-null="true" unique="true"/>
+      <generator class="assigned" />
+    </id>
+    <property name="PID" type="String">
+      <column name="PID" sql-type="varchar" not-null="true"/>
+    </property>
+    <property name="Step" type="String">
+      <column name="Step" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Explanation" type="String">
+      <column name="Explanation" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Ratio" type="decimal">
+      <column name="Ratio" sql-type="decimal" not-null="false"/>
+    </property>
+    <property name="FinishTag" type="String">
+      <column name="FinishTag" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="FinishStatus" type="Int32">
+      <column name="FinishStatus" sql-type="int" not-null="false"/>
+    </property>
+    <property name="FilePath" type="String">
+      <column name="FilePath" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="Remark" type="String">
+      <column name="Remark" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Status" type="Int32">
+      <column name="Status" sql-type="int" not-null="false"/>
+    </property>
+    <property name="CREATED" type="DateTime">
+      <column name="CREATED" sql-type="datetime" not-null="false"/>
+    </property>
+    <property name="UPDATED" type="DateTime">
+      <column name="UPDATED" sql-type="datetime" not-null="false"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="DomainDLL.SubContract, DomainDLL" table="SubContract">
+    <id name="ID" type="String" unsaved-value="null">
+      <column name="ID" length="40" sql-type="varchar" not-null="true" unique="true"/>
+      <generator class="assigned" />
+    </id>
+    <property name="PID" type="String">
+      <column name="PID" sql-type="varchar" not-null="true"/>
+    </property>
+    <property name="A_No" type="String">
+      <column name="A_No" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="A_Name" type="String">
+      <column name="A_Name" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="B_No" type="String">
+      <column name="B_No" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="B_Name" type="String">
+      <column name="B_Name" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="CompanyName" type="String">
+      <column name="CompanyName" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Amount" type="String">
+      <column name="Amount" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="SignDate" type="DateTime">
+      <column name="SignDate" sql-type="date" not-null="false"/>
+    </property>
+    <property name="Desc" type="String">
+      <column name="`Desc`" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Status" type="Int32">
+      <column name="Status" sql-type="int" not-null="false"/>
+    </property>
+    <property name="CREATED" type="DateTime">
+      <column name="CREATED" sql-type="datetime" not-null="false"/>
+    </property>
+    <property name="UPDATED" type="DateTime">
+      <column name="UPDATED" sql-type="datetime" not-null="false"/>
+    </property>
+  </class>
+</hibernate-mapping>

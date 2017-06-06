@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="DomainDLL.SupervisorJudge, DomainDLL" table="SupervisorJudge">
+    <id name="ID" type="String" unsaved-value="null">
+      <column name="ID" length="40" sql-type="varchar" not-null="true" unique="true"/>
+      <generator class="assigned" />
+    </id>
+    <property name="PID" type="String">
+      <column name="PID" sql-type="varchar" not-null="true"/>
+    </property>
+    <property name="Name" type="String">
+      <column name="Name" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Content" type="String">
+      <column name="Content" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="JudgeDate" type="DateTime">
+      <column name="JudgeDate" sql-type="date" not-null="false"/>
+    </property>
+    <property name="Status" type="Int32">
+      <column name="Status" sql-type="int" not-null="false"/>
+    </property>
+    <property name="CREATED" type="DateTime">
+      <column name="CREATED" sql-type="datetime" not-null="false"/>
+    </property>
+    <property name="UPDATED" type="DateTime">
+      <column name="UPDATED" sql-type="datetime" not-null="false"/>
+    </property>
+  </class>
+</hibernate-mapping>

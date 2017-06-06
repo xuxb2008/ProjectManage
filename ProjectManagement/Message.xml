@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages>
+  <message code="E000000001">保存失败，详细请查看日志！</message>
+  <message code="E000000002">系统错误，详细请查看日志！</message>
+  <message code="E000000003">上传失败，详细请查看日志！</message>
+  
+  <message code="I000000001">画面还未保存，是否要保存？</message>
+  <message code="I000000002">保存成功！</message>
+  <message code="I000000003">即将切换项目，请确认当前操作是否已保存！</message>
+  <message code="I000000004">即将切换节点，请确认当前操作是否已保存！</message>
+  <message code="I000000005">即将刷新节点树，请确认当前操作是否已保存！</message>
+  <message code="I000000006">所选的文件夹中下载的文件已存在，是否覆盖？</message>
+  <message code="I000000007">文件下载成功！</message>  
+  <message code="I000000008">确认更改当前进度为{0}！</message>  
+  <message code="I000000009">即将切换{0}，请确认当前操作是否已保存！</message>
+  <message code="W000000001">{0}必须输入！</message>
+  <message code="W000000002">当前未选择{0}！</message>
+  <message code="W000000003">上传的文件不存在！</message>
+  <message code="W000000004">工作目录不存在，请在基本配置中进行配置！</message>
+  <message code="W000000005">文件不存在，请先上传文件！</message>
+  <message code="W000000006">{0}还未创建，请先保存！</message>
+</messages>

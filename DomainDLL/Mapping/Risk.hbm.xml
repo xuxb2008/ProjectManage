@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="DomainDLL.Risk, DomainDLL" table="Risk">
+    <id name="ID" type="String" unsaved-value="null">
+      <column name="ID" length="40" sql-type="varchar" not-null="true" unique="true"/>
+      <generator class="assigned" />
+    </id>
+    <property name="PID" type="String">
+      <column name="PID" sql-type="varchar" not-null="true"/>
+    </property>
+    <property name="Source" type="String">
+      <column name="Source" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Name" type="String">
+      <column name="Name" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Desc" type="String">
+      <column name="`Desc`" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="FindDate" type="DateTime">
+      <column name="FindDate" sql-type="date" not-null="false"/>
+    </property>
+    <property name="Level" type="Int32">
+      <column name="`Level`" sql-type="int" not-null="false"/>
+    </property>
+    <property name="CostTime" type="String">
+      <column name="CostTime" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Dependency" type="String">
+      <column name="Dependency" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="Probability" type="decimal">
+      <column name="Probability" sql-type="decimal" not-null="false"/>
+    </property>
+    <property name="AssessDate" type="DateTime">
+      <column name="AssessDate" sql-type="date" not-null="false"/>
+    </property>
+    <property name="AssessDesc" type="String">
+      <column name="AssessDesc" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="HandleType" type="Int32">
+      <column name="HandleType" sql-type="int" not-null="false"/>
+    </property>
+    <property name="HandleDesc" type="String">
+      <column name="HandleDesc" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="HandleDate" type="DateTime">
+      <column name="HandleDate" sql-type="date" not-null="false"/>
+    </property>
+    <property name="Status" type="Int32">
+      <column name="Status" sql-type="int" not-null="false"/>
+    </property>
+    <property name="CREATED" type="DateTime">
+      <column name="CREATED" sql-type="datetime" not-null="false"/>
+    </property>
+    <property name="UPDATED" type="DateTime">
+      <column name="UPDATED" sql-type="datetime" not-null="false"/>
+    </property>
+  </class>
+</hibernate-mapping>

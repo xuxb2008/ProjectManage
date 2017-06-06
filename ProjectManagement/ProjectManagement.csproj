@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F3271292-6766-4BEA-8BC2-B2B05B0EE305}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProjectManagement</RootNamespace>
+    <AssemblyName>ProjectManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>图标.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.Design">
+      <HintPath>..\Libs\DevComponents.DotNetBar.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.Schedule">
+      <HintPath>..\..\..\其他\DotNetBarDll\DevComponents.DotNetBar.Schedule.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.SuperGrid">
+      <HintPath>..\Libs\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2">
+      <HintPath>..\Libs\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.SuperGrid.Design">
+      <HintPath>..\Libs\DevComponents.SuperGrid.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\DevExpress.Data.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.TreeMap.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\DevExpress.Utils.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\DevExpress.XtraEditors.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\DevExpress.XtraTreeList.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeMap.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>..\Libs\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\Libs\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\Libs\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\Libs\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\Libs\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ComboxItem.cs" />
+    <Compile Include="Common\DataHelper.cs" />
+    <Compile Include="Common\NPOIHelper.cs" />
+    <Compile Include="Common\ExportHelper.cs" />
+    <Compile Include="Common\FileHelper.cs" />
+    <Compile Include="Control\PagerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\PagerControl.designer.cs">
+      <DependentUpon>PagerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Income\Cost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Income\Cost.Designer.cs">
+      <DependentUpon>Cost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Income\Earning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Income\Earning.Designer.cs">
+      <DependentUpon>Earning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Income\Receivables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Income\Receivables.Designer.cs">
+      <DependentUpon>Receivables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InfomationPublish\InfomationPublish.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InfomationPublish\InfomationPublish.Designer.cs">
+      <DependentUpon>InfomationPublish.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InfomationPublish\PublishConfigure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InfomationPublish\PublishConfigure.Designer.cs">
+      <DependentUpon>PublishConfigure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InfomationPublish\PublishHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InfomationPublish\PublishHistory.Designer.cs">
+      <DependentUpon>PublishHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Others\Change.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Others\Change.Designer.cs">
+      <DependentUpon>Change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Others\EnterInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Others\EnterInfo.Designer.cs">
+      <DependentUpon>EnterInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Others\Risk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Others\Risk.Designer.cs">
+      <DependentUpon>Risk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Others\Routine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Others\Routine.Designer.cs">
+      <DependentUpon>Routine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Others\Trouble.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Others\Trouble.Designer.cs">
+      <DependentUpon>Trouble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Others\Weekly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Others\Weekly.Designer.cs">
+      <DependentUpon>Weekly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Others\WeeklyHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Others\WeeklyHistory.Designer.cs">
+      <DependentUpon>WeeklyHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Others\WeeklyPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Others\WeeklyPreview.Designer.cs">
+      <DependentUpon>WeeklyPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Project\NewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Project\NewProject.Designer.cs">
+      <DependentUpon>NewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Project\ProjectInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Project\ProjectInfo.Designer.cs">
+      <DependentUpon>ProjectInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Project\Supervisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Project\Supervisor.Designer.cs">
+      <DependentUpon>Supervisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Cost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Cost.Designer.cs">
+      <DependentUpon>Report_Cost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Earning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Earning.Designer.cs">
+      <DependentUpon>Report_Earning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_MemberContributionRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_MemberContributionRate.Designer.cs">
+      <DependentUpon>Report_MemberContributionRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Plan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Plan.Designer.cs">
+      <DependentUpon>Report_Plan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Receivables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Receivables.Designer.cs">
+      <DependentUpon>Report_Receivables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_ProjectInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_ProjectInfo.Designer.cs">
+      <DependentUpon>Report_ProjectInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Recentwork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Recentwork.Designer.cs">
+      <DependentUpon>Report_Recentwork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Subcontract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Subcontract.Designer.cs">
+      <DependentUpon>Report_Subcontract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Subcontract_Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Subcontract_Setting.Designer.cs">
+      <DependentUpon>Report_Subcontract_Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Supplier.Designer.cs">
+      <DependentUpon>Report_Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Supplier_Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Supplier_Setting.Designer.cs">
+      <DependentUpon>Report_Supplier_Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_ToBeSolvedTrouble.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_ToBeSolvedTrouble.Designer.cs">
+      <DependentUpon>Report_ToBeSolvedTrouble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Weekly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_Weekly.Designer.cs">
+      <DependentUpon>Report_Weekly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stakeholder\Communication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stakeholder\Communication.Designer.cs">
+      <DependentUpon>Communication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stakeholder\CommunicationMatrix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stakeholder\CommunicationMatrix.Designer.cs">
+      <DependentUpon>CommunicationMatrix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stakeholder\SendMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stakeholder\SendMail.Designer.cs">
+      <DependentUpon>SendMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stakeholder\Stakeholder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stakeholder\Stakeholder.Designer.cs">
+      <DependentUpon>Stakeholder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Subcontract\Contract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Subcontract\Contract.Designer.cs">
+      <DependentUpon>Contract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Subcontract\Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Subcontract\Supplier.Designer.cs">
+      <DependentUpon>Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Template\UpdateTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Template\UpdateTemplate.Designer.cs">
+      <DependentUpon>UpdateTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Warning\WarningConfigure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Warning\WarningConfigure.Designer.cs">
+      <DependentUpon>WarningConfigure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Warning\WarningList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Warning\WarningList.Designer.cs">
+      <DependentUpon>WarningList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Project\Milestone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Project\Milestone.Designer.cs">
+      <DependentUpon>Milestone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WBS\NewManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WBS\NewManager.Designer.cs">
+      <DependentUpon>NewManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WBS\ReName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WBS\ReName.Designer.cs">
+      <DependentUpon>ReName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WBS\WBS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WBS\WBS.Designer.cs">
+      <DependentUpon>WBS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WBS\WBSCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WBS\WBSCode.Designer.cs">
+      <DependentUpon>WBSCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFrame.Designer.cs">
+      <DependentUpon>MainFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NormalOperation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NormalOperation.Designer.cs">
+      <DependentUpon>NormalOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting.Designer.cs">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StartPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartPage.Designer.cs">
+      <DependentUpon>StartPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Common\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\PagerControl.resx">
+      <DependentUpon>PagerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Income\Cost.resx">
+      <DependentUpon>Cost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Income\Earning.resx">
+      <DependentUpon>Earning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Income\Receivables.resx">
+      <DependentUpon>Receivables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InfomationPublish\InfomationPublish.resx">
+      <DependentUpon>InfomationPublish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InfomationPublish\PublishConfigure.resx">
+      <DependentUpon>PublishConfigure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InfomationPublish\PublishHistory.resx">
+      <DependentUpon>PublishHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Others\Change.resx">
+      <DependentUpon>Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Others\EnterInfo.resx">
+      <DependentUpon>EnterInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Others\Risk.resx">
+      <DependentUpon>Risk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Others\Routine.resx">
+      <DependentUpon>Routine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Others\Trouble.resx">
+      <DependentUpon>Trouble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Others\Weekly.resx">
+      <DependentUpon>Weekly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Others\WeeklyHistory.resx">
+      <DependentUpon>WeeklyHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Others\WeeklyPreview.resx">
+      <DependentUpon>WeeklyPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Project\NewProject.resx">
+      <DependentUpon>NewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Project\ProjectInfo.resx">
+      <DependentUpon>ProjectInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Project\Supervisor.resx">
+      <DependentUpon>Supervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Cost.resx">
+      <DependentUpon>Report_Cost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Earning.resx">
+      <DependentUpon>Report_Earning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_MemberContributionRate.resx">
+      <DependentUpon>Report_MemberContributionRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Plan.resx">
+      <DependentUpon>Report_Plan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_ProjectInfo.resx">
+      <DependentUpon>Report_ProjectInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Receivables.resx">
+      <DependentUpon>Report_Receivables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Recentwork.resx">
+      <DependentUpon>Report_Recentwork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Subcontract.resx">
+      <DependentUpon>Report_Subcontract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Subcontract_Setting.resx">
+      <DependentUpon>Report_Subcontract_Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Supplier.resx">
+      <DependentUpon>Report_Supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Supplier_Setting.resx">
+      <DependentUpon>Report_Supplier_Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_ToBeSolvedTrouble.resx">
+      <DependentUpon>Report_ToBeSolvedTrouble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_Weekly.resx">
+      <DependentUpon>Report_Weekly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stakeholder\Communication.resx">
+      <DependentUpon>Communication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stakeholder\CommunicationMatrix.resx">
+      <DependentUpon>CommunicationMatrix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stakeholder\SendMail.resx">
+      <DependentUpon>SendMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stakeholder\Stakeholder.resx">
+      <DependentUpon>Stakeholder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Subcontract\Contract.resx">
+      <DependentUpon>Contract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Subcontract\Supplier.resx">
+      <DependentUpon>Supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Template\UpdateTemplate.resx">
+      <DependentUpon>UpdateTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Warning\WarningConfigure.resx">
+      <DependentUpon>WarningConfigure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Warning\WarningList.resx">
+      <DependentUpon>WarningList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Project\Milestone.resx">
+      <DependentUpon>Milestone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WBS\NewManager.resx">
+      <DependentUpon>NewManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WBS\ReName.resx">
+      <DependentUpon>ReName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WBS\WBS.resx">
+      <DependentUpon>WBS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WBS\WBSCode.resx">
+      <DependentUpon>WBSCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFrame.resx">
+      <DependentUpon>MainFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NormalOperation.resx">
+      <DependentUpon>NormalOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Setting.resx">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartPage.resx">
+      <DependentUpon>StartPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectManagement.db" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Template\WBS模板.xlsx" />
+    <None Include="Template\项目周报模板.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Message.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="图标.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BussinessDLL\BussinessDLL.csproj">
+      <Project>{7ce1ffb3-1373-40d0-8170-d5c4447a3070}</Project>
+      <Name>BussinessDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonDLL\CommonDLL.csproj">
+      <Project>{7ef8b16c-3158-4d54-b9cf-6c161546d7ae}</Project>
+      <Name>CommonDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainDLL\DomainDLL.csproj">
+      <Project>{101dea1c-c0f2-4b58-8e19-77475455d700}</Project>
+      <Name>DomainDLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

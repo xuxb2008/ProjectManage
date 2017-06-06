@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="DomainDLL.Routine, DomainDLL" table="Routine">
+    <id name="ID" type="String" unsaved-value="null">
+      <column name="ID" length="40" sql-type="varchar" not-null="true" unique="true"/>
+      <generator class="assigned" />
+    </id>
+    <property name="NodeID" type="String">
+      <column name="NodeID" sql-type="varchar" not-null="true"/>
+    </property>
+    <property name="Name" type="String">
+      <column name="Name" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="Desc" type="String">
+      <column name="`Desc`" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="DealResult" type="String">
+      <column name="DealResult" sql-type="nvarchar" not-null="false"/>
+    </property>
+    <property name="StartDate" type="DateTime">
+      <column name="StartDate" sql-type="datetime" not-null="false"/>
+    </property>
+    <property name="EndDate" type="DateTime">
+      <column name="EndDate" sql-type="datetime" not-null="false"/>
+    </property>
+    <property name="Workload" type="decimal">
+      <column name="Workload" sql-type="decimal" not-null="true"/>
+    </property>
+    <property name="Weight" type="Int32">
+      <column name="Weight" sql-type="int" not-null="false"/>
+    </property>
+    <property name="FinishStatus" type="Int32">
+      <column name="FinishStatus" sql-type="int" not-null="false"/>
+    </property>
+    <property name="Status" type="Int32">
+      <column name="Status" sql-type="int" not-null="false"/>
+    </property>
+    <property name="CREATED" type="DateTime">
+      <column name="CREATED" sql-type="datetime" not-null="false"/>
+    </property>
+    <property name="UPDATED" type="DateTime">
+      <column name="UPDATED" sql-type="datetime" not-null="false"/>
+    </property>
+  </class>
+</hibernate-mapping>
