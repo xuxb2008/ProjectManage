@@ -5,7 +5,7 @@ namespace DomainDLL
 {
 
     /// <summary>
-    /// 问题附件
+    ///  问题附件
     /// </summary>
     public class TroubleFiles : PersistenceEntity
     {
