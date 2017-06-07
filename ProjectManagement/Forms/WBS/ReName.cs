@@ -71,7 +71,7 @@ namespace ProjectManagement.Forms.WBS
                 result = bll.SaveNode(_node);
             if (result.result)
             {
-                FileHelper.WBSMoveFloder(result.data.ToString());//迁移文件夹
+                FileHelper.WBSMoveFloder(UploadType.WBS,result.data.ToString());//迁移文件夹
                 this.DialogResult = DialogResult.OK;
             }
             else

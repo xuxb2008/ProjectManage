@@ -85,7 +85,7 @@ namespace ProjectManagement
             if (result.result)
             {
                 txtNode2.Text = CurrentNode.Name;
-                FileHelper.WBSMoveFloder(CurrentNode.ID);//迁移文件夹
+                FileHelper.WBSMoveFloder(UploadType.WBS,CurrentNode.ID);//迁移文件夹
                 //主框更新
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
                 mainForm.RelaodTree();
@@ -733,7 +733,7 @@ namespace ProjectManagement
                 CurrentNode.Name = _jbxx.Name;
                 CurrentNode.ID = result.data.ToString();
                 txtNode.Text = _jbxx.Name;
-                FileHelper.WBSMoveFloder(CurrentNode.ID);//迁移文件夹
+                FileHelper.WBSMoveFloder(UploadType.WBS,CurrentNode.ID);//迁移文件夹
                 //主框更新
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
                 mainForm.RelaodTree();

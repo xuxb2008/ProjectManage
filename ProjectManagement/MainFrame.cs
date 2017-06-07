@@ -275,7 +275,7 @@ namespace ProjectManagement
                 JsonResult result = wbsBll.SaveNode(node);
                 if (result.result)
                 {
-                    FileHelper.WBSMoveFloder(node.ID);//迁移文件夹
+                    FileHelper.WBSMoveFloder(UploadType.WBS,node.ID);//迁移文件夹
                     ReloadCurrentNode(node);
                     RelaodTree();
                 }

@@ -26,7 +26,7 @@ namespace BussinessDLL
         /// <param name="entity"></param>
         /// <param name="listWork"></param>
         /// <returns></returns>
-        public JsonResult SaveRoutine(string ProjectID, Routine entity, List<RoutineWork> listWork)
+        public JsonResult SaveRoutine(string ProjectID, Routine entity, List<RoutineWork> listWork,ref string newNodeID)
         {
             JsonResult jsonreslut = new JsonResult();
             try
@@ -55,6 +55,8 @@ namespace BussinessDLL
                     entity.Status = 1;
                     #endregion
                     dao.AddRoutine(entity, node, listWork);
+                    newNodeID = node.ID;
+                    jsonreslut.data = entity.ID;
                 }
                 //编辑
                 else
@@ -98,6 +100,8 @@ namespace BussinessDLL
                     entity.CREATED = DateTime.Now;
                     #endregion
                     dao.UpdateRoutine(entity, oldEntity, newNode, oldNode, listWork);
+                    newNodeID = newNode.ID;
+                    jsonreslut.data = entity.ID;
                 }
                 jsonreslut.result = true;
                 jsonreslut.msg = "保存成功！";

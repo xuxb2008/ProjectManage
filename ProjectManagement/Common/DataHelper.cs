@@ -70,7 +70,7 @@ namespace ProjectManagement
             if (children.Count<PNode>() < 1)
             {
                 parent.FinishStatus = parent.FinishStatus == null ? 0 : parent.FinishStatus;
-                node.Style =  MatchColor(parent.FinishStatus) ;
+                node.Style = MatchColor(parent.FinishStatus);
                 return;
             }
             DevComponents.AdvTree.Node node2;
@@ -104,13 +104,13 @@ namespace ProjectManagement
             switch (status)
             {
                 case 1:
-                    return new ElementStyle() { BackColor = Color.CornflowerBlue};
+                    return new ElementStyle() { BackColor = Color.CornflowerBlue };
                 case 2:
                     return new ElementStyle() { BackColor = Color.Orange };
                 case 3:
-                    return new ElementStyle() { BackColor = Color.Red,TextColor=Color.White };
+                    return new ElementStyle() { BackColor = Color.Red, TextColor = Color.White };
                 default:
-                    return new ElementStyle() { BackColor = Color.Transparent};
+                    return new ElementStyle() { BackColor = Color.Transparent };
             }
         }
 
@@ -127,16 +127,17 @@ namespace ProjectManagement
             switch (status)
             {
                 case 1:
-                    style.Default.Background.Color2=Color.CornflowerBlue;
+                    style.Default.Background.Color1 = Color.CornflowerBlue;
                     break;
                 case 2:
-                    style.Default.Background.Color2 = Color.Orange;
+                    style.Default.Background.Color1 = Color.Orange;
                     break;
                 case 3:
-                    style.Default.Background.Color2 = Color.Red;
+                    style.Default.Background.Color1 = Color.Red;
+                    style.Default.TextColor = Color.White;
                     break;
                 default:
-                    style.Default.Background.Color2 = Color.Transparent;
+                    style.Default.Background.Color1 = Color.Transparent;
                     break;
             }
             return style;

@@ -298,6 +298,7 @@ namespace BussinessDLL
         /// </summary>
         /// <param name="projectId"></param>
         /// <param name="nodeId"></param>
+        /// <param name="NeedLike">需要模糊取最新吗</param>
         /// <param name="baseNodeFlg"></param>
         /// <returns></returns>
         public string GetWBSPath(string projectId, string nodeId, bool baseNodeFlg = true)
@@ -317,7 +318,7 @@ namespace BussinessDLL
             PNode node = new Repository<PNode>().FindSingle(qf);
             //如果根节点为空，退出
             if (!baseNodeFlg && string.IsNullOrEmpty(node.ParentID)) return filePath;
-            filePath += node.Name + "\\";
+            filePath += node.Name + "\\"; 
 
             while (!string.IsNullOrEmpty(node.ParentID))
             {

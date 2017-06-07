@@ -184,7 +184,7 @@ namespace ProjectManagement.Forms.Others
                 #region  结点改变时，移动文件到新的节点
                 if (IsEdit)
                 {
-                    FileHelper.MoveFloder(UploadType.Routine, ProjectId,oldNodeID,newNodeID);
+                    //FileHelper.MoveFloder(UploadType.Routine, ProjectId,oldNodeID,newNodeID);
                 }
                 #endregion
 

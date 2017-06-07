@@ -65,7 +65,7 @@ namespace ProjectManagement.Forms.WBS
                 _SelectNode = node;
                 DataHelper.SetTreeDate(advTree1, ProjectId);//绑定树形数据
                 DataHelper.SetTreeSelectByValue(advTree1, _SelectNode.ID);
-                FileHelper.WBSMoveFloder(_SelectNode.ID);//迁移文件夹
+                FileHelper.WBSMoveFloder(UploadType.WBS,_SelectNode.ID);//迁移文件夹
                 //主框更新
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
                 mainForm.RelaodTree();
@@ -198,7 +198,7 @@ namespace ProjectManagement.Forms.WBS
                     _SelectNode = node;
                     DataHelper.SetTreeDate(advTree1, ProjectId);//绑定树形数据
                     DataHelper.SetTreeSelectByValue(advTree1, _SelectNode.ID);
-                    FileHelper.WBSMoveFloder(_SelectNode.ID);//迁移文件夹
+                    FileHelper.WBSMoveFloder(UploadType.WBS,_SelectNode.ID);//迁移文件夹
 
                     //主框更新
                     MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
@@ -260,7 +260,7 @@ namespace ProjectManagement.Forms.WBS
                 _SelectNode = node;
                 DataHelper.SetTreeDate(advTree1, ProjectId);//绑定树形数据
                 DataHelper.SetTreeSelectByValue(advTree1, _SelectNode.ID);
-                FileHelper.WBSMoveFloder(_SelectNode.ID);//迁移文件夹
+                FileHelper.WBSMoveFloder(UploadType.WBS,_SelectNode.ID);//迁移文件夹
 
                 //主框更新
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
@@ -622,7 +622,7 @@ namespace ProjectManagement.Forms.WBS
                 advTree1.SelectedNode.Text = _SelectNode.WBSNo + "-" + _SelectNode.Name;
                 advTree1.SelectedNode.Name = _SelectNode.ID;
                 advTree1.SelectedNode.Tag = JsonHelper.EntityToString<PNode>(_SelectNode);
-                FileHelper.WBSMoveFloder(_SelectNode.ID);//迁移文件夹
+                FileHelper.WBSMoveFloder(UploadType.WBS,_SelectNode.ID);//迁移文件夹
 
                 //主框更新
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
