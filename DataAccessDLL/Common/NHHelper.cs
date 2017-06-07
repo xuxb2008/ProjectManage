@@ -290,6 +290,53 @@ namespace DataAccessDLL
             return dt;
         }
 
+        public static DataTable ExecuteDataTableNoRow(string sql, List<QueryField> qlist)
+        {
+            ISession session = null;
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            try
+            {
+                session = GetCurrentSession();
+                IDbCommand command = session.Connection.CreateCommand();
+                command.CommandText = sql;
+                command.CommandType = CommandType.Text;
+                foreach (QueryField field in qlist)
+                {
+                    SQLiteParameter param = new SQLiteParameter();
+                    param.Value = field.Value;
+                    param.ParameterName = field.Name;
+                    param.DbType = ConvertDbType(field.Type);
+                    command.Parameters.Add(param);
+                }
+                IDataReader reader = command.ExecuteReader();
+                DataTable result = new DataTable();
+                DataTable schemaTable = reader.GetSchemaTable();
+                for (int i = 0; i < schemaTable.Rows.Count; i++)
+                {
+                    string columnName = schemaTable.Rows[i][0].ToString();
+                    result.Columns.Add(columnName);
+                }
+                while (reader.Read())
+                {
+                    int fieldCount = reader.FieldCount;
+                    object[] values = new Object[fieldCount];
+                    for (int i = 0; i < fieldCount; i++)
+                    {
+                        values[i] = reader.GetValue(i);
+                    }
+                    result.Rows.Add(values);
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteException(ex, LogType.DataAccessDLL);
+                return null;
+            }
+            return dt;
+        }
+
         /// <summary>
         /// 返回分页数据
         /// Created:20170330(ChengMengjia)
