@@ -83,17 +83,47 @@ namespace ProjectManagement
                 
                 if (WorkType == "日常工作")
                 {
-                    Forms.Others.Routine form = new Forms.Others.Routine();
+                    Forms.Others.Routine form = new Forms.Others.Routine("");
                     form.WorkId = e.GridCell.GridRow.Cells["Id"].Value.ToString();
                     mainForm.ShowChildForm(form);
                 }
                 else
                 {
-                    Forms.Others.Trouble form = new Forms.Others.Trouble();
+                    Forms.Others.Trouble form = new Forms.Others.Trouble("");
                     form.TroubleId = e.GridCell.GridRow.Cells["Id"].Value.ToString();
                     mainForm.ShowChildForm(form);
                 }
                 
+            }
+        }
+
+        /// <summary>
+        /// 按F5时刷新首页
+        /// Created：2017.06.07(Xuxb)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StartPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+            {
+                //加载项目成果
+                LoadProjectResult();
+
+                //加载项目成本
+                LoadProjectCost();
+
+                //加载项目风险
+                LoadProjectRisk();
+
+                //加载项目问题
+                LoadProjectTrouble();
+
+                //加载项目预警信息
+                LoadProjectWarning();
+
+                //加载项目问题一览
+                LoadProjectTroubleList();
             }
         }
 
@@ -119,6 +149,7 @@ namespace ProjectManagement
                 chartResult.Series[0].Points.DataBindY(list);
                 chartResult.Series[0].Points[0].Label = "已完成(" + completeWork + ")";
                 chartResult.Series[0].Points[1].Label = "未完成(" + (totalWork - completeWork) + ")";
+                chartResult.Titles[0].Text = "项目成果(总工作量：" + totalWork.ToString() + "人天)";
             }
             else
             {
@@ -135,100 +166,56 @@ namespace ProjectManagement
         {
             DataTable dt = costBll.GetCostList(ProjectId);
 
+            double total = 0;
             if (dt != null && dt.Rows.Count > 0)
             {
                 Series s1 = new Series();
                 s1.ChartType = SeriesChartType.Column;
-                s1.Color = System.Drawing.Color.LightGreen;
-                s1.LegendText = "可用金额";
+                s1.Color = System.Drawing.Color.Blue;
+                s1.LegendText = "预算金额";
                 Series s2 = new Series();
-                s2.ChartType = SeriesChartType.StackedColumn;
-                s2.Color = System.Drawing.Color.Yellow;
+                s2.ChartType = SeriesChartType.Column;
+                s2.Color = System.Drawing.Color.Red;
                 s2.LegendText = "已用金额";
-                Series s3 = new Series();
-                s3.ChartType = SeriesChartType.StackedColumn;
-                s3.Color = System.Drawing.Color.LightSalmon;
-                s3.LegendText = "在途金额";
                 Series s4 = new Series();
                 s4.ChartType = SeriesChartType.Column;
-                s4.Color = System.Drawing.Color.LightSkyBlue;
+                s4.Color = System.Drawing.Color.LightGreen;
                 s4.LegendText = "剩余金额";
                 Random r = new Random();
-                int y = 0;
-                for (int i = 1; i < 12; i = i + 2)
+                
+                string[] tags = new string[dt.Rows.Count];
+                for (int i = 1; i <= dt.Rows.Count; i++)
                 {
-                    if (dt.Rows.Count > y)
-                    {
-                        //可用金额
-                        if (dt.Rows[y]["Total"] != null && !string.IsNullOrEmpty(dt.Rows[y]["Total"].ToString()))
-                        {
-                            s1.Points.AddXY(i, double.Parse(dt.Rows[y]["Total"].ToString()), double.Parse(dt.Rows[y]["Total"].ToString()));
-                            if (double.Parse(dt.Rows[y]["Total"].ToString()) > 0)
-                            {
-                                s1.Points[y].Label = dt.Rows[y]["Total"].ToString();
-                            }
-                        }
-
-                        //剩余金额
-                        if (dt.Rows[y]["Remaining"] != null && !string.IsNullOrEmpty(dt.Rows[y]["Remaining"].ToString()))
-                        {
-
-                            if (double.Parse(dt.Rows[y]["Remaining"].ToString()) > 0)
-                            {
-                                s4.Points.AddXY(i + 0.4, double.Parse(dt.Rows[y]["Remaining"].ToString()));
-                                s4.Points[y].Label = dt.Rows[y]["Remaining"].ToString();
-                            }
-                            else
-                            {
-                                s4.Points.AddXY(i + 0.4, 0);
-                            }
-                        }
-
-                        //已用金额
-                        if (dt.Rows[y]["Used"] != null && !string.IsNullOrEmpty(dt.Rows[y]["Used"].ToString()))
-                        {
-                            s2.Points.AddXY(i + 0.8, double.Parse(dt.Rows[y]["Used"].ToString()));
-                            if (double.Parse(dt.Rows[y]["Used"].ToString()) > 0)
-                            {
-                                s2.Points[y].Label = dt.Rows[y]["Used"].ToString();
-                            }
-                        }
-                        //在途金额
-                        if (dt.Rows[y]["Transit"] != null && !string.IsNullOrEmpty(dt.Rows[y]["Transit"].ToString()))
-                        {
-                            s3.Points.AddXY(i + 0.8, double.Parse(dt.Rows[y]["Transit"].ToString()));
-                            if (double.Parse(dt.Rows[y]["Transit"].ToString()) > 0)
-                            {
-                                s3.Points[y].Label = dt.Rows[y]["Transit"].ToString();
-                            }
-                        }
-                    }
-                    y++;
+                    total = total + double.Parse(dt.Rows[i - 1]["Total"].ToString());
+                    s1.Points.AddXY(i, double.Parse(dt.Rows[i - 1]["Total"].ToString()));
+                    s1.Points[i - 1].Label = dt.Rows[i - 1]["Total"].ToString();
+                    s2.Points.AddXY(i, double.Parse(dt.Rows[i - 1]["Used"].ToString()));
+                    s2.Points[i - 1].Label = dt.Rows[i - 1]["Used"].ToString();
+                    s4.Points.AddXY(i, double.Parse(dt.Rows[i - 1]["Remaining"].ToString()));
+                    s4.Points[i - 1].Label = dt.Rows[i - 1]["Remaining"].ToString();
+                    tags[i - 1] = dt.Rows[i - 1]["Tag"].ToString();
                 }
 
+                chartCost.Series.Clear();
                 chartCost.Series.Add(s1);
                 chartCost.Series.Add(s4);
                 chartCost.Series.Add(s2);
-                chartCost.Series.Add(s3);
-                chartCost.Series[0]["PointWidth"] = "0.4";
-                chartCost.Series[1]["PointWidth"] = "0.4";
-                chartCost.Series[2]["PointWidth"] = "0.2";
-                chartCost.Series[3]["PointWidth"] = "0.2";
                 chartCost.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
                 chartCost.ChartAreas[0].AxisX.MajorTickMark.Enabled = true;
                 chartCost.ChartAreas[0].AxisY.IntervalAutoMode = IntervalAutoMode.VariableCount;
+                chartCost.Titles[0].Text = "项目预算(总金额：" + total.ToString() + "元)";
 
-                int x = 1;
-                for (int i = 1; i < 25; i++)
+                int x = 0;
+                for (int i = 1; i < dt.Rows.Count * 2; i++)
                 {
-                    if (i % 4 == 1)
+                    if (i % 2 == 1)
                     {
                         CustomLabel label = new CustomLabel();
-                        label.Text = "成本" + x;
-                        label.ToPosition = i + 2;
+                        label.Text = tags[x];
+                        label.ToPosition = i + 1;
                         chartCost.ChartAreas[0].AxisX.CustomLabels.Add(label);
                         label.GridTicks = GridTickTypes.None;
-                        x = x + 1;
+                        x++;
                     }
 
                 }
@@ -254,6 +241,7 @@ namespace ProjectManagement
                 chartRisk.Series[0].Points[0].YValues = new double[] { risk };
                 chartRisk.Series[0].Points[1].YValues = new double[] { risking };
                 chartRisk.Series[0].Points[2].YValues = new double[] { risked };
+                chartRisk.Titles[0].Text = "项目风险(总风险数：" + risk.ToString() + "个)";
             }
             else
             {
@@ -280,10 +268,10 @@ namespace ProjectManagement
                 double leave = double.Parse(dt.Rows[0]["TroubleLeave"].ToString());
                 //超期数量
                 double rest = double.Parse(dt.Rows[0]["TroubleRest"].ToString());
-                chartTrouble.Series[0].Points[0].YValues = new double[] { total };
-                chartTrouble.Series[0].Points[1].YValues = new double[] { handle };
-                chartTrouble.Series[0].Points[2].YValues = new double[] { leave };
-                chartTrouble.Series[0].Points[3].YValues = new double[] { rest };
+                chartTrouble.Series[0].Points[0].YValues = new double[] { handle };
+                chartTrouble.Series[0].Points[1].YValues = new double[] { leave };
+                chartTrouble.Series[0].Points[2].YValues = new double[] { rest };
+                chartTrouble.Titles[0].Text = "项目问题(总问题数量：" + total.ToString() + "个)";
             }
             else
             {
@@ -315,5 +303,6 @@ namespace ProjectManagement
         }
 
         #endregion
+
     }
 }

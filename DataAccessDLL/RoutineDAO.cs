@@ -18,6 +18,7 @@ namespace DataAccessDLL
         /// <summary>
         /// 日常工作查询
         /// Created:2017.04.06(xuxb)
+        /// Updated:20170607(ChengMengjia) 增加状态判断
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
@@ -27,8 +28,15 @@ namespace DataAccessDLL
         {
             List<QueryField> qf = new List<QueryField>();
             StringBuilder sql = new StringBuilder();
-            sql.Append(" select r.ID,r.Name,r.Desc,r.DealResult,p.Name PName,strftime('%Y-%m-%d',r.StartDate) as StartDate,strftime('%Y-%m-%d',r.EndDate) as EndDate,d.Name as HandleStatus from Routine r ");
-            sql.Append(" inner join PNode p on r.NodeID = substr(p.ID,1,36) and p.Status = 1");
+            sql.Append(" select r.ID,r.Name,r.Desc,r.DealResult,p.Name PName,strftime('%Y-%m-%d',r.StartDate) as StartDate,");
+            sql.Append("strftime('%Y-%m-%d',r.EndDate) as EndDate,d.Name as HandleStatus,");
+
+            //完成状态判断 参加PNode的Entity中FinishStatus说明
+            sql.Append(" case when r.FinishStatus=3 then 1   ");
+            sql.Append(" when r.EndDate<date('now') and (r.FinishStatus is null or r.FinishStatus<>3) then 3 ");
+            sql.Append(" when r.StartDate>date('now') and (r.FinishStatus is null or r.FinishStatus<>3) then 0 else 2 end FinishType ");
+
+            sql.Append(" from Routine r inner join PNode p on r.NodeID = substr(p.ID,1,36) and p.Status = 1");
             sql.Append(" left join DictItem d on r.FinishStatus = d.No and d.DictNo = " + (int)CommonDLL.DictCategory.WorkHandleStatus);
             sql.Append(" where r.status = 1 and p.PID = @PID ");
             qf.Add(new QueryField() { Name = "PID", Type = QueryFieldType.String, Value = PID });
@@ -62,6 +70,7 @@ namespace DataAccessDLL
 
         /// <summary>
         /// 新增日常工作
+        ///  Updated:20170605(ChengMengjia) 添加作为节点插入
         /// </summary>
         /// <param name="entity">日常工作实体</param>
         /// <param name="listWork">责任人列表</param>
@@ -83,7 +92,7 @@ namespace DataAccessDLL
                         item.RoutineID = entity.ID.Substring(0, 36);
                         s.Save(item);
                     }
-                UpdateProject(s);
+                UpdateProject(s);//更新项目时间
                 s.Transaction.Commit();
                 s.Close();
             }
@@ -115,7 +124,7 @@ namespace DataAccessDLL
                     s.Update(oldNode);
 
                 //删除责任人
-                s.CreateQuery("delete from RoutineWork where RoutineID='" + newEntity.ID.Substring(0, 36) + "';").ExecuteUpdate();
+                s.CreateQuery("delete from RoutineWork where RoutineID='" + oldeEntity.ID.Substring(0, 36) + "';").ExecuteUpdate();
                 //保存新的责任人
                 if (listWork != null)
                     foreach (RoutineWork item in listWork)
@@ -127,7 +136,7 @@ namespace DataAccessDLL
                         s.Save(item);
                     }
 
-                UpdateProject(s);
+                UpdateProject(s);//更新项目时间
                 s.Transaction.Commit();
                 s.Close();
             }

@@ -381,15 +381,26 @@ namespace BussinessDLL
         public List<PNode> GetNodesWithStatus(string ProjectID)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append(" select a.*,CASE WHEN b.cc is Null and a.PType=1 THEN (case when c.EndDate<date('now') and (d.PType is null or d.PType<>5) then 3");
-            sql.Append(" when c.StarteDate>date('now') and (d.PType is null or d.PType<>5) then 0 when d.PType=5 then 1 else 2 end)");
-            sql.Append(" when b.cc is null and a.PType=2 THEN (case when e.EndDate<date('now') and (e.FinishStatus is null or e.FinishStatus<>3) then 3 ");
-            sql.Append(" when e.StartDate>date('now') and (e.FinishStatus is null or e.FinishStatus<>3) then 0 else ifnull(e.FinishStatus,0) end )");
-            sql.Append(" else null end FinishStatus from pnode a ");
+            sql.Append("  select a.*,CASE WHEN b.cc is Null then ( case a.PType  ");
+            //交付物
+            sql.Append(" when 1 then (case when d.PType=5 then 1 ");
+            sql.Append(" when c.EndDate<date('now') and (d.PType is null or d.PType<>5) then 3 ");
+            sql.Append(" when c.StarteDate>date('now') and (d.PType is null or d.PType<>5) then 0  else 2 end) ");
+            //日常
+            sql.Append(" when 2 then (case when e.FinishStatus=3 then 1 ");
+            sql.Append(" when e.EndDate<date('now') and (e.FinishStatus is null or e.FinishStatus<>3) then 3 ");
+            sql.Append(" when e.StartDate>date('now') and (e.FinishStatus is null or e.FinishStatus<>3) then 0 else 2 end ) ");
+            //问题
+            sql.Append(" when 3 then (case when f.HandleStatus=3 then 1 ");
+            sql.Append(" when f.EndDate<date('now') and (f.HandleStatus is null or f.HandleStatus<>3) then 3  ");
+            sql.Append(" when f.StarteDate>date('now') and (f.HandleStatus is null or f.HandleStatus<>3) then 0 else 2 end ) ");
+
+            sql.Append(" else null end) else null end FinishStatus from pnode a ");
             sql.Append(" left join (select parentid,count(*)cc from pnode where status=1 and PID=@PID group by parentid)b on a.id=b.parentid   ");
             sql.Append(" left join DeliverablesJBXX c on c.NodeID=substr(a.ID,1,36) and c.Status=1 and a.PType=1 ");
             sql.Append(" left join NodeProgress d on d.NodeID=substr(a.ID,1,36) and d.Status=1 ");
             sql.Append(" left join Routine e on e.NodeID=substr(a.ID,1,36) and e.Status=1 and a.PType=2  ");
+            sql.Append(" left join Trouble f on f.NodeID=substr(a.ID,1,36) and f.Status=1 and a.PType=3  ");
             sql.Append(" where  a.status=1 and a.PID=@PID ");
             List<QueryField> qf = new List<QueryField>();
             qf.Add(new QueryField() { Name = "PID", Type = QueryFieldType.String, Value = ProjectID });

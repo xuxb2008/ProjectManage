@@ -31,6 +31,8 @@ namespace ProjectManagement
 
         NormalOperation nodePage;
         ProjectManagement.Forms.Others.Routine nodeRoutine;
+        ProjectManagement.Forms.Others.Trouble nodeTrouble;
+
 
         string[] NodeTabs = { "NormalOperation" };//切换节点时所需关闭的页面
         #endregion
@@ -163,26 +165,44 @@ namespace ProjectManagement
                 {
                     case (int)WBSPType.PType0:
                     case (int)WBSPType.PType1:
+                        #region 打开当前操作
                         if (nodePage == null)
                             nodePage = new NormalOperation();
                         else
                             nodePage.init();
                         ShowChildForm(nodePage);
+                        if (nodeRoutine != null)
+                            CloseTab(nodeRoutine.Name);
+                        if (nodeTrouble != null)
+                            CloseTab(nodeTrouble.Name);
+                        #endregion
                         break;
                     case (int)WBSPType.PType2:
+                        #region 打开日常工作
                         if (nodeRoutine == null)
-                        {
-                            nodeRoutine = new Forms.Others.Routine();
-                            nodeRoutine._nodeID = CurrentNode.ID;
-                        }
+                            nodeRoutine = new Forms.Others.Routine(CurrentNode.ID);
                         else
-                        {
-                            nodeRoutine._nodeID = CurrentNode.ID;
-                            nodeRoutine.init();
-                        }
+                            nodeRoutine.LoadContent(CurrentNode.ID);
                         ShowChildForm(nodeRoutine);
+                        if (nodePage != null)
+                            CloseTab(nodePage.Name);
+                        if (nodeTrouble != null)
+                            CloseTab(nodeTrouble.Name);
+                        #endregion
                         break;
-                    case (int)WBSPType.PType3: ShowChildForm(new Forms.Others.Trouble()); break;
+                    case (int)WBSPType.PType3:
+                        #region 打开问题
+                        if (nodeTrouble == null)
+                            nodeTrouble = new Forms.Others.Trouble(CurrentNode.ID);
+                        else
+                            nodeTrouble.LoadPageData(CurrentNode.ID);
+                        ShowChildForm(nodeTrouble);
+                        if (nodePage != null)
+                            CloseTab(nodePage.Name);
+                        if (nodeRoutine != null)
+                            CloseTab(nodeRoutine.Name);
+                        #endregion
+                        break;
                 }
             }
             else e.Cancel = true;
@@ -303,6 +323,10 @@ namespace ProjectManagement
             if (e.Tab.Name == "Routine")
             {
                 nodeRoutine = null;
+            }
+            if (e.Tab.Name == "Trouble")
+            {
+                nodeTrouble = null;
             }
         }
 
@@ -469,7 +493,7 @@ namespace ProjectManagement
         /// <param name="e"></param>
         private void RibbonBtn_Routine_Click(object sender, EventArgs e)
         {
-            ShowChildForm(new Forms.Others.Routine());
+            ShowChildForm(new Forms.Others.Routine(""));
         }
         /// <summary>
         /// 打开问题管理界面
@@ -478,7 +502,7 @@ namespace ProjectManagement
         /// <param name="e"></param>
         private void Ribbon_Trouble_Click(object sender, EventArgs e)
         {
-            ShowChildForm(new Forms.Others.Trouble());
+            ShowChildForm(new Forms.Others.Trouble(""));
         }
         /// <summary>
         /// 打开生成周报界面
@@ -555,6 +579,17 @@ namespace ProjectManagement
         private void Ribbon_Report_Receivables_Click(object sender, EventArgs e)
         {
             ShowChildForm(new Forms.Report.Report_Receivables());
+        }
+
+        /// <summary>
+        /// 成员贡献率
+        /// 2017/06/07(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MemberContributionRate_Click(object sender, EventArgs e)
+        {
+            ShowChildForm(new Forms.Report.Report_MemberContributionRate());
         }
 
         /// <summary>
@@ -1183,5 +1218,6 @@ namespace ProjectManagement
             }
         }
 
+        
     }
 }

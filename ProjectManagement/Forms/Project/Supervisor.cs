@@ -24,7 +24,7 @@ namespace ProjectManagement.Forms.Project
         #endregion
 
         #region 画面变量
-        string _jlxxID;
+        Supervisor _supervisor;
         #endregion
 
         #region 事件
@@ -35,8 +35,7 @@ namespace ProjectManagement.Forms.Project
             DataHelper.LoadDictItems(cbJWay, DictCategory.Supervisor_Way);
             LoadJLXX();
             LoadJLPJ();
-            dtJDate.Value = DateTime.Now;
-            dtJDate.IsInputReadOnly = true;
+            ClearJLPJ();
         }
 
         /// <summary>
@@ -58,24 +57,10 @@ namespace ProjectManagement.Forms.Project
         /// <param name="e"></param>
         private void btnJClear_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(_jlxxID))
+            if (!string.IsNullOrEmpty(_supervisor.ID))
                 LoadJLXX();
             else
-            {
-                txtJCName.Clear();
-                txtJManagerA.Clear();
-                txtJManagerB.Clear();
-                txtJA_Email.Clear();
-                txtJA_QQ.Clear();
-                txtJA_Tel.Clear();
-                txtJA_Wechat.Clear();
-                txtJB_QQ.Clear();
-                txtJB_Tel.Clear();
-                txtJB_Email.Clear();
-                txtJB_Wechat.Clear();
-                txtJCost.Clear();
-                cbJWay.SelectedIndex = -1;
-            }
+                ClearJLXX();
         }
 
         /// <summary>
@@ -87,7 +72,7 @@ namespace ProjectManagement.Forms.Project
         private void btnJSave_Click(object sender, EventArgs e)
         {
             Supervisor entity = new Supervisor();
-            entity.ID = _jlxxID;
+            entity.ID = _supervisor.ID;
             entity.PID = ProjectId;
             entity.CompanyName = txtJCName.Text;
             entity.ManagerA = txtJManagerA.Text;
@@ -114,27 +99,28 @@ namespace ProjectManagement.Forms.Project
                 MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "监理姓名");
                 return;
             }
-            if (string.IsNullOrEmpty(entity.A_Tel))
-            {
-                MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "监理手机号码");
-                return;
-            }
-            if (string.IsNullOrEmpty(entity.Cost))
-            {
-                MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "监理费用");
-                return;
-            }
-            if (string.IsNullOrEmpty(entity.Way))
-            {
-                MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "监理方式");
-                return;
-            }
+            //if (string.IsNullOrEmpty(entity.A_Tel))
+            //{
+            //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "监理手机号码");
+            //    return;
+            //}
+            //if (string.IsNullOrEmpty(entity.Cost))
+            //{
+            //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "监理费用");
+            //    return;
+            //}
+            //if (string.IsNullOrEmpty(entity.Way))
+            //{
+            //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "监理方式");
+            //    return;
+            //}
             #endregion
             JsonResult result = bll.SaveJLXX(entity);
             MessageHelper.ShowRstMsg(result.result);
             if (result.result)
             {
-                _jlxxID = result.data.ToString();
+                _supervisor = entity;
+                txtJName.Text = _supervisor.ManagerA;
             }
         }
 
@@ -146,12 +132,7 @@ namespace ProjectManagement.Forms.Project
         /// <param name="e"></param>
         private void btnJPClear_Click(object sender, EventArgs e)
         {
-            txtJName.Clear();
-            txtJName.Tag = "";
-            txtJContent.Clear();
-            dtJDate.Value = DateTime.Now;
-            gridJLPJ.GetSelectedRows().Select(false);//取消选择
-            dtJDate.IsInputReadOnly = true;
+            ClearJLPJ();
         }
 
         /// <summary>
@@ -182,7 +163,7 @@ namespace ProjectManagement.Forms.Project
         /// <param name="e"></param>
         private void btnJPSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_jlxxID))
+            if (_supervisor == null)
             {
                 MessageBox.Show("请先完善左侧监理信息！");
                 return;
@@ -216,7 +197,7 @@ namespace ProjectManagement.Forms.Project
             MessageHelper.ShowRstMsg(result.result);
             if (result.result)
             {
-                btnJPClear_Click(sender, e);
+                ClearJLPJ();
                 LoadJLPJ();
             }
         }
@@ -229,30 +210,58 @@ namespace ProjectManagement.Forms.Project
         /// </summary>
         private void LoadJLXX()
         {
-            Supervisor entity = bll.GetJLXX(ProjectId);
-            if (!string.IsNullOrEmpty(entity.ID))
-            {
-                _jlxxID = entity.ID;
-                txtJCName.Text = entity.CompanyName;
-                txtJManagerA.Text = entity.ManagerA;
-                txtJManagerB.Text = entity.ManagerB;
-                txtJA_Email.Text = entity.A_Email;
-                txtJA_QQ.Text = entity.A_QQ;
-                txtJA_Tel.Text = entity.A_Tel;
-                txtJA_Wechat.Text = entity.A_Wechat;
-                txtJB_QQ.Text = entity.B_QQ;
-                txtJB_Tel.Text = entity.B_Tel;
-                txtJB_Email.Text = entity.B_Email;
-                txtJB_Wechat.Text = entity.B_Wechat;
-                txtJCost.Text = entity.Cost;
-                DataHelper.SetComboBoxSelectItemByText(cbJWay, entity.Way);
-            }
-            else
-                btnJClear_Click(null, null);
+            _supervisor = bll.GetJLXX(ProjectId);
+            txtJCName.Text = _supervisor.CompanyName;
+            txtJManagerA.Text = _supervisor.ManagerA;
+            txtJManagerB.Text = _supervisor.ManagerB;
+            txtJA_Email.Text = _supervisor.A_Email;
+            txtJA_QQ.Text = _supervisor.A_QQ;
+            txtJA_Tel.Text = _supervisor.A_Tel;
+            txtJA_Wechat.Text = _supervisor.A_Wechat;
+            txtJB_QQ.Text = _supervisor.B_QQ;
+            txtJB_Tel.Text = _supervisor.B_Tel;
+            txtJB_Email.Text = _supervisor.B_Email;
+            txtJB_Wechat.Text = _supervisor.B_Wechat;
+            txtJCost.Text = _supervisor.Cost;
+            DataHelper.SetComboBoxSelectItemByText(cbJWay, _supervisor.Way);
 
         }
 
+        /// <summary>
+        ///  监理信息-清空
+        /// Created：201700606(ChengMengjia)
+        /// </summary>
+        private void ClearJLXX()
+        {
+            txtJCName.Clear();
+            txtJManagerA.Clear();
+            txtJManagerB.Clear();
+            txtJA_Email.Clear();
+            txtJA_QQ.Clear();
+            txtJA_Tel.Clear();
+            txtJA_Wechat.Clear();
+            txtJB_QQ.Clear();
+            txtJB_Tel.Clear();
+            txtJB_Email.Clear();
+            txtJB_Wechat.Clear();
+            txtJCost.Clear();
+            cbJWay.SelectedIndex = -1;
+        }
 
+        /// <summary>
+        ///  监理评价-清空
+        /// Created：201700606(ChengMengjia)
+        /// </summary>
+        private void ClearJLPJ()
+        {
+            txtJName.Clear();
+            txtJName.Tag = "";
+            txtJContent.Clear();
+            dtJDate.Value = DateTime.Now;
+            gridJLPJ.GetSelectedRows().Select(false);//取消选择
+            dtJDate.IsInputReadOnly = true;
+            txtJName.Text = _supervisor.ManagerA;
+        }
         /// <summary>
         /// 监理评价内容-加载
         /// Created：20170327(ChengMengjia)

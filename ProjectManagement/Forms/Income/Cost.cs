@@ -81,21 +81,6 @@ namespace ProjectManagement.Forms.Income
                 MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "项目");
                 return;
             }
-            //if (string.IsNullOrEmpty(txtTag.Text.ToString()))
-            //{
-            //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "成本标记");
-            //    return;
-            //}
-            //if (string.IsNullOrEmpty(txtTotal.Text.ToString()))
-            //{
-            //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "可用金额");
-            //    return;
-            //}
-            //if (string.IsNullOrEmpty(txtTotal.Text.ToString()))
-            //{
-            //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "可用金额");
-            //    return;
-            //}
             try
             {
                 var total = Convert.ToDecimal(txtTotal.Text.ToString());

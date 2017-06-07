@@ -86,6 +86,7 @@
             this.gridColumn4 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.txtSearchEnd = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.txtSearchStart = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.txtSearchKey = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -233,7 +234,7 @@
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn16);
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn18);
             this.gridManager.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridManager.Size = new System.Drawing.Size(300, 129);
+            this.gridManager.Size = new System.Drawing.Size(276, 129);
             this.gridManager.TabIndex = 20;
             this.gridManager.Text = "superGridControl1";
             this.gridManager.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridManager_CellClick);
@@ -721,7 +722,7 @@
             this.txtFilePath.Margin = new System.Windows.Forms.Padding(2);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.PreventEnterBeep = true;
-            this.txtFilePath.Size = new System.Drawing.Size(122, 21);
+            this.txtFilePath.Size = new System.Drawing.Size(98, 21);
             this.txtFilePath.TabIndex = 26;
             // 
             // txtFileName
@@ -740,7 +741,7 @@
             this.txtFileName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.PreventEnterBeep = true;
-            this.txtFileName.Size = new System.Drawing.Size(178, 21);
+            this.txtFileName.Size = new System.Drawing.Size(154, 21);
             this.txtFileName.TabIndex = 25;
             // 
             // btnFileClear
@@ -787,7 +788,7 @@
             this.txtFileDesc.Name = "txtFileDesc";
             this.txtFileDesc.PreventEnterBeep = true;
             this.txtFileDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFileDesc.Size = new System.Drawing.Size(166, 90);
+            this.txtFileDesc.Size = new System.Drawing.Size(142, 90);
             this.txtFileDesc.TabIndex = 17;
             // 
             // labelX12
@@ -808,7 +809,7 @@
             this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX5.Location = new System.Drawing.Point(191, 214);
+            this.buttonX5.Location = new System.Drawing.Point(167, 214);
             this.buttonX5.Margin = new System.Windows.Forms.Padding(2);
             this.buttonX5.Name = "buttonX5";
             this.buttonX5.Size = new System.Drawing.Size(56, 21);
@@ -866,7 +867,7 @@
             this.gridFile.PrimaryGrid.Columns.Add(this.gridColumn9);
             this.gridFile.PrimaryGrid.MultiSelect = false;
             this.gridFile.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridFile.Size = new System.Drawing.Size(243, 197);
+            this.gridFile.Size = new System.Drawing.Size(219, 197);
             this.gridFile.TabIndex = 17;
             this.gridFile.Text = "superGridControl2";
             this.gridFile.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridFile_CellClick);
@@ -1041,11 +1042,13 @@
             this.gridRoutine.PrimaryGrid.Columns.Add(this.gridColumn4);
             this.gridRoutine.PrimaryGrid.Columns.Add(this.gridColumn5);
             this.gridRoutine.PrimaryGrid.Columns.Add(this.gridColumn12);
+            this.gridRoutine.PrimaryGrid.Columns.Add(this.gridColumn17);
             this.gridRoutine.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridRoutine.Size = new System.Drawing.Size(296, 544);
+            this.gridRoutine.Size = new System.Drawing.Size(272, 448);
             this.gridRoutine.TabIndex = 0;
             this.gridRoutine.Text = "superGridControl1";
             this.gridRoutine.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridRoutine_CellClick);
+            this.gridRoutine.DataBindingComplete += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridDataBindingCompleteEventArgs>(this.gridRoutine_DataBindingComplete);
             // 
             // gridColumn1
             // 
@@ -1075,6 +1078,7 @@
             this.gridColumn3.MinimumWidth = 80;
             this.gridColumn3.Name = "StartDate";
             this.gridColumn3.ReadOnly = true;
+            this.gridColumn3.Visible = false;
             this.gridColumn3.Width = 80;
             // 
             // gridColumn4
@@ -1085,6 +1089,7 @@
             this.gridColumn4.MinimumWidth = 80;
             this.gridColumn4.Name = "EndDate";
             this.gridColumn4.ReadOnly = true;
+            this.gridColumn4.Visible = false;
             this.gridColumn4.Width = 80;
             // 
             // gridColumn5
@@ -1095,6 +1100,7 @@
             this.gridColumn5.MinimumWidth = 80;
             this.gridColumn5.Name = "HandleStatus";
             this.gridColumn5.ReadOnly = true;
+            this.gridColumn5.Visible = false;
             this.gridColumn5.Width = 80;
             // 
             // gridColumn12
@@ -1102,6 +1108,11 @@
             this.gridColumn12.DataPropertyName = "ID";
             this.gridColumn12.Name = "ID";
             this.gridColumn12.Visible = false;
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Name = "FinishType";
+            this.gridColumn17.Visible = false;
             // 
             // txtSearchEnd
             // 
@@ -1327,5 +1338,6 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn16;
         private DevComponents.DotNetBar.Controls.TextBoxX txtFileName;
         private DevComponents.DotNetBar.Controls.TextBoxX txtFilePath;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17;
     }
 }

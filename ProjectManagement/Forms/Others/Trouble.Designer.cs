@@ -106,6 +106,7 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchStart)).BeginInit();
@@ -242,10 +243,12 @@
             this.gridTrouble.PrimaryGrid.Columns.Add(this.gridColumn9);
             this.gridTrouble.PrimaryGrid.Columns.Add(this.gridColumn10);
             this.gridTrouble.PrimaryGrid.Columns.Add(this.gridColumn13);
+            this.gridTrouble.PrimaryGrid.Columns.Add(this.gridColumn17);
             this.gridTrouble.Size = new System.Drawing.Size(311, 601);
             this.gridTrouble.TabIndex = 0;
             this.gridTrouble.Text = "superGridControl1";
             this.gridTrouble.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridTrouble_CellClick);
+            this.gridTrouble.DataBindingComplete += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridDataBindingCompleteEventArgs>(this.gridTrouble_DataBindingComplete);
             // 
             // gridColumn5
             // 
@@ -270,6 +273,7 @@
             this.gridColumn7.HeaderText = "开始日期";
             this.gridColumn7.Name = "StartDate";
             this.gridColumn7.ReadOnly = true;
+            this.gridColumn7.Visible = false;
             // 
             // gridColumn8
             // 
@@ -278,6 +282,7 @@
             this.gridColumn8.HeaderText = "结束日期";
             this.gridColumn8.Name = "EndDate";
             this.gridColumn8.ReadOnly = true;
+            this.gridColumn8.Visible = false;
             // 
             // gridColumn9
             // 
@@ -286,6 +291,7 @@
             this.gridColumn9.HeaderText = "问题级别";
             this.gridColumn9.Name = "Level";
             this.gridColumn9.ReadOnly = true;
+            this.gridColumn9.Visible = false;
             // 
             // gridColumn10
             // 
@@ -294,6 +300,7 @@
             this.gridColumn10.HeaderText = "处理情况";
             this.gridColumn10.Name = "HandleStatus";
             this.gridColumn10.ReadOnly = true;
+            this.gridColumn10.Visible = false;
             // 
             // gridColumn13
             // 
@@ -1172,6 +1179,7 @@
             this.txtEndDate.Size = new System.Drawing.Size(208, 21);
             this.txtEndDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.txtEndDate.TabIndex = 10;
+            this.txtEndDate.ValueChanged += new System.EventHandler(this.dt_ValueChanged);
             // 
             // txtStartDate
             // 
@@ -1222,6 +1230,7 @@
             this.txtStartDate.Size = new System.Drawing.Size(208, 21);
             this.txtStartDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.txtStartDate.TabIndex = 9;
+            this.txtStartDate.ValueChanged += new System.EventHandler(this.dt_ValueChanged);
             // 
             // txtCreated
             // 
@@ -1444,6 +1453,11 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(982, 729);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Name = "FinishType";
+            this.gridColumn17.Visible = false;
+            // 
             // Trouble
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1549,5 +1563,6 @@
         private DevComponents.Editors.IntegerInput intWorkload;
         private DevComponents.DotNetBar.LabelX labelX14;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn20;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17;
     }
 }

@@ -12,21 +12,24 @@ namespace DataAccessDLL
     /// 类名：项目问题数据处理类
     /// Created：2017.04.06(xuxb)
     /// </summary>
-    public class TroubleDAO
+    public class TroubleDAO:BaseDao
     {
         /// <summary>
         /// 新增问题
+        ///  Created:20170601(zhuguanjun)
+        ///  Updated:20170607(ChengMengjia) 添加作为节点插入
         /// </summary>
         /// <param name="entity">问题实体</param>
         /// <param name="listWork">责任人列表</param>
-        public virtual void AddTrouble(Trouble entity, List<TroubleWork> listWork)
+        public virtual void AddTrouble(Trouble entity,PNode node, List<TroubleWork> listWork)
         {
             ISession s = NHHelper.GetCurrentSession();
             try
             {
                 s.BeginTransaction();
-                entity.ID = Guid.NewGuid().ToString() + "-1";
                 s.Save(entity);
+                if (node != null)
+                    s.Save(node);
                 if (listWork != null)
                     foreach (TroubleWork item in listWork)
                     {
@@ -36,6 +39,7 @@ namespace DataAccessDLL
                         item.TroubleID = entity.ID.Substring(0, 36);
                         s.Save(item);
                     }
+                UpdateProject(s);//更新项目时间
                 s.Transaction.Commit();
                 s.Close();
             }
@@ -49,29 +53,26 @@ namespace DataAccessDLL
 
         /// <summary>
         /// 问题工作
-        /// 2017/06/01(zhuguanjun)
+        /// Created:20170601(zhuguanjun)
+        /// Updated:20170607(ChengMengjia) 更新节点插入
         /// </summary>
         /// <param name="entity">问题实体</param>
         /// <param name="listWork">负责人列表</param>
-        public virtual void UpdateTrouble(Trouble entity, List<TroubleWork> listWork)
+        public virtual void UpdateTrouble(Trouble newEntity, Trouble oldEntity, PNode newNode, PNode oldNode, List<TroubleWork> listWork)
         {
             ISession s = NHHelper.GetCurrentSession();
             try
             {
                 s.BeginTransaction();
-
-                //删除问题
-                var oldTrouble = s.Get<Trouble>(entity.ID);
-                oldTrouble.Status = 0;//假删除
-                s.Update(oldTrouble);
+                s.Update(oldEntity);
+                s.Save(newEntity);
+                if (newNode != null)
+                    s.Save(newNode);
+                if (oldNode != null)
+                    s.Update(oldNode);
 
                 //删除责任人
-                s.CreateQuery("delete from TroubleWork where TroubleID='" + entity.ID.Substring(0, 36) + "';").ExecuteUpdate();
-
-                //保存已经问题
-                string hisNo = entity.ID.Substring(37);
-                entity.ID = entity.ID.Substring(0, 36) + "-" + (int.Parse(hisNo) + 1).ToString();
-                s.Save(entity);
+                s.CreateQuery("delete from TroubleWork where TroubleID='" + oldEntity.ID.Substring(0, 36) + "';").ExecuteUpdate();
 
                 //保存新的责任人
                 if (listWork != null)
@@ -80,9 +81,10 @@ namespace DataAccessDLL
                         item.ID = Guid.NewGuid().ToString();
                         item.Status = 1;
                         item.CREATED = DateTime.Now;
-                        item.TroubleID = entity.ID.Substring(0, 36);
+                        item.TroubleID = newEntity.ID.Substring(0, 36);
                         s.Save(item);
                     }
+                UpdateProject(s);//更新项目时间
                 s.Transaction.Commit();
                 s.Close();
             }
@@ -97,6 +99,7 @@ namespace DataAccessDLL
         /// <summary>
         /// 项目问题查询
         /// Created:2017.04.06(xuxb)
+        /// Updated:20170607(ChengMengjia)增加状态判断
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
@@ -106,9 +109,15 @@ namespace DataAccessDLL
         {
             List<QueryField> qf = new List<QueryField>();
             StringBuilder sql = new StringBuilder();
-            sql.Append(" select r.ID,r.Name,r.Desc,r.HandleResult, ");
-            sql.Append(" strftime('%Y-%m-%d',r.StarteDate) as StartDate,strftime('%Y-%m-%d',r.EndDate) as EndDate,d.Name as HandleStatus,d1.Name as Level from Trouble r ");
-            sql.Append(" inner join PNode p on r.NodeID = substr(p.ID,1,36) and p.Status = 1");
+            sql.Append(" select r.ID,r.Name,r.Desc,r.HandleResult,strftime('%Y-%m-%d',r.StarteDate) as StartDate, ");
+            sql.Append(" strftime('%Y-%m-%d',r.EndDate) as EndDate,d.Name as HandleStatus,d1.Name as Level, ");
+
+            //完成状态判断 参加PNode的Entity中FinishStatus说明
+            sql.Append(" case when r.HandleStatus=3 then 1   ");
+            sql.Append(" when r.EndDate<date('now') and (r.HandleStatus is null or r.HandleStatus<>3) then 3 ");
+            sql.Append(" when r.StarteDate>date('now') and (r.HandleStatus is null or r.HandleStatus<>3) then 0 else 2 end FinishType ");
+
+            sql.Append(" from Trouble r inner join PNode p on r.NodeID = substr(p.ID,1,36) and p.Status = 1");
             sql.Append(" left join DictItem d on r.HandleStatus = d.No and d.DictNo = " + (int)CommonDLL.DictCategory.TroubleHandleStatus);
             sql.Append(" left join DictItem d1 on r.Level = d1.No and d1.DictNo = " + (int)CommonDLL.DictCategory.TroubleLevel);
             sql.Append(" where r.status = 1 and p.PID = @PID ");
@@ -136,16 +145,7 @@ namespace DataAccessDLL
 
             sql.Append(" order by r.StarteDate Desc  ");
 
-            DataSet ds = NHHelper.ExecuteDataset(sql.ToString(), qf);
-
-            if (ds != null && ds.Tables.Count > 0)
-            {
-                return NHHelper.ExecuteDataset(sql.ToString(), qf).Tables[0];
-            }
-            else
-            {
-                return new DataTable();
-            }
+            return NHHelper.ExecuteDataTable(sql.ToString(), qf);
         }
 
         /// <summary>

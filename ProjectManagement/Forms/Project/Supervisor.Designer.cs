@@ -118,10 +118,9 @@
             this.groupPanel7.Controls.Add(this.labelX33);
             this.groupPanel7.Controls.Add(this.labelX32);
             this.groupPanel7.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel7.Location = new System.Drawing.Point(6, 6);
-            this.groupPanel7.Margin = new System.Windows.Forms.Padding(2);
+            this.groupPanel7.Location = new System.Drawing.Point(9, 9);
             this.groupPanel7.Name = "groupPanel7";
-            this.groupPanel7.Size = new System.Drawing.Size(300, 615);
+            this.groupPanel7.Size = new System.Drawing.Size(450, 922);
             // 
             // 
             // 
@@ -159,9 +158,10 @@
             this.cbJWay.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbJWay.FormattingEnabled = true;
             this.cbJWay.ItemHeight = 15;
-            this.cbJWay.Location = new System.Drawing.Point(93, 348);
+            this.cbJWay.Location = new System.Drawing.Point(140, 522);
+            this.cbJWay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbJWay.Name = "cbJWay";
-            this.cbJWay.Size = new System.Drawing.Size(191, 21);
+            this.cbJWay.Size = new System.Drawing.Size(284, 21);
             this.cbJWay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbJWay.TabIndex = 16;
             // 
@@ -169,10 +169,9 @@
             // 
             this.btnJSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnJSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnJSave.Location = new System.Drawing.Point(184, 384);
-            this.btnJSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnJSave.Location = new System.Drawing.Point(276, 576);
             this.btnJSave.Name = "btnJSave";
-            this.btnJSave.Size = new System.Drawing.Size(56, 18);
+            this.btnJSave.Size = new System.Drawing.Size(84, 27);
             this.btnJSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnJSave.TabIndex = 14;
             this.btnJSave.Text = "保存";
@@ -182,10 +181,9 @@
             // 
             this.btnJClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnJClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnJClear.Location = new System.Drawing.Point(93, 384);
-            this.btnJClear.Margin = new System.Windows.Forms.Padding(2);
+            this.btnJClear.Location = new System.Drawing.Point(140, 576);
             this.btnJClear.Name = "btnJClear";
-            this.btnJClear.Size = new System.Drawing.Size(56, 18);
+            this.btnJClear.Size = new System.Drawing.Size(84, 27);
             this.btnJClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnJClear.TabIndex = 15;
             this.btnJClear.Text = "清空";
@@ -201,11 +199,10 @@
             this.txtJB_Tel.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJB_Tel.DisabledBackColor = System.Drawing.Color.White;
             this.txtJB_Tel.ForeColor = System.Drawing.Color.Black;
-            this.txtJB_Tel.Location = new System.Drawing.Point(93, 194);
-            this.txtJB_Tel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJB_Tel.Location = new System.Drawing.Point(140, 291);
             this.txtJB_Tel.Name = "txtJB_Tel";
             this.txtJB_Tel.PreventEnterBeep = true;
-            this.txtJB_Tel.Size = new System.Drawing.Size(191, 21);
+            this.txtJB_Tel.Size = new System.Drawing.Size(286, 28);
             this.txtJB_Tel.TabIndex = 8;
             // 
             // txtJManagerB
@@ -218,11 +215,10 @@
             this.txtJManagerB.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJManagerB.DisabledBackColor = System.Drawing.Color.White;
             this.txtJManagerB.ForeColor = System.Drawing.Color.Black;
-            this.txtJManagerB.Location = new System.Drawing.Point(93, 169);
-            this.txtJManagerB.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJManagerB.Location = new System.Drawing.Point(140, 254);
             this.txtJManagerB.Name = "txtJManagerB";
             this.txtJManagerB.PreventEnterBeep = true;
-            this.txtJManagerB.Size = new System.Drawing.Size(191, 21);
+            this.txtJManagerB.Size = new System.Drawing.Size(286, 28);
             this.txtJManagerB.TabIndex = 7;
             // 
             // txtJB_Wechat
@@ -235,11 +231,10 @@
             this.txtJB_Wechat.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJB_Wechat.DisabledBackColor = System.Drawing.Color.White;
             this.txtJB_Wechat.ForeColor = System.Drawing.Color.Black;
-            this.txtJB_Wechat.Location = new System.Drawing.Point(93, 246);
-            this.txtJB_Wechat.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJB_Wechat.Location = new System.Drawing.Point(140, 369);
             this.txtJB_Wechat.Name = "txtJB_Wechat";
             this.txtJB_Wechat.PreventEnterBeep = true;
-            this.txtJB_Wechat.Size = new System.Drawing.Size(191, 21);
+            this.txtJB_Wechat.Size = new System.Drawing.Size(286, 28);
             this.txtJB_Wechat.TabIndex = 10;
             // 
             // txtJCost
@@ -252,11 +247,10 @@
             this.txtJCost.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJCost.DisabledBackColor = System.Drawing.Color.White;
             this.txtJCost.ForeColor = System.Drawing.Color.Black;
-            this.txtJCost.Location = new System.Drawing.Point(93, 318);
-            this.txtJCost.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJCost.Location = new System.Drawing.Point(140, 477);
             this.txtJCost.Name = "txtJCost";
             this.txtJCost.PreventEnterBeep = true;
-            this.txtJCost.Size = new System.Drawing.Size(191, 21);
+            this.txtJCost.Size = new System.Drawing.Size(286, 28);
             this.txtJCost.TabIndex = 12;
             // 
             // txtJB_Email
@@ -269,11 +263,10 @@
             this.txtJB_Email.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJB_Email.DisabledBackColor = System.Drawing.Color.White;
             this.txtJB_Email.ForeColor = System.Drawing.Color.Black;
-            this.txtJB_Email.Location = new System.Drawing.Point(93, 271);
-            this.txtJB_Email.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJB_Email.Location = new System.Drawing.Point(140, 406);
             this.txtJB_Email.Name = "txtJB_Email";
             this.txtJB_Email.PreventEnterBeep = true;
-            this.txtJB_Email.Size = new System.Drawing.Size(191, 21);
+            this.txtJB_Email.Size = new System.Drawing.Size(286, 28);
             this.txtJB_Email.TabIndex = 11;
             // 
             // txtJA_Email
@@ -286,11 +279,10 @@
             this.txtJA_Email.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJA_Email.DisabledBackColor = System.Drawing.Color.White;
             this.txtJA_Email.ForeColor = System.Drawing.Color.Black;
-            this.txtJA_Email.Location = new System.Drawing.Point(93, 130);
-            this.txtJA_Email.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJA_Email.Location = new System.Drawing.Point(140, 195);
             this.txtJA_Email.Name = "txtJA_Email";
             this.txtJA_Email.PreventEnterBeep = true;
-            this.txtJA_Email.Size = new System.Drawing.Size(191, 21);
+            this.txtJA_Email.Size = new System.Drawing.Size(286, 28);
             this.txtJA_Email.TabIndex = 6;
             // 
             // txtJA_Wechat
@@ -303,11 +295,10 @@
             this.txtJA_Wechat.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJA_Wechat.DisabledBackColor = System.Drawing.Color.White;
             this.txtJA_Wechat.ForeColor = System.Drawing.Color.Black;
-            this.txtJA_Wechat.Location = new System.Drawing.Point(93, 104);
-            this.txtJA_Wechat.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJA_Wechat.Location = new System.Drawing.Point(140, 156);
             this.txtJA_Wechat.Name = "txtJA_Wechat";
             this.txtJA_Wechat.PreventEnterBeep = true;
-            this.txtJA_Wechat.Size = new System.Drawing.Size(191, 21);
+            this.txtJA_Wechat.Size = new System.Drawing.Size(286, 28);
             this.txtJA_Wechat.TabIndex = 5;
             // 
             // txtJB_QQ
@@ -320,11 +311,10 @@
             this.txtJB_QQ.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJB_QQ.DisabledBackColor = System.Drawing.Color.White;
             this.txtJB_QQ.ForeColor = System.Drawing.Color.Black;
-            this.txtJB_QQ.Location = new System.Drawing.Point(93, 220);
-            this.txtJB_QQ.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJB_QQ.Location = new System.Drawing.Point(140, 330);
             this.txtJB_QQ.Name = "txtJB_QQ";
             this.txtJB_QQ.PreventEnterBeep = true;
-            this.txtJB_QQ.Size = new System.Drawing.Size(191, 21);
+            this.txtJB_QQ.Size = new System.Drawing.Size(286, 28);
             this.txtJB_QQ.TabIndex = 9;
             // 
             // txtJA_QQ
@@ -337,11 +327,10 @@
             this.txtJA_QQ.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJA_QQ.DisabledBackColor = System.Drawing.Color.White;
             this.txtJA_QQ.ForeColor = System.Drawing.Color.Black;
-            this.txtJA_QQ.Location = new System.Drawing.Point(93, 78);
-            this.txtJA_QQ.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJA_QQ.Location = new System.Drawing.Point(140, 117);
             this.txtJA_QQ.Name = "txtJA_QQ";
             this.txtJA_QQ.PreventEnterBeep = true;
-            this.txtJA_QQ.Size = new System.Drawing.Size(191, 21);
+            this.txtJA_QQ.Size = new System.Drawing.Size(286, 28);
             this.txtJA_QQ.TabIndex = 4;
             // 
             // txtJA_Tel
@@ -354,11 +343,10 @@
             this.txtJA_Tel.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJA_Tel.DisabledBackColor = System.Drawing.Color.White;
             this.txtJA_Tel.ForeColor = System.Drawing.Color.Black;
-            this.txtJA_Tel.Location = new System.Drawing.Point(93, 53);
-            this.txtJA_Tel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJA_Tel.Location = new System.Drawing.Point(140, 80);
             this.txtJA_Tel.Name = "txtJA_Tel";
             this.txtJA_Tel.PreventEnterBeep = true;
-            this.txtJA_Tel.Size = new System.Drawing.Size(191, 21);
+            this.txtJA_Tel.Size = new System.Drawing.Size(286, 28);
             this.txtJA_Tel.TabIndex = 3;
             // 
             // txtJManagerA
@@ -371,11 +359,10 @@
             this.txtJManagerA.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJManagerA.DisabledBackColor = System.Drawing.Color.White;
             this.txtJManagerA.ForeColor = System.Drawing.Color.Black;
-            this.txtJManagerA.Location = new System.Drawing.Point(93, 27);
-            this.txtJManagerA.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJManagerA.Location = new System.Drawing.Point(140, 40);
             this.txtJManagerA.Name = "txtJManagerA";
             this.txtJManagerA.PreventEnterBeep = true;
-            this.txtJManagerA.Size = new System.Drawing.Size(191, 21);
+            this.txtJManagerA.Size = new System.Drawing.Size(286, 28);
             this.txtJManagerA.TabIndex = 2;
             // 
             // labelX36
@@ -385,10 +372,9 @@
             // 
             // 
             this.labelX36.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX36.Location = new System.Drawing.Point(6, 197);
-            this.labelX36.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX36.Location = new System.Drawing.Point(9, 296);
             this.labelX36.Name = "labelX36";
-            this.labelX36.Size = new System.Drawing.Size(91, 18);
+            this.labelX36.Size = new System.Drawing.Size(136, 27);
             this.labelX36.TabIndex = 0;
             this.labelX36.Text = "手机号码：";
             // 
@@ -399,10 +385,9 @@
             // 
             // 
             this.labelX35.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX35.Location = new System.Drawing.Point(6, 171);
-            this.labelX35.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX35.Location = new System.Drawing.Point(9, 256);
             this.labelX35.Name = "labelX35";
-            this.labelX35.Size = new System.Drawing.Size(91, 18);
+            this.labelX35.Size = new System.Drawing.Size(136, 27);
             this.labelX35.TabIndex = 0;
             this.labelX35.Text = "总监理姓名：";
             // 
@@ -413,12 +398,11 @@
             // 
             // 
             this.labelX44.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX44.Location = new System.Drawing.Point(6, 348);
-            this.labelX44.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX44.Location = new System.Drawing.Point(9, 522);
             this.labelX44.Name = "labelX44";
-            this.labelX44.Size = new System.Drawing.Size(91, 18);
+            this.labelX44.Size = new System.Drawing.Size(136, 27);
             this.labelX44.TabIndex = 0;
-            this.labelX44.Text = "*监理方式：";
+            this.labelX44.Text = "监理方式：";
             // 
             // txtJCName
             // 
@@ -430,11 +414,10 @@
             this.txtJCName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJCName.DisabledBackColor = System.Drawing.Color.White;
             this.txtJCName.ForeColor = System.Drawing.Color.Black;
-            this.txtJCName.Location = new System.Drawing.Point(93, 2);
-            this.txtJCName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJCName.Location = new System.Drawing.Point(140, 3);
             this.txtJCName.Name = "txtJCName";
             this.txtJCName.PreventEnterBeep = true;
-            this.txtJCName.Size = new System.Drawing.Size(191, 21);
+            this.txtJCName.Size = new System.Drawing.Size(286, 28);
             this.txtJCName.TabIndex = 1;
             // 
             // labelX43
@@ -444,12 +427,11 @@
             // 
             // 
             this.labelX43.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX43.Location = new System.Drawing.Point(6, 321);
-            this.labelX43.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX43.Location = new System.Drawing.Point(9, 482);
             this.labelX43.Name = "labelX43";
-            this.labelX43.Size = new System.Drawing.Size(91, 18);
+            this.labelX43.Size = new System.Drawing.Size(136, 27);
             this.labelX43.TabIndex = 0;
-            this.labelX43.Text = "*监理费用：";
+            this.labelX43.Text = "监理费用：";
             // 
             // labelX40
             // 
@@ -458,10 +440,9 @@
             // 
             // 
             this.labelX40.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX40.Location = new System.Drawing.Point(6, 248);
-            this.labelX40.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX40.Location = new System.Drawing.Point(9, 372);
             this.labelX40.Name = "labelX40";
-            this.labelX40.Size = new System.Drawing.Size(91, 18);
+            this.labelX40.Size = new System.Drawing.Size(136, 27);
             this.labelX40.TabIndex = 0;
             this.labelX40.Text = "微信号码：";
             // 
@@ -472,10 +453,9 @@
             // 
             // 
             this.labelX42.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX42.Location = new System.Drawing.Point(6, 274);
-            this.labelX42.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX42.Location = new System.Drawing.Point(9, 411);
             this.labelX42.Name = "labelX42";
-            this.labelX42.Size = new System.Drawing.Size(91, 18);
+            this.labelX42.Size = new System.Drawing.Size(136, 27);
             this.labelX42.TabIndex = 0;
             this.labelX42.Text = "电子信箱：";
             // 
@@ -486,10 +466,9 @@
             // 
             // 
             this.labelX39.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX39.Location = new System.Drawing.Point(6, 222);
-            this.labelX39.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX39.Location = new System.Drawing.Point(9, 333);
             this.labelX39.Name = "labelX39";
-            this.labelX39.Size = new System.Drawing.Size(91, 18);
+            this.labelX39.Size = new System.Drawing.Size(136, 27);
             this.labelX39.TabIndex = 0;
             this.labelX39.Text = "QQ号码：";
             // 
@@ -500,10 +479,9 @@
             // 
             // 
             this.labelX41.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX41.Location = new System.Drawing.Point(6, 132);
-            this.labelX41.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX41.Location = new System.Drawing.Point(9, 198);
             this.labelX41.Name = "labelX41";
-            this.labelX41.Size = new System.Drawing.Size(91, 18);
+            this.labelX41.Size = new System.Drawing.Size(136, 27);
             this.labelX41.TabIndex = 0;
             this.labelX41.Text = "电子信箱：";
             // 
@@ -514,10 +492,9 @@
             // 
             // 
             this.labelX38.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX38.Location = new System.Drawing.Point(6, 106);
-            this.labelX38.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX38.Location = new System.Drawing.Point(9, 159);
             this.labelX38.Name = "labelX38";
-            this.labelX38.Size = new System.Drawing.Size(91, 18);
+            this.labelX38.Size = new System.Drawing.Size(136, 27);
             this.labelX38.TabIndex = 0;
             this.labelX38.Text = "微信号码：";
             // 
@@ -528,10 +505,9 @@
             // 
             // 
             this.labelX37.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX37.Location = new System.Drawing.Point(6, 81);
-            this.labelX37.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX37.Location = new System.Drawing.Point(9, 122);
             this.labelX37.Name = "labelX37";
-            this.labelX37.Size = new System.Drawing.Size(91, 18);
+            this.labelX37.Size = new System.Drawing.Size(136, 27);
             this.labelX37.TabIndex = 0;
             this.labelX37.Text = "QQ号码：";
             // 
@@ -542,12 +518,11 @@
             // 
             // 
             this.labelX34.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX34.Location = new System.Drawing.Point(6, 55);
-            this.labelX34.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX34.Location = new System.Drawing.Point(9, 82);
             this.labelX34.Name = "labelX34";
-            this.labelX34.Size = new System.Drawing.Size(91, 18);
+            this.labelX34.Size = new System.Drawing.Size(136, 27);
             this.labelX34.TabIndex = 0;
-            this.labelX34.Text = "*手机号码：";
+            this.labelX34.Text = "手机号码：";
             // 
             // labelX33
             // 
@@ -556,10 +531,9 @@
             // 
             // 
             this.labelX33.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX33.Location = new System.Drawing.Point(6, 30);
-            this.labelX33.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX33.Location = new System.Drawing.Point(9, 45);
             this.labelX33.Name = "labelX33";
-            this.labelX33.Size = new System.Drawing.Size(91, 18);
+            this.labelX33.Size = new System.Drawing.Size(136, 27);
             this.labelX33.TabIndex = 0;
             this.labelX33.Text = "*监理姓名：";
             // 
@@ -570,10 +544,9 @@
             // 
             // 
             this.labelX32.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX32.Location = new System.Drawing.Point(6, 4);
-            this.labelX32.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX32.Location = new System.Drawing.Point(9, 6);
             this.labelX32.Name = "labelX32";
-            this.labelX32.Size = new System.Drawing.Size(91, 18);
+            this.labelX32.Size = new System.Drawing.Size(136, 27);
             this.labelX32.TabIndex = 0;
             this.labelX32.Text = "*监理公司名：";
             // 
@@ -588,10 +561,9 @@
             this.groupPanel8.Controls.Add(this.panelEx1);
             this.groupPanel8.Controls.Add(this.panelEx2);
             this.groupPanel8.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel8.Location = new System.Drawing.Point(310, 6);
-            this.groupPanel8.Margin = new System.Windows.Forms.Padding(2);
+            this.groupPanel8.Location = new System.Drawing.Point(465, 9);
             this.groupPanel8.Name = "groupPanel8";
-            this.groupPanel8.Size = new System.Drawing.Size(615, 615);
+            this.groupPanel8.Size = new System.Drawing.Size(922, 922);
             // 
             // 
             // 
@@ -632,9 +604,10 @@
             this.panelEx1.Controls.Add(this.gridPager);
             this.panelEx1.Controls.Add(this.gridJLPJ);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(3, 4);
+            this.panelEx1.Location = new System.Drawing.Point(4, 6);
+            this.panelEx1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(603, 317);
+            this.panelEx1.Size = new System.Drawing.Size(904, 476);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -652,13 +625,13 @@
             this.gridPager.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.gridPager.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(78)))), ((int)(((byte)(151)))));
             this.gridPager.JumpText = "跳转";
-            this.gridPager.Location = new System.Drawing.Point(0, 288);
-            this.gridPager.Margin = new System.Windows.Forms.Padding(4);
+            this.gridPager.Location = new System.Drawing.Point(0, 432);
+            this.gridPager.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.gridPager.Name = "gridPager";
             this.gridPager.PageIndex = 1;
             this.gridPager.PageSize = 10;
             this.gridPager.RecordCount = 0;
-            this.gridPager.Size = new System.Drawing.Size(603, 29);
+            this.gridPager.Size = new System.Drawing.Size(904, 44);
             this.gridPager.TabIndex = 4;
             // 
             // gridJLPJ
@@ -669,8 +642,7 @@
             this.gridJLPJ.BackColor = System.Drawing.Color.White;
             this.gridJLPJ.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.gridJLPJ.ForeColor = System.Drawing.Color.Black;
-            this.gridJLPJ.Location = new System.Drawing.Point(2, 7);
-            this.gridJLPJ.Margin = new System.Windows.Forms.Padding(2);
+            this.gridJLPJ.Location = new System.Drawing.Point(3, 10);
             this.gridJLPJ.Name = "gridJLPJ";
             // 
             // 
@@ -684,7 +656,7 @@
             this.gridJLPJ.PrimaryGrid.Columns.Add(this.gridColumn5);
             this.gridJLPJ.PrimaryGrid.ReadOnly = true;
             this.gridJLPJ.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridJLPJ.Size = new System.Drawing.Size(599, 281);
+            this.gridJLPJ.Size = new System.Drawing.Size(898, 422);
             this.gridJLPJ.TabIndex = 0;
             this.gridJLPJ.Text = "superGridControl2";
             this.gridJLPJ.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.gridJLPJ_RowClick);
@@ -730,9 +702,10 @@
             this.panelEx2.Controls.Add(this.labelX46);
             this.panelEx2.Controls.Add(this.txtJContent);
             this.panelEx2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx2.Location = new System.Drawing.Point(5, 328);
+            this.panelEx2.Location = new System.Drawing.Point(8, 492);
+            this.panelEx2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(601, 210);
+            this.panelEx2.Size = new System.Drawing.Size(902, 315);
             this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -750,10 +723,9 @@
             // 
             // 
             this.labelX45.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX45.Location = new System.Drawing.Point(11, 14);
-            this.labelX45.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX45.Location = new System.Drawing.Point(16, 21);
             this.labelX45.Name = "labelX45";
-            this.labelX45.Size = new System.Drawing.Size(77, 18);
+            this.labelX45.Size = new System.Drawing.Size(116, 27);
             this.labelX45.TabIndex = 0;
             this.labelX45.Text = "*姓名：";
             // 
@@ -762,10 +734,9 @@
             this.btnJPSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnJPSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnJPSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnJPSave.Location = new System.Drawing.Point(185, 182);
-            this.btnJPSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnJPSave.Location = new System.Drawing.Point(278, 273);
             this.btnJPSave.Name = "btnJPSave";
-            this.btnJPSave.Size = new System.Drawing.Size(56, 18);
+            this.btnJPSave.Size = new System.Drawing.Size(84, 27);
             this.btnJPSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnJPSave.TabIndex = 18;
             this.btnJPSave.Text = "保存";
@@ -782,11 +753,10 @@
             this.txtJName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJName.DisabledBackColor = System.Drawing.Color.White;
             this.txtJName.ForeColor = System.Drawing.Color.Black;
-            this.txtJName.Location = new System.Drawing.Point(93, 14);
-            this.txtJName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJName.Location = new System.Drawing.Point(140, 21);
             this.txtJName.Name = "txtJName";
             this.txtJName.PreventEnterBeep = true;
-            this.txtJName.Size = new System.Drawing.Size(232, 21);
+            this.txtJName.Size = new System.Drawing.Size(348, 28);
             this.txtJName.TabIndex = 16;
             // 
             // btnJPClear
@@ -794,10 +764,9 @@
             this.btnJPClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnJPClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnJPClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnJPClear.Location = new System.Drawing.Point(93, 182);
-            this.btnJPClear.Margin = new System.Windows.Forms.Padding(2);
+            this.btnJPClear.Location = new System.Drawing.Point(140, 273);
             this.btnJPClear.Name = "btnJPClear";
-            this.btnJPClear.Size = new System.Drawing.Size(56, 18);
+            this.btnJPClear.Size = new System.Drawing.Size(84, 27);
             this.btnJPClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnJPClear.TabIndex = 20;
             this.btnJPClear.Text = "清空";
@@ -811,10 +780,9 @@
             // 
             // 
             this.labelX47.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX47.Location = new System.Drawing.Point(11, 46);
-            this.labelX47.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX47.Location = new System.Drawing.Point(16, 69);
             this.labelX47.Name = "labelX47";
-            this.labelX47.Size = new System.Drawing.Size(77, 18);
+            this.labelX47.Size = new System.Drawing.Size(116, 27);
             this.labelX47.TabIndex = 0;
             this.labelX47.Text = "*评价内容：";
             // 
@@ -829,8 +797,7 @@
             this.dtJDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtJDate.ButtonDropDown.Visible = true;
             this.dtJDate.IsPopupCalendarOpen = false;
-            this.dtJDate.Location = new System.Drawing.Point(93, 150);
-            this.dtJDate.Margin = new System.Windows.Forms.Padding(2);
+            this.dtJDate.Location = new System.Drawing.Point(140, 225);
             // 
             // 
             // 
@@ -865,7 +832,7 @@
             this.dtJDate.MonthCalendar.TodayButtonVisible = true;
             this.dtJDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtJDate.Name = "dtJDate";
-            this.dtJDate.Size = new System.Drawing.Size(232, 21);
+            this.dtJDate.Size = new System.Drawing.Size(348, 28);
             this.dtJDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.dtJDate.TabIndex = 18;
             // 
@@ -877,10 +844,9 @@
             // 
             // 
             this.labelX46.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX46.Location = new System.Drawing.Point(11, 150);
-            this.labelX46.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX46.Location = new System.Drawing.Point(16, 225);
             this.labelX46.Name = "labelX46";
-            this.labelX46.Size = new System.Drawing.Size(91, 18);
+            this.labelX46.Size = new System.Drawing.Size(136, 27);
             this.labelX46.TabIndex = 0;
             this.labelX46.Text = "*日期 ：";
             // 
@@ -895,23 +861,22 @@
             this.txtJContent.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJContent.DisabledBackColor = System.Drawing.Color.White;
             this.txtJContent.ForeColor = System.Drawing.Color.Black;
-            this.txtJContent.Location = new System.Drawing.Point(93, 46);
-            this.txtJContent.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJContent.Location = new System.Drawing.Point(140, 69);
             this.txtJContent.Multiline = true;
             this.txtJContent.Name = "txtJContent";
             this.txtJContent.PreventEnterBeep = true;
             this.txtJContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtJContent.Size = new System.Drawing.Size(232, 84);
+            this.txtJContent.Size = new System.Drawing.Size(348, 126);
             this.txtJContent.TabIndex = 17;
             // 
             // FormSupervisor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 604);
+            this.ClientSize = new System.Drawing.Size(1354, 822);
             this.Controls.Add(this.groupPanel8);
             this.Controls.Add(this.groupPanel7);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Name = "FormSupervisor";
             this.Text = "监理信息";
             this.groupPanel7.ResumeLayout(false);

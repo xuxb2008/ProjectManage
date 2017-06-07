@@ -23,9 +23,10 @@ namespace ProjectManagement.Forms.Others
     {
         #region 画面属性
 
-        //日常工作ID
+        //问题ID
         public string TroubleId { get; set; }
-
+        //问题对应的NodeID
+        private string _nodeID { get; set; }
         #endregion
 
         #region 变量
@@ -36,8 +37,6 @@ namespace ProjectManagement.Forms.Others
         bool _fileSelectFlg = false;
         //当前选择的文件名称
         string _filePath;
-        //当前结点ID
-        string _nodeID;
 
         #endregion
 
@@ -53,8 +52,9 @@ namespace ProjectManagement.Forms.Others
 
         #region 事件
 
-        public Trouble()
+        public Trouble(string nodeID)
         {
+            _nodeID = nodeID;
             InitializeComponent();
         }
 
@@ -75,15 +75,86 @@ namespace ProjectManagement.Forms.Others
             //加载处理情况下拉列表
             DataHelper.LoadDictItems(cmbHandleStatus, DictCategory.TroubleHandleStatus);
 
-            //加载责任人列表
-            //LoadOperatorList();
-
             //加载画面内容
             LoadPageData();
             //加载问题列表
             Search();
         }
 
+        #region 问题内容
+
+        /// <summary>
+        /// 查询按钮按下时
+        /// Created：2017.04.06(Xuxb)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Search();
+        }
+        /// <summary>
+        /// 问题列表加载时选择颜色
+        ///  Created：20160607(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridTrouble_DataBindingComplete(object sender, DevComponents.DotNetBar.SuperGrid.GridDataBindingCompleteEventArgs e)
+        {
+            List<DevComponents.DotNetBar.SuperGrid.GridElement> listRow = gridTrouble.PrimaryGrid.Rows.ToList();
+            int type = 0;
+            foreach (DevComponents.DotNetBar.SuperGrid.GridElement obj in listRow)
+            {
+                DevComponents.DotNetBar.SuperGrid.GridRow row = (DevComponents.DotNetBar.SuperGrid.GridRow)obj;
+                int.TryParse(row.GetCell("FinishType").Value.ToString(), out type);
+                row.CellStyles = DataHelper.MatchRowColor(type);
+                type = 0;
+            }
+        }
+        /// <summary>
+        /// 问题列表行点击时
+        /// Created：2017.04.06(Xuxb)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridTrouble_CellClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs e)
+        {
+            TroubleId = e.GridCell.GridRow.Cells["ID"].Value.ToString();
+            if (!string.IsNullOrEmpty(TroubleId))
+            {
+                //加载画面内容
+                LoadPageData();
+                //加载责任人列表
+                var list = troubleBLL.GetTroubleWorkList(TroubleId);
+                gridManager.PrimaryGrid.DataSource = list;
+            }
+        }
+
+        /// <summary>
+        /// 结点清空
+        /// Created：2017.04.07(Xuxb)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonX8_Click(object sender, EventArgs e)
+        {
+            this.cmbNode.SelectedIndex = -1;
+        }
+        /// <summary>
+        /// 开始或结束时间值变化
+        /// Created:20170607(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dt_ValueChanged(object sender, EventArgs e)
+        {
+            if (txtStartDate.Value != null && txtEndDate.Value != null)
+            {
+                if (txtEndDate.Value < txtStartDate.Value)
+                    txtEndDate.Value = txtStartDate.Value;
+                intWorkload.Value = DateHelper.ComputeWorkDays(txtStartDate.Value, txtEndDate.Value);
+            }
+        }
         /// <summary>
         /// 项目问题清空按钮按下时
         /// Created：2017.04.06(Xuxb)
@@ -92,60 +163,9 @@ namespace ProjectManagement.Forms.Others
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
-            //节点
-            cmbNode.SelectedIndex = -1;
-            //问题名称
-            txtTroubleName.Text = string.Empty;
-            //问题描述
-            txtTroubleDesc.Text = string.Empty;
-            //处理结果
-            txtTroubleResult.Text = string.Empty;
-            //开始日期
-            txtStartDate.Text = string.Empty;
-            //结束日期
-            txtEndDate.Text = string.Empty;
-            //责任人
-            //cmbOperate.SelectedIndex = -1 ;
-            //问题级别
-            cmbTroubleLevel.SelectedIndex = -1;
-            //处理情况
-            cmbHandleStatus.SelectedIndex = -1;
-            //处理日期
-            //txtHandleDate.Text = string.Empty;
-            //添加日期
-            txtCreated.Text = DateTime.Now.ToShortDateString();
-
-            //附件列表加载
-            gridFile.PrimaryGrid.DataSource = new List<TroubleFiles>();
-
-            txtFilePath.Text = string.Empty;
-            txtFileName.Text = string.Empty;
-            txtFileDesc.Text = string.Empty;
-
-            //日常工作ID
-            TroubleId = string.Empty;
-            //文件ID
-            _fileId = string.Empty;
-
-            //清空责任人
-            gridManager.PrimaryGrid.DataSource = null;
+            ClearTrouble();
         }
 
-        /// <summary>
-        /// 项目问题文件清空按钮按下时
-        /// Created：2017.04.06(Xuxb)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnFileClear_Click(object sender, EventArgs e)
-        {
-            txtFilePath.Text = string.Empty;
-            txtFileName.Text = string.Empty;
-            txtFileDesc.Text = string.Empty;
-
-            //文件ID
-            _fileId = string.Empty;
-        }
 
         /// <summary>
         /// 项目问题保存按钮按下时
@@ -160,7 +180,7 @@ namespace ProjectManagement.Forms.Others
             if (!TroubleCheck()) return;
 
             List<TroubleWork> listWork = new List<TroubleWork>();
-            if (!GetEditManager(ref listWork)) return;//如果填写无误
+            if (!GetEditManager(ref listWork, true)) return;//责任人如果填写无误
 
             DomainDLL.Trouble obj = new DomainDLL.Trouble();
             //项目问题ID
@@ -170,10 +190,12 @@ namespace ProjectManagement.Forms.Others
                 obj.NodeID = DataHelper.GetNodeIdByProjectId(ProjectId);
             else
                 obj.NodeID = cmbNode.SelectedNode.Name.Substring(0, 36);
+
+            PNode ParentNode = new WBSBLL().GetParentNode(_nodeID);
             //结点改变时，移动文件到新的节点
-            if (obj.NodeID != _nodeID)
+            if (!obj.NodeID.Substring(0, 36).Equals(ParentNode.ID.Substring(0, 36)))
             {
-                List<TroubleFiles> list = troubleBLL.GetTroubleFiles(TroubleId,0);
+                List<TroubleFiles> list = troubleBLL.GetTroubleFiles(TroubleId, 0);
                 foreach (TroubleFiles file in list)
                 {
                     //取得当前的文件路径
@@ -200,15 +222,6 @@ namespace ProjectManagement.Forms.Others
             //状态
             obj.Status = 1;
 
-            #region
-            //责任人
-            //if (cmbOperate.SelectedIndex > -1)
-            //    obj.HandleMan = ((ComboItem)cmbOperate.SelectedItem).Value.ToString();
-            //处理日期
-            //if (!string.IsNullOrEmpty(txtHandleDate.Text))
-            //    obj.HandleDate = DateTime.Parse(txtHandleDate.Text);
-            #endregion
-
             //问题级别
             if (cmbTroubleLevel.SelectedIndex > -1)
                 obj.Level = int.Parse(((ComboItem)cmbTroubleLevel.SelectedItem).Value.ToString());
@@ -218,7 +231,7 @@ namespace ProjectManagement.Forms.Others
 
 
             //保存
-            JsonResult result = troubleBLL.SaveTrouble(obj, listWork);
+            JsonResult result = troubleBLL.SaveTrouble(ProjectId, obj, listWork);
             TroubleId = result.result ? (string)result.data : TroubleId;
 
             if (result.result)
@@ -226,6 +239,12 @@ namespace ProjectManagement.Forms.Others
                 _nodeID = obj.NodeID;
                 //一览重新加载
                 Search();
+                ClearTrouble();
+
+
+                //主框更新
+                MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
+                mainForm.RelaodTree();
             }
 
             MessageHelper.ShowRstMsg(result.result);
@@ -234,6 +253,51 @@ namespace ProjectManagement.Forms.Others
             startPage.LoadProjectTrouble();
             startPage.LoadProjectTroubleList();
         }
+
+        #endregion
+
+        #region 责任人
+
+        /// <summary>
+        /// 责任人-单元格点击事件
+        ///  Created：20170531(zhugaunjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridManager_CellClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs e)
+        {
+            if (e.GridCell.GridColumn.Name == "RowDel")
+                gridManager.PrimaryGrid.Rows.Remove(e.GridCell.GridRow);//删除行
+        }
+
+        /// <summary>
+        /// 责任人双击-修改
+        ///  Created：20170531(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridManager_RowDoubleClick(object sender, DevComponents.DotNetBar.SuperGrid.GridRowDoubleClickEventArgs e)
+        {
+            string tmp = e.GridRow.ToString();
+            tmp = tmp.Substring(tmp.LastIndexOf("{") + 1);
+            tmp = tmp.Substring(0, tmp.LastIndexOf("}"));
+            string[] cells = tmp.Trim().Split(',');
+            int work = 0, acture = 0;
+            int.TryParse(cells[2], out work);
+            int.TryParse(cells[3], out acture);
+            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager(cells[0], work, acture);
+            if (fmNewManager.ShowDialog() == DialogResult.OK)
+            {
+                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 0).Value = fmNewManager.ReturnValue.Manager;
+                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 1).Value = fmNewManager.ReturnValue.ManagerName;
+                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 2).Value = fmNewManager.ReturnValue.Workload;
+                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 3).Value = fmNewManager.ReturnValue.ActualWorkload;
+            }
+        }
+
+        #endregion
+
+        #region 文件
 
         /// <summary>
         /// 项目问题文件保存按钮按下时
@@ -282,6 +346,22 @@ namespace ProjectManagement.Forms.Others
         }
 
         /// <summary>
+        /// 项目问题文件清空按钮按下时
+        /// Created：2017.04.06(Xuxb)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFileClear_Click(object sender, EventArgs e)
+        {
+            txtFilePath.Text = string.Empty;
+            txtFileName.Text = string.Empty;
+            txtFileDesc.Text = string.Empty;
+
+            //文件ID
+            _fileId = string.Empty;
+        }
+
+        /// <summary>
         /// 选择文件按钮按下时
         /// Created：2017.04.06(Xuxb)
         /// </summary>
@@ -302,77 +382,6 @@ namespace ProjectManagement.Forms.Others
             }
         }
 
-        /// <summary>
-        /// 查询按钮按下时
-        /// Created：2017.04.06(Xuxb)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        /// <summary>
-        /// 问题列表行点击时
-        /// Created：2017.04.06(Xuxb)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void gridTrouble_CellClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs e)
-        {
-            TroubleId = e.GridCell.GridRow.Cells["ID"].Value.ToString();
-            if (!string.IsNullOrEmpty(TroubleId))
-            {
-                DialogResult drt = MessageHelper.ShowMsg(MessageID.I000000009, MessageType.Confirm, "项目问题");
-
-                if (drt == DialogResult.OK)
-                {
-                    //加载画面内容
-                    LoadPageData();
-                    //加载责任人列表
-                    var list = troubleBLL.GetTroubleWorkList(TroubleId);
-                    gridManager.PrimaryGrid.DataSource = list;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 责任人-单元格点击事件
-        ///  Created：20170531(zhugaunjun)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void gridManager_CellClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs e)
-        {
-            if (e.GridCell.GridColumn.Name == "RowDel")
-                gridManager.PrimaryGrid.Rows.Remove(e.GridCell.GridRow);//删除行
-        }
-
-        /// <summary>
-        /// 责任人双击-修改
-        ///  Created：20170531(zhuguanjun)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void gridManager_RowDoubleClick(object sender, DevComponents.DotNetBar.SuperGrid.GridRowDoubleClickEventArgs e)
-        {
-            string tmp = e.GridRow.ToString();
-            tmp = tmp.Substring(tmp.LastIndexOf("{") + 1);
-            tmp = tmp.Substring(0, tmp.LastIndexOf("}"));
-            string[] cells = tmp.Trim().Split(',');
-            int work = 0, acture = 0;
-            int.TryParse(cells[2], out work);
-            int.TryParse(cells[3], out acture);
-            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager(cells[0], work, acture);
-            if (fmNewManager.ShowDialog() == DialogResult.OK)
-            {
-                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 0).Value = fmNewManager.ReturnValue.Manager;
-                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 1).Value = fmNewManager.ReturnValue.ManagerName;
-                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 2).Value = fmNewManager.ReturnValue.Workload;
-                gridManager.PrimaryGrid.GetCell(e.GridRow.RowIndex, 3).Value = fmNewManager.ReturnValue.ActualWorkload;
-            }
-        }
 
         /// <summary>
         /// 文件列表行点击时
@@ -403,16 +412,8 @@ namespace ProjectManagement.Forms.Others
             }
         }
 
-        /// <summary>
-        /// 结点清空
-        /// Created：2017.04.07(Xuxb)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonX8_Click(object sender, EventArgs e)
-        {
-            this.cmbNode.SelectedIndex = -1;
-        }
+        #endregion
+
 
         #endregion
 
@@ -424,53 +425,141 @@ namespace ProjectManagement.Forms.Others
         /// </summary>
         private void LoadPageData()
         {
-            if (!string.IsNullOrEmpty(TroubleId))
+            //日常工作取得
+            DomainDLL.Trouble obj = troubleBLL.GetTroubleObject(TroubleId, _nodeID);
+            if (!string.IsNullOrEmpty(obj.ID))
             {
-                //日常工作取得
-                DomainDLL.Trouble obj = troubleBLL.GetTroubleObject(TroubleId);
-
-                if (obj != null)
-                {
-                    //节点
-                    DataHelper.SetComboxTreeSelectByValue(cmbNode, obj.NodeID);
-                    _nodeID = obj.NodeID;
-                    //问题名称
-                    txtTroubleName.Text = obj.Name;
-                    //问题描述
-                    txtTroubleDesc.Text = obj.Desc;
-                    //处理结果
-                    txtTroubleResult.Text = obj.HandleResult;
-                    //开始日期
-                    if (obj.StarteDate.HasValue)
-                        txtStartDate.Text = obj.StarteDate.Value.ToShortDateString();
-                    //结束日期
-                    if (obj.EndDate.HasValue)
-                        txtEndDate.Text = obj.EndDate.Value.ToShortDateString();
-                    //责任人
-                    //DataHelper.SetComboBoxSelectItemByValue(cmbOperate, obj.HandleMan);
-                    //问题级别
-                    DataHelper.SetComboBoxSelectItemByValue(cmbTroubleLevel, obj.Level.ToString());
-                    //处理情况
-                    DataHelper.SetComboBoxSelectItemByValue(cmbHandleStatus, obj.HandleStatus.ToString());
-                    //处理日期
-                    //if (obj.HandleDate.HasValue)
-                    //    txtHandleDate.Text = obj.HandleDate.Value.ToShortDateString();
-                    //添加日期
-                    txtCreated.Text = obj.CREATED.ToShortDateString();
-
-                    //附件列表加载
-                    LoadFileList(obj.ID.Substring(0, 36));
-
-                    txtFilePath.Text = string.Empty;
-                    txtFileName.Text = string.Empty;
-                    txtFileDesc.Text = string.Empty;
-                }
-            }
-            else
-            {
+                PNode parentNode = new WBSBLL().GetParentNode(obj.NodeID); //日常工作挂靠的节点
+                //节点
+                DataHelper.SetComboxTreeSelectByValue(cmbNode, parentNode.ID);
+                TroubleId = obj.ID;
+                _nodeID = obj.NodeID;
+                //问题名称
+                txtTroubleName.Text = obj.Name;
+                //问题描述
+                txtTroubleDesc.Text = obj.Desc;
+                //处理结果
+                txtTroubleResult.Text = obj.HandleResult;
+                //开始日期
+                if (obj.StarteDate.HasValue)
+                    txtStartDate.Text = obj.StarteDate.Value.ToShortDateString();
+                //结束日期
+                if (obj.EndDate.HasValue)
+                    txtEndDate.Text = obj.EndDate.Value.ToShortDateString();
+                //工作量 
+                intWorkload.Value = (int)obj.Workload;
+                //加载责任人列表
+                var list = troubleBLL.GetTroubleWorkList(obj.ID);
+                gridManager.PrimaryGrid.DataSource = list;
+                //问题级别
+                DataHelper.SetComboBoxSelectItemByValue(cmbTroubleLevel, obj.Level.ToString());
+                //处理情况
+                DataHelper.SetComboBoxSelectItemByValue(cmbHandleStatus, obj.HandleStatus.ToString());
+                //处理日期
+                //if (obj.HandleDate.HasValue)
+                //    txtHandleDate.Text = obj.HandleDate.Value.ToShortDateString();
                 //添加日期
-                txtCreated.Text = DateTime.Now.ToShortDateString();
+                txtCreated.Text = obj.CREATED.ToShortDateString();
+
+                //附件列表加载
+                LoadFileList(obj.ID.Substring(0, 36));
+
+                txtFilePath.Text = string.Empty;
+                txtFileName.Text = string.Empty;
+                txtFileDesc.Text = string.Empty;
             }
+        }
+
+        /// <summary>
+        /// 加载画面数据
+        /// Created：20170607(ChengMengjia)
+        /// </summary>
+        public void LoadPageData(string NodeID)
+        {
+            _nodeID = NodeID;
+            //日常工作取得
+            DomainDLL.Trouble obj = troubleBLL.GetTroubleObject("", _nodeID);
+            TroubleId = obj.ID;
+            PNode parentNode = new WBSBLL().GetParentNode(obj.NodeID); //日常工作挂靠的节点
+            //节点
+            DataHelper.SetComboxTreeSelectByValue(cmbNode, parentNode.ID);
+            //问题名称
+            txtTroubleName.Text = obj.Name;
+            //问题描述
+            txtTroubleDesc.Text = obj.Desc;
+            //处理结果
+            txtTroubleResult.Text = obj.HandleResult;
+            //开始日期
+            if (obj.StarteDate.HasValue)
+                txtStartDate.Text = obj.StarteDate.Value.ToShortDateString();
+            //结束日期
+            if (obj.EndDate.HasValue)
+                txtEndDate.Text = obj.EndDate.Value.ToShortDateString();
+            //问题级别
+            DataHelper.SetComboBoxSelectItemByValue(cmbTroubleLevel, obj.Level.ToString());
+            //处理情况
+            DataHelper.SetComboBoxSelectItemByValue(cmbHandleStatus, obj.HandleStatus.ToString());
+            //处理日期
+            //if (obj.HandleDate.HasValue)
+            //    txtHandleDate.Text = obj.HandleDate.Value.ToShortDateString();
+            //添加日期
+            txtCreated.Text = obj.CREATED.ToShortDateString();
+            //工作量 
+            intWorkload.Value = (int)obj.Workload;
+            //加载责任人列表
+            var list = troubleBLL.GetTroubleWorkList(obj.ID);
+            gridManager.PrimaryGrid.DataSource = list;
+            //附件列表加载
+            LoadFileList(obj.ID.Substring(0, 36));
+
+            txtFilePath.Text = string.Empty;
+            txtFileName.Text = string.Empty;
+            txtFileDesc.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// 清空问题添加内容
+        /// Created：20170607(ChengMengjia)
+        /// </summary>
+        private void ClearTrouble()
+        {
+            //节点
+            cmbNode.SelectedIndex = -1;
+            //问题名称
+            txtTroubleName.Text = string.Empty;
+            //问题描述
+            txtTroubleDesc.Text = string.Empty;
+            //处理结果
+            txtTroubleResult.Text = string.Empty;
+            //开始日期
+            txtStartDate.Text = string.Empty;
+            //结束日期
+            txtEndDate.Text = string.Empty;
+            //责任人
+            //cmbOperate.SelectedIndex = -1 ;
+            //问题级别
+            cmbTroubleLevel.SelectedIndex = -1;
+            //处理情况
+            cmbHandleStatus.SelectedIndex = -1;
+            //处理日期
+            //txtHandleDate.Text = string.Empty;
+            //添加日期
+            txtCreated.Text = DateTime.Now.ToShortDateString();
+
+            //附件列表加载
+            gridFile.PrimaryGrid.DataSource = new List<TroubleFiles>();
+
+            txtFilePath.Text = string.Empty;
+            txtFileName.Text = string.Empty;
+            txtFileDesc.Text = string.Empty;
+
+            //日常工作ID
+            TroubleId = string.Empty;
+            //文件ID
+            _fileId = string.Empty;
+
+            //清空责任人
+            gridManager.PrimaryGrid.DataSource = null;
         }
 
         /// <summary>
@@ -551,7 +640,7 @@ namespace ProjectManagement.Forms.Others
         private void LoadFileList(string troubleId)
         {
             //项目问题文件取得
-            List<TroubleFiles> list = troubleBLL.GetTroubleFiles(troubleId,0);
+            List<TroubleFiles> list = troubleBLL.GetTroubleFiles(troubleId, 0);
 
             //附件列表加载
             int? i = 1;
@@ -566,39 +655,20 @@ namespace ProjectManagement.Forms.Others
         /// <summary>
         /// 查询按钮按下时
         /// Created：2017.04.06(Xuxb)
+        /// Updated：20170607(ChengMengjia) 行号在查询时加入
         /// </summary>
         private void Search()
         {
             //取得数据
-            DataTable dt = troubleBLL.GetTroubleList(ProjectId, this.txtSearchStart.Text, this.txtSearchEnd.Text,txtSearchKey.Text);
-
-            //追加行号
-            DataHelper.AddNoCloumn(dt);
-
-            //绑定
+            DataTable dt = troubleBLL.GetTroubleList(ProjectId, this.txtSearchStart.Text, this.txtSearchEnd.Text, txtSearchKey.Text);
             gridTrouble.PrimaryGrid.DataSource = dt;
         }
 
-        /// <summary>
-        /// 加载负责人下拉框列表
-        /// Created：2017.04.06(Xuxb)
-        /// </summary>
-        //private void LoadOperatorList()
-        //{
-        //    List<Stakeholders> list = stakeholderBLL.GetList(ProjectId, null);
-
-        //    foreach (Stakeholders obj in list)
-        //    {
-        //        ComboItem item = new ComboItem();
-        //        item.Text = obj.Name;
-        //        item.Value = obj.ID.Substring(0,36).ToString();
-        //        this.cmbOperate.Items.Add(item);
-        //    }
-        //}
 
         /// <summary>
         /// 添加责任人
-        /// 201//05/31(zhuguanjun)
+        /// Created：20170531(zhuguanjun)
+        /// Updated：20170607(ChengMengjia)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -616,22 +686,48 @@ namespace ProjectManagement.Forms.Others
                 tmp = tmp - int.Parse(cells[2]);
             }
             #endregion
-            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager("", tmp < 0 ? 0 : tmp, 0);
+            ProjectManagement.Forms.WBS.NewManager fmNewManager = new Forms.WBS.NewManager("", tmp < 0 ? 0 : tmp, tmp < 0 ? 0 : tmp);
             if (fmNewManager.ShowDialog() == DialogResult.OK)
             {
-                gridManager.PrimaryGrid.Rows.Add(new DevComponents.DotNetBar.SuperGrid.GridRow(
-                    fmNewManager.ReturnValue.Manager, fmNewManager.ReturnValue.ManagerName, fmNewManager.ReturnValue.Workload,
-                    fmNewManager.ReturnValue.ActualWorkload,
-                    "删除"));
+                List<TroubleWork> listWork = new List<TroubleWork>();
+                GetEditManager(ref listWork, false);
+                bool IsExist = false;//是否列表中存在该责任人
+                #region 查找该责任人 存在即修改
+                foreach (var t in listWork)
+                {
+                    if (t.Manager.Equals(fmNewManager.ReturnValue.Manager.Substring(0, 36)))
+                    {
+                        IsExist = true;
+                        t.ManagerName = fmNewManager.ReturnValue.ManagerName;
+                        t.Workload += fmNewManager.ReturnValue.Workload;
+                        t.ActualWorkload += fmNewManager.ReturnValue.ActualWorkload;
+                        break;
+                    }
+                }
+                #endregion
+                #region 不存在即新增
+                if (!IsExist)
+                {
+                    listWork.Add(new TroubleWork()
+                    {
+                        Manager = fmNewManager.ReturnValue.Manager.Substring(0, 36),
+                        ManagerName = fmNewManager.ReturnValue.ManagerName,
+                        Workload = fmNewManager.ReturnValue.Workload,
+                        ActualWorkload = fmNewManager.ReturnValue.ActualWorkload
+                    });
+                }
+                #endregion
+                gridManager.PrimaryGrid.DataSource = listWork;
             }
         }
 
         /// <summary>
         /// 获取编辑的责任人列表
         /// Created:20170531(zhuguanjun)
+        /// Updated：20170607(ChengMengjia)
         /// </summary>
         /// <returns></returns>
-        bool GetEditManager(ref List<TroubleWork> listWork)
+        bool GetEditManager(ref List<TroubleWork> listWork, bool NeedCheck)
         {
             //责任人
             int totalWork = 0;//总的工作量
@@ -642,16 +738,25 @@ namespace ProjectManagement.Forms.Others
                 s = s.Substring(s.LastIndexOf("{") + 1);
                 s = s.Substring(0, s.LastIndexOf("}"));
                 string[] cells = s.Trim().Split(',');
-                listWork.Add(new TroubleWork() { Manager = cells[0], Workload = int.Parse(cells[2]),ActualWorkload = int.Parse(cells[3]),Status = 1 });
+                listWork.Add(new TroubleWork() { Manager = cells[0], ManagerName = cells[1], Workload = int.Parse(cells[2]), ActualWorkload = int.Parse(cells[3]) });
                 totalWork += int.Parse(cells[2]);
+            }
+            if (NeedCheck)
+            {
                 if (totalWork > intWorkload.Value)
                 {
                     MessageBox.Show("超过设置的总工作量，请检查！");
                     return false;
                 }
+                else if (totalWork < intWorkload.Value)
+                {
+                    MessageBox.Show("小于设置的总工作量，请检查！");
+                    return false;
+                }
             }
             return true;
         }
+
 
         #endregion
 

@@ -10,6 +10,7 @@ using CommonDLL;
 using DevComponents.Editors;
 using System.Data;
 using System.Drawing;
+using DevComponents.DotNetBar.SuperGrid.Style;
 namespace ProjectManagement
 {
     public static class DataHelper
@@ -103,9 +104,9 @@ namespace ProjectManagement
             switch (status)
             {
                 case 1:
-                    return new ElementStyle() { BackColor = Color.ForestGreen };
+                    return new ElementStyle() { BackColor = Color.CornflowerBlue};
                 case 2:
-                    return new ElementStyle() { BackColor = Color.SpringGreen };
+                    return new ElementStyle() { BackColor = Color.Orange };
                 case 3:
                     return new ElementStyle() { BackColor = Color.Red,TextColor=Color.White };
                 default:
@@ -113,6 +114,33 @@ namespace ProjectManagement
             }
         }
 
+        /// <summary>
+        /// 节点背景色
+        /// Created:20170607(ChengMengjia)
+        /// 未开始的没有背景色（值为0），已完成的为绿色（1），正在执行的为黄色（2），超期的为红色（3）
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public static CellVisualStyles MatchRowColor(int? status)
+        {
+            CellVisualStyles style = new CellVisualStyles();
+            switch (status)
+            {
+                case 1:
+                    style.Default.Background.Color2=Color.CornflowerBlue;
+                    break;
+                case 2:
+                    style.Default.Background.Color2 = Color.Orange;
+                    break;
+                case 3:
+                    style.Default.Background.Color2 = Color.Red;
+                    break;
+                default:
+                    style.Default.Background.Color2 = Color.Transparent;
+                    break;
+            }
+            return style;
+        }
         #endregion
 
         #region WBS节点数 AdvTree
@@ -265,7 +293,7 @@ namespace ProjectManagement
                 SetSubTreeData(listNode, child, node);
                 comboTree.Nodes.Add(node);
             }
-
+            comboTree.AdvTree.ExpandAll();
         }
 
         /// <summary>

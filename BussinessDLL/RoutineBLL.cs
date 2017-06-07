@@ -20,7 +20,8 @@ namespace BussinessDLL
 
         /// <summary>
         /// 日常工作保存
-        /// 2017/06/01(zhuguanjun)
+        /// Created:20170601(zhuguanjun)
+        /// Updated:20170605(ChengMengjia) 添加作为节点插入
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="listWork"></param>

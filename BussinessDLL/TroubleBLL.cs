@@ -49,22 +49,83 @@ namespace BussinessDLL
         /// <summary>
         /// 项目问题保存
         /// 2017/06/05(zhuguanjun)
+        /// Updated:20170607(ChengMengjia) 添加作为节点插入
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="listWork"></param>
         /// <returns></returns>
-        public JsonResult SaveTrouble(Trouble entity, List<TroubleWork> listWork)
+        public JsonResult SaveTrouble(string ProjectId,Trouble entity, List<TroubleWork> listWork)
         {
             JsonResult jsonreslut = new JsonResult();
             try
             {
                 //如果是新增
                 if (string.IsNullOrEmpty(entity.ID))
-                    dao.AddTrouble(entity, listWork);
+                {
+                     #region 新增WBS节点
+                    PNode node = null;
+                    if (!string.IsNullOrEmpty(entity.NodeID))
+                    {
+                        node = new PNode();
+                        node.ID = Guid.NewGuid().ToString() + "-1";
+                        node.Name = entity.Name;
+                        node.ParentID = entity.NodeID.Substring(0, 36);
+                        node.PID = ProjectId;
+                        node.PType = 3;
+                        node.Status = 1;
+                        node.CREATED = DateTime.Now;
+                    }
+                    #endregion
+                     #region 新插入实体
+                    entity.NodeID = node == null ? null : node.ID.Substring(0, 36);
+                    entity.ID = Guid.NewGuid().ToString() + "-1";
+                    entity.CREATED = DateTime.Now;
+                    entity.Status = 1;
+                     #endregion
+                    dao.AddTrouble(entity,node, listWork);
+                }
                 //编辑
                 else
                 {
-                    dao.UpdateTrouble(entity, listWork);
+                    #region 更新实体
+                    Trouble oldEntity = new Repository<Trouble>().Get(entity.ID);
+                    oldEntity.Status = 0;
+                    oldEntity.UPDATED = DateTime.Now;
+                    #endregion
+                    #region 修改WBS节点
+                    PNode oldNode = null;
+                    if (!string.IsNullOrEmpty(oldEntity.NodeID))
+                    {
+                        oldNode = new WBSBLL().GetNode(oldEntity.NodeID);
+                        oldNode.Status = 0;
+                        oldNode.UPDATED = DateTime.Now;
+                    }
+                    #endregion
+                    #region 新增WBS节点
+                    PNode newNode = null;
+                    if (!string.IsNullOrEmpty(entity.NodeID))
+                    {
+                        newNode = new PNode();
+                        if (oldNode == null)
+                            newNode.ID = Guid.NewGuid().ToString() + "-1";
+                        else
+                            newNode.ID = oldNode.ID.Substring(0, 36) + "-" + (int.Parse(oldNode.ID.Substring(37)) + 1).ToString();
+                        newNode.Name = entity.Name;
+                        newNode.ParentID = entity.NodeID.Substring(0, 36);
+                        newNode.PID = ProjectId;
+                        newNode.PType = 3;
+                        newNode.Status = 1;
+                        newNode.CREATED = DateTime.Now;
+                    }
+                    #endregion
+                    #region 新插入实体
+                    string hisNo = oldEntity.ID.Substring(37);
+                    entity.ID = oldEntity.ID.Substring(0, 36) + "-" + (int.Parse(hisNo) + 1).ToString();
+                    entity.NodeID = newNode == null ? null : newNode.ID.Substring(0, 36);
+                    entity.Status = 1;
+                    entity.CREATED = DateTime.Now;
+                    #endregion
+                    dao.UpdateTrouble(entity, oldEntity, newNode, oldNode, listWork);
                 }
                 jsonreslut.result = true;
                 jsonreslut.msg = "保存成功！";
@@ -144,13 +205,16 @@ namespace BussinessDLL
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public Trouble GetTroubleObject(string ID)
+        public Trouble GetTroubleObject(string ID,string NodeID)
         {
             Trouble entity = new Trouble();
-            if (!string.IsNullOrEmpty(ID))
+            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NodeID))
             {
                 List<QueryField> qf = new List<QueryField>();
-                qf.Add(new QueryField() { Name = "ID", Type = QueryFieldType.String, Value = ID.Substring(0, 36) + "%", Comparison = QueryFieldComparison.like });
+                if (!string.IsNullOrEmpty(ID))
+                    qf.Add(new QueryField() { Name = "ID", Type = QueryFieldType.String, Value = ID.Substring(0, 36) + "%", Comparison = QueryFieldComparison.like });
+                else if (!string.IsNullOrEmpty(NodeID))
+                    qf.Add(new QueryField() { Name = "NodeID", Type = QueryFieldType.String, Value = NodeID.Substring(0, 36) + "%", Comparison = QueryFieldComparison.like });
                 qf.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
                 entity = new Repository<Trouble>().FindSingle(qf) as Trouble;
             }
