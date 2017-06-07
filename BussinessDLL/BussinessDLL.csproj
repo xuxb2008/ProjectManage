@@ -79,6 +79,7 @@
     <Compile Include="ReportBLL.cs" />
     <Compile Include="ReportCostBLL.cs" />
     <Compile Include="ReportEarningBLL.cs" />
+    <Compile Include="ReportMemberRateBLL.cs" />
     <Compile Include="ReportPlanBLL.cs" />
     <Compile Include="ReportProjectBLL.cs" />
     <Compile Include="ReportReceivablesBLL.cs" />

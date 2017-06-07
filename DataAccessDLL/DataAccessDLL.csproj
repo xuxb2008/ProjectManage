@@ -79,6 +79,7 @@
     <Compile Include="PubInfoDAO.cs" />
     <Compile Include="ReportDAO.cs" />
     <Compile Include="ReportEarningDao.cs" />
+    <Compile Include="ReportMemberRateDao.cs" />
     <Compile Include="ReportPlanDao.cs" />
     <Compile Include="ReportReceivablesDao.cs" />
     <Compile Include="ReportSubcontractDao.cs" />
