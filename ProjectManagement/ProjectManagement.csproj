@@ -632,6 +632,14 @@
     </Compile>
     <None Include="Template\WBS模板.xlsx" />
     <None Include="Template\项目周报模板.xlsx" />
+    <None Include="文档\ProjectManagement.db" />
+    <None Include="文档\ProManagement.DM1" />
+    <None Include="文档\WBS模板.xlsx" />
+    <None Include="文档\图标.ai" />
+    <None Include="文档\图标1.ai" />
+    <None Include="文档\成员贡献率.xlsx" />
+    <None Include="文档\问题点一览.xlsx" />
+    <None Include="文档\项目管理系统开发计划.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -665,6 +673,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="图标.ico" />
+    <Content Include="文档\图标.ico" />
+    <Content Include="文档\图标.png" />
+    <Content Include="文档\图标1-01.ico" />
+    <Content Include="文档\图标1-01.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BussinessDLL\BussinessDLL.csproj">
@@ -680,9 +692,7 @@
       <Name>DomainDLL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="文档\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
