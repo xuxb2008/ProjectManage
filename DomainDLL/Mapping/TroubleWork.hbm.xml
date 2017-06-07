@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="DomainDLL.TroubleWork, DomainDLL" table="TroubleWork">
+    <id name="ID" type="String" unsaved-value="null">
+      <column name="ID" length="40" sql-type="varchar" not-null="true" unique="true"/>
+      <generator class="assigned" />
+    </id>
+    <property name="TroubleID" type="String">
+      <column name="TroubleID" sql-type="varchar" not-null="true"/>
+    </property>
+    <property name="Workload" type="decimal">
+      <column name="Workload" sql-type="decimal" not-null="true"/>
+    </property>
+    <property name="ActualWorkload" type="decimal">
+      <column name="ActualWorkload" sql-type="decimal" not-null="true"/>
+    </property>
+    <property name="Manager" type="String">
+      <column name="Manager" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="CREATED" type="DateTime">
+      <column name="CREATED" sql-type="datetime" not-null="false"/>
+    </property>
+    <property name="UPDATED" type="DateTime">
+      <column name="UPDATED" sql-type="datetime" not-null="false"/>
+    </property>
+  </class>
+</hibernate-mapping>
