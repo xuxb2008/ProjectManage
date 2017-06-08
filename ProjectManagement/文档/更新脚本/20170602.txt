@@ -1,0 +1,5 @@
+alter table [DeliverablesWork] DROP Workload;
+
+alter table [DeliverablesWork] add Workload int null;
+alter table [DeliverablesWork] add ActualWorkload int null;
+alter table [NodeProgress] add Desc nvarchar(500);

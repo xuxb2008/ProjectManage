@@ -1,0 +1,19 @@
+CREATE TABLE [TroubleWork](
+    [ID] VARCHAR(40) PRIMARY KEY NOT NULL ON CONFLICT ROLLBACK UNIQUE ON CONFLICT ROLLBACK, 
+    [TroubleID] VARCHAR(40) NOT NULL ON CONFLICT ROLLBACK, 
+    [Manager] varchar(40), 
+    [Workload] int, 
+    [ActualWorkload] int, 
+    [Status] int, 
+    [CREATED] datetime, 
+    [UPDATED] datetime);
+CREATE TABLE [RoutineWork](
+    [ID] VARCHAR(40) PRIMARY KEY NOT NULL ON CONFLICT ROLLBACK UNIQUE ON CONFLICT ROLLBACK, 
+    [RoutineID] VARCHAR(40) NOT NULL ON CONFLICT ROLLBACK, 
+    [Manager] varchar(40), 
+    [Workload] int, 
+    [ActualWorkload] int, 
+    [Status] int, 
+    [CREATED] datetime, 
+    [UPDATED] datetime);
+如果表已经存在，先删除在添加

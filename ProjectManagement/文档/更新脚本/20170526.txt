@@ -1,0 +1,12 @@
+CREATE TABLE [DeliverablesWork](
+    [ID] VARCHAR(40) PRIMARY KEY NOT NULL ON CONFLICT ROLLBACK UNIQUE ON CONFLICT ROLLBACK, 
+    [JBXXID] VARCHAR(40) NOT NULL ON CONFLICT ROLLBACK, 
+    Manager     varchar(40)       NULL,
+    Workload    decimal(10, 0)    NULL,
+    Weight      int               NULL,
+    Status      int               Null,
+    CREATED     datetime          NULL,
+    UPDATED     datetime          NULL);
+
+alter table [DeliverablesJBXX] DROP Manager;
+alter table [DeliverablesJBXX] DROP Weight;

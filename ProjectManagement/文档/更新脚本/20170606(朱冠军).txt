@@ -1,0 +1,6 @@
+1.ALTER TABLE [CommunicationFXFA] Alert COLUMN Frequency NVARCHAR(50) null //手动修改下 Sqlite不支持alter Cloumn操作
+
+2.ALTER TABLE [CommunicationFXFA] Drop COLUMN StrateDate
+  ALTER TABLE [CommunicationFXFA] Alert COLUMN CommunicateDate NVARCHAR(50) null
+3.alter table [Trouble] DROP [HandleMan];//手动删除下 Sqlite不支持Drop Cloumn操作
+4.alter table [Trouble] add COLUMN  [Workload] INT

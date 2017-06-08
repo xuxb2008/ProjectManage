@@ -1,0 +1,27 @@
+
+
+alter table [DeliverablesJBXX]  add Weight int not null;
+alter table [DeliverablesWork] DROP Weight;
+
+CREATE TABLE [PubInfo](
+    [ID] VARCHAR(40) PRIMARY KEY ON CONFLICT ROLLBACK NOT NULL ON CONFLICT ROLLBACK UNIQUE ON CONFLICT ROLLBACK, 
+    [PID] VARCHAR(40) NOT NULL ON CONFLICT ROLLBACK, 
+    [Title] nvarchar(100), 
+    [Content] text, 
+    [SendTo] varchar(2000), 
+    [CopyTo] varchar(2000), 
+    [Status] int, 
+    [CREATED] datetime, 
+    [UPDATED] datetime);
+    
+    CREATE TABLE [PubInfoFiles](
+    [ID] VARCHAR(40) PRIMARY KEY ON CONFLICT ROLLBACK NOT NULL ON CONFLICT ROLLBACK UNIQUE ON CONFLICT ROLLBACK, 
+    [PubID] VARCHAR(40) NOT NULL ON CONFLICT ROLLBACK, 
+    [Name] nvarchar(100), 
+    [Path] text, 
+    [Desc] varchar(2000), 
+    [Status] int, 
+    [CREATED] datetime, 
+    [UPDATED] datetime);
+
+

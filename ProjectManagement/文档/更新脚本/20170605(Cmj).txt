@@ -1,0 +1,7 @@
+alter table [PNode] DROP IsMilestone;//手动删除下 Sqlite不支持Drop Cloumn操作
+
+alter table [PNode] add column PType int null;
+
+update PNode set PType=1 where IsJFW=1;
+
+alter table [PNode] DROP IsJFW;  //从上到下按顺序执行
