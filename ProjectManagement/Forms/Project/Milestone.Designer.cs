@@ -99,9 +99,6 @@
             // 
             // groupPanel1
             // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel1.Controls.Add(this.btnLClear);
@@ -119,10 +116,11 @@
             this.groupPanel1.Controls.Add(this.labelX30);
             this.groupPanel1.Controls.Add(this.labelX31);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(3, 286);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel1.Location = new System.Drawing.Point(5, 277);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(909, 224);
+            this.groupPanel1.Size = new System.Drawing.Size(921, 244);
             // 
             // 
             // 
@@ -432,18 +430,17 @@
             // 
             // groupPanel5
             // 
-            this.groupPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel5.AutoScroll = true;
             this.groupPanel5.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel5.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel5.Controls.Add(this.gridLCB);
             this.groupPanel5.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel5.Location = new System.Drawing.Point(6, 6);
+            this.groupPanel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupPanel5.Location = new System.Drawing.Point(5, 1);
             this.groupPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel5.Name = "groupPanel5";
-            this.groupPanel5.Size = new System.Drawing.Size(909, 276);
+            this.groupPanel5.Size = new System.Drawing.Size(921, 276);
             // 
             // 
             // 
@@ -500,7 +497,7 @@
             this.gridLCB.PrimaryGrid.Columns.Add(this.LCBStatus);
             this.gridLCB.PrimaryGrid.ReadOnly = true;
             this.gridLCB.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridLCB.Size = new System.Drawing.Size(903, 252);
+            this.gridLCB.Size = new System.Drawing.Size(915, 252);
             this.gridLCB.TabIndex = 0;
             this.gridLCB.Text = "superGridControl1";
             this.gridLCB.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.gridLCB_RowClick);

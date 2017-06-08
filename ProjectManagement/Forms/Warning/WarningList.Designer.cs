@@ -39,17 +39,16 @@
             // 
             // groupPanel1
             // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel1.Controls.Add(this.superGridWarning);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(8, 8);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel1.Location = new System.Drawing.Point(5, 1);
+            this.groupPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(1254, 736);
+            this.groupPanel1.Size = new System.Drawing.Size(932, 578);
             // 
             // 
             // 
@@ -88,6 +87,7 @@
             this.superGridWarning.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.superGridWarning.ForeColor = System.Drawing.Color.Black;
             this.superGridWarning.Location = new System.Drawing.Point(0, 0);
+            this.superGridWarning.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.superGridWarning.Name = "superGridWarning";
             // 
             // 
@@ -96,7 +96,7 @@
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn3);
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn4);
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn5);
-            this.superGridWarning.Size = new System.Drawing.Size(1248, 709);
+            this.superGridWarning.Size = new System.Drawing.Size(926, 554);
             this.superGridWarning.TabIndex = 0;
             this.superGridWarning.Text = "superGridControl1";
             // 
@@ -129,9 +129,9 @@
             // 
             // WarningList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 753);
+            this.ClientSize = new System.Drawing.Size(942, 581);
             this.Controls.Add(this.groupPanel1);
             this.Name = "WarningList";
             this.Text = "预警信息查看";

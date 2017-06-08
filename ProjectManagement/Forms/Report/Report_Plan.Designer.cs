@@ -71,9 +71,6 @@
             // 
             // groupPanel1
             // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -89,10 +86,11 @@
             this.groupPanel1.Controls.Add(this.dtiStartDate);
             this.groupPanel1.Controls.Add(this.labelX1);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(6, 6);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel1.Location = new System.Drawing.Point(5, 1);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(802, 537);
+            this.groupPanel1.Size = new System.Drawing.Size(791, 485);
             // 
             // 
             // 
@@ -126,6 +124,9 @@
             // 
             // treeList1
             // 
+            this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.Namee,
             this.Workload,
@@ -136,7 +137,6 @@
             this.WBSNo,
             this.ID});
             this.treeList1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treeList1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.treeList1.Location = new System.Drawing.Point(0, 66);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.Editable = false;

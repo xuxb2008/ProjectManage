@@ -84,8 +84,6 @@
             // 
             // groupPanel7
             // 
-            this.groupPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel7.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel7.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -118,10 +116,11 @@
             this.groupPanel7.Controls.Add(this.labelX33);
             this.groupPanel7.Controls.Add(this.labelX32);
             this.groupPanel7.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel7.Location = new System.Drawing.Point(6, 6);
+            this.groupPanel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupPanel7.Location = new System.Drawing.Point(5, 1);
             this.groupPanel7.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel7.Name = "groupPanel7";
-            this.groupPanel7.Size = new System.Drawing.Size(300, 483);
+            this.groupPanel7.Size = new System.Drawing.Size(300, 499);
             // 
             // 
             // 
@@ -579,19 +578,17 @@
             // 
             // groupPanel8
             // 
-            this.groupPanel8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel8.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel8.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel8.Controls.Add(this.panelEx1);
             this.groupPanel8.Controls.Add(this.panelEx2);
             this.groupPanel8.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel8.Location = new System.Drawing.Point(310, 6);
+            this.groupPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel8.Location = new System.Drawing.Point(305, 1);
             this.groupPanel8.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel8.Name = "groupPanel8";
-            this.groupPanel8.Size = new System.Drawing.Size(571, 483);
+            this.groupPanel8.Size = new System.Drawing.Size(587, 499);
             // 
             // 
             // 
@@ -625,16 +622,15 @@
             // 
             // panelEx1
             // 
-            this.panelEx1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.panelEx1.Controls.Add(this.gridPager);
             this.panelEx1.Controls.Add(this.gridJLPJ);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx1.Location = new System.Drawing.Point(3, 4);
+            this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelEx1.Location = new System.Drawing.Point(0, 0);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(559, 249);
+            this.panelEx1.Size = new System.Drawing.Size(581, 249);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -657,18 +653,16 @@
             this.gridPager.PageIndex = 1;
             this.gridPager.PageSize = 10;
             this.gridPager.RecordCount = 0;
-            this.gridPager.Size = new System.Drawing.Size(559, 29);
+            this.gridPager.Size = new System.Drawing.Size(581, 29);
             this.gridPager.TabIndex = 4;
             // 
             // gridJLPJ
             // 
-            this.gridJLPJ.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridJLPJ.BackColor = System.Drawing.Color.White;
+            this.gridJLPJ.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridJLPJ.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.gridJLPJ.ForeColor = System.Drawing.Color.Black;
-            this.gridJLPJ.Location = new System.Drawing.Point(0, 2);
+            this.gridJLPJ.Location = new System.Drawing.Point(0, 0);
             this.gridJLPJ.Margin = new System.Windows.Forms.Padding(2);
             this.gridJLPJ.Name = "gridJLPJ";
             // 
@@ -683,7 +677,7 @@
             this.gridJLPJ.PrimaryGrid.Columns.Add(this.gridColumn5);
             this.gridJLPJ.PrimaryGrid.ReadOnly = true;
             this.gridJLPJ.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridJLPJ.Size = new System.Drawing.Size(555, 214);
+            this.gridJLPJ.Size = new System.Drawing.Size(581, 249);
             this.gridJLPJ.TabIndex = 0;
             this.gridJLPJ.Text = "superGridControl2";
             this.gridJLPJ.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.gridJLPJ_RowClick);
@@ -730,9 +724,9 @@
             this.panelEx2.Controls.Add(this.labelX46);
             this.panelEx2.Controls.Add(this.txtJContent);
             this.panelEx2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelEx2.Location = new System.Drawing.Point(5, 259);
+            this.panelEx2.Location = new System.Drawing.Point(0, 254);
             this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(557, 193);
+            this.panelEx2.Size = new System.Drawing.Size(581, 221);
             this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -760,7 +754,7 @@
             // 
             this.btnJPSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnJPSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnJPSave.Location = new System.Drawing.Point(185, 165);
+            this.btnJPSave.Location = new System.Drawing.Point(185, 158);
             this.btnJPSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnJPSave.Name = "btnJPSave";
             this.btnJPSave.Size = new System.Drawing.Size(56, 18);
@@ -790,7 +784,7 @@
             // 
             this.btnJPClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnJPClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnJPClear.Location = new System.Drawing.Point(93, 165);
+            this.btnJPClear.Location = new System.Drawing.Point(93, 158);
             this.btnJPClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnJPClear.Name = "btnJPClear";
             this.btnJPClear.Size = new System.Drawing.Size(56, 18);
@@ -806,7 +800,7 @@
             // 
             // 
             this.labelX47.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX47.Location = new System.Drawing.Point(11, 38);
+            this.labelX47.Location = new System.Drawing.Point(11, 35);
             this.labelX47.Margin = new System.Windows.Forms.Padding(2);
             this.labelX47.Name = "labelX47";
             this.labelX47.Size = new System.Drawing.Size(77, 18);
@@ -823,7 +817,7 @@
             this.dtJDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtJDate.ButtonDropDown.Visible = true;
             this.dtJDate.IsPopupCalendarOpen = false;
-            this.dtJDate.Location = new System.Drawing.Point(93, 133);
+            this.dtJDate.Location = new System.Drawing.Point(93, 129);
             this.dtJDate.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
@@ -870,7 +864,7 @@
             // 
             // 
             this.labelX46.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX46.Location = new System.Drawing.Point(11, 133);
+            this.labelX46.Location = new System.Drawing.Point(11, 129);
             this.labelX46.Margin = new System.Windows.Forms.Padding(2);
             this.labelX46.Name = "labelX46";
             this.labelX46.Size = new System.Drawing.Size(91, 18);
@@ -887,7 +881,7 @@
             this.txtJContent.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtJContent.DisabledBackColor = System.Drawing.Color.White;
             this.txtJContent.ForeColor = System.Drawing.Color.Black;
-            this.txtJContent.Location = new System.Drawing.Point(93, 38);
+            this.txtJContent.Location = new System.Drawing.Point(93, 35);
             this.txtJContent.Margin = new System.Windows.Forms.Padding(2);
             this.txtJContent.Multiline = true;
             this.txtJContent.Name = "txtJContent";

@@ -119,7 +119,7 @@
             this.groupPanel1.Location = new System.Drawing.Point(5, 1);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(896, 293);
+            this.groupPanel1.Size = new System.Drawing.Size(884, 293);
             // 
             // 
             // 
@@ -162,17 +162,16 @@
             this.pagerControl1.PageIndex = 1;
             this.pagerControl1.PageSize = 10;
             this.pagerControl1.RecordCount = 0;
-            this.pagerControl1.Size = new System.Drawing.Size(890, 29);
+            this.pagerControl1.Size = new System.Drawing.Size(878, 29);
             this.pagerControl1.TabIndex = 1;
             // 
             // superGridControl1
             // 
-            this.superGridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.superGridControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(242)))));
+            this.superGridControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.superGridControl1.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.superGridControl1.ForeColor = System.Drawing.Color.Black;
-            this.superGridControl1.Location = new System.Drawing.Point(-3, 9);
+            this.superGridControl1.Location = new System.Drawing.Point(0, 0);
             this.superGridControl1.Margin = new System.Windows.Forms.Padding(2);
             this.superGridControl1.Name = "superGridControl1";
             // 
@@ -207,7 +206,7 @@
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn26);
             this.superGridControl1.PrimaryGrid.MultiSelect = false;
             this.superGridControl1.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.superGridControl1.Size = new System.Drawing.Size(887, 226);
+            this.superGridControl1.Size = new System.Drawing.Size(878, 241);
             this.superGridControl1.TabIndex = 20;
             this.superGridControl1.Text = "superGridControl1";
             this.superGridControl1.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.superGridControl1_RowClick);
@@ -372,8 +371,6 @@
             // 
             // groupPanel4
             // 
-            this.groupPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel4.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel4.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -387,10 +384,11 @@
             this.groupPanel4.Controls.Add(this.txtHandleDesc);
             this.groupPanel4.Controls.Add(this.labelX11);
             this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel4.Location = new System.Drawing.Point(623, 304);
+            this.groupPanel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupPanel4.Location = new System.Drawing.Point(605, 294);
             this.groupPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel4.Name = "groupPanel4";
-            this.groupPanel4.Size = new System.Drawing.Size(282, 371);
+            this.groupPanel4.Size = new System.Drawing.Size(282, 355);
             // 
             // 
             // 
@@ -589,8 +587,6 @@
             // 
             // groupPanel3
             // 
-            this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel3.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -610,10 +606,11 @@
             this.groupPanel3.Controls.Add(this.labelX5);
             this.groupPanel3.Controls.Add(this.labelX12);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel3.Location = new System.Drawing.Point(315, 304);
+            this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupPanel3.Location = new System.Drawing.Point(305, 294);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(300, 371);
+            this.groupPanel3.Size = new System.Drawing.Size(300, 355);
             // 
             // 
             // 
@@ -911,8 +908,6 @@
             // 
             // groupPanel2
             // 
-            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -927,10 +922,11 @@
             this.groupPanel2.Controls.Add(this.labelX2);
             this.groupPanel2.Controls.Add(this.labelX1);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(11, 304);
+            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupPanel2.Location = new System.Drawing.Point(5, 294);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(300, 371);
+            this.groupPanel2.Size = new System.Drawing.Size(300, 355);
             // 
             // 
             // 
@@ -1151,7 +1147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(906, 651);
+            this.ClientSize = new System.Drawing.Size(894, 651);
             this.Controls.Add(this.groupPanel4);
             this.Controls.Add(this.groupPanel3);
             this.Controls.Add(this.groupPanel2);

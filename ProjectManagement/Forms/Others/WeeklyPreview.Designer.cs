@@ -98,17 +98,16 @@
             // 
             // panelAll
             // 
-            this.panelAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelAll.BackColor = System.Drawing.Color.Transparent;
             this.panelAll.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelAll.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.panelAll.Controls.Add(this.flowPanel);
             this.panelAll.DisabledBackColor = System.Drawing.Color.Empty;
-            this.panelAll.Location = new System.Drawing.Point(13, 7);
+            this.panelAll.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelAll.Location = new System.Drawing.Point(5, 1);
             this.panelAll.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelAll.Name = "panelAll";
-            this.panelAll.Size = new System.Drawing.Size(750, 1067);
+            this.panelAll.Size = new System.Drawing.Size(737, 470);
             // 
             // 
             // 
@@ -148,17 +147,18 @@
             this.flowPanel.Controls.Add(this.gridNextWork);
             this.flowPanel.Controls.Add(this.txtNextTrouble);
             this.flowPanel.Controls.Add(this.gridTrouble);
-            this.flowPanel.Location = new System.Drawing.Point(11, 10);
-            this.flowPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowPanel.Location = new System.Drawing.Point(0, 0);
+            this.flowPanel.Margin = new System.Windows.Forms.Padding(2);
             this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(723, 1034);
+            this.flowPanel.Size = new System.Drawing.Size(731, 446);
             this.flowPanel.TabIndex = 7;
             // 
             // txtThisWork
             // 
             this.txtThisWork.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtThisWork.Location = new System.Drawing.Point(2, 2);
-            this.txtThisWork.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtThisWork.Margin = new System.Windows.Forms.Padding(2);
             this.txtThisWork.Name = "txtThisWork";
             this.txtThisWork.Size = new System.Drawing.Size(722, 26);
             this.txtThisWork.TabIndex = 5;
@@ -169,7 +169,7 @@
             // 
             this.gridThisWork.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.gridThisWork.Location = new System.Drawing.Point(2, 32);
-            this.gridThisWork.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gridThisWork.Margin = new System.Windows.Forms.Padding(2);
             this.gridThisWork.Name = "gridThisWork";
             // 
             // 
@@ -246,7 +246,7 @@
             // 
             this.txtNextWork.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtNextWork.Location = new System.Drawing.Point(2, 129);
-            this.txtNextWork.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNextWork.Margin = new System.Windows.Forms.Padding(2);
             this.txtNextWork.Name = "txtNextWork";
             this.txtNextWork.Size = new System.Drawing.Size(722, 26);
             this.txtNextWork.TabIndex = 6;
@@ -257,7 +257,7 @@
             // 
             this.gridNextWork.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.gridNextWork.Location = new System.Drawing.Point(2, 159);
-            this.gridNextWork.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gridNextWork.Margin = new System.Windows.Forms.Padding(2);
             this.gridNextWork.Name = "gridNextWork";
             // 
             // 
@@ -334,7 +334,7 @@
             // 
             this.txtNextTrouble.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtNextTrouble.Location = new System.Drawing.Point(2, 256);
-            this.txtNextTrouble.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNextTrouble.Margin = new System.Windows.Forms.Padding(2);
             this.txtNextTrouble.Name = "txtNextTrouble";
             this.txtNextTrouble.Size = new System.Drawing.Size(722, 26);
             this.txtNextTrouble.TabIndex = 15;
@@ -345,7 +345,7 @@
             // 
             this.gridTrouble.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.gridTrouble.Location = new System.Drawing.Point(2, 286);
-            this.gridTrouble.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gridTrouble.Margin = new System.Windows.Forms.Padding(2);
             this.gridTrouble.Name = "gridTrouble";
             // 
             // 
@@ -602,10 +602,11 @@
             // 
             this.Btn_CreateMail.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.Btn_CreateMail.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.Btn_CreateMail.Location = new System.Drawing.Point(780, 11);
+            this.Btn_CreateMail.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Btn_CreateMail.Location = new System.Drawing.Point(742, 1);
             this.Btn_CreateMail.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Btn_CreateMail.Name = "Btn_CreateMail";
-            this.Btn_CreateMail.Size = new System.Drawing.Size(56, 19);
+            this.Btn_CreateMail.Size = new System.Drawing.Size(159, 19);
             this.Btn_CreateMail.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.Btn_CreateMail.TabIndex = 1;
             this.Btn_CreateMail.Text = "生成邮件";
@@ -631,7 +632,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(914, 703);
+            this.ClientSize = new System.Drawing.Size(906, 473);
             this.Controls.Add(this.Btn_CreateMail);
             this.Controls.Add(this.panelAll);
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);

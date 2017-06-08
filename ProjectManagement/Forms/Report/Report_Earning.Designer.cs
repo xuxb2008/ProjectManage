@@ -62,25 +62,24 @@
             this.superGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superGridControl1.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.superGridControl1.Location = new System.Drawing.Point(0, 0);
-            this.superGridControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.superGridControl1.Margin = new System.Windows.Forms.Padding(2);
             this.superGridControl1.Name = "superGridControl1";
-            this.superGridControl1.Size = new System.Drawing.Size(1103, 351);
+            this.superGridControl1.Size = new System.Drawing.Size(817, 294);
             this.superGridControl1.TabIndex = 0;
             this.superGridControl1.Text = "superGridControl1";
             // 
             // groupPanel2
             // 
-            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel2.Controls.Add(this.tableLayoutPanel1);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(5, 14);
-            this.groupPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupPanel2.Location = new System.Drawing.Point(5, 1);
+            this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(1109, 147);
+            this.groupPanel2.Size = new System.Drawing.Size(827, 98);
             // 
             // 
             // 
@@ -116,7 +115,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.Controls.Add(this.txtSearch, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnChooseALL, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCancel, 1, 1);
@@ -124,14 +123,13 @@
             this.tableLayoutPanel1.Controls.Add(this.btnExport, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1103, 120);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(821, 74);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtSearch
@@ -139,10 +137,10 @@
             this.txtSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.txtSearch.Location = new System.Drawing.Point(1025, 62);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSearch.Location = new System.Drawing.Point(763, 38);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(75, 22);
+            this.txtSearch.Size = new System.Drawing.Size(56, 14);
             this.txtSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.txtSearch.TabIndex = 3;
             this.txtSearch.Text = "查询";
@@ -153,10 +151,10 @@
             this.btnChooseALL.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnChooseALL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnChooseALL.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnChooseALL.Location = new System.Drawing.Point(1025, 2);
-            this.btnChooseALL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnChooseALL.Location = new System.Drawing.Point(763, 2);
+            this.btnChooseALL.Margin = new System.Windows.Forms.Padding(2);
             this.btnChooseALL.Name = "btnChooseALL";
-            this.btnChooseALL.Size = new System.Drawing.Size(75, 22);
+            this.btnChooseALL.Size = new System.Drawing.Size(56, 14);
             this.btnChooseALL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnChooseALL.TabIndex = 3;
             this.btnChooseALL.Text = "全选";
@@ -167,10 +165,10 @@
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnCancel.Location = new System.Drawing.Point(1025, 32);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancel.Location = new System.Drawing.Point(763, 20);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 22);
+            this.btnCancel.Size = new System.Drawing.Size(56, 14);
             this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
@@ -180,11 +178,10 @@
             // 
             this.panel2.Controls.Add(this.checkedListBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(4, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.tableLayoutPanel1.SetRowSpan(this.panel2, 4);
-            this.panel2.Size = new System.Drawing.Size(988, 112);
+            this.panel2.Size = new System.Drawing.Size(735, 68);
             this.panel2.TabIndex = 5;
             // 
             // checkedListBox1
@@ -194,10 +191,9 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.HorizontalScrollbar = true;
             this.checkedListBox1.Location = new System.Drawing.Point(0, 0);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkedListBox1.MultiColumn = true;
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(988, 112);
+            this.checkedListBox1.Size = new System.Drawing.Size(735, 68);
             this.checkedListBox1.TabIndex = 0;
             // 
             // btnExport
@@ -205,10 +201,10 @@
             this.btnExport.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExport.Location = new System.Drawing.Point(1025, 92);
-            this.btnExport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExport.Location = new System.Drawing.Point(763, 56);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(2);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 22);
+            this.btnExport.Size = new System.Drawing.Size(56, 16);
             this.btnExport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnExport.TabIndex = 1;
             this.btnExport.Text = "导出";
@@ -225,10 +221,10 @@
             this.groupPanel1.Controls.Add(this.treeList1);
             this.groupPanel1.Controls.Add(this.superGridControl1);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(5, 165);
-            this.groupPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupPanel1.Location = new System.Drawing.Point(5, 103);
+            this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(1109, 378);
+            this.groupPanel1.Size = new System.Drawing.Size(823, 318);
             // 
             // 
             // 
@@ -271,9 +267,8 @@
             this.treeList1.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.Location = new System.Drawing.Point(0, 0);
-            this.treeList1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeList1.Name = "treeList1";
-            this.treeList1.Size = new System.Drawing.Size(1103, 328);
+            this.treeList1.Size = new System.Drawing.Size(817, 294);
             this.treeList1.TabIndex = 1;
             // 
             // treeListColumn3
@@ -367,12 +362,12 @@
             // 
             // Report_Earning
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1124, 556);
+            this.ClientSize = new System.Drawing.Size(837, 423);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "Report_Earning";
             this.Text = "收入情况报表";
             this.groupPanel2.ResumeLayout(false);
