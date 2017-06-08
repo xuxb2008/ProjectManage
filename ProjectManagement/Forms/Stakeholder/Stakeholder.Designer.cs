@@ -50,6 +50,7 @@
             this.gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cmbSendType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
@@ -79,7 +80,6 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.txtCompanyName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtiCreated)).BeginInit();
@@ -315,6 +315,12 @@
             this.gridColumn15.Name = "Status";
             this.gridColumn15.Visible = false;
             // 
+            // gridColumn19
+            // 
+            this.gridColumn19.DataPropertyName = "SendType";
+            this.gridColumn19.Name = "SendType";
+            this.gridColumn19.Visible = false;
+            // 
             // groupPanel2
             // 
             this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -355,7 +361,7 @@
             this.groupPanel2.Location = new System.Drawing.Point(3, 320);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(944, 305);
+            this.groupPanel2.Size = new System.Drawing.Size(944, 185);
             // 
             // 
             // 
@@ -832,20 +838,13 @@
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "企业名称：";
             // 
-            // gridColumn19
-            // 
-            this.gridColumn19.DataPropertyName = "SendType";
-            this.gridColumn19.Name = "SendType";
-            this.gridColumn19.Visible = false;
-            // 
             // Stakeholder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 605);
+            this.ClientSize = new System.Drawing.Size(950, 534);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Stakeholder";
             this.Text = "干系人清单";
             this.groupPanel1.ResumeLayout(false);

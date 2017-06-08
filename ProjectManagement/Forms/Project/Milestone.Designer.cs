@@ -99,7 +99,8 @@
             // 
             // groupPanel1
             // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -121,7 +122,7 @@
             this.groupPanel1.Location = new System.Drawing.Point(3, 286);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(925, 219);
+            this.groupPanel1.Size = new System.Drawing.Size(909, 224);
             // 
             // 
             // 
@@ -156,9 +157,8 @@
             // btnLClear
             // 
             this.btnLClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnLClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnLClear.Location = new System.Drawing.Point(424, 166);
+            this.btnLClear.Location = new System.Drawing.Point(424, 139);
             this.btnLClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnLClear.Name = "btnLClear";
             this.btnLClear.Size = new System.Drawing.Size(56, 18);
@@ -170,9 +170,8 @@
             // btnSave
             // 
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(518, 166);
+            this.btnSave.Location = new System.Drawing.Point(518, 139);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(56, 18);
@@ -183,12 +182,11 @@
             // 
             // cbLStatus
             // 
-            this.cbLStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbLStatus.DisplayMember = "Text";
             this.cbLStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbLStatus.FormattingEnabled = true;
             this.cbLStatus.ItemHeight = 19;
-            this.cbLStatus.Location = new System.Drawing.Point(99, 66);
+            this.cbLStatus.Location = new System.Drawing.Point(99, 39);
             this.cbLStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cbLStatus.Name = "cbLStatus";
             this.cbLStatus.Size = new System.Drawing.Size(210, 25);
@@ -197,7 +195,6 @@
             // 
             // dtLCREATED
             // 
-            this.dtLCREATED.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             // 
             // 
             // 
@@ -207,7 +204,7 @@
             this.dtLCREATED.ButtonDropDown.Visible = true;
             this.dtLCREATED.Enabled = false;
             this.dtLCREATED.IsPopupCalendarOpen = false;
-            this.dtLCREATED.Location = new System.Drawing.Point(424, 110);
+            this.dtLCREATED.Location = new System.Drawing.Point(424, 83);
             this.dtLCREATED.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
@@ -249,7 +246,6 @@
             // 
             // dtLFinish
             // 
-            this.dtLFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             // 
             // 
             // 
@@ -258,7 +254,7 @@
             this.dtLFinish.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtLFinish.ButtonDropDown.Visible = true;
             this.dtLFinish.IsPopupCalendarOpen = false;
-            this.dtLFinish.Location = new System.Drawing.Point(424, 30);
+            this.dtLFinish.Location = new System.Drawing.Point(424, 3);
             this.dtLFinish.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
@@ -300,13 +296,12 @@
             // 
             // labelX26
             // 
-            this.labelX26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelX26.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX26.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX26.Location = new System.Drawing.Point(332, 107);
+            this.labelX26.Location = new System.Drawing.Point(332, 80);
             this.labelX26.Margin = new System.Windows.Forms.Padding(2);
             this.labelX26.Name = "labelX26";
             this.labelX26.Size = new System.Drawing.Size(88, 18);
@@ -315,13 +310,12 @@
             // 
             // labelX27
             // 
-            this.labelX27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelX27.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX27.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX27.Location = new System.Drawing.Point(7, 66);
+            this.labelX27.Location = new System.Drawing.Point(7, 39);
             this.labelX27.Margin = new System.Windows.Forms.Padding(2);
             this.labelX27.Name = "labelX27";
             this.labelX27.Size = new System.Drawing.Size(88, 18);
@@ -330,13 +324,12 @@
             // 
             // labelX28
             // 
-            this.labelX28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelX28.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX28.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX28.Location = new System.Drawing.Point(332, 30);
+            this.labelX28.Location = new System.Drawing.Point(332, 3);
             this.labelX28.Margin = new System.Windows.Forms.Padding(2);
             this.labelX28.Name = "labelX28";
             this.labelX28.Size = new System.Drawing.Size(88, 18);
@@ -345,7 +338,6 @@
             // 
             // txtLRemark
             // 
-            this.txtLRemark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtLRemark.BackColor = System.Drawing.Color.White;
             // 
             // 
@@ -354,7 +346,7 @@
             this.txtLRemark.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtLRemark.DisabledBackColor = System.Drawing.Color.White;
             this.txtLRemark.ForeColor = System.Drawing.Color.Black;
-            this.txtLRemark.Location = new System.Drawing.Point(99, 110);
+            this.txtLRemark.Location = new System.Drawing.Point(99, 83);
             this.txtLRemark.Margin = new System.Windows.Forms.Padding(2);
             this.txtLRemark.Multiline = true;
             this.txtLRemark.Name = "txtLRemark";
@@ -365,7 +357,6 @@
             // 
             // txtLCondition
             // 
-            this.txtLCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtLCondition.BackColor = System.Drawing.Color.White;
             // 
             // 
@@ -374,7 +365,7 @@
             this.txtLCondition.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtLCondition.DisabledBackColor = System.Drawing.Color.White;
             this.txtLCondition.ForeColor = System.Drawing.Color.Black;
-            this.txtLCondition.Location = new System.Drawing.Point(424, 64);
+            this.txtLCondition.Location = new System.Drawing.Point(424, 37);
             this.txtLCondition.Margin = new System.Windows.Forms.Padding(2);
             this.txtLCondition.Name = "txtLCondition";
             this.txtLCondition.PreventEnterBeep = true;
@@ -383,7 +374,6 @@
             // 
             // txtLName
             // 
-            this.txtLName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtLName.BackColor = System.Drawing.Color.White;
             // 
             // 
@@ -392,7 +382,7 @@
             this.txtLName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtLName.DisabledBackColor = System.Drawing.Color.White;
             this.txtLName.ForeColor = System.Drawing.Color.Black;
-            this.txtLName.Location = new System.Drawing.Point(99, 30);
+            this.txtLName.Location = new System.Drawing.Point(99, 3);
             this.txtLName.Margin = new System.Windows.Forms.Padding(2);
             this.txtLName.Name = "txtLName";
             this.txtLName.Size = new System.Drawing.Size(209, 21);
@@ -400,13 +390,12 @@
             // 
             // labelX29
             // 
-            this.labelX29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelX29.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX29.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX29.Location = new System.Drawing.Point(7, 107);
+            this.labelX29.Location = new System.Drawing.Point(7, 80);
             this.labelX29.Margin = new System.Windows.Forms.Padding(2);
             this.labelX29.Name = "labelX29";
             this.labelX29.Size = new System.Drawing.Size(88, 18);
@@ -415,13 +404,12 @@
             // 
             // labelX30
             // 
-            this.labelX30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelX30.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX30.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX30.Location = new System.Drawing.Point(332, 66);
+            this.labelX30.Location = new System.Drawing.Point(332, 39);
             this.labelX30.Margin = new System.Windows.Forms.Padding(2);
             this.labelX30.Name = "labelX30";
             this.labelX30.Size = new System.Drawing.Size(88, 18);
@@ -430,13 +418,12 @@
             // 
             // labelX31
             // 
-            this.labelX31.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelX31.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX31.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX31.Location = new System.Drawing.Point(7, 30);
+            this.labelX31.Location = new System.Drawing.Point(7, 3);
             this.labelX31.Margin = new System.Windows.Forms.Padding(2);
             this.labelX31.Name = "labelX31";
             this.labelX31.Size = new System.Drawing.Size(88, 18);
@@ -456,7 +443,7 @@
             this.groupPanel5.Location = new System.Drawing.Point(6, 6);
             this.groupPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel5.Name = "groupPanel5";
-            this.groupPanel5.Size = new System.Drawing.Size(933, 276);
+            this.groupPanel5.Size = new System.Drawing.Size(909, 276);
             // 
             // 
             // 
@@ -490,9 +477,8 @@
             // 
             // gridLCB
             // 
-            this.gridLCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridLCB.BackColor = System.Drawing.Color.White;
+            this.gridLCB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridLCB.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.gridLCB.ForeColor = System.Drawing.Color.Black;
             this.gridLCB.Location = new System.Drawing.Point(0, 0);
@@ -514,7 +500,7 @@
             this.gridLCB.PrimaryGrid.Columns.Add(this.LCBStatus);
             this.gridLCB.PrimaryGrid.ReadOnly = true;
             this.gridLCB.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridLCB.Size = new System.Drawing.Size(919, 244);
+            this.gridLCB.Size = new System.Drawing.Size(903, 252);
             this.gridLCB.TabIndex = 0;
             this.gridLCB.Text = "superGridControl1";
             this.gridLCB.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.gridLCB_RowClick);
@@ -575,7 +561,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 571);
+            this.ClientSize = new System.Drawing.Size(931, 523);
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.groupPanel5);
             this.Name = "FormMilestone";
