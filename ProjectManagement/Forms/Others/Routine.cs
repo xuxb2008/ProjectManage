@@ -12,6 +12,7 @@ using CommonDLL;
 using BussinessDLL;
 using DomainDLL;
 using DevComponents.Editors;
+using System.IO;
 
 namespace ProjectManagement.Forms.Others
 {
@@ -157,25 +158,22 @@ namespace ProjectManagement.Forms.Others
             #endregion
 
             bool IsEdit = false;
-            string oldPanrentNodeID="";
-            string newPanrentNodeID = "";
+            string oldNodeID = "";
+            string newNodeID = "";
             // 判断是否为修改状态 节点是否改变
             if (!string.IsNullOrEmpty(_nodeID))
             {
                 PNode ParentNode = new WBSBLL().GetParentNode(_nodeID);
-                if (!obj.NodeID.Substring(0, 36).Equals(ParentNode.ID.Substring(0, 36)))
+                if (obj.NodeID.Substring(0, 36).Equals(ParentNode.ID.Substring(0, 36)))
                     return;
                 IsEdit = true;
-                oldPanrentNodeID = ParentNode.ID;
-                newPanrentNodeID = obj.NodeID;
+                oldNodeID = _nodeID;
             }
 
-            JsonResult result = routineBLL.SaveRoutine(ProjectId, obj, listWork);
-            WorkId = result.result ? (string)result.data : WorkId;
+            JsonResult result = routineBLL.SaveRoutine(ProjectId, obj, listWork, ref newNodeID);
 
             if (result.result)
             {
-                _nodeID = obj.NodeID;
                 //一览重新加载
                 Search();
                 ClearWork();//清空
@@ -186,15 +184,7 @@ namespace ProjectManagement.Forms.Others
                 #region  结点改变时，移动文件到新的节点
                 if (IsEdit)
                 {
-
-                    List<RoutineFiles> list = routineBLL.GetRoutineFiles(WorkId);
-                    foreach (RoutineFiles file in list)
-                    {
-                        //取得当前的文件路径
-                        string filePath = FileHelper.GetFilePath(UploadType.Routine, ProjectId, oldPanrentNodeID, file.Path);
-                        //拷贝文件到新的结点
-                        if (!FileHelper.CopyFile(filePath, UploadType.Routine, ProjectId, newPanrentNodeID, file.Path)) return;
-                    }
+                    //FileHelper.MoveFloder(UploadType.Routine, ProjectId,oldNodeID,newNodeID);
                 }
                 #endregion
 
@@ -319,10 +309,12 @@ namespace ProjectManagement.Forms.Others
         /// <param name="e"></param>
         private void gridRoutine_CellClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs e)
         {
+            ClearWork();
             WorkId = e.GridCell.GridRow.Cells["ID"].Value.ToString();
             if (!string.IsNullOrEmpty(WorkId))
             {
                 LoadContent();
+                LoadFileList();//加载日常工作文件列表
             }
         }
         /// <summary>

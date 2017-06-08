@@ -5,12 +5,12 @@ namespace DomainDLL
 {
 
     /// <summary>
-    /// 日常工作责任人工作量分配
+    /// 问题责任人工作量分配
     /// </summary>
     public class TroubleWork : PersistenceEntity
     {
         /// <summary>
-        /// 问题信息ID
+        /// 问题基本信息ID
         /// </summary>
         public virtual string TroubleID
         {

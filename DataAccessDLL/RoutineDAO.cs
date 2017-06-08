@@ -110,7 +110,7 @@ namespace DataAccessDLL
         /// </summary>
         /// <param name="entity">日常工作实体</param>
         /// <param name="listWork">负责人列表</param>
-        public virtual void UpdateRoutine(Routine newEntity, Routine oldeEntity, PNode newNode, PNode oldNode, List<RoutineWork> listWork)
+        public void UpdateRoutine(Routine newEntity, Routine oldeEntity, PNode newNode, PNode oldNode, List<RoutineWork> listWork)
         {
             ISession s = NHHelper.GetCurrentSession();
             try

@@ -511,13 +511,12 @@ namespace ProjectManagement
 
         /// <summary>
         /// WBS节点文件路径下所有文件的移动
-        /// Created：2017.3.30(ChengMengjia)
+        /// Created：20170330(ChengMengjia)
+        /// Updated：20170607(ChengMengjia)
         /// </summary>
         /// <param name="type"></param>
-        /// <param name="projectId"></param>
-        /// <param name="oldNodeID"></param>
-        /// <param name="newNodeID"></param>
-        public static void WBSMoveFloder(string CurrentNodeID)
+        /// <param name="CurrentNodeID">最新NodeID</param>
+        public static void WBSMoveFloder(UploadType type, string CurrentNodeID)
         {
             try
             {
@@ -543,7 +542,29 @@ namespace ProjectManagement
                 LogHelper.WriteException(ex, LogType.CommonDLL);
             }
         }
-
+        /// <summary>
+        /// 文件路径下所有文件的移动
+        /// Created：20170607(ChengMengjia)
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="projectId"></param>
+        /// <param name="oldNodeID"></param>
+        /// <param name="newNodeID"></param>
+        public static void MoveFloder(UploadType type, string projectId, string oldNodeID, string newNodeID)
+        {
+            string oldPath = GetWorkdir() + GetUploadPath(type, projectId, oldNodeID);
+            string newPath = GetWorkdir() + GetUploadPath(type, projectId, newNodeID);
+            if (oldPath.Equals(newPath) || !Directory.Exists(oldPath))//路径相同或原路径不存在
+                return;
+            if (Directory.Exists(newPath))
+                //需要先将目标路径删除否则无法移动
+                Directory.Delete(newPath, true);
+            string[] newP = newPath.Split('\\');
+            string s = newPath.Substring(0, newPath.Length - 2 - newP[newP.Count() - 2].Length);
+            if (!Directory.Exists(s))
+                Directory.CreateDirectory(s);
+            Directory.Move(oldPath, newPath);
+        }
 
         /// <summary>
         /// 文件路径下所有文件的复制
