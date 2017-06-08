@@ -47,12 +47,24 @@ namespace DataAccessDLL
             where t.status = 1 and s.pid =@pid  and s.status =@status
             )
             )
+            /*总工作量*/
+            select '总工作量' as RowNo,(select sum(workload) from (select sum(workload) as workload from                       RoutineWork rw union
+            select sum(workload) as workload from DeliverablesWork dw union
+            select sum(workload) as workload from TroubleWork tw)) as Source,
+            '天' as name,null as desc,null as startedate,null as enddate,null as workload,null as zhanbi,-2 as type,null as allname
+            union
             /*人员*/
-            select name as RowNo,'总工作量' as Source ,(select sum(zhanbi) from cte c where c.allname =s.name group by c.allname ) as name,null as desc,null as startedate,null as enddate,null as workload,null as zhanbi ,-1 as type,name as allname from stakeholders s
+            select name as RowNo,'总工作量' as Source ,(select sum(zhanbi) from cte c where c.allname =s.name group by c.allname ) as name,'天' as desc,null as startedate,null as enddate,null as workload,null as zhanbi ,-1 as type,name as allname from stakeholders s
             where s.pid=@pid and s.status =@status
             union
+
             /*标题*/
             select null as RowNo,'来源' as source,'名称' as name ,'描述' as desc,'开始' as startrdate,'结束' as enddate,'工作量' as workload,'占比' as zhanbi ,0 as type,name as allname from stakeholders s
+            where s.pid=@pid and s.status =@status
+            union
+
+            /*签字行*/
+            select null as RowNo,null as source,null as name ,null as desc,null as startrdate,null as enddate,null as workload,null as zhanbi ,-3 as type,name as allname from stakeholders s
             where s.pid=@pid and s.status =@status
             union
 
