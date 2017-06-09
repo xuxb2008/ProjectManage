@@ -58,9 +58,17 @@ namespace ProjectManagement.Forms.Others
         {
             _nodeID = nodeID;
             InitializeComponent();
+        }
+        /// <summary>
+        /// 画面加载时
+        /// Created：2017.03.30(Xuxb)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Routine_Load(object sender, EventArgs e)
+        {
             init();
         }
-
 
         /// <summary>
         /// 日常工作清空按钮按下时
@@ -167,27 +175,23 @@ namespace ProjectManagement.Forms.Others
             }
 
             JsonResult result = routineBLL.SaveRoutine(ProjectId, obj, listWork);
-
+            MessageHelper.ShowRstMsg(result.result);
             if (result.result)
             {
                 //一览重新加载
                 Search();
-                ClearWork();//清空
+                //清空编辑
+                ClearWork();
                 //主框更新
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
                 mainForm.RelaodTree();
-
+                //重新加载首页的成果列表
+                startPage.LoadProjectTroubleList();
                 #region  结点改变时，移动文件到新的节点
                 if (IsEdit)
-                {
                     FileHelper.MoveFloder(oldPath, FileHelper.GetWorkdir() + FileHelper.GetUploadPath(UploadType.Routine, ProjectId, _nodeID));
-                }
                 #endregion
-
             }
-            MessageHelper.ShowRstMsg(result.result);
-            //重新加载首页的成果列表
-            startPage.LoadProjectTroubleList();
         }
 
         /// <summary>

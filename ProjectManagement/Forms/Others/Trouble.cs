@@ -49,7 +49,6 @@ namespace ProjectManagement.Forms.Others
 
         #endregion
 
-
         #region 事件
 
         public Trouble(string nodeID)
@@ -183,28 +182,16 @@ namespace ProjectManagement.Forms.Others
             if (!GetEditManager(ref listWork, true)) return;//责任人如果填写无误
 
             DomainDLL.Trouble obj = new DomainDLL.Trouble();
+
+            #region 赋值
             //项目问题ID
             obj.ID = TroubleId;
-            //节点
+            //NodeID
+            //节点(如果关联结点未选择时，默认设定为项目结点)
             if (cmbNode.SelectedIndex < 0 || string.IsNullOrEmpty(cmbNode.SelectedNode.Name))
                 obj.NodeID = DataHelper.GetNodeIdByProjectId(ProjectId);
             else
                 obj.NodeID = cmbNode.SelectedNode.Name.Substring(0, 36);
-
-            PNode ParentNode = new WBSBLL().GetParentNode(_nodeID);
-            //结点改变时，移动文件到新的节点
-            if (!obj.NodeID.Substring(0, 36).Equals(ParentNode.ID.Substring(0, 36)))
-            {
-                List<TroubleFiles> list = troubleBLL.GetTroubleFiles(TroubleId, 0);
-                foreach (TroubleFiles file in list)
-                {
-                    //取得当前的文件路径
-                    string filePath = FileHelper.GetFilePath(UploadType.Trouble, ProjectId, _nodeID, file.Path);
-                    //拷贝文件到新的结点
-                    if (!FileHelper.CopyFile(filePath, UploadType.Trouble, ProjectId, obj.NodeID, file.Path)) return;
-                }
-            }
-
             //问题名称
             obj.Name = txtTroubleName.Text;
             //问题描述
@@ -228,30 +215,39 @@ namespace ProjectManagement.Forms.Others
             //处理情况
             if (cmbHandleStatus.SelectedIndex > -1)
                 obj.HandleStatus = int.Parse(((ComboItem)cmbHandleStatus.SelectedItem).Value.ToString());
+            #endregion
 
+            bool IsEdit = false;
+            string oldPath = "";//旧的文件存放路径
+            // 判断是否为修改状态 节点是否改变
+            if (!string.IsNullOrEmpty(_nodeID))
+            {
+                IsEdit = true;
+                oldPath = FileHelper.GetWorkdir() + FileHelper.GetUploadPath(UploadType.Trouble, ProjectId, _nodeID);
+            }
 
             //保存
             JsonResult result = troubleBLL.SaveTrouble(ProjectId, obj, listWork);
-            TroubleId = result.result ? (string)result.data : TroubleId;
-
+            MessageHelper.ShowRstMsg(result.result);
             if (result.result)
             {
-                _nodeID = obj.NodeID;
                 //一览重新加载
                 Search();
+                //清空当前编辑
                 ClearTrouble();
-
-
                 //主框更新
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
                 mainForm.RelaodTree();
+                //重新加载首页的成果列表
+                startPage.LoadProjectTrouble();
+                startPage.LoadProjectTroubleList();
+                #region  结点改变时，移动文件到新的节点
+                if (IsEdit)
+                    FileHelper.MoveFloder(oldPath, FileHelper.GetWorkdir() + FileHelper.GetUploadPath(UploadType.Trouble, ProjectId, _nodeID));
+                #endregion
             }
 
-            MessageHelper.ShowRstMsg(result.result);
 
-            //重新加载首页的成果列表
-            startPage.LoadProjectTrouble();
-            startPage.LoadProjectTroubleList();
         }
 
         #endregion
@@ -320,7 +316,8 @@ namespace ProjectManagement.Forms.Others
             file.Name = txtFileName.Text;
             //文件描述
             file.Desc = txtFileDesc.Text;
-
+            //文件类型
+            file.Type = 0;
             //上传文件名
             if (_fileSelectFlg)
             {
@@ -414,6 +411,86 @@ namespace ProjectManagement.Forms.Others
 
         #endregion
 
+        #region 其他文件——原因、分析、解决方案
+
+
+        /// <summary>
+        /// 原因、分析、解决方案的下载
+        /// Created:20170609(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            ButtonX button = (ButtonX)sender;
+            int Type = int.Parse(button.Name.Substring(button.Name.Length - 1));
+            List<TroubleFiles> list = troubleBLL.GetTroubleFiles(TroubleId, Type);
+            if (list.Count <= 0)
+            {
+                MessageHelper.ShowMsg(MessageID.W000000005, MessageType.Alert);
+                return;
+            }
+            FileHelper.DownLoadFile(UploadType.Trouble, ProjectId, _nodeID, list[0].Path);
+        }
+
+        /// <summary>
+        /// 原因、分析、解决方案的打开
+        /// Created:20170609(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void lbl_Click(object sender, EventArgs e)
+        {
+            LinkLabel link = (LinkLabel)sender;
+            FileHelper.OpenFile(UploadType.Trouble, ProjectId, _nodeID, link.Tag.ToString());
+        }
+
+        /// <summary>
+        /// 原因、分析、解决方案的上传
+        /// Created:20170609(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            ButtonX button = (ButtonX)sender;
+            int Type = int.Parse(button.Name.Substring(button.Name.Length - 1));
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Multiselect = false;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    DomainDLL.TroubleFiles entity = new DomainDLL.TroubleFiles();
+                    entity.ID = button.Tag == null ? "" : button.Tag.ToString();
+                    entity.TroubleID = TroubleId.Substring(0, 36);
+                    entity.Path = FileHelper.UploadFile(dialog.FileName, UploadType.Trouble, ProjectId, _nodeID);
+                    switch (Type)
+                    {
+                        case 1:
+                            entity.Name = "原因";
+                            break;
+                        case 2:
+                            entity.Name = "分析";
+                            break;
+                        case 3:
+                            entity.Name = "解决方案";
+                            break;
+                    }
+                    if (string.IsNullOrEmpty(entity.Path))
+                        MessageHelper.ShowRstMsg(false);
+                    else
+                    {
+                        entity.Type = Type;
+                        JsonResult result = troubleBLL.SaveTroubleFile(entity);
+                        MessageHelper.ShowRstMsg(result.result);
+                        LoadSpecFiles(TroubleId);
+                    }
+                }
+            }
+        }
+        #endregion
+
 
         #endregion
 
@@ -463,6 +540,7 @@ namespace ProjectManagement.Forms.Others
 
                 //附件列表加载
                 LoadFileList(obj.ID.Substring(0, 36));
+                LoadSpecFiles(obj.ID.Substring(0, 36));
 
                 txtFilePath.Text = string.Empty;
                 txtFileName.Text = string.Empty;
@@ -757,6 +835,57 @@ namespace ProjectManagement.Forms.Others
             return true;
         }
 
+        /// <summary>
+        /// 原因、分析、解决方案的加载
+        /// Created:20170609(ChengMengjia)
+        /// </summary>
+        private void LoadSpecFiles(string troubleID)
+        {
+            List<TroubleFiles> list = troubleBLL.GetTroubleFiles(TroubleId, null);
+            //原因
+            TroubleFiles entity = list.Where(t => t.Type == 1).FirstOrDefault();
+            bool IsExist = entity != null;
+            if (IsExist)
+            {
+                lbl1.Text = entity.Name;
+                lbl1.Tag = entity.Path;
+                btnUp1.Tag = entity.ID;
+            }
+            else
+                btnUp1.Tag = null;
+            lbl1.Visible = IsExist;
+            btnDown1.Visible = IsExist;
+
+            //分析
+            entity = null;
+            entity = list.Where(t => t.Type == 2).FirstOrDefault();
+            IsExist = entity != null;
+            if (IsExist)
+            {
+                lbl2.Text = entity.Name;
+                lbl2.Tag = entity.Path;
+                btnUp2.Tag = entity.ID;
+            }
+            else
+                btnUp2.Tag = null;
+            lbl2.Visible = IsExist;
+            btnDown2.Visible = IsExist;
+
+            //解决方案
+            entity = null;
+            entity = list.Where(t => t.Type == 3).FirstOrDefault();
+            IsExist = entity != null;
+            if (IsExist)
+            {
+                lbl3.Text = entity.Name;
+                lbl3.Tag = entity.Path;
+                btnUp3.Tag = entity.ID;
+            }
+            else
+                btnUp3.Tag = null;
+            lbl3.Visible = IsExist;
+            btnDown3.Visible = IsExist;
+        }
 
         #endregion
 

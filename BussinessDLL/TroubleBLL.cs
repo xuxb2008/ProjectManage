@@ -54,7 +54,7 @@ namespace BussinessDLL
         /// <param name="entity"></param>
         /// <param name="listWork"></param>
         /// <returns></returns>
-        public JsonResult SaveTrouble(string ProjectId,Trouble entity, List<TroubleWork> listWork)
+        public JsonResult SaveTrouble(string ProjectId, Trouble entity, List<TroubleWork> listWork)
         {
             JsonResult jsonreslut = new JsonResult();
             try
@@ -62,7 +62,7 @@ namespace BussinessDLL
                 //如果是新增
                 if (string.IsNullOrEmpty(entity.ID))
                 {
-                     #region 新增WBS节点
+                    #region 新增WBS节点
                     PNode node = null;
                     if (!string.IsNullOrEmpty(entity.NodeID))
                     {
@@ -76,13 +76,13 @@ namespace BussinessDLL
                         node.CREATED = DateTime.Now;
                     }
                     #endregion
-                     #region 新插入实体
+                    #region 新插入实体
                     entity.NodeID = node == null ? null : node.ID.Substring(0, 36);
                     entity.ID = Guid.NewGuid().ToString() + "-1";
                     entity.CREATED = DateTime.Now;
                     entity.Status = 1;
-                     #endregion
-                    dao.AddTrouble(entity,node, listWork);
+                    #endregion
+                    dao.AddTrouble(entity, node, listWork);
                 }
                 //编辑
                 else
@@ -205,7 +205,7 @@ namespace BussinessDLL
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public Trouble GetTroubleObject(string ID,string NodeID)
+        public Trouble GetTroubleObject(string ID, string NodeID)
         {
             Trouble entity = new Trouble();
             if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NodeID))
@@ -257,14 +257,15 @@ namespace BussinessDLL
         /// <param name="TroubleID"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public List<TroubleFiles> GetTroubleFiles(string TroubleID, int type)
+        public List<TroubleFiles> GetTroubleFiles(string TroubleID, int? type)
         {
             List<TroubleFiles> list = new List<TroubleFiles>();
             if (!string.IsNullOrEmpty(TroubleID))
             {
                 List<QueryField> qf = new List<QueryField>();
                 qf.Add(new QueryField() { Name = "TroubleID", Type = QueryFieldType.String, Value = TroubleID.Substring(0, 36) });
-                qf.Add(new QueryField() { Name = "Type", Type = QueryFieldType.Numeric, Value = type });
+                if (type != null)
+                    qf.Add(new QueryField() { Name = "Type", Type = QueryFieldType.Numeric, Value = type });
                 qf.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
                 SortField sf = new SortField() { Name = "CREATED", Direction = SortDirection.Desc };
                 list = new Repository<TroubleFiles>().GetList(qf, sf) as List<TroubleFiles>;
