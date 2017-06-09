@@ -62,10 +62,10 @@
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.superTabItem4 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.superTabItem3 = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.superTabItem4 = new DevComponents.DotNetBar.SuperTabItem();
             this.DelFileMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ItemDel = new System.Windows.Forms.ToolStripMenuItem();
             this.groupPanel1.SuspendLayout();
@@ -78,8 +78,6 @@
             // 
             // groupPanel1
             // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -97,10 +95,11 @@
             this.groupPanel1.Controls.Add(this.labelX2);
             this.groupPanel1.Controls.Add(this.labelX1);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(6, 6);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupPanel1.Location = new System.Drawing.Point(5, 1);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(300, 586);
+            this.groupPanel1.Size = new System.Drawing.Size(300, 450);
             // 
             // 
             // 
@@ -321,17 +320,16 @@
             // 
             // groupPanel2
             // 
-            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel2.Controls.Add(this.superTabControl1);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(310, 6);
+            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel2.Location = new System.Drawing.Point(305, 1);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(361, 585);
+            this.groupPanel2.Size = new System.Drawing.Size(382, 450);
             // 
             // 
             // 
@@ -394,7 +392,7 @@
             this.superTabControl1.ReorderTabsEnabled = true;
             this.superTabControl1.SelectedTabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
             this.superTabControl1.SelectedTabIndex = 0;
-            this.superTabControl1.Size = new System.Drawing.Size(355, 561);
+            this.superTabControl1.Size = new System.Drawing.Size(376, 426);
             this.superTabControl1.TabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.superTabControl1.TabIndex = 0;
             this.superTabControl1.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -424,7 +422,7 @@
             this.superTabControlPanel1.Location = new System.Drawing.Point(0, 26);
             this.superTabControlPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(355, 535);
+            this.superTabControlPanel1.Size = new System.Drawing.Size(376, 400);
             this.superTabControlPanel1.TabIndex = 1;
             this.superTabControlPanel1.TabItem = this.superTabItem1;
             // 
@@ -646,23 +644,6 @@
             this.superTabItem2.Name = "superTabItem2";
             this.superTabItem2.Text = "短信测试";
             // 
-            // superTabControlPanel4
-            // 
-            this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 26);
-            this.superTabControlPanel4.Margin = new System.Windows.Forms.Padding(2);
-            this.superTabControlPanel4.Name = "superTabControlPanel4";
-            this.superTabControlPanel4.Size = new System.Drawing.Size(355, 535);
-            this.superTabControlPanel4.TabIndex = 0;
-            this.superTabControlPanel4.TabItem = this.superTabItem4;
-            // 
-            // superTabItem4
-            // 
-            this.superTabItem4.AttachedControl = this.superTabControlPanel4;
-            this.superTabItem4.GlobalItem = false;
-            this.superTabItem4.Name = "superTabItem4";
-            this.superTabItem4.Text = "微信测试";
-            // 
             // superTabControlPanel3
             // 
             this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -680,17 +661,34 @@
             this.superTabItem3.Name = "superTabItem3";
             this.superTabItem3.Text = "QQ测试";
             // 
+            // superTabControlPanel4
+            // 
+            this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel4.Location = new System.Drawing.Point(0, 26);
+            this.superTabControlPanel4.Margin = new System.Windows.Forms.Padding(2);
+            this.superTabControlPanel4.Name = "superTabControlPanel4";
+            this.superTabControlPanel4.Size = new System.Drawing.Size(355, 535);
+            this.superTabControlPanel4.TabIndex = 0;
+            this.superTabControlPanel4.TabItem = this.superTabItem4;
+            // 
+            // superTabItem4
+            // 
+            this.superTabItem4.AttachedControl = this.superTabControlPanel4;
+            this.superTabItem4.GlobalItem = false;
+            this.superTabItem4.Name = "superTabItem4";
+            this.superTabItem4.Text = "微信测试";
+            // 
             // DelFileMenu
             // 
             this.DelFileMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ItemDel});
             this.DelFileMenu.Name = "DelFileMenu";
-            this.DelFileMenu.Size = new System.Drawing.Size(101, 26);
+            this.DelFileMenu.Size = new System.Drawing.Size(95, 26);
             // 
             // ItemDel
             // 
             this.ItemDel.Name = "ItemDel";
-            this.ItemDel.Size = new System.Drawing.Size(100, 22);
+            this.ItemDel.Size = new System.Drawing.Size(94, 22);
             this.ItemDel.Text = "删除";
             this.ItemDel.Click += new System.EventHandler(this.ItemDel_Click);
             // 
@@ -698,7 +696,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 571);
+            this.ClientSize = new System.Drawing.Size(692, 453);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.Margin = new System.Windows.Forms.Padding(2);

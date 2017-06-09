@@ -1,4 +1,5 @@
 ﻿using BussinessDLL;
+using DevComponents.DotNetBar.SuperGrid.Style;
 using ProjectManagement.Common;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace ProjectManagement.Forms.Report
             dt = bll.GetMemberRate(ProjectId);
             this.superGridControl1.PrimaryGrid.DataSource = dt;
             project = bll.GetProject(ProjectId);
+            
         }
 
         /// <summary>
@@ -117,6 +119,48 @@ namespace ProjectManagement.Forms.Report
                         excel.SetCells(i + 1, s, dt.Rows[i - 1][ColumnNames[s - 1]].ToString());
                 }
             }
+        }
+
+        /// <summary>
+        /// 数据绑定完成
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void superGridControl1_DataBindingComplete(object sender, DevComponents.DotNetBar.SuperGrid.GridDataBindingCompleteEventArgs e)
+        {
+            List<DevComponents.DotNetBar.SuperGrid.GridElement> listRow = superGridControl1.PrimaryGrid.Rows.ToList();
+            int type = 0;
+            foreach (DevComponents.DotNetBar.SuperGrid.GridElement obj in listRow)
+            {
+                DevComponents.DotNetBar.SuperGrid.GridRow row = (DevComponents.DotNetBar.SuperGrid.GridRow)obj;
+                type = int.Parse(row.GetCell("type").Value.ToString());
+                row.CellStyles = MatchRowColor(type);
+                type = 0;
+            }
+        }
+
+        /// <summary>
+        /// 设置背景色
+        /// 2017/06/09(zhuguanjun)
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public static CellVisualStyles MatchRowColor(int? status)
+        {
+            CellVisualStyles style = new CellVisualStyles();
+            switch (status)
+            {
+                case -1:
+                    style.Default.Background.Color1 = Color.LightGray;
+                    break;
+                case 0:
+                    style.Default.Background.Color1 = Color.LightGray;
+                    break;
+                default:
+                    style.Default.Background.Color1 = Color.White;
+                    break;
+            }
+            return style;
         }
     }
 }

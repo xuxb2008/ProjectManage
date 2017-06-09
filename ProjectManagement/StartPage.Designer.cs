@@ -76,9 +76,6 @@
             // 
             // groupPanel1
             // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -87,9 +84,11 @@
             this.groupPanel1.Controls.Add(this.chartRisk);
             this.groupPanel1.Controls.Add(this.chartResult);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(8, 8);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupPanel1.Location = new System.Drawing.Point(5, 1);
+            this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(1184, 382);
+            this.groupPanel1.Size = new System.Drawing.Size(890, 289);
             // 
             // 
             // 
@@ -129,10 +128,11 @@
             this.chartCost.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartCost.Legends.Add(legend1);
-            this.chartCost.Location = new System.Drawing.Point(714, 6);
+            this.chartCost.Location = new System.Drawing.Point(536, 5);
+            this.chartCost.Margin = new System.Windows.Forms.Padding(2);
             this.chartCost.Name = "chartCost";
             this.chartCost.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            this.chartCost.Size = new System.Drawing.Size(458, 341);
+            this.chartCost.Size = new System.Drawing.Size(346, 256);
             this.chartCost.TabIndex = 8;
             this.chartCost.Text = "chart2";
             title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -145,7 +145,8 @@
             // 
             chartArea2.Name = "ChartArea1";
             this.chartTrouble.ChartAreas.Add(chartArea2);
-            this.chartTrouble.Location = new System.Drawing.Point(315, 185);
+            this.chartTrouble.Location = new System.Drawing.Point(236, 131);
+            this.chartTrouble.Margin = new System.Windows.Forms.Padding(2);
             this.chartTrouble.Name = "chartTrouble";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
@@ -172,7 +173,7 @@
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             this.chartTrouble.Series.Add(series1);
-            this.chartTrouble.Size = new System.Drawing.Size(393, 162);
+            this.chartTrouble.Size = new System.Drawing.Size(295, 130);
             this.chartTrouble.TabIndex = 5;
             this.chartTrouble.Text = "chart4";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -185,7 +186,8 @@
             // 
             chartArea3.Name = "ChartArea1";
             this.chartRisk.ChartAreas.Add(chartArea3);
-            this.chartRisk.Location = new System.Drawing.Point(315, 6);
+            this.chartRisk.Location = new System.Drawing.Point(236, 5);
+            this.chartRisk.Margin = new System.Windows.Forms.Padding(2);
             this.chartRisk.Name = "chartRisk";
             series2.BorderColor = System.Drawing.Color.White;
             series2.ChartArea = "ChartArea1";
@@ -211,7 +213,7 @@
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             this.chartRisk.Series.Add(series2);
-            this.chartRisk.Size = new System.Drawing.Size(393, 173);
+            this.chartRisk.Size = new System.Drawing.Size(295, 122);
             this.chartRisk.TabIndex = 4;
             title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -223,13 +225,14 @@
             // 
             chartArea4.Name = "ChartArea1";
             this.chartResult.ChartAreas.Add(chartArea4);
-            this.chartResult.Location = new System.Drawing.Point(6, 6);
+            this.chartResult.Location = new System.Drawing.Point(4, 5);
+            this.chartResult.Margin = new System.Windows.Forms.Padding(2);
             this.chartResult.Name = "chartResult";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series3.Name = "Series1";
             this.chartResult.Series.Add(series3);
-            this.chartResult.Size = new System.Drawing.Size(303, 341);
+            this.chartResult.Size = new System.Drawing.Size(227, 256);
             this.chartResult.TabIndex = 0;
             title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -239,16 +242,16 @@
             // 
             // groupPanel3
             // 
-            this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel3.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel3.Controls.Add(this.superGridWarning);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel3.Location = new System.Drawing.Point(8, 396);
+            this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupPanel3.Location = new System.Drawing.Point(5, 290);
+            this.groupPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(714, 287);
+            this.groupPanel3.Size = new System.Drawing.Size(536, 268);
             // 
             // 
             // 
@@ -287,6 +290,7 @@
             this.superGridWarning.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.superGridWarning.ForeColor = System.Drawing.Color.Black;
             this.superGridWarning.Location = new System.Drawing.Point(0, 0);
+            this.superGridWarning.Margin = new System.Windows.Forms.Padding(2);
             this.superGridWarning.Name = "superGridWarning";
             // 
             // 
@@ -295,7 +299,7 @@
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn2);
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn3);
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn4);
-            this.superGridWarning.Size = new System.Drawing.Size(708, 260);
+            this.superGridWarning.Size = new System.Drawing.Size(530, 244);
             this.superGridWarning.TabIndex = 0;
             this.superGridWarning.Text = "superGridControl1";
             // 
@@ -305,38 +309,42 @@
             this.gridColumn1.HeaderText = "编号";
             this.gridColumn1.Name = "RowNo";
             this.gridColumn1.ReadOnly = true;
+            this.gridColumn1.Width = 50;
             // 
             // gridColumn2
             // 
             this.gridColumn2.HeaderText = "预警名称";
+            this.gridColumn2.MinimumWidth = 100;
             this.gridColumn2.Name = "WarnningName";
             this.gridColumn2.ReadOnly = true;
+            this.gridColumn2.Width = 150;
             // 
             // gridColumn3
             // 
             this.gridColumn3.HeaderText = "预警内容";
             this.gridColumn3.Name = "WarnningContent";
             this.gridColumn3.ReadOnly = true;
-            this.gridColumn3.Width = 200;
+            this.gridColumn3.Width = 220;
             // 
             // gridColumn4
             // 
+            this.gridColumn4.FillWeight = 60;
             this.gridColumn4.HeaderText = "操作";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Width = 60;
             // 
             // groupPanel4
             // 
-            this.groupPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel4.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel4.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel4.Controls.Add(this.superGridLastWork);
             this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel4.Location = new System.Drawing.Point(725, 396);
+            this.groupPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel4.Location = new System.Drawing.Point(541, 290);
+            this.groupPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel4.Name = "groupPanel4";
-            this.groupPanel4.Size = new System.Drawing.Size(467, 290);
+            this.groupPanel4.Size = new System.Drawing.Size(354, 268);
             // 
             // 
             // 
@@ -375,6 +383,7 @@
             this.superGridLastWork.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.superGridLastWork.ForeColor = System.Drawing.Color.Black;
             this.superGridLastWork.Location = new System.Drawing.Point(0, 0);
+            this.superGridLastWork.Margin = new System.Windows.Forms.Padding(2);
             this.superGridLastWork.Name = "superGridLastWork";
             // 
             // 
@@ -387,7 +396,7 @@
             this.superGridLastWork.PrimaryGrid.Columns.Add(this.Desc);
             this.superGridLastWork.PrimaryGrid.Columns.Add(this.Operate);
             this.superGridLastWork.PrimaryGrid.Columns.Add(this.Id);
-            this.superGridLastWork.Size = new System.Drawing.Size(461, 263);
+            this.superGridLastWork.Size = new System.Drawing.Size(348, 244);
             this.superGridLastWork.TabIndex = 0;
             this.superGridLastWork.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.superGridLastWork_CellClick);
             // 
@@ -399,16 +408,18 @@
             this.RowNo.MinimumWidth = 20;
             this.RowNo.Name = "RowNo";
             this.RowNo.ReadOnly = true;
-            this.RowNo.Width = 80;
+            this.RowNo.Width = 50;
             // 
             // WorkType
             // 
             this.WorkType.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
             this.WorkType.DataPropertyName = "WorkType";
+            this.WorkType.FillWeight = 70;
             this.WorkType.HeaderText = "类别";
             this.WorkType.MinimumWidth = 20;
             this.WorkType.Name = "WorkType";
             this.WorkType.ReadOnly = true;
+            this.WorkType.Width = 70;
             // 
             // WorkName
             // 
@@ -417,16 +428,16 @@
             this.WorkName.MinimumWidth = 100;
             this.WorkName.Name = "WorkName";
             this.WorkName.ReadOnly = true;
-            this.WorkName.Width = 150;
+            this.WorkName.Width = 140;
             // 
             // Desc
             // 
             this.Desc.DataPropertyName = "Desc";
             this.Desc.HeaderText = "工作内容";
-            this.Desc.MinimumWidth = 200;
+            this.Desc.MinimumWidth = 250;
             this.Desc.Name = "Desc";
             this.Desc.ReadOnly = true;
-            this.Desc.Width = 300;
+            this.Desc.Width = 250;
             // 
             // Operate
             // 
@@ -435,7 +446,7 @@
             this.Operate.Name = "Operate";
             this.Operate.NullString = "处理";
             this.Operate.RenderType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
-            this.Operate.Width = 80;
+            this.Operate.Width = 50;
             // 
             // Id
             // 
@@ -446,9 +457,9 @@
             // 
             // StartPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 700);
+            this.ClientSize = new System.Drawing.Size(900, 560);
             this.Controls.Add(this.groupPanel4);
             this.Controls.Add(this.groupPanel3);
             this.Controls.Add(this.groupPanel1);

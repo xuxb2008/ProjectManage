@@ -50,6 +50,7 @@
             this.gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cmbSendType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
@@ -79,7 +80,6 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.txtCompanyName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtiCreated)).BeginInit();
@@ -87,18 +87,17 @@
             // 
             // groupPanel1
             // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel1.Controls.Add(this.pagerControl1);
             this.groupPanel1.Controls.Add(this.superGridControl1);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(6, 6);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupPanel1.Location = new System.Drawing.Point(5, 1);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(943, 310);
+            this.groupPanel1.Size = new System.Drawing.Size(940, 310);
             // 
             // 
             // 
@@ -141,7 +140,7 @@
             this.pagerControl1.PageIndex = 1;
             this.pagerControl1.PageSize = 10;
             this.pagerControl1.RecordCount = 0;
-            this.pagerControl1.Size = new System.Drawing.Size(937, 29);
+            this.pagerControl1.Size = new System.Drawing.Size(934, 29);
             this.pagerControl1.TabIndex = 18;
             // 
             // superGridControl1
@@ -180,7 +179,7 @@
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn19);
             this.superGridControl1.PrimaryGrid.MultiSelect = false;
             this.superGridControl1.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.RowWithCellHighlight;
-            this.superGridControl1.Size = new System.Drawing.Size(937, 250);
+            this.superGridControl1.Size = new System.Drawing.Size(934, 250);
             this.superGridControl1.TabIndex = 17;
             this.superGridControl1.Text = "superGridControl1";
             this.superGridControl1.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.superGridControl1_RowClick);
@@ -315,11 +314,14 @@
             this.gridColumn15.Name = "Status";
             this.gridColumn15.Visible = false;
             // 
+            // gridColumn19
+            // 
+            this.gridColumn19.DataPropertyName = "SendType";
+            this.gridColumn19.Name = "SendType";
+            this.gridColumn19.Visible = false;
+            // 
             // groupPanel2
             // 
-            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -352,10 +354,11 @@
             this.groupPanel2.Controls.Add(this.txtCompanyName);
             this.groupPanel2.Controls.Add(this.labelX1);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(3, 320);
+            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel2.Location = new System.Drawing.Point(5, 311);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(944, 305);
+            this.groupPanel2.Size = new System.Drawing.Size(940, 221);
             // 
             // 
             // 
@@ -832,20 +835,13 @@
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "企业名称：";
             // 
-            // gridColumn19
-            // 
-            this.gridColumn19.DataPropertyName = "SendType";
-            this.gridColumn19.Name = "SendType";
-            this.gridColumn19.Visible = false;
-            // 
             // Stakeholder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 605);
+            this.ClientSize = new System.Drawing.Size(950, 534);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Stakeholder";
             this.Text = "干系人清单";
             this.groupPanel1.ResumeLayout(false);

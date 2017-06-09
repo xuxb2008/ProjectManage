@@ -270,19 +270,19 @@
             this.CloseAllWindows,
             this.CloseAllWindows_ExcludeSelf});
             this.CloseTabContextMenu.Name = "CloseTabContextMenu";
-            this.CloseTabContextMenu.Size = new System.Drawing.Size(173, 48);
+            this.CloseTabContextMenu.Size = new System.Drawing.Size(167, 48);
             // 
             // CloseAllWindows
             // 
             this.CloseAllWindows.Name = "CloseAllWindows";
-            this.CloseAllWindows.Size = new System.Drawing.Size(172, 22);
+            this.CloseAllWindows.Size = new System.Drawing.Size(166, 22);
             this.CloseAllWindows.Text = "关闭所有窗口";
             this.CloseAllWindows.Click += new System.EventHandler(this.CloseAllWindows_Click);
             // 
             // CloseAllWindows_ExcludeSelf
             // 
             this.CloseAllWindows_ExcludeSelf.Name = "CloseAllWindows_ExcludeSelf";
-            this.CloseAllWindows_ExcludeSelf.Size = new System.Drawing.Size(172, 22);
+            this.CloseAllWindows_ExcludeSelf.Size = new System.Drawing.Size(166, 22);
             this.CloseAllWindows_ExcludeSelf.Text = "除此以外全部关闭";
             this.CloseAllWindows_ExcludeSelf.Click += new System.EventHandler(this.CloseAllWindows_ExcludeSelf_Click);
             // 
@@ -294,26 +294,26 @@
             this.toolNodeExchange,
             this.toolNodeRename});
             this.EditNodeMenu.Name = "EditNodeMenu";
-            this.EditNodeMenu.Size = new System.Drawing.Size(190, 70);
+            this.EditNodeMenu.Size = new System.Drawing.Size(185, 70);
             // 
             // toolNodeUp
             // 
             this.toolNodeUp.Name = "toolNodeUp";
-            this.toolNodeUp.Size = new System.Drawing.Size(189, 22);
+            this.toolNodeUp.Size = new System.Drawing.Size(184, 22);
             this.toolNodeUp.Text = "上移一级";
             this.toolNodeUp.Click += new System.EventHandler(this.toolNodeUp_Click);
             // 
             // toolNodeExchange
             // 
             this.toolNodeExchange.Name = "toolNodeExchange";
-            this.toolNodeExchange.Size = new System.Drawing.Size(189, 22);
+            this.toolNodeExchange.Size = new System.Drawing.Size(184, 22);
             this.toolNodeExchange.Text = "转为结点/转为交付物";
             this.toolNodeExchange.Click += new System.EventHandler(this.toolNodeExchange_Click);
             // 
             // toolNodeRename
             // 
             this.toolNodeRename.Name = "toolNodeRename";
-            this.toolNodeRename.Size = new System.Drawing.Size(189, 22);
+            this.toolNodeRename.Size = new System.Drawing.Size(184, 22);
             this.toolNodeRename.Text = "修改名称";
             this.toolNodeRename.Click += new System.EventHandler(this.toolNodeRename_Click);
             // 
@@ -332,8 +332,8 @@
             // collapsibleSplitContainer1.Panel2
             // 
             this.collapsibleSplitContainer1.Panel2.Controls.Add(this.MainSuperTabControl);
-            this.collapsibleSplitContainer1.Size = new System.Drawing.Size(1065, 131);
-            this.collapsibleSplitContainer1.SplitterDistance = 142;
+            this.collapsibleSplitContainer1.Size = new System.Drawing.Size(1065, 250);
+            this.collapsibleSplitContainer1.SplitterDistance = 157;
             this.collapsibleSplitContainer1.SplitterWidth = 11;
             this.collapsibleSplitContainer1.TabIndex = 9;
             // 
@@ -357,7 +357,7 @@
             this.WbsTree.NodesConnector = this.nodeConnector1;
             this.WbsTree.NodeStyle = this.elementStyle1;
             this.WbsTree.PathSeparator = ";";
-            this.WbsTree.Size = new System.Drawing.Size(142, 105);
+            this.WbsTree.Size = new System.Drawing.Size(157, 224);
             this.WbsTree.Styles.Add(this.elementStyle1);
             this.WbsTree.Styles.Add(this.elementStyle2);
             this.WbsTree.TabIndex = 1;
@@ -466,7 +466,7 @@
             this.bar1.Location = new System.Drawing.Point(0, 0);
             this.bar1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.bar1.Name = "bar1";
-            this.bar1.Size = new System.Drawing.Size(142, 26);
+            this.bar1.Size = new System.Drawing.Size(157, 26);
             this.bar1.Stretch = true;
             this.bar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.bar1.TabIndex = 0;
@@ -523,7 +523,7 @@
             this.MainSuperTabControl.ReorderTabsEnabled = true;
             this.MainSuperTabControl.SelectedTabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
             this.MainSuperTabControl.SelectedTabIndex = -1;
-            this.MainSuperTabControl.Size = new System.Drawing.Size(912, 131);
+            this.MainSuperTabControl.Size = new System.Drawing.Size(897, 250);
             this.MainSuperTabControl.TabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MainSuperTabControl.TabIndex = 7;
             this.MainSuperTabControl.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -541,7 +541,7 @@
             this.superTabControlPanel1.Location = new System.Drawing.Point(0, 30);
             this.superTabControlPanel1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(912, 101);
+            this.superTabControlPanel1.Size = new System.Drawing.Size(897, 220);
             this.superTabControlPanel1.TabIndex = 0;
             this.superTabControlPanel1.TabItem = this.superTabItem1;
             // 
@@ -564,12 +564,13 @@
             this.metroStatusBar1.Font = new System.Drawing.Font("Segoe UI", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroStatusBar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItem9});
-            this.metroStatusBar1.Location = new System.Drawing.Point(5, 264);
+            this.metroStatusBar1.Location = new System.Drawing.Point(5, 383);
             this.metroStatusBar1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.metroStatusBar1.Name = "metroStatusBar1";
             this.metroStatusBar1.Size = new System.Drawing.Size(1065, 17);
             this.metroStatusBar1.TabIndex = 8;
             this.metroStatusBar1.Text = "metroStatusBar1";
+            this.metroStatusBar1.Visible = false;
             // 
             // buttonItem9
             // 
@@ -584,9 +585,9 @@
             // 
             this.MainRibbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MainRibbonControl.CaptionVisible = true;
+            this.MainRibbonControl.Controls.Add(this.ribbonPanel1);
             this.MainRibbonControl.Controls.Add(this.ribbonPanel3);
             this.MainRibbonControl.Controls.Add(this.ribbonPanel4);
-            this.MainRibbonControl.Controls.Add(this.ribbonPanel1);
             this.MainRibbonControl.Controls.Add(this.ribbonPanel2);
             this.MainRibbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.MainRibbonControl.ForeColor = System.Drawing.Color.Black;
@@ -655,7 +656,6 @@
             // 
             this.ribbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel1.TabIndex = 1;
-            this.ribbonPanel1.Visible = false;
             // 
             // ribbonBar4
             // 
@@ -1144,6 +1144,7 @@
             // 
             this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel3.TabIndex = 3;
+            this.ribbonPanel3.Visible = false;
             // 
             // ribbonBar2
             // 
@@ -1587,13 +1588,13 @@
             // 
             // ribbonTabItem1
             // 
+            this.ribbonTabItem1.Checked = true;
             this.ribbonTabItem1.Name = "ribbonTabItem1";
             this.ribbonTabItem1.Panel = this.ribbonPanel1;
             this.ribbonTabItem1.Text = "项目过程管理";
             // 
             // ribbonTabItem3
             // 
-            this.ribbonTabItem3.Checked = true;
             this.ribbonTabItem3.Name = "ribbonTabItem3";
             this.ribbonTabItem3.Panel = this.ribbonPanel3;
             this.ribbonTabItem3.Text = "报表";
@@ -1684,12 +1685,12 @@
             this.EditProMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolProRename});
             this.EditProMenu.Name = "contextMenuStrip1";
-            this.EditProMenu.Size = new System.Drawing.Size(125, 26);
+            this.EditProMenu.Size = new System.Drawing.Size(119, 26);
             // 
             // toolProRename
             // 
             this.toolProRename.Name = "toolProRename";
-            this.toolProRename.Size = new System.Drawing.Size(124, 22);
+            this.toolProRename.Size = new System.Drawing.Size(118, 22);
             this.toolProRename.Text = "修改名称";
             this.toolProRename.Click += new System.EventHandler(this.toolProRename_Click);
             // 
@@ -1697,14 +1698,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1075, 283);
+            this.ClientSize = new System.Drawing.Size(1075, 402);
             this.Controls.Add(this.collapsibleSplitContainer1);
             this.Controls.Add(this.metroStatusBar1);
             this.Controls.Add(this.MainRibbonControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Name = "MainFrame";
-            this.Text = "基于过程的项目管理系统";
+            this.Text = "基于WBS的项目管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainFrame_Load);
             this.CloseTabContextMenu.ResumeLayout(false);

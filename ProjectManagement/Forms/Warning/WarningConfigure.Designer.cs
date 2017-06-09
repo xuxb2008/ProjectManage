@@ -55,8 +55,6 @@
             // 
             // groupPanel1
             // 
-            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -80,10 +78,11 @@
             this.groupPanel1.Controls.Add(this.labelX11);
             this.groupPanel1.Controls.Add(this.labelX1);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(6, 6);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupPanel1.Location = new System.Drawing.Point(5, 1);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(430, 501);
+            this.groupPanel1.Size = new System.Drawing.Size(430, 488);
             // 
             // 
             // 

@@ -41,6 +41,7 @@
             this.gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.txtSearchEnd = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.txtSearchStart = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.txtSearchKey = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -105,8 +106,6 @@
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchStart)).BeginInit();
@@ -116,7 +115,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtEndDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStartDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreated)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupPanel3
@@ -133,11 +131,11 @@
             this.groupPanel3.Controls.Add(this.txtSearchStart);
             this.groupPanel3.Controls.Add(this.txtSearchKey);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel3.Location = new System.Drawing.Point(2, 2);
+            this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupPanel3.Location = new System.Drawing.Point(5, 1);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(323, 725);
+            this.groupPanel3.Size = new System.Drawing.Size(297, 570);
             // 
             // 
             // 
@@ -173,7 +171,7 @@
             // 
             this.btnSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSearch.Location = new System.Drawing.Point(227, 70);
+            this.btnSearch.Location = new System.Drawing.Point(228, 64);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(56, 18);
@@ -188,7 +186,7 @@
             // 
             // 
             this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX10.Location = new System.Drawing.Point(5, 67);
+            this.labelX10.Location = new System.Drawing.Point(7, 65);
             this.labelX10.Margin = new System.Windows.Forms.Padding(2);
             this.labelX10.Name = "labelX10";
             this.labelX10.Size = new System.Drawing.Size(65, 18);
@@ -223,13 +221,11 @@
             // 
             // gridTrouble
             // 
-            this.gridTrouble.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridTrouble.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(242)))));
+            this.gridTrouble.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gridTrouble.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.gridTrouble.ForeColor = System.Drawing.Color.Black;
-            this.gridTrouble.Location = new System.Drawing.Point(5, 100);
+            this.gridTrouble.Location = new System.Drawing.Point(0, 105);
             this.gridTrouble.Margin = new System.Windows.Forms.Padding(2);
             this.gridTrouble.Name = "gridTrouble";
             // 
@@ -244,7 +240,7 @@
             this.gridTrouble.PrimaryGrid.Columns.Add(this.gridColumn10);
             this.gridTrouble.PrimaryGrid.Columns.Add(this.gridColumn13);
             this.gridTrouble.PrimaryGrid.Columns.Add(this.gridColumn17);
-            this.gridTrouble.Size = new System.Drawing.Size(311, 601);
+            this.gridTrouble.Size = new System.Drawing.Size(291, 441);
             this.gridTrouble.TabIndex = 0;
             this.gridTrouble.Text = "superGridControl1";
             this.gridTrouble.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridTrouble_CellClick);
@@ -307,6 +303,11 @@
             this.gridColumn13.DataPropertyName = "ID";
             this.gridColumn13.Name = "ID";
             this.gridColumn13.Visible = false;
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Name = "FinishType";
+            this.gridColumn17.Visible = false;
             // 
             // txtSearchEnd
             // 
@@ -418,7 +419,7 @@
             this.txtSearchKey.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtSearchKey.DisabledBackColor = System.Drawing.Color.White;
             this.txtSearchKey.ForeColor = System.Drawing.Color.Black;
-            this.txtSearchKey.Location = new System.Drawing.Point(76, 67);
+            this.txtSearchKey.Location = new System.Drawing.Point(76, 61);
             this.txtSearchKey.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchKey.Name = "txtSearchKey";
             this.txtSearchKey.PreventEnterBeep = true;
@@ -427,6 +428,8 @@
             // 
             // groupPanel2
             // 
+            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -453,11 +456,10 @@
             this.groupPanel2.Controls.Add(this.labelX11);
             this.groupPanel2.Controls.Add(this.gridFile);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel2.Location = new System.Drawing.Point(656, 2);
+            this.groupPanel2.Location = new System.Drawing.Point(615, 3);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(324, 725);
+            this.groupPanel2.Size = new System.Drawing.Size(324, 557);
             // 
             // 
             // 
@@ -846,6 +848,8 @@
             // 
             // groupPanel1
             // 
+            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel1.AutoScroll = true;
             this.groupPanel1.AutoScrollMinSize = new System.Drawing.Size(50, 50);
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
@@ -878,11 +882,10 @@
             this.groupPanel1.Controls.Add(this.labelX2);
             this.groupPanel1.Controls.Add(this.labelX1);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel1.Location = new System.Drawing.Point(329, 2);
+            this.groupPanel1.Location = new System.Drawing.Point(307, 3);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(323, 725);
+            this.groupPanel1.Size = new System.Drawing.Size(304, 565);
             // 
             // 
             // 
@@ -922,7 +925,7 @@
             this.intWorkload.BackgroundStyle.Class = "DateTimeInputBackground";
             this.intWorkload.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.intWorkload.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.intWorkload.Location = new System.Drawing.Point(74, 430);
+            this.intWorkload.Location = new System.Drawing.Point(81, 336);
             this.intWorkload.Margin = new System.Windows.Forms.Padding(2);
             this.intWorkload.MinValue = 0;
             this.intWorkload.Name = "intWorkload";
@@ -937,7 +940,7 @@
             // 
             // 
             this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX14.Location = new System.Drawing.Point(3, 430);
+            this.labelX14.Location = new System.Drawing.Point(3, 333);
             this.labelX14.Margin = new System.Windows.Forms.Padding(2);
             this.labelX14.Name = "labelX14";
             this.labelX14.Size = new System.Drawing.Size(69, 18);
@@ -948,7 +951,7 @@
             // 
             this.btnAddManager.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnAddManager.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnAddManager.Location = new System.Drawing.Point(19, 681);
+            this.btnAddManager.Location = new System.Drawing.Point(6, 514);
             this.btnAddManager.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddManager.Name = "btnAddManager";
             this.btnAddManager.Size = new System.Drawing.Size(66, 18);
@@ -964,7 +967,7 @@
             this.gridManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(242)))));
             this.gridManager.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.gridManager.ForeColor = System.Drawing.Color.Black;
-            this.gridManager.Location = new System.Drawing.Point(3, 512);
+            this.gridManager.Location = new System.Drawing.Point(2, 387);
             this.gridManager.Margin = new System.Windows.Forms.Padding(2);
             this.gridManager.Name = "gridManager";
             // 
@@ -979,7 +982,7 @@
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn20);
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn19);
             this.gridManager.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridManager.Size = new System.Drawing.Size(303, 164);
+            this.gridManager.Size = new System.Drawing.Size(286, 121);
             this.gridManager.TabIndex = 21;
             this.gridManager.Text = "superGridControl1";
             this.gridManager.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridManager_CellClick);
@@ -1020,7 +1023,7 @@
             // 
             this.buttonX8.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX8.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX8.Location = new System.Drawing.Point(250, 5);
+            this.buttonX8.Location = new System.Drawing.Point(262, 8);
             this.buttonX8.Margin = new System.Windows.Forms.Padding(2);
             this.buttonX8.Name = "buttonX8";
             this.buttonX8.Size = new System.Drawing.Size(30, 18);
@@ -1033,7 +1036,7 @@
             // 
             this.btnClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnClear.Location = new System.Drawing.Point(104, 681);
+            this.btnClear.Location = new System.Drawing.Point(82, 514);
             this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(56, 18);
@@ -1046,7 +1049,7 @@
             // 
             this.buttonX7.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX7.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX7.Location = new System.Drawing.Point(229, 680);
+            this.buttonX7.Location = new System.Drawing.Point(214, 513);
             this.buttonX7.Margin = new System.Windows.Forms.Padding(2);
             this.buttonX7.Name = "buttonX7";
             this.buttonX7.Size = new System.Drawing.Size(56, 18);
@@ -1065,20 +1068,20 @@
             this.txtTroubleResult.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtTroubleResult.DisabledBackColor = System.Drawing.Color.White;
             this.txtTroubleResult.ForeColor = System.Drawing.Color.Black;
-            this.txtTroubleResult.Location = new System.Drawing.Point(77, 170);
+            this.txtTroubleResult.Location = new System.Drawing.Point(81, 131);
             this.txtTroubleResult.Margin = new System.Windows.Forms.Padding(2);
             this.txtTroubleResult.Multiline = true;
             this.txtTroubleResult.Name = "txtTroubleResult";
             this.txtTroubleResult.PreventEnterBeep = true;
             this.txtTroubleResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtTroubleResult.Size = new System.Drawing.Size(208, 110);
+            this.txtTroubleResult.Size = new System.Drawing.Size(207, 68);
             this.txtTroubleResult.TabIndex = 8;
             // 
             // btnSave
             // 
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(169, 680);
+            this.btnSave.Location = new System.Drawing.Point(148, 513);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(56, 18);
@@ -1093,10 +1096,10 @@
             this.cmbTroubleLevel.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbTroubleLevel.FormattingEnabled = true;
             this.cmbTroubleLevel.ItemHeight = 19;
-            this.cmbTroubleLevel.Location = new System.Drawing.Point(76, 363);
+            this.cmbTroubleLevel.Location = new System.Drawing.Point(81, 268);
             this.cmbTroubleLevel.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTroubleLevel.Name = "cmbTroubleLevel";
-            this.cmbTroubleLevel.Size = new System.Drawing.Size(209, 25);
+            this.cmbTroubleLevel.Size = new System.Drawing.Size(207, 25);
             this.cmbTroubleLevel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbTroubleLevel.TabIndex = 12;
             // 
@@ -1106,10 +1109,10 @@
             this.cmbHandleStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbHandleStatus.FormattingEnabled = true;
             this.cmbHandleStatus.ItemHeight = 19;
-            this.cmbHandleStatus.Location = new System.Drawing.Point(76, 397);
+            this.cmbHandleStatus.Location = new System.Drawing.Point(81, 302);
             this.cmbHandleStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cmbHandleStatus.Name = "cmbHandleStatus";
-            this.cmbHandleStatus.Size = new System.Drawing.Size(209, 25);
+            this.cmbHandleStatus.Size = new System.Drawing.Size(207, 25);
             this.cmbHandleStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbHandleStatus.TabIndex = 13;
             // 
@@ -1123,7 +1126,7 @@
             this.cmbNode.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.cmbNode.ButtonDropDown.Visible = true;
             this.cmbNode.DropDownHeight = 300;
-            this.cmbNode.Location = new System.Drawing.Point(76, 3);
+            this.cmbNode.Location = new System.Drawing.Point(81, 7);
             this.cmbNode.Margin = new System.Windows.Forms.Padding(2);
             this.cmbNode.Name = "cmbNode";
             this.cmbNode.Size = new System.Drawing.Size(176, 18);
@@ -1140,7 +1143,7 @@
             this.txtEndDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.txtEndDate.ButtonDropDown.Visible = true;
             this.txtEndDate.IsPopupCalendarOpen = false;
-            this.txtEndDate.Location = new System.Drawing.Point(76, 333);
+            this.txtEndDate.Location = new System.Drawing.Point(81, 238);
             this.txtEndDate.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
@@ -1176,7 +1179,7 @@
             this.txtEndDate.MonthCalendar.TodayButtonVisible = true;
             this.txtEndDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.Size = new System.Drawing.Size(208, 21);
+            this.txtEndDate.Size = new System.Drawing.Size(207, 21);
             this.txtEndDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.txtEndDate.TabIndex = 10;
             this.txtEndDate.ValueChanged += new System.EventHandler(this.dt_ValueChanged);
@@ -1191,7 +1194,7 @@
             this.txtStartDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.txtStartDate.ButtonDropDown.Visible = true;
             this.txtStartDate.IsPopupCalendarOpen = false;
-            this.txtStartDate.Location = new System.Drawing.Point(76, 301);
+            this.txtStartDate.Location = new System.Drawing.Point(81, 208);
             this.txtStartDate.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
@@ -1227,7 +1230,7 @@
             this.txtStartDate.MonthCalendar.TodayButtonVisible = true;
             this.txtStartDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.txtStartDate.Name = "txtStartDate";
-            this.txtStartDate.Size = new System.Drawing.Size(208, 21);
+            this.txtStartDate.Size = new System.Drawing.Size(207, 21);
             this.txtStartDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.txtStartDate.TabIndex = 9;
             this.txtStartDate.ValueChanged += new System.EventHandler(this.dt_ValueChanged);
@@ -1243,7 +1246,7 @@
             this.txtCreated.ButtonDropDown.Visible = true;
             this.txtCreated.Enabled = false;
             this.txtCreated.IsPopupCalendarOpen = false;
-            this.txtCreated.Location = new System.Drawing.Point(76, 487);
+            this.txtCreated.Location = new System.Drawing.Point(81, 361);
             this.txtCreated.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
@@ -1279,7 +1282,7 @@
             this.txtCreated.MonthCalendar.TodayButtonVisible = true;
             this.txtCreated.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.txtCreated.Name = "txtCreated";
-            this.txtCreated.Size = new System.Drawing.Size(208, 21);
+            this.txtCreated.Size = new System.Drawing.Size(207, 21);
             this.txtCreated.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.txtCreated.TabIndex = 2;
             // 
@@ -1293,13 +1296,13 @@
             this.txtTroubleDesc.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtTroubleDesc.DisabledBackColor = System.Drawing.Color.White;
             this.txtTroubleDesc.ForeColor = System.Drawing.Color.Black;
-            this.txtTroubleDesc.Location = new System.Drawing.Point(76, 70);
+            this.txtTroubleDesc.Location = new System.Drawing.Point(81, 64);
             this.txtTroubleDesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtTroubleDesc.Multiline = true;
             this.txtTroubleDesc.Name = "txtTroubleDesc";
             this.txtTroubleDesc.PreventEnterBeep = true;
             this.txtTroubleDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtTroubleDesc.Size = new System.Drawing.Size(208, 96);
+            this.txtTroubleDesc.Size = new System.Drawing.Size(207, 58);
             this.txtTroubleDesc.TabIndex = 7;
             // 
             // labelX15
@@ -1308,7 +1311,7 @@
             // 
             // 
             this.labelX15.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX15.Location = new System.Drawing.Point(2, 370);
+            this.labelX15.Location = new System.Drawing.Point(3, 273);
             this.labelX15.Margin = new System.Windows.Forms.Padding(2);
             this.labelX15.Name = "labelX15";
             this.labelX15.Size = new System.Drawing.Size(69, 18);
@@ -1321,7 +1324,7 @@
             // 
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(2, 397);
+            this.labelX7.Location = new System.Drawing.Point(3, 300);
             this.labelX7.Margin = new System.Windows.Forms.Padding(2);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(69, 18);
@@ -1334,7 +1337,7 @@
             // 
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(2, 334);
+            this.labelX6.Location = new System.Drawing.Point(3, 237);
             this.labelX6.Margin = new System.Windows.Forms.Padding(2);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(69, 18);
@@ -1351,11 +1354,11 @@
             this.txtTroubleName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtTroubleName.DisabledBackColor = System.Drawing.Color.White;
             this.txtTroubleName.ForeColor = System.Drawing.Color.Black;
-            this.txtTroubleName.Location = new System.Drawing.Point(76, 37);
+            this.txtTroubleName.Location = new System.Drawing.Point(81, 34);
             this.txtTroubleName.Margin = new System.Windows.Forms.Padding(2);
             this.txtTroubleName.Name = "txtTroubleName";
             this.txtTroubleName.PreventEnterBeep = true;
-            this.txtTroubleName.Size = new System.Drawing.Size(208, 21);
+            this.txtTroubleName.Size = new System.Drawing.Size(207, 21);
             this.txtTroubleName.TabIndex = 6;
             // 
             // labelX5
@@ -1364,7 +1367,7 @@
             // 
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(2, 302);
+            this.labelX5.Location = new System.Drawing.Point(3, 205);
             this.labelX5.Margin = new System.Windows.Forms.Padding(2);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(69, 18);
@@ -1377,7 +1380,7 @@
             // 
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(3, 490);
+            this.labelX4.Location = new System.Drawing.Point(3, 365);
             this.labelX4.Margin = new System.Windows.Forms.Padding(2);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(69, 18);
@@ -1390,7 +1393,7 @@
             // 
             // 
             this.labelX17.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX17.Location = new System.Drawing.Point(3, 178);
+            this.labelX17.Location = new System.Drawing.Point(3, 132);
             this.labelX17.Margin = new System.Windows.Forms.Padding(2);
             this.labelX17.Name = "labelX17";
             this.labelX17.Size = new System.Drawing.Size(69, 18);
@@ -1429,42 +1432,21 @@
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(3, 3);
+            this.labelX1.Location = new System.Drawing.Point(3, 8);
             this.labelX1.Margin = new System.Windows.Forms.Padding(2);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(69, 18);
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "关联结点：";
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.groupPanel3, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupPanel2, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupPanel1, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 1);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(982, 729);
-            this.tableLayoutPanel1.TabIndex = 6;
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.Name = "FinishType";
-            this.gridColumn17.Visible = false;
-            // 
             // Trouble
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(992, 732);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(1005, 573);
+            this.Controls.Add(this.groupPanel2);
+            this.Controls.Add(this.groupPanel3);
+            this.Controls.Add(this.groupPanel1);
             this.Name = "Trouble";
             this.Text = "问题管理";
             this.Load += new System.EventHandler(this.Trouble_Load);
@@ -1478,7 +1460,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtEndDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStartDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreated)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1553,7 +1534,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private DevComponents.DotNetBar.ButtonX buttonX7;
         private DevComponents.DotNetBar.ButtonX buttonX8;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevComponents.DotNetBar.SuperGrid.SuperGridControl gridManager;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn14;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn15;

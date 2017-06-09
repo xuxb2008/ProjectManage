@@ -77,7 +77,7 @@
             this.groupPanel1.Location = new System.Drawing.Point(5, 1);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(842, 336);
+            this.groupPanel1.Size = new System.Drawing.Size(834, 252);
             // 
             // 
             // 
@@ -134,7 +134,7 @@
             this.gridSK.PrimaryGrid.MultiSelect = false;
             this.gridSK.PrimaryGrid.ReadOnly = true;
             this.gridSK.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridSK.Size = new System.Drawing.Size(836, 312);
+            this.gridSK.Size = new System.Drawing.Size(828, 228);
             this.gridSK.TabIndex = 0;
             this.gridSK.Text = "superGridControl1";
             this.gridSK.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.gridSK_RowClick);
@@ -194,8 +194,6 @@
             // 
             // groupPanel2
             // 
-            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -218,10 +216,11 @@
             this.groupPanel2.Controls.Add(this.labelX49);
             this.groupPanel2.Controls.Add(this.labelX48);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(6, 370);
+            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel2.Location = new System.Drawing.Point(5, 253);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(845, 325);
+            this.groupPanel2.Size = new System.Drawing.Size(834, 254);
             // 
             // 
             // 
@@ -260,7 +259,7 @@
             // 
             this.txtExplanation.Border.Class = "TextBoxBorder";
             this.txtExplanation.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtExplanation.Location = new System.Drawing.Point(104, 43);
+            this.txtExplanation.Location = new System.Drawing.Point(104, 44);
             this.txtExplanation.Name = "txtExplanation";
             this.txtExplanation.PreventEnterBeep = true;
             this.txtExplanation.Size = new System.Drawing.Size(251, 21);
@@ -310,7 +309,7 @@
             // 
             this.btnSSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSSave.Location = new System.Drawing.Point(566, 245);
+            this.btnSSave.Location = new System.Drawing.Point(566, 203);
             this.btnSSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSSave.Name = "btnSSave";
             this.btnSSave.Size = new System.Drawing.Size(56, 18);
@@ -323,7 +322,7 @@
             // 
             this.btnSClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSClear.Location = new System.Drawing.Point(474, 243);
+            this.btnSClear.Location = new System.Drawing.Point(474, 201);
             this.btnSClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnSClear.Name = "btnSClear";
             this.btnSClear.Size = new System.Drawing.Size(56, 18);
@@ -342,7 +341,7 @@
             this.dtSInDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtSInDate.ButtonDropDown.Visible = true;
             this.dtSInDate.IsPopupCalendarOpen = false;
-            this.dtSInDate.Location = new System.Drawing.Point(104, 242);
+            this.dtSInDate.Location = new System.Drawing.Point(104, 198);
             this.dtSInDate.Margin = new System.Windows.Forms.Padding(2);
             // 
             // 
@@ -398,7 +397,7 @@
             this.txtSRemark.Name = "txtSRemark";
             this.txtSRemark.PreventEnterBeep = true;
             this.txtSRemark.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSRemark.Size = new System.Drawing.Size(251, 177);
+            this.txtSRemark.Size = new System.Drawing.Size(251, 138);
             this.txtSRemark.TabIndex = 7;
             // 
             // txtSCondition
@@ -417,7 +416,7 @@
             this.txtSCondition.Name = "txtSCondition";
             this.txtSCondition.PreventEnterBeep = true;
             this.txtSCondition.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSCondition.Size = new System.Drawing.Size(251, 82);
+            this.txtSCondition.Size = new System.Drawing.Size(251, 43);
             this.txtSCondition.TabIndex = 5;
             // 
             // intSAmount
@@ -428,7 +427,7 @@
             this.intSAmount.BackgroundStyle.Class = "DateTimeInputBackground";
             this.intSAmount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.intSAmount.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.intSAmount.Location = new System.Drawing.Point(104, 112);
+            this.intSAmount.Location = new System.Drawing.Point(104, 110);
             this.intSAmount.Margin = new System.Windows.Forms.Padding(2);
             this.intSAmount.MinValue = 0;
             this.intSAmount.Name = "intSAmount";
@@ -471,7 +470,7 @@
             // 
             // 
             this.labelX52.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX52.Location = new System.Drawing.Point(10, 245);
+            this.labelX52.Location = new System.Drawing.Point(12, 200);
             this.labelX52.Margin = new System.Windows.Forms.Padding(2);
             this.labelX52.Name = "labelX52";
             this.labelX52.Size = new System.Drawing.Size(74, 18);
@@ -485,7 +484,7 @@
             // 
             // 
             this.labelX51.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX51.Location = new System.Drawing.Point(10, 143);
+            this.labelX51.Location = new System.Drawing.Point(12, 142);
             this.labelX51.Margin = new System.Windows.Forms.Padding(2);
             this.labelX51.Name = "labelX51";
             this.labelX51.Size = new System.Drawing.Size(74, 18);
@@ -499,7 +498,7 @@
             // 
             // 
             this.labelX50.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX50.Location = new System.Drawing.Point(12, 115);
+            this.labelX50.Location = new System.Drawing.Point(12, 110);
             this.labelX50.Margin = new System.Windows.Forms.Padding(2);
             this.labelX50.Name = "labelX50";
             this.labelX50.Size = new System.Drawing.Size(74, 18);
@@ -514,7 +513,7 @@
             this.intSRatio.BackgroundStyle.Class = "DateTimeInputBackground";
             this.intSRatio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.intSRatio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.intSRatio.Location = new System.Drawing.Point(104, 78);
+            this.intSRatio.Location = new System.Drawing.Point(104, 77);
             this.intSRatio.Margin = new System.Windows.Forms.Padding(2);
             this.intSRatio.MinValue = 0;
             this.intSRatio.Name = "intSRatio";
@@ -529,7 +528,7 @@
             // 
             // 
             this.labelX49.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX49.Location = new System.Drawing.Point(10, 78);
+            this.labelX49.Location = new System.Drawing.Point(12, 78);
             this.labelX49.Margin = new System.Windows.Forms.Padding(2);
             this.labelX49.Name = "labelX49";
             this.labelX49.Size = new System.Drawing.Size(74, 18);
@@ -554,7 +553,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 643);
+            this.ClientSize = new System.Drawing.Size(844, 509);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.Name = "FormReceivables";
