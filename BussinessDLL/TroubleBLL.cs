@@ -62,7 +62,7 @@ namespace BussinessDLL
                 //如果是新增
                 if (string.IsNullOrEmpty(entity.ID))
                 {
-                    #region 新增WBS节点
+                     #region 新增WBS节点
                     PNode node = null;
                     if (!string.IsNullOrEmpty(entity.NodeID))
                     {
@@ -76,12 +76,12 @@ namespace BussinessDLL
                         node.CREATED = DateTime.Now;
                     }
                     #endregion
-                    #region 新插入实体
+                     #region 新插入实体
                     entity.NodeID = node == null ? null : node.ID.Substring(0, 36);
                     entity.ID = Guid.NewGuid().ToString() + "-1";
                     entity.CREATED = DateTime.Now;
                     entity.Status = 1;
-                    #endregion
+                     #endregion
                     dao.AddTrouble(entity, node, listWork);
                 }
                 //编辑
@@ -265,7 +265,7 @@ namespace BussinessDLL
                 List<QueryField> qf = new List<QueryField>();
                 qf.Add(new QueryField() { Name = "TroubleID", Type = QueryFieldType.String, Value = TroubleID.Substring(0, 36) });
                 if (type != null)
-                    qf.Add(new QueryField() { Name = "Type", Type = QueryFieldType.Numeric, Value = type });
+                qf.Add(new QueryField() { Name = "Type", Type = QueryFieldType.Numeric, Value = type });
                 qf.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
                 SortField sf = new SortField() { Name = "CREATED", Direction = SortDirection.Desc };
                 list = new Repository<TroubleFiles>().GetList(qf, sf) as List<TroubleFiles>;
