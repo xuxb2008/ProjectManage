@@ -188,6 +188,7 @@ namespace ProjectManagement
             }
         }
 
+
         ///// <summary>
         ///// 上传模板
         ///// Created：2017.5.18(zhuguanjun)
@@ -258,6 +259,7 @@ namespace ProjectManagement
         /// Created：2017.3.28(xuxb)
         /// Updated：2017.3.28(ChengMengjia)
         /// Updated：2017.4.12(zhuguanjun)
+        /// Updated：2017.6.9(ChengMengjia) 日常工作的上传路径修改
         /// </summary>
         /// <param name="type"></param>
         /// <param name="projectId"></param>
@@ -318,32 +320,18 @@ namespace ProjectManagement
                     return projectBll.GetProjectPath(projectId) + "分包管理\\供应商\\";
 
                 case UploadType.Routine:
+                    PNode rnode = wbsBll.GetNode(nodeId);//日常工作节点
                     //上传日常工作文件时
-                    baseNodeId = DataHelper.GetNodeIdByProjectId(projectId);
-                    if (baseNodeId == nodeId)
-                    {
-                        return projectBll.GetProjectPath(projectId) + "日常工作\\" + wbsBll.GetWBSPath(projectId, nodeId, false);
-                    }
-                    else
-                    {
-                        return projectBll.GetProjectPath(projectId) + "日常工作\\" + wbsBll.GetWBSPath(projectId, nodeId, false);
-                    }
-
-
+                    return projectBll.GetProjectPath(projectId) + wbsBll.GetWBSPath(projectId, rnode.ParentID, false)
+                        + "日常工作\\" + rnode.Name + "\\";
                 case UploadType.Trouble:
                 case UploadType.TroubleReason:
                 case UploadType.TroubleAnalyse:
                 case UploadType.TroubleSolution:
+                    PNode tnode = wbsBll.GetNode(nodeId);//问题节点
                     //上传问题管理文件时
-                    baseNodeId = DataHelper.GetNodeIdByProjectId(projectId);
-                    if (baseNodeId == nodeId)
-                    {
-                        return projectBll.GetProjectPath(projectId) + "问题管理\\" + wbsBll.GetWBSPath(projectId, nodeId, false);
-                    }
-                    else
-                    {
-                        return projectBll.GetProjectPath(projectId) + "问题管理\\" + wbsBll.GetWBSPath(projectId, nodeId, false);
-                    }
+                    return projectBll.GetProjectPath(projectId) + wbsBll.GetWBSPath(projectId, tnode.ParentID, false)
+                         + "问题管理\\" + tnode.Name + "\\";
                 case UploadType.Report_Plan:
                     return "报表\\项目计划\\";
                 case UploadType.Report_Earning:
@@ -546,14 +534,11 @@ namespace ProjectManagement
         /// 文件路径下所有文件的移动
         /// Created：20170607(ChengMengjia)
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="projectId"></param>
-        /// <param name="oldNodeID"></param>
-        /// <param name="newNodeID"></param>
-        public static void MoveFloder(UploadType type, string projectId, string oldNodeID, string newNodeID)
+
+        /// <param name="oldPath"></param>
+        /// <param name="newPath"></param>
+        public static void MoveFloder(string oldPath, string newPath)
         {
-            string oldPath = GetWorkdir() + GetUploadPath(type, projectId, oldNodeID);
-            string newPath = GetWorkdir() + GetUploadPath(type, projectId, newNodeID);
             if (oldPath.Equals(newPath) || !Directory.Exists(oldPath))//路径相同或原路径不存在
                 return;
             if (Directory.Exists(newPath))

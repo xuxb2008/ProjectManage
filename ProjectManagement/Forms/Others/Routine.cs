@@ -58,9 +58,17 @@ namespace ProjectManagement.Forms.Others
         {
             _nodeID = nodeID;
             InitializeComponent();
+        }
+        /// <summary>
+        /// 画面加载时
+        /// Created：2017.03.30(Xuxb)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Routine_Load(object sender, EventArgs e)
+        {
             init();
         }
-
 
         /// <summary>
         /// 日常工作清空按钮按下时
@@ -158,40 +166,32 @@ namespace ProjectManagement.Forms.Others
             #endregion
 
             bool IsEdit = false;
-            string oldNodeID = "";
-            string newNodeID = "";
+            string oldPath = "";//旧的文件存放路径
             // 判断是否为修改状态 节点是否改变
             if (!string.IsNullOrEmpty(_nodeID))
             {
-                PNode ParentNode = new WBSBLL().GetParentNode(_nodeID);
-                if (obj.NodeID.Substring(0, 36).Equals(ParentNode.ID.Substring(0, 36)))
-                    return;
                 IsEdit = true;
-                oldNodeID = _nodeID;
+                oldPath = FileHelper.GetWorkdir() + FileHelper.GetUploadPath(UploadType.Routine, ProjectId, _nodeID);
             }
 
-            JsonResult result = routineBLL.SaveRoutine(ProjectId, obj, listWork, ref newNodeID);
-
+            JsonResult result = routineBLL.SaveRoutine(ProjectId, obj, listWork);
+            MessageHelper.ShowRstMsg(result.result);
             if (result.result)
             {
                 //一览重新加载
                 Search();
-                ClearWork();//清空
+                //清空编辑
+                ClearWork();
                 //主框更新
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
                 mainForm.RelaodTree();
-
+                //重新加载首页的成果列表
+                startPage.LoadProjectTroubleList();
                 #region  结点改变时，移动文件到新的节点
                 if (IsEdit)
-                {
-                    //FileHelper.MoveFloder(UploadType.Routine, ProjectId,oldNodeID,newNodeID);
-                }
+                    FileHelper.MoveFloder(oldPath, FileHelper.GetWorkdir() + FileHelper.GetUploadPath(UploadType.Routine, ProjectId, _nodeID));
                 #endregion
-
             }
-            MessageHelper.ShowRstMsg(result.result);
-            //重新加载首页的成果列表
-            startPage.LoadProjectTroubleList();
         }
 
         /// <summary>
@@ -216,10 +216,12 @@ namespace ProjectManagement.Forms.Others
             //文件描述
             file.Desc = txtFileDesc.Text;
 
+            DomainDLL.Routine routine = routineBLL.GetRoutineObject(WorkId, "");//需要获取日常工作作为节点的ID
+
             //上传文件名
             if (_fileSelectFlg)
             {
-                file.Path = FileHelper.UploadFile(txtFilePath.Text, UploadType.Routine, ProjectId, _nodeID);
+                file.Path = FileHelper.UploadFile(txtFilePath.Text, UploadType.Routine, ProjectId, routine.NodeID);
             }
             else
             {
