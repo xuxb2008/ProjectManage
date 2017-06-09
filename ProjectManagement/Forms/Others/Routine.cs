@@ -158,19 +158,15 @@ namespace ProjectManagement.Forms.Others
             #endregion
 
             bool IsEdit = false;
-            string oldNodeID = "";
-            string newNodeID = "";
+            string oldPath = "";//旧的文件存放路径
             // 判断是否为修改状态 节点是否改变
             if (!string.IsNullOrEmpty(_nodeID))
             {
-                PNode ParentNode = new WBSBLL().GetParentNode(_nodeID);
-                if (obj.NodeID.Substring(0, 36).Equals(ParentNode.ID.Substring(0, 36)))
-                    return;
                 IsEdit = true;
-                oldNodeID = _nodeID;
+                oldPath = FileHelper.GetWorkdir() + FileHelper.GetUploadPath(UploadType.Routine, ProjectId, _nodeID);
             }
 
-            JsonResult result = routineBLL.SaveRoutine(ProjectId, obj, listWork, ref newNodeID);
+            JsonResult result = routineBLL.SaveRoutine(ProjectId, obj, listWork);
 
             if (result.result)
             {
@@ -184,7 +180,7 @@ namespace ProjectManagement.Forms.Others
                 #region  结点改变时，移动文件到新的节点
                 if (IsEdit)
                 {
-                    //FileHelper.MoveFloder(UploadType.Routine, ProjectId,oldNodeID,newNodeID);
+                    FileHelper.MoveFloder(oldPath, FileHelper.GetWorkdir() + FileHelper.GetUploadPath(UploadType.Routine, ProjectId, _nodeID));
                 }
                 #endregion
 
@@ -216,10 +212,12 @@ namespace ProjectManagement.Forms.Others
             //文件描述
             file.Desc = txtFileDesc.Text;
 
+            DomainDLL.Routine routine = routineBLL.GetRoutineObject(WorkId, "");//需要获取日常工作作为节点的ID
+
             //上传文件名
             if (_fileSelectFlg)
             {
-                file.Path = FileHelper.UploadFile(txtFilePath.Text, UploadType.Routine, ProjectId, _nodeID);
+                file.Path = FileHelper.UploadFile(txtFilePath.Text, UploadType.Routine, ProjectId, routine.NodeID);
             }
             else
             {
