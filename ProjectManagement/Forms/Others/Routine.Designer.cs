@@ -232,7 +232,7 @@
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn16);
             this.gridManager.PrimaryGrid.Columns.Add(this.gridColumn18);
             this.gridManager.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridManager.Size = new System.Drawing.Size(280, 104);
+            this.gridManager.Size = new System.Drawing.Size(274, 104);
             this.gridManager.TabIndex = 20;
             this.gridManager.Text = "superGridControl1";
             this.gridManager.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridManager_CellClick);
@@ -667,11 +667,11 @@
             this.groupPanel2.Controls.Add(this.labelX11);
             this.groupPanel2.Controls.Add(this.gridFile);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupPanel2.Location = new System.Drawing.Point(605, 1);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(319, 570);
+            this.groupPanel2.Size = new System.Drawing.Size(347, 570);
             // 
             // 
             // 
@@ -705,6 +705,8 @@
             // 
             // txtFilePath
             // 
+            this.txtFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFilePath.BackColor = System.Drawing.Color.White;
             // 
             // 
@@ -723,6 +725,8 @@
             // 
             // txtFileName
             // 
+            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFileName.BackColor = System.Drawing.Color.White;
             // 
             // 
@@ -766,6 +770,8 @@
             // 
             // txtFileDesc
             // 
+            this.txtFileDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFileDesc.BackColor = System.Drawing.Color.White;
             // 
             // 
@@ -799,6 +805,7 @@
             // buttonX5
             // 
             this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX5.Location = new System.Drawing.Point(245, 213);
             this.buttonX5.Margin = new System.Windows.Forms.Padding(2);
@@ -857,7 +864,7 @@
             this.gridFile.PrimaryGrid.Columns.Add(this.gridColumn9);
             this.gridFile.PrimaryGrid.MultiSelect = false;
             this.gridFile.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridFile.Size = new System.Drawing.Size(313, 197);
+            this.gridFile.Size = new System.Drawing.Size(341, 197);
             this.gridFile.TabIndex = 17;
             this.gridFile.Text = "superGridControl2";
             this.gridFile.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridFile_CellClick);

@@ -428,8 +428,9 @@
             // 
             // groupPanel2
             // 
-            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -459,7 +460,7 @@
             this.groupPanel2.Location = new System.Drawing.Point(615, 3);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(324, 557);
+            this.groupPanel2.Size = new System.Drawing.Size(382, 565);
             // 
             // 
             // 
@@ -691,7 +692,7 @@
             this.txtFileDesc.Name = "txtFileDesc";
             this.txtFileDesc.PreventEnterBeep = true;
             this.txtFileDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFileDesc.Size = new System.Drawing.Size(236, 90);
+            this.txtFileDesc.Size = new System.Drawing.Size(294, 90);
             this.txtFileDesc.TabIndex = 21;
             // 
             // labelX12
@@ -712,7 +713,7 @@
             this.btnSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSelect.Location = new System.Drawing.Point(256, 215);
+            this.btnSelect.Location = new System.Drawing.Point(314, 215);
             this.btnSelect.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(56, 18);
@@ -737,7 +738,7 @@
             this.txtFileName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.PreventEnterBeep = true;
-            this.txtFileName.Size = new System.Drawing.Size(175, 21);
+            this.txtFileName.Size = new System.Drawing.Size(293, 21);
             this.txtFileName.TabIndex = 20;
             // 
             // txtFilePath
@@ -757,7 +758,7 @@
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.PreventEnterBeep = true;
             this.txtFilePath.ReadOnly = true;
-            this.txtFilePath.Size = new System.Drawing.Size(175, 21);
+            this.txtFilePath.Size = new System.Drawing.Size(233, 21);
             this.txtFilePath.TabIndex = 19;
             // 
             // labelX13
@@ -809,7 +810,7 @@
             this.gridFile.PrimaryGrid.Columns.Add(this.gridColumn12);
             this.gridFile.PrimaryGrid.MultiSelect = false;
             this.gridFile.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridFile.Size = new System.Drawing.Size(310, 197);
+            this.gridFile.Size = new System.Drawing.Size(368, 197);
             this.gridFile.TabIndex = 17;
             this.gridFile.Text = "superGridControl2";
             this.gridFile.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridFile_CellClick);

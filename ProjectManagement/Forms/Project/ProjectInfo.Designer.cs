@@ -114,6 +114,7 @@
             this.labelX18 = new DevComponents.DotNetBar.LabelX();
             this.labelX16 = new DevComponents.DotNetBar.LabelX();
             this.labelX17 = new DevComponents.DotNetBar.LabelX();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtSignDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtCREATED)).BeginInit();
@@ -124,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtStart)).BeginInit();
             this.groupPanel3.SuspendLayout();
             this.groupPanel4.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupPanel1
@@ -160,10 +162,11 @@
             this.groupPanel1.Controls.Add(this.labelX2);
             this.groupPanel1.Controls.Add(this.labelX1);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(4, 9);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel1.Location = new System.Drawing.Point(0, 0);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(293, 405);
+            this.groupPanel1.Size = new System.Drawing.Size(292, 409);
             // 
             // 
             // 
@@ -695,8 +698,6 @@
             // 
             // groupPanel2
             // 
-            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupPanel2.AutoScroll = true;
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
@@ -712,10 +713,11 @@
             this.groupPanel2.Controls.Add(this.labelX10);
             this.groupPanel2.Controls.Add(this.labelX9);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(7, 416);
+            this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupPanel2.Location = new System.Drawing.Point(0, 409);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(290, 181);
+            this.groupPanel2.Size = new System.Drawing.Size(292, 198);
             // 
             // 
             // 
@@ -1039,10 +1041,10 @@
             this.groupPanel3.Controls.Add(this.btnSaveQKMS);
             this.groupPanel3.Controls.Add(this.txtInfo);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel3.Location = new System.Drawing.Point(302, 9);
+            this.groupPanel3.Location = new System.Drawing.Point(301, 1);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(330, 588);
+            this.groupPanel3.Size = new System.Drawing.Size(345, 607);
             // 
             // 
             // 
@@ -1079,7 +1081,7 @@
             this.btnSaveQKMS.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSaveQKMS.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSaveQKMS.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveQKMS.Location = new System.Drawing.Point(114, 514);
+            this.btnSaveQKMS.Location = new System.Drawing.Point(121, 514);
             this.btnSaveQKMS.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveQKMS.Name = "btnSaveQKMS";
             this.btnSaveQKMS.Size = new System.Drawing.Size(88, 18);
@@ -1103,7 +1105,7 @@
             this.txtInfo.Rtf = "{\\rtf1\\ansi\\ansicpg936\\deff0\\deflang1033\\deflangfe2052{\\fonttbl{\\f0\\fnil\\fcharset" +
     "134 \\\'cb\\\'ce\\\'cc\\\'e5;}}\r\n\\viewkind4\\uc1\\pard\\lang2052\\f0\\fs18\\par\r\n}\r\n";
             this.txtInfo.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.txtInfo.Size = new System.Drawing.Size(322, 504);
+            this.txtInfo.Size = new System.Drawing.Size(337, 504);
             this.txtInfo.TabIndex = 22;
             // 
             // groupPanel4
@@ -1151,10 +1153,10 @@
             this.groupPanel4.Controls.Add(this.labelX16);
             this.groupPanel4.Controls.Add(this.labelX17);
             this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel4.Location = new System.Drawing.Point(639, 9);
+            this.groupPanel4.Location = new System.Drawing.Point(650, 1);
             this.groupPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel4.Name = "groupPanel4";
-            this.groupPanel4.Size = new System.Drawing.Size(300, 588);
+            this.groupPanel4.Size = new System.Drawing.Size(300, 607);
             // 
             // 
             // 
@@ -1744,15 +1746,24 @@
             this.labelX17.TabIndex = 55;
             this.labelX17.Text = "合同扫描件：";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupPanel1);
+            this.panel1.Controls.Add(this.groupPanel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(5, 1);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(292, 607);
+            this.panel1.TabIndex = 9;
+            // 
             // ProjectInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 610);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupPanel4);
             this.Controls.Add(this.groupPanel3);
-            this.Controls.Add(this.groupPanel2);
-            this.Controls.Add(this.groupPanel1);
             this.Name = "ProjectInfo";
             this.Text = "项目基本信息";
             this.groupPanel1.ResumeLayout(false);
@@ -1766,6 +1777,7 @@
             this.groupPanel3.ResumeLayout(false);
             this.groupPanel4.ResumeLayout(false);
             this.groupPanel4.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1858,5 +1870,6 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6;
         private DevComponents.DotNetBar.Controls.TextBoxX txtB_Name;
+        private System.Windows.Forms.Panel panel1;
     }
 }
