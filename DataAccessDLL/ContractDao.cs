@@ -13,7 +13,7 @@ namespace DataAccessDLL
     /// 合同分包管理Dao
     /// 2017/4/11(zhuguanjun)
     /// </summary>
-    public class ContractDao
+    public class ContractDao : BaseDao
     {
         /// <summary>
         /// 获取分包集合(无版本号的ID和有版本号的Name)
@@ -39,7 +39,7 @@ namespace DataAccessDLL
         /// <param name="dicFile">上传文件集合</param>
         /// <param name="_id"></param>
         /// <returns></returns>
-        public JsonResult SaveSubContract(SubContract entity, Dictionary<int,string> dicFile, out string _id)
+        public JsonResult SaveSubContract(SubContract entity, Dictionary<int, string> dicFile, out string _id)
         {
             _id = string.Empty;//实际id
             string SubID = string.Empty;//版本id
@@ -235,6 +235,39 @@ namespace DataAccessDLL
             sql.Append(" where s.PID=@PID  and s.status=@Status order by s.Name ");
             DataTable dt = NHHelper.ExecuteDataTable(sql.ToString(), qlist);
             return dt;
+        }
+
+
+        /// <summary>
+        /// 更新付款信息和里程碑
+        /// Created：20170612(ChengMengjia)
+        /// </summary>
+        /// <param name="entity">日常工作实体</param>
+        /// <param name="listWork">负责人列表</param>
+        public void UpdateEntities(SubContractLCB newlcb, SubContractLCB oldlcb, SubContractSKXX newskxx, SubContractSKXX oldskxx)
+        {
+            ISession s = NHHelper.GetCurrentSession();
+            try
+            {
+                s.BeginTransaction();
+                if (newlcb != null)
+                    s.Save(newlcb);
+                if (oldlcb != null)
+                    s.Update(oldlcb);
+                if (newskxx != null)
+                    s.Save(newskxx);
+                if (oldskxx != null)
+                    s.Update(oldskxx);
+                UpdateProject(s);//更新项目时间
+                s.Transaction.Commit();
+                s.Close();
+            }
+            catch (Exception ex)
+            {
+                s.Transaction.Rollback();
+                s.Close();
+                throw new Exception("插入实体失败", ex);
+            }
         }
 
     }

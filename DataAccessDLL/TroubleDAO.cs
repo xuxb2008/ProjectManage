@@ -1,4 +1,5 @@
-﻿using DomainDLL;
+﻿using CommonDLL;
+using DomainDLL;
 using NHibernate;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace DataAccessDLL
     /// 类名：项目问题数据处理类
     /// Created：2017.04.06(xuxb)
     /// </summary>
-    public class TroubleDAO:BaseDao
+    public class TroubleDAO : BaseDao
     {
         /// <summary>
         /// 新增问题
@@ -21,7 +22,7 @@ namespace DataAccessDLL
         /// </summary>
         /// <param name="entity">问题实体</param>
         /// <param name="listWork">责任人列表</param>
-        public virtual void AddTrouble(Trouble entity,PNode node, List<TroubleWork> listWork)
+        public virtual void AddTrouble(Trouble entity, PNode node, List<TroubleWork> listWork)
         {
             ISession s = NHHelper.GetCurrentSession();
             try
@@ -219,6 +220,40 @@ namespace DataAccessDLL
             else
             {
                 return new DataTable();
+            }
+        }
+
+
+
+       /// <summary>
+        /// 通过NodeID获取附件列表
+        /// Created:20170612 (ChengMengjia)
+       /// </summary>
+       /// <param name="NodeID"></param>
+       /// <param name="type"></param>
+       /// <returns></returns>
+        public List<TroubleFiles> GetFilesByNodeID(string NodeID, int? type)
+        {
+            List<QueryField> qf = new List<QueryField>();
+            StringBuilder sql = new StringBuilder();
+            sql.Append(" SELECT a.*  FROM TroubleFiles a");
+            sql.Append(" LEFT JOIN Trouble b ON a.TroubleID= substr(b.ID,1,36) and b.Status=1 ");
+            sql.Append(" WHERE a.Status =1 and b.NodeID=@NodeID ");
+            if (type != null)
+            {
+                sql.Append(" and a.Type=@Type ");
+                qf.Add(new QueryField() { Name = "Type", Type = QueryFieldType.Numeric, Value = type });
+            }
+            qf.Add(new QueryField() { Name = "NodeID", Type = QueryFieldType.String, Value = NodeID.Substring(0, 36) });
+
+            DataSet ds = NHHelper.ExecuteDataset(sql.ToString(), qf);
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                return JsonHelper.TableToList<TroubleFiles>(ds.Tables[0]);
+            }
+            else
+            {
+                return new List<TroubleFiles>();
             }
         }
     }

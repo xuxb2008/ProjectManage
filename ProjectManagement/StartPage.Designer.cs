@@ -57,6 +57,7 @@
             this.gridColumn2 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn3 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn4 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel4 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.superGridLastWork = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.RowNo = new DevComponents.DotNetBar.SuperGrid.GridColumn();
@@ -86,9 +87,8 @@
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupPanel1.Location = new System.Drawing.Point(5, 1);
-            this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(890, 289);
+            this.groupPanel1.Size = new System.Drawing.Size(1340, 434);
             // 
             // 
             // 
@@ -128,11 +128,10 @@
             this.chartCost.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartCost.Legends.Add(legend1);
-            this.chartCost.Location = new System.Drawing.Point(536, 5);
-            this.chartCost.Margin = new System.Windows.Forms.Padding(2);
+            this.chartCost.Location = new System.Drawing.Point(804, 8);
             this.chartCost.Name = "chartCost";
             this.chartCost.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            this.chartCost.Size = new System.Drawing.Size(346, 256);
+            this.chartCost.Size = new System.Drawing.Size(524, 384);
             this.chartCost.TabIndex = 8;
             this.chartCost.Text = "chart2";
             title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -145,8 +144,7 @@
             // 
             chartArea2.Name = "ChartArea1";
             this.chartTrouble.ChartAreas.Add(chartArea2);
-            this.chartTrouble.Location = new System.Drawing.Point(236, 131);
-            this.chartTrouble.Margin = new System.Windows.Forms.Padding(2);
+            this.chartTrouble.Location = new System.Drawing.Point(354, 196);
             this.chartTrouble.Name = "chartTrouble";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
@@ -173,7 +171,7 @@
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             this.chartTrouble.Series.Add(series1);
-            this.chartTrouble.Size = new System.Drawing.Size(295, 130);
+            this.chartTrouble.Size = new System.Drawing.Size(442, 195);
             this.chartTrouble.TabIndex = 5;
             this.chartTrouble.Text = "chart4";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -186,8 +184,7 @@
             // 
             chartArea3.Name = "ChartArea1";
             this.chartRisk.ChartAreas.Add(chartArea3);
-            this.chartRisk.Location = new System.Drawing.Point(236, 5);
-            this.chartRisk.Margin = new System.Windows.Forms.Padding(2);
+            this.chartRisk.Location = new System.Drawing.Point(354, 8);
             this.chartRisk.Name = "chartRisk";
             series2.BorderColor = System.Drawing.Color.White;
             series2.ChartArea = "ChartArea1";
@@ -213,7 +210,7 @@
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             this.chartRisk.Series.Add(series2);
-            this.chartRisk.Size = new System.Drawing.Size(295, 122);
+            this.chartRisk.Size = new System.Drawing.Size(442, 183);
             this.chartRisk.TabIndex = 4;
             title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,14 +222,13 @@
             // 
             chartArea4.Name = "ChartArea1";
             this.chartResult.ChartAreas.Add(chartArea4);
-            this.chartResult.Location = new System.Drawing.Point(4, 5);
-            this.chartResult.Margin = new System.Windows.Forms.Padding(2);
+            this.chartResult.Location = new System.Drawing.Point(6, 8);
             this.chartResult.Name = "chartResult";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series3.Name = "Series1";
             this.chartResult.Series.Add(series3);
-            this.chartResult.Size = new System.Drawing.Size(227, 256);
+            this.chartResult.Size = new System.Drawing.Size(340, 384);
             this.chartResult.TabIndex = 0;
             title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -248,10 +244,9 @@
             this.groupPanel3.Controls.Add(this.superGridWarning);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupPanel3.Location = new System.Drawing.Point(5, 290);
-            this.groupPanel3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupPanel3.Location = new System.Drawing.Point(5, 435);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(536, 268);
+            this.groupPanel3.Size = new System.Drawing.Size(804, 403);
             // 
             // 
             // 
@@ -290,18 +285,22 @@
             this.superGridWarning.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.superGridWarning.ForeColor = System.Drawing.Color.Black;
             this.superGridWarning.Location = new System.Drawing.Point(0, 0);
-            this.superGridWarning.Margin = new System.Windows.Forms.Padding(2);
             this.superGridWarning.Name = "superGridWarning";
             // 
             // 
             // 
+            this.superGridWarning.PrimaryGrid.AutoGenerateColumns = false;
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn1);
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn2);
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn3);
             this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn4);
-            this.superGridWarning.Size = new System.Drawing.Size(530, 244);
+            this.superGridWarning.PrimaryGrid.Columns.Add(this.gridColumn5);
+            this.superGridWarning.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+            this.superGridWarning.Size = new System.Drawing.Size(798, 372);
             this.superGridWarning.TabIndex = 0;
             this.superGridWarning.Text = "superGridControl1";
+            this.superGridWarning.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.superGridWarning_CellClick);
+            this.superGridWarning.RowDoubleClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowDoubleClickEventArgs>(this.superGridWarning_RowDoubleClick);
             // 
             // gridColumn1
             // 
@@ -328,10 +327,18 @@
             // 
             // gridColumn4
             // 
+            this.gridColumn4.AllowEdit = false;
+            this.gridColumn4.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
             this.gridColumn4.FillWeight = 60;
             this.gridColumn4.HeaderText = "操作";
-            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Name = "Operate";
+            this.gridColumn4.NullString = "处理";
             this.gridColumn4.Width = 60;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Name = "Id";
+            this.gridColumn5.Visible = false;
             // 
             // groupPanel4
             // 
@@ -341,10 +348,9 @@
             this.groupPanel4.Controls.Add(this.superGridLastWork);
             this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel4.Location = new System.Drawing.Point(541, 290);
-            this.groupPanel4.Margin = new System.Windows.Forms.Padding(2);
+            this.groupPanel4.Location = new System.Drawing.Point(809, 435);
             this.groupPanel4.Name = "groupPanel4";
-            this.groupPanel4.Size = new System.Drawing.Size(354, 268);
+            this.groupPanel4.Size = new System.Drawing.Size(536, 403);
             // 
             // 
             // 
@@ -383,7 +389,6 @@
             this.superGridLastWork.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.superGridLastWork.ForeColor = System.Drawing.Color.Black;
             this.superGridLastWork.Location = new System.Drawing.Point(0, 0);
-            this.superGridLastWork.Margin = new System.Windows.Forms.Padding(2);
             this.superGridLastWork.Name = "superGridLastWork";
             // 
             // 
@@ -396,9 +401,11 @@
             this.superGridLastWork.PrimaryGrid.Columns.Add(this.Desc);
             this.superGridLastWork.PrimaryGrid.Columns.Add(this.Operate);
             this.superGridLastWork.PrimaryGrid.Columns.Add(this.Id);
-            this.superGridLastWork.Size = new System.Drawing.Size(348, 244);
+            this.superGridLastWork.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+            this.superGridLastWork.Size = new System.Drawing.Size(530, 372);
             this.superGridLastWork.TabIndex = 0;
             this.superGridLastWork.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.superGridLastWork_CellClick);
+            this.superGridLastWork.RowDoubleClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowDoubleClickEventArgs>(this.superGridLastWork_RowDoubleClick);
             // 
             // RowNo
             // 
@@ -457,14 +464,15 @@
             // 
             // StartPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 560);
+            this.ClientSize = new System.Drawing.Size(1350, 840);
             this.Controls.Add(this.groupPanel4);
             this.Controls.Add(this.groupPanel3);
             this.Controls.Add(this.groupPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "StartPage";
             this.Text = "首页";
             this.Load += new System.EventHandler(this.StartPage_Load);
@@ -501,5 +509,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartRisk;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCost;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5;
     }
 }
