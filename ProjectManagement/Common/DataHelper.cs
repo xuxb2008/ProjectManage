@@ -469,11 +469,17 @@ namespace ProjectManagement
         /// <summary>
         /// 基础数据列表加载
         /// Created:2017.3.27(ChengMengjia)
+        /// update:2017/6/12(zhuguanjun)加个‘空’选项
         /// </summary>
         /// <param name="combobox"></param>
         /// <param name="DictNo"></param>
         public static void LoadDictItems(ComboBoxEx combobox, DictCategory DictNo)
         {
+            ComboItem itemnull = new ComboItem();
+            itemnull.Text = "请选择";
+            itemnull.Value = 0;
+            combobox.Items.Add(itemnull);
+
             List<DictItem> listD = new SettingBLL().GetDictItems(DictNo);
             foreach (DictItem dictitem in listD)
             {
@@ -481,7 +487,7 @@ namespace ProjectManagement
                 item.Text = dictitem.Name;
                 item.Value = dictitem.No.ToString();
                 combobox.Items.Add(item);
-            }
+            }            
         }
 
 

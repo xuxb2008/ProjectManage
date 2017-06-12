@@ -34,6 +34,7 @@ namespace ProjectManagement.Forms.Report
             InitializeComponent();
             //完成状态下拉框
             DataHelper.LoadDictItems(cmbFinishStatus, DictCategory.PlanFinishStatus);
+            cmbFinishStatus.SelectedIndex = 0;
             //负责人下拉框
             LoadStakeholderItems(cmbManager, null);
             //DataHelper.LoadDictItems(cmbManager, DictCategory.WBS_Manager);//责任人列表加载
@@ -127,7 +128,9 @@ namespace ProjectManagement.Forms.Report
 
             //负责人
             string Manager = string.Empty;
-            Manager = cmbManager.Text;
+            ComboItem manageritem = (ComboItem)cmbManager.SelectedItem;
+            if (manageritem != null)
+                Manager = manageritem.Value.ToString();
 
             dt = bll.GetPlan(dtiStartDate.Value, dtiEndDate.Value, PType, Manager,ProjectId);
             //superGridControl1.PrimaryGrid.DataSource = dt;
@@ -165,6 +168,10 @@ namespace ProjectManagement.Forms.Report
         private void LoadStakeholderItems(ComboBoxEx combobox, string Value)
         {
             var list = bll.GetStakeholderItems(ProjectId);
+            ComboItem itemnull = new ComboItem();
+            itemnull.Text = "请选择";
+            itemnull.Value = string.Empty;
+            combobox.Items.Add(itemnull);
             foreach (DomainDLL.Stakeholders c in list)
             {
                 ComboItem item = new ComboItem();
@@ -172,8 +179,8 @@ namespace ProjectManagement.Forms.Report
                 item.Value = c.ID;
                 combobox.Items.Add(item);
             }
+            combobox.SelectedIndex = 0;
         }
-
         #endregion
 
     }

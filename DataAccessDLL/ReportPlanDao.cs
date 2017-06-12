@@ -128,6 +128,13 @@ namespace DataAccessDLL
             sql.Append(" left join NodeProgress n on n.Status=@Status and d.NodeID=n.NodeID");
             sql.Append(" left join DictItem d1 on n.PType = d1.No and d1.DictNo=" + (int)DictCategory.PlanFinishStatus);
             sql.Append(" left join PNode p on substr(p.ID, 1, 36) = d.NodeID");
+
+            if (!string.IsNullOrEmpty(Manager))
+            {
+                qlist.Add(new QueryField() { Name = "Manager", Type = QueryFieldType.String, Value = Manager });
+                sql.Append(" inner join deliverableswork dw on dw.jbxxid = substr(d.id,1,36) and dw.manager=@Manager");
+            }
+
             sql.Append(" where d.Status=@Status and p.Status=@Status and p.PType=1");
 
             if (StarteDate != DateTime.MinValue)
@@ -145,11 +152,6 @@ namespace DataAccessDLL
             {
                 qlist.Add(new QueryField() { Name = "PType", Type = QueryFieldType.Numeric, Value = PType });
                 sql.Append(" and n.PType=@PType");
-            }
-            if (!string.IsNullOrEmpty(Manager))
-            {
-                qlist.Add(new QueryField() { Name = "Manager", Type = QueryFieldType.String, Value = Manager });
-                sql.Append(" and d.Manager=@Manager");
             }
             //sql.Append(" order by d.CREATED");
             //交合
