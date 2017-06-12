@@ -79,6 +79,34 @@
             this.gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
+            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.btnSaveLCB = new DevComponents.DotNetBar.ButtonX();
+            this.cmbLCBFinishStatus = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.dtiLCBFinishDate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.labelX27 = new DevComponents.DotNetBar.LabelX();
+            this.labelX28 = new DevComponents.DotNetBar.LabelX();
+            this.txtLCBRemark = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.btnClearLCB = new DevComponents.DotNetBar.ButtonX();
+            this.txtLCBCondition = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtLCBName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX29 = new DevComponents.DotNetBar.LabelX();
+            this.labelX30 = new DevComponents.DotNetBar.LabelX();
+            this.labelX31 = new DevComponents.DotNetBar.LabelX();
+            this.superGridControl1 = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
+            this.gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn16 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn28 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn29 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn30 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn31 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn32 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn39 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.groupPanel4 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cmbSKXXFinishStatus = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -114,47 +142,19 @@
             this.gridColumn38 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn40 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.btnSaveLCB = new DevComponents.DotNetBar.ButtonX();
-            this.cmbLCBFinishStatus = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.dtiLCBFinishDate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
-            this.labelX27 = new DevComponents.DotNetBar.LabelX();
-            this.labelX28 = new DevComponents.DotNetBar.LabelX();
-            this.txtLCBRemark = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.btnClearLCB = new DevComponents.DotNetBar.ButtonX();
-            this.txtLCBCondition = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txtLCBName = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX29 = new DevComponents.DotNetBar.LabelX();
-            this.labelX30 = new DevComponents.DotNetBar.LabelX();
-            this.labelX31 = new DevComponents.DotNetBar.LabelX();
-            this.superGridControl1 = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
-            this.gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn16 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn28 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn29 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn30 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn31 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn32 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn39 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtiSignDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
+            this.superTabControlPanel1.SuspendLayout();
+            this.groupPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtiLCBFinishDate)).BeginInit();
             this.superTabControlPanel2.SuspendLayout();
             this.groupPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtiSKXXInDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itiSKXXAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itiSKXXRatio)).BeginInit();
-            this.superTabControlPanel1.SuspendLayout();
-            this.groupPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtiLCBFinishDate)).BeginInit();
             this.SuspendLayout();
             // 
             // groupPanel1
@@ -238,6 +238,7 @@
             this.gridColumn25.DataPropertyName = "A";
             this.gridColumn25.HeaderText = "主合同";
             this.gridColumn25.Name = "A";
+            this.gridColumn25.Visible = false;
             this.gridColumn25.Width = 80;
             // 
             // gridColumn26
@@ -904,8 +905,8 @@
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
             this.superTabControl1.ControlBox.Visible = false;
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
+            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControl1.ForeColor = System.Drawing.Color.Black;
             this.superTabControl1.Location = new System.Drawing.Point(605, 1);
@@ -922,474 +923,6 @@
             this.superTabItem2});
             this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue;
             this.superTabControl1.Text = "superTabControl1";
-            // 
-            // superTabControlPanel2
-            // 
-            this.superTabControlPanel2.Controls.Add(this.groupPanel4);
-            this.superTabControlPanel2.Controls.Add(this.superGridControl2);
-            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 26);
-            this.superTabControlPanel2.Margin = new System.Windows.Forms.Padding(2);
-            this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(413, 514);
-            this.superTabControlPanel2.TabIndex = 0;
-            this.superTabControlPanel2.TabItem = this.superTabItem2;
-            // 
-            // groupPanel4
-            // 
-            this.groupPanel4.BackColor = System.Drawing.Color.Transparent;
-            this.groupPanel4.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel4.Controls.Add(this.cmbSKXXFinishStatus);
-            this.groupPanel4.Controls.Add(this.btnSaveSKXX);
-            this.groupPanel4.Controls.Add(this.dtiSKXXInDate);
-            this.groupPanel4.Controls.Add(this.txtSKXXRemark);
-            this.groupPanel4.Controls.Add(this.txtSKXXCondition);
-            this.groupPanel4.Controls.Add(this.itiSKXXAmount);
-            this.groupPanel4.Controls.Add(this.labelX52);
-            this.groupPanel4.Controls.Add(this.labelX15);
-            this.groupPanel4.Controls.Add(this.labelX14);
-            this.groupPanel4.Controls.Add(this.labelX51);
-            this.groupPanel4.Controls.Add(this.btnClearSKXX);
-            this.groupPanel4.Controls.Add(this.labelX50);
-            this.groupPanel4.Controls.Add(this.itiSKXXRatio);
-            this.groupPanel4.Controls.Add(this.labelX49);
-            this.groupPanel4.Controls.Add(this.cmbSKXXBatchNo);
-            this.groupPanel4.Controls.Add(this.labelX48);
-            this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel4.Location = new System.Drawing.Point(0, 251);
-            this.groupPanel4.Margin = new System.Windows.Forms.Padding(2);
-            this.groupPanel4.Name = "groupPanel4";
-            this.groupPanel4.Size = new System.Drawing.Size(413, 263);
-            // 
-            // 
-            // 
-            this.groupPanel4.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.groupPanel4.Style.BackColorGradientAngle = 90;
-            this.groupPanel4.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.groupPanel4.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel4.Style.BorderBottomWidth = 1;
-            this.groupPanel4.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.groupPanel4.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel4.Style.BorderLeftWidth = 1;
-            this.groupPanel4.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel4.Style.BorderRightWidth = 1;
-            this.groupPanel4.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel4.Style.BorderTopWidth = 1;
-            this.groupPanel4.Style.CornerDiameter = 4;
-            this.groupPanel4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel4.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel4.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.groupPanel4.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
-            // 
-            // 
-            // 
-            this.groupPanel4.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel4.TabIndex = 3;
-            this.groupPanel4.Text = "编辑付款信息";
-            // 
-            // cmbSKXXFinishStatus
-            // 
-            this.cmbSKXXFinishStatus.DisplayMember = "Text";
-            this.cmbSKXXFinishStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbSKXXFinishStatus.FormattingEnabled = true;
-            this.cmbSKXXFinishStatus.ItemHeight = 19;
-            this.cmbSKXXFinishStatus.Location = new System.Drawing.Point(68, 118);
-            this.cmbSKXXFinishStatus.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbSKXXFinishStatus.Name = "cmbSKXXFinishStatus";
-            this.cmbSKXXFinishStatus.Size = new System.Drawing.Size(225, 25);
-            this.cmbSKXXFinishStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbSKXXFinishStatus.TabIndex = 34;
-            // 
-            // btnSaveSKXX
-            // 
-            this.btnSaveSKXX.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSaveSKXX.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveSKXX.Location = new System.Drawing.Point(178, 218);
-            this.btnSaveSKXX.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSaveSKXX.Name = "btnSaveSKXX";
-            this.btnSaveSKXX.Size = new System.Drawing.Size(76, 18);
-            this.btnSaveSKXX.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSaveSKXX.TabIndex = 38;
-            this.btnSaveSKXX.Text = "保存";
-            this.btnSaveSKXX.Click += new System.EventHandler(this.btnSaveSKXX_Click);
-            // 
-            // dtiSKXXInDate
-            // 
-            // 
-            // 
-            // 
-            this.dtiSKXXInDate.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtiSKXXInDate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiSKXXInDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
-            this.dtiSKXXInDate.ButtonDropDown.Visible = true;
-            this.dtiSKXXInDate.IsPopupCalendarOpen = false;
-            this.dtiSKXXInDate.Location = new System.Drawing.Point(68, 150);
-            this.dtiSKXXInDate.Margin = new System.Windows.Forms.Padding(2);
-            // 
-            // 
-            // 
-            this.dtiSKXXInDate.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtiSKXXInDate.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiSKXXInDate.MonthCalendar.CalendarDimensions = new System.Drawing.Size(1, 1);
-            this.dtiSKXXInDate.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiSKXXInDate.MonthCalendar.DisplayMonth = new System.DateTime(2017, 3, 1, 0, 0, 0, 0);
-            this.dtiSKXXInDate.MonthCalendar.FirstDayOfWeek = System.DayOfWeek.Monday;
-            this.dtiSKXXInDate.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtiSKXXInDate.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtiSKXXInDate.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtiSKXXInDate.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtiSKXXInDate.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtiSKXXInDate.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.dtiSKXXInDate.MonthCalendar.TodayButtonVisible = true;
-            this.dtiSKXXInDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
-            this.dtiSKXXInDate.Name = "dtiSKXXInDate";
-            this.dtiSKXXInDate.Size = new System.Drawing.Size(224, 21);
-            this.dtiSKXXInDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.dtiSKXXInDate.TabIndex = 35;
-            // 
-            // txtSKXXRemark
-            // 
-            this.txtSKXXRemark.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.txtSKXXRemark.Border.Class = "TextBoxBorder";
-            this.txtSKXXRemark.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSKXXRemark.DisabledBackColor = System.Drawing.Color.White;
-            this.txtSKXXRemark.ForeColor = System.Drawing.Color.Black;
-            this.txtSKXXRemark.Location = new System.Drawing.Point(68, 178);
-            this.txtSKXXRemark.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSKXXRemark.Multiline = true;
-            this.txtSKXXRemark.Name = "txtSKXXRemark";
-            this.txtSKXXRemark.PreventEnterBeep = true;
-            this.txtSKXXRemark.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSKXXRemark.Size = new System.Drawing.Size(224, 36);
-            this.txtSKXXRemark.TabIndex = 36;
-            // 
-            // txtSKXXCondition
-            // 
-            this.txtSKXXCondition.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.txtSKXXCondition.Border.Class = "TextBoxBorder";
-            this.txtSKXXCondition.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSKXXCondition.DisabledBackColor = System.Drawing.Color.White;
-            this.txtSKXXCondition.ForeColor = System.Drawing.Color.Black;
-            this.txtSKXXCondition.Location = new System.Drawing.Point(68, 90);
-            this.txtSKXXCondition.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSKXXCondition.Name = "txtSKXXCondition";
-            this.txtSKXXCondition.PreventEnterBeep = true;
-            this.txtSKXXCondition.Size = new System.Drawing.Size(224, 21);
-            this.txtSKXXCondition.TabIndex = 33;
-            // 
-            // itiSKXXAmount
-            // 
-            // 
-            // 
-            // 
-            this.itiSKXXAmount.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.itiSKXXAmount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itiSKXXAmount.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.itiSKXXAmount.Location = new System.Drawing.Point(68, 62);
-            this.itiSKXXAmount.Margin = new System.Windows.Forms.Padding(2);
-            this.itiSKXXAmount.Name = "itiSKXXAmount";
-            this.itiSKXXAmount.ShowUpDown = true;
-            this.itiSKXXAmount.Size = new System.Drawing.Size(224, 21);
-            this.itiSKXXAmount.TabIndex = 32;
-            // 
-            // labelX52
-            // 
-            this.labelX52.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX52.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX52.Location = new System.Drawing.Point(0, 159);
-            this.labelX52.Margin = new System.Windows.Forms.Padding(2);
-            this.labelX52.Name = "labelX52";
-            this.labelX52.Size = new System.Drawing.Size(74, 18);
-            this.labelX52.TabIndex = 9;
-            this.labelX52.Text = "收款日期：";
-            // 
-            // labelX15
-            // 
-            this.labelX15.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX15.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX15.Location = new System.Drawing.Point(0, 128);
-            this.labelX15.Margin = new System.Windows.Forms.Padding(2);
-            this.labelX15.Name = "labelX15";
-            this.labelX15.Size = new System.Drawing.Size(74, 18);
-            this.labelX15.TabIndex = 10;
-            this.labelX15.Text = "完成情况：";
-            // 
-            // labelX14
-            // 
-            this.labelX14.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX14.Location = new System.Drawing.Point(0, 190);
-            this.labelX14.Margin = new System.Windows.Forms.Padding(2);
-            this.labelX14.Name = "labelX14";
-            this.labelX14.Size = new System.Drawing.Size(74, 18);
-            this.labelX14.TabIndex = 10;
-            this.labelX14.Text = "备注：";
-            // 
-            // labelX51
-            // 
-            this.labelX51.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX51.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX51.Location = new System.Drawing.Point(0, 97);
-            this.labelX51.Margin = new System.Windows.Forms.Padding(2);
-            this.labelX51.Name = "labelX51";
-            this.labelX51.Size = new System.Drawing.Size(74, 18);
-            this.labelX51.TabIndex = 10;
-            this.labelX51.Text = "收款条件：";
-            // 
-            // btnClearSKXX
-            // 
-            this.btnClearSKXX.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnClearSKXX.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnClearSKXX.Location = new System.Drawing.Point(68, 218);
-            this.btnClearSKXX.Margin = new System.Windows.Forms.Padding(2);
-            this.btnClearSKXX.Name = "btnClearSKXX";
-            this.btnClearSKXX.Size = new System.Drawing.Size(76, 18);
-            this.btnClearSKXX.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnClearSKXX.TabIndex = 37;
-            this.btnClearSKXX.Text = "清空";
-            this.btnClearSKXX.Click += new System.EventHandler(this.btnClearSKXX_Click);
-            // 
-            // labelX50
-            // 
-            this.labelX50.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX50.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX50.Location = new System.Drawing.Point(0, 66);
-            this.labelX50.Margin = new System.Windows.Forms.Padding(2);
-            this.labelX50.Name = "labelX50";
-            this.labelX50.Size = new System.Drawing.Size(74, 18);
-            this.labelX50.TabIndex = 7;
-            this.labelX50.Text = "收款金额：";
-            // 
-            // itiSKXXRatio
-            // 
-            // 
-            // 
-            // 
-            this.itiSKXXRatio.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.itiSKXXRatio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itiSKXXRatio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.itiSKXXRatio.Location = new System.Drawing.Point(68, 34);
-            this.itiSKXXRatio.Margin = new System.Windows.Forms.Padding(2);
-            this.itiSKXXRatio.Name = "itiSKXXRatio";
-            this.itiSKXXRatio.ShowUpDown = true;
-            this.itiSKXXRatio.Size = new System.Drawing.Size(224, 21);
-            this.itiSKXXRatio.TabIndex = 31;
-            // 
-            // labelX49
-            // 
-            this.labelX49.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX49.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX49.Location = new System.Drawing.Point(0, 34);
-            this.labelX49.Margin = new System.Windows.Forms.Padding(2);
-            this.labelX49.Name = "labelX49";
-            this.labelX49.Size = new System.Drawing.Size(74, 18);
-            this.labelX49.TabIndex = 8;
-            this.labelX49.Text = "收款比例：";
-            // 
-            // cmbSKXXBatchNo
-            // 
-            this.cmbSKXXBatchNo.DisplayMember = "Text";
-            this.cmbSKXXBatchNo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbSKXXBatchNo.FormattingEnabled = true;
-            this.cmbSKXXBatchNo.ItemHeight = 19;
-            this.cmbSKXXBatchNo.Location = new System.Drawing.Point(68, 2);
-            this.cmbSKXXBatchNo.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbSKXXBatchNo.Name = "cmbSKXXBatchNo";
-            this.cmbSKXXBatchNo.Size = new System.Drawing.Size(225, 25);
-            this.cmbSKXXBatchNo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbSKXXBatchNo.TabIndex = 30;
-            // 
-            // labelX48
-            // 
-            this.labelX48.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX48.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX48.Location = new System.Drawing.Point(0, 3);
-            this.labelX48.Margin = new System.Windows.Forms.Padding(2);
-            this.labelX48.Name = "labelX48";
-            this.labelX48.Size = new System.Drawing.Size(74, 18);
-            this.labelX48.TabIndex = 6;
-            this.labelX48.Text = "收款批次：";
-            // 
-            // superGridControl2
-            // 
-            this.superGridControl2.BackColor = System.Drawing.Color.White;
-            this.superGridControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.superGridControl2.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
-            this.superGridControl2.ForeColor = System.Drawing.Color.Black;
-            this.superGridControl2.Location = new System.Drawing.Point(0, 0);
-            this.superGridControl2.Margin = new System.Windows.Forms.Padding(2);
-            this.superGridControl2.Name = "superGridControl2";
-            // 
-            // 
-            // 
-            this.superGridControl2.PrimaryGrid.AllowEdit = false;
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn17);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn18);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn41);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn19);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn20);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn23);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn21);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn22);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn33);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn34);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn35);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn36);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn37);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn38);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn40);
-            this.superGridControl2.PrimaryGrid.MultiSelect = false;
-            this.superGridControl2.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.superGridControl2.Size = new System.Drawing.Size(413, 251);
-            this.superGridControl2.TabIndex = 29;
-            this.superGridControl2.Text = "superGridControl2";
-            this.superGridControl2.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.superGridControl2_RowClick);
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.DataPropertyName = "RowNo";
-            this.gridColumn17.HeaderText = "编号";
-            this.gridColumn17.Name = "RowNo";
-            // 
-            // gridColumn18
-            // 
-            this.gridColumn18.DataPropertyName = "BatchNoName";
-            this.gridColumn18.HeaderText = "收款批次";
-            this.gridColumn18.Name = "BatchNoName";
-            // 
-            // gridColumn41
-            // 
-            this.gridColumn41.DataPropertyName = "InDate";
-            this.gridColumn41.HeaderText = "收款日期";
-            this.gridColumn41.Name = "InDate";
-            // 
-            // gridColumn19
-            // 
-            this.gridColumn19.DataPropertyName = "Ratio";
-            this.gridColumn19.HeaderText = "收款比例";
-            this.gridColumn19.Name = "Ratio";
-            // 
-            // gridColumn20
-            // 
-            this.gridColumn20.DataPropertyName = "Amount";
-            this.gridColumn20.HeaderText = "收款金额";
-            this.gridColumn20.Name = "Amount";
-            // 
-            // gridColumn23
-            // 
-            this.gridColumn23.DataPropertyName = "FinishStatusName";
-            this.gridColumn23.HeaderText = "完成情况";
-            this.gridColumn23.Name = "FinishStatusName";
-            // 
-            // gridColumn21
-            // 
-            this.gridColumn21.DataPropertyName = "Condition";
-            this.gridColumn21.HeaderText = "收款条件";
-            this.gridColumn21.Name = "Condition";
-            // 
-            // gridColumn22
-            // 
-            this.gridColumn22.DataPropertyName = "Remark";
-            this.gridColumn22.HeaderText = "备注";
-            this.gridColumn22.Name = "Remark";
-            // 
-            // gridColumn33
-            // 
-            this.gridColumn33.DataPropertyName = "ID";
-            this.gridColumn33.Name = "ID";
-            this.gridColumn33.Visible = false;
-            // 
-            // gridColumn34
-            // 
-            this.gridColumn34.DataPropertyName = "CREATED";
-            this.gridColumn34.Name = "CREATED";
-            this.gridColumn34.Visible = false;
-            // 
-            // gridColumn35
-            // 
-            this.gridColumn35.DataPropertyName = "UPDATED";
-            this.gridColumn35.Name = "UPDATED";
-            this.gridColumn35.Visible = false;
-            // 
-            // gridColumn36
-            // 
-            this.gridColumn36.DataPropertyName = "Status";
-            this.gridColumn36.Name = "Status";
-            this.gridColumn36.Visible = false;
-            // 
-            // gridColumn37
-            // 
-            this.gridColumn37.DataPropertyName = "SubID";
-            this.gridColumn37.Name = "SubID";
-            this.gridColumn37.Visible = false;
-            // 
-            // gridColumn38
-            // 
-            this.gridColumn38.DataPropertyName = "BtachNo";
-            this.gridColumn38.Name = "batchNo";
-            this.gridColumn38.Visible = false;
-            // 
-            // gridColumn40
-            // 
-            this.gridColumn40.DataPropertyName = "FinishStatus";
-            this.gridColumn40.Name = "FinishStatus";
-            this.gridColumn40.Visible = false;
-            // 
-            // superTabItem2
-            // 
-            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
-            this.superTabItem2.GlobalItem = false;
-            this.superTabItem2.Name = "superTabItem2";
-            this.superTabItem2.Text = "收款信息";
             // 
             // superTabControlPanel1
             // 
@@ -1666,7 +1199,7 @@
             this.labelX31.Name = "labelX31";
             this.labelX31.Size = new System.Drawing.Size(88, 18);
             this.labelX31.TabIndex = 7;
-            this.labelX31.Text = "里程碑名称：";
+            this.labelX31.Text = "*里程碑名称：";
             // 
             // superGridControl1
             // 
@@ -1774,6 +1307,474 @@
             this.superTabItem1.Name = "superTabItem1";
             this.superTabItem1.Text = "里程碑";
             // 
+            // superTabControlPanel2
+            // 
+            this.superTabControlPanel2.Controls.Add(this.groupPanel4);
+            this.superTabControlPanel2.Controls.Add(this.superGridControl2);
+            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 26);
+            this.superTabControlPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.superTabControlPanel2.Name = "superTabControlPanel2";
+            this.superTabControlPanel2.Size = new System.Drawing.Size(413, 514);
+            this.superTabControlPanel2.TabIndex = 0;
+            this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // groupPanel4
+            // 
+            this.groupPanel4.BackColor = System.Drawing.Color.Transparent;
+            this.groupPanel4.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel4.Controls.Add(this.cmbSKXXFinishStatus);
+            this.groupPanel4.Controls.Add(this.btnSaveSKXX);
+            this.groupPanel4.Controls.Add(this.dtiSKXXInDate);
+            this.groupPanel4.Controls.Add(this.txtSKXXRemark);
+            this.groupPanel4.Controls.Add(this.txtSKXXCondition);
+            this.groupPanel4.Controls.Add(this.itiSKXXAmount);
+            this.groupPanel4.Controls.Add(this.labelX52);
+            this.groupPanel4.Controls.Add(this.labelX15);
+            this.groupPanel4.Controls.Add(this.labelX14);
+            this.groupPanel4.Controls.Add(this.labelX51);
+            this.groupPanel4.Controls.Add(this.btnClearSKXX);
+            this.groupPanel4.Controls.Add(this.labelX50);
+            this.groupPanel4.Controls.Add(this.itiSKXXRatio);
+            this.groupPanel4.Controls.Add(this.labelX49);
+            this.groupPanel4.Controls.Add(this.cmbSKXXBatchNo);
+            this.groupPanel4.Controls.Add(this.labelX48);
+            this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel4.Location = new System.Drawing.Point(0, 251);
+            this.groupPanel4.Margin = new System.Windows.Forms.Padding(2);
+            this.groupPanel4.Name = "groupPanel4";
+            this.groupPanel4.Size = new System.Drawing.Size(413, 263);
+            // 
+            // 
+            // 
+            this.groupPanel4.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.groupPanel4.Style.BackColorGradientAngle = 90;
+            this.groupPanel4.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.groupPanel4.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel4.Style.BorderBottomWidth = 1;
+            this.groupPanel4.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.groupPanel4.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel4.Style.BorderLeftWidth = 1;
+            this.groupPanel4.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel4.Style.BorderRightWidth = 1;
+            this.groupPanel4.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel4.Style.BorderTopWidth = 1;
+            this.groupPanel4.Style.CornerDiameter = 4;
+            this.groupPanel4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel4.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel4.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.groupPanel4.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.groupPanel4.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel4.TabIndex = 3;
+            this.groupPanel4.Text = "编辑付款信息";
+            // 
+            // cmbSKXXFinishStatus
+            // 
+            this.cmbSKXXFinishStatus.DisplayMember = "Text";
+            this.cmbSKXXFinishStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbSKXXFinishStatus.FormattingEnabled = true;
+            this.cmbSKXXFinishStatus.ItemHeight = 19;
+            this.cmbSKXXFinishStatus.Location = new System.Drawing.Point(68, 118);
+            this.cmbSKXXFinishStatus.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbSKXXFinishStatus.Name = "cmbSKXXFinishStatus";
+            this.cmbSKXXFinishStatus.Size = new System.Drawing.Size(225, 25);
+            this.cmbSKXXFinishStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cmbSKXXFinishStatus.TabIndex = 34;
+            // 
+            // btnSaveSKXX
+            // 
+            this.btnSaveSKXX.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaveSKXX.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSaveSKXX.Location = new System.Drawing.Point(178, 218);
+            this.btnSaveSKXX.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSaveSKXX.Name = "btnSaveSKXX";
+            this.btnSaveSKXX.Size = new System.Drawing.Size(76, 18);
+            this.btnSaveSKXX.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSaveSKXX.TabIndex = 38;
+            this.btnSaveSKXX.Text = "保存";
+            this.btnSaveSKXX.Click += new System.EventHandler(this.btnSaveSKXX_Click);
+            // 
+            // dtiSKXXInDate
+            // 
+            // 
+            // 
+            // 
+            this.dtiSKXXInDate.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtiSKXXInDate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtiSKXXInDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
+            this.dtiSKXXInDate.ButtonDropDown.Visible = true;
+            this.dtiSKXXInDate.IsPopupCalendarOpen = false;
+            this.dtiSKXXInDate.Location = new System.Drawing.Point(68, 150);
+            this.dtiSKXXInDate.Margin = new System.Windows.Forms.Padding(2);
+            // 
+            // 
+            // 
+            this.dtiSKXXInDate.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtiSKXXInDate.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtiSKXXInDate.MonthCalendar.CalendarDimensions = new System.Drawing.Size(1, 1);
+            this.dtiSKXXInDate.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtiSKXXInDate.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtiSKXXInDate.MonthCalendar.DisplayMonth = new System.DateTime(2017, 3, 1, 0, 0, 0, 0);
+            this.dtiSKXXInDate.MonthCalendar.FirstDayOfWeek = System.DayOfWeek.Monday;
+            this.dtiSKXXInDate.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtiSKXXInDate.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtiSKXXInDate.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtiSKXXInDate.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtiSKXXInDate.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtiSKXXInDate.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtiSKXXInDate.MonthCalendar.TodayButtonVisible = true;
+            this.dtiSKXXInDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
+            this.dtiSKXXInDate.Name = "dtiSKXXInDate";
+            this.dtiSKXXInDate.Size = new System.Drawing.Size(224, 21);
+            this.dtiSKXXInDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.dtiSKXXInDate.TabIndex = 35;
+            // 
+            // txtSKXXRemark
+            // 
+            this.txtSKXXRemark.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtSKXXRemark.Border.Class = "TextBoxBorder";
+            this.txtSKXXRemark.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSKXXRemark.DisabledBackColor = System.Drawing.Color.White;
+            this.txtSKXXRemark.ForeColor = System.Drawing.Color.Black;
+            this.txtSKXXRemark.Location = new System.Drawing.Point(68, 178);
+            this.txtSKXXRemark.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSKXXRemark.Multiline = true;
+            this.txtSKXXRemark.Name = "txtSKXXRemark";
+            this.txtSKXXRemark.PreventEnterBeep = true;
+            this.txtSKXXRemark.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtSKXXRemark.Size = new System.Drawing.Size(224, 36);
+            this.txtSKXXRemark.TabIndex = 36;
+            // 
+            // txtSKXXCondition
+            // 
+            this.txtSKXXCondition.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtSKXXCondition.Border.Class = "TextBoxBorder";
+            this.txtSKXXCondition.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSKXXCondition.DisabledBackColor = System.Drawing.Color.White;
+            this.txtSKXXCondition.ForeColor = System.Drawing.Color.Black;
+            this.txtSKXXCondition.Location = new System.Drawing.Point(68, 90);
+            this.txtSKXXCondition.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSKXXCondition.Name = "txtSKXXCondition";
+            this.txtSKXXCondition.PreventEnterBeep = true;
+            this.txtSKXXCondition.Size = new System.Drawing.Size(224, 21);
+            this.txtSKXXCondition.TabIndex = 33;
+            // 
+            // itiSKXXAmount
+            // 
+            // 
+            // 
+            // 
+            this.itiSKXXAmount.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.itiSKXXAmount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.itiSKXXAmount.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.itiSKXXAmount.Location = new System.Drawing.Point(68, 62);
+            this.itiSKXXAmount.Margin = new System.Windows.Forms.Padding(2);
+            this.itiSKXXAmount.Name = "itiSKXXAmount";
+            this.itiSKXXAmount.ShowUpDown = true;
+            this.itiSKXXAmount.Size = new System.Drawing.Size(224, 21);
+            this.itiSKXXAmount.TabIndex = 32;
+            // 
+            // labelX52
+            // 
+            this.labelX52.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX52.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX52.Location = new System.Drawing.Point(0, 159);
+            this.labelX52.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX52.Name = "labelX52";
+            this.labelX52.Size = new System.Drawing.Size(74, 18);
+            this.labelX52.TabIndex = 9;
+            this.labelX52.Text = "收款日期：";
+            // 
+            // labelX15
+            // 
+            this.labelX15.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX15.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX15.Location = new System.Drawing.Point(0, 128);
+            this.labelX15.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX15.Name = "labelX15";
+            this.labelX15.Size = new System.Drawing.Size(74, 18);
+            this.labelX15.TabIndex = 10;
+            this.labelX15.Text = "完成情况：";
+            // 
+            // labelX14
+            // 
+            this.labelX14.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX14.Location = new System.Drawing.Point(0, 190);
+            this.labelX14.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX14.Name = "labelX14";
+            this.labelX14.Size = new System.Drawing.Size(74, 18);
+            this.labelX14.TabIndex = 10;
+            this.labelX14.Text = "备注：";
+            // 
+            // labelX51
+            // 
+            this.labelX51.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX51.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX51.Location = new System.Drawing.Point(0, 97);
+            this.labelX51.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX51.Name = "labelX51";
+            this.labelX51.Size = new System.Drawing.Size(74, 18);
+            this.labelX51.TabIndex = 10;
+            this.labelX51.Text = "付款条件：";
+            // 
+            // btnClearSKXX
+            // 
+            this.btnClearSKXX.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnClearSKXX.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnClearSKXX.Location = new System.Drawing.Point(68, 218);
+            this.btnClearSKXX.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClearSKXX.Name = "btnClearSKXX";
+            this.btnClearSKXX.Size = new System.Drawing.Size(76, 18);
+            this.btnClearSKXX.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnClearSKXX.TabIndex = 37;
+            this.btnClearSKXX.Text = "清空";
+            this.btnClearSKXX.Click += new System.EventHandler(this.btnClearSKXX_Click);
+            // 
+            // labelX50
+            // 
+            this.labelX50.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX50.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX50.Location = new System.Drawing.Point(0, 66);
+            this.labelX50.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX50.Name = "labelX50";
+            this.labelX50.Size = new System.Drawing.Size(74, 18);
+            this.labelX50.TabIndex = 7;
+            this.labelX50.Text = "付款金额：";
+            // 
+            // itiSKXXRatio
+            // 
+            // 
+            // 
+            // 
+            this.itiSKXXRatio.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.itiSKXXRatio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.itiSKXXRatio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.itiSKXXRatio.Location = new System.Drawing.Point(68, 34);
+            this.itiSKXXRatio.Margin = new System.Windows.Forms.Padding(2);
+            this.itiSKXXRatio.Name = "itiSKXXRatio";
+            this.itiSKXXRatio.ShowUpDown = true;
+            this.itiSKXXRatio.Size = new System.Drawing.Size(224, 21);
+            this.itiSKXXRatio.TabIndex = 31;
+            // 
+            // labelX49
+            // 
+            this.labelX49.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX49.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX49.Location = new System.Drawing.Point(0, 34);
+            this.labelX49.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX49.Name = "labelX49";
+            this.labelX49.Size = new System.Drawing.Size(74, 18);
+            this.labelX49.TabIndex = 8;
+            this.labelX49.Text = "付款比例：";
+            // 
+            // cmbSKXXBatchNo
+            // 
+            this.cmbSKXXBatchNo.DisplayMember = "Text";
+            this.cmbSKXXBatchNo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbSKXXBatchNo.FormattingEnabled = true;
+            this.cmbSKXXBatchNo.ItemHeight = 19;
+            this.cmbSKXXBatchNo.Location = new System.Drawing.Point(68, 2);
+            this.cmbSKXXBatchNo.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbSKXXBatchNo.Name = "cmbSKXXBatchNo";
+            this.cmbSKXXBatchNo.Size = new System.Drawing.Size(225, 25);
+            this.cmbSKXXBatchNo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cmbSKXXBatchNo.TabIndex = 30;
+            // 
+            // labelX48
+            // 
+            this.labelX48.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX48.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX48.Location = new System.Drawing.Point(0, 3);
+            this.labelX48.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX48.Name = "labelX48";
+            this.labelX48.Size = new System.Drawing.Size(74, 18);
+            this.labelX48.TabIndex = 6;
+            this.labelX48.Text = "*付款批次：";
+            // 
+            // superGridControl2
+            // 
+            this.superGridControl2.BackColor = System.Drawing.Color.White;
+            this.superGridControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.superGridControl2.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+            this.superGridControl2.ForeColor = System.Drawing.Color.Black;
+            this.superGridControl2.Location = new System.Drawing.Point(0, 0);
+            this.superGridControl2.Margin = new System.Windows.Forms.Padding(2);
+            this.superGridControl2.Name = "superGridControl2";
+            // 
+            // 
+            // 
+            this.superGridControl2.PrimaryGrid.AllowEdit = false;
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn17);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn18);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn41);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn19);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn20);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn23);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn21);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn22);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn33);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn34);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn35);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn36);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn37);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn38);
+            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn40);
+            this.superGridControl2.PrimaryGrid.MultiSelect = false;
+            this.superGridControl2.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+            this.superGridControl2.Size = new System.Drawing.Size(413, 251);
+            this.superGridControl2.TabIndex = 29;
+            this.superGridControl2.Text = "superGridControl2";
+            this.superGridControl2.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.superGridControl2_RowClick);
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.DataPropertyName = "RowNo";
+            this.gridColumn17.HeaderText = "编号";
+            this.gridColumn17.Name = "RowNo";
+            // 
+            // gridColumn18
+            // 
+            this.gridColumn18.DataPropertyName = "BatchNoName";
+            this.gridColumn18.HeaderText = "付款批次";
+            this.gridColumn18.Name = "BatchNoName";
+            // 
+            // gridColumn41
+            // 
+            this.gridColumn41.DataPropertyName = "InDate";
+            this.gridColumn41.HeaderText = "付款日期";
+            this.gridColumn41.Name = "InDate";
+            // 
+            // gridColumn19
+            // 
+            this.gridColumn19.DataPropertyName = "Ratio";
+            this.gridColumn19.HeaderText = "付款比例";
+            this.gridColumn19.Name = "Ratio";
+            // 
+            // gridColumn20
+            // 
+            this.gridColumn20.DataPropertyName = "Amount";
+            this.gridColumn20.HeaderText = "付款金额";
+            this.gridColumn20.Name = "Amount";
+            // 
+            // gridColumn23
+            // 
+            this.gridColumn23.DataPropertyName = "FinishStatusName";
+            this.gridColumn23.HeaderText = "完成情况";
+            this.gridColumn23.Name = "FinishStatusName";
+            // 
+            // gridColumn21
+            // 
+            this.gridColumn21.DataPropertyName = "Condition";
+            this.gridColumn21.HeaderText = "付款条件";
+            this.gridColumn21.Name = "Condition";
+            // 
+            // gridColumn22
+            // 
+            this.gridColumn22.DataPropertyName = "Remark";
+            this.gridColumn22.HeaderText = "备注";
+            this.gridColumn22.Name = "Remark";
+            // 
+            // gridColumn33
+            // 
+            this.gridColumn33.DataPropertyName = "ID";
+            this.gridColumn33.Name = "ID";
+            this.gridColumn33.Visible = false;
+            // 
+            // gridColumn34
+            // 
+            this.gridColumn34.DataPropertyName = "CREATED";
+            this.gridColumn34.Name = "CREATED";
+            this.gridColumn34.Visible = false;
+            // 
+            // gridColumn35
+            // 
+            this.gridColumn35.DataPropertyName = "UPDATED";
+            this.gridColumn35.Name = "UPDATED";
+            this.gridColumn35.Visible = false;
+            // 
+            // gridColumn36
+            // 
+            this.gridColumn36.DataPropertyName = "Status";
+            this.gridColumn36.Name = "Status";
+            this.gridColumn36.Visible = false;
+            // 
+            // gridColumn37
+            // 
+            this.gridColumn37.DataPropertyName = "SubID";
+            this.gridColumn37.Name = "SubID";
+            this.gridColumn37.Visible = false;
+            // 
+            // gridColumn38
+            // 
+            this.gridColumn38.DataPropertyName = "BtachNo";
+            this.gridColumn38.Name = "batchNo";
+            this.gridColumn38.Visible = false;
+            // 
+            // gridColumn40
+            // 
+            this.gridColumn40.DataPropertyName = "FinishStatus";
+            this.gridColumn40.Name = "FinishStatus";
+            this.gridColumn40.Visible = false;
+            // 
+            // superTabItem2
+            // 
+            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+            this.superTabItem2.GlobalItem = false;
+            this.superTabItem2.Name = "superTabItem2";
+            this.superTabItem2.Text = "付款信息";
+            // 
             // Contract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1789,14 +1790,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtiSignDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
+            this.superTabControlPanel1.ResumeLayout(false);
+            this.groupPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtiLCBFinishDate)).EndInit();
             this.superTabControlPanel2.ResumeLayout(false);
             this.groupPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtiSKXXInDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itiSKXXAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itiSKXXRatio)).EndInit();
-            this.superTabControlPanel1.ResumeLayout(false);
-            this.groupPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtiLCBFinishDate)).EndInit();
             this.ResumeLayout(false);
 
         }

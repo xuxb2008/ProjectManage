@@ -93,7 +93,8 @@ namespace ProjectManagement.Forms.Stakeholder
             communication.PID = ProjectId;
 
             JsonResult json = bll.SaveCommunication(communication);
-            MessageHelper.ShowRstMsg(json.result);
+            if (!json.result)
+                MessageHelper.ShowRstMsg(json.result);
             btnClear_Click(null, null);
             DataBind(null, null);
         }

@@ -13,6 +13,7 @@ using DevComponents.DotNetBar.SuperGrid;
 using CommonDLL;
 using DomainDLL;
 using DevComponents.Editors;
+using DevComponents.DotNetBar.SuperGrid.Style;
 
 namespace ProjectManagement.Forms.Stakeholder
 {
@@ -195,5 +196,29 @@ namespace ProjectManagement.Forms.Stakeholder
             cmbType.SelectedIndex = -1;
         }
         #endregion
+
+        /// <summary>
+        /// 数据绑定完成设置项目经理背景色
+        /// 2017/06/12(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void superGridControl1_DataBindingComplete(object sender, GridDataBindingCompleteEventArgs e)
+        {
+            List<GridElement> listRow = superGridControl1.PrimaryGrid.Rows.ToList();
+            int type = 0;
+            foreach (GridElement obj in listRow)
+            {
+                GridRow row = (GridRow)obj;
+                type = int.Parse(row.GetCell("IsPublic").Value.ToString());
+                if (type != 0)
+                {
+                    CellVisualStyles style = new CellVisualStyles();
+                    style.Default.Background.Color1 = Color.Green;
+                    row.CellStyles = style;
+                }
+            }
+        }
+
     }
 }

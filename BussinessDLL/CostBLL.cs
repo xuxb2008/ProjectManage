@@ -71,7 +71,7 @@ namespace BussinessDLL
             qf.Add(new QueryField() { Name = "PID", Type = QueryFieldType.String, Value = PID });
             qf.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
             StringBuilder sql = new StringBuilder();
-            sql.Append(" select Tag, Total,(Used+Transit) as Used,transit ,Remaining,id,created from Cost");
+            sql.Append(" select Tag, Total,(Used+Transit) as Used,transit ,Remaining,id,created,Explanation from Cost");
             sql.Append(" where PID=@PID and Status=@Status");
             sql.Append(" order by CREATED");
             DataTable dt = NHHelper.ExecuteDataTable(sql.ToString(), qf);

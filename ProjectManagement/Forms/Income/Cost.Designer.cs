@@ -294,7 +294,7 @@
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(79, 19);
             this.labelX3.TabIndex = 1;
-            this.labelX3.Text = "可用金额：";
+            this.labelX3.Text = "*预算金额：";
             // 
             // labelX2
             // 
@@ -401,6 +401,7 @@
             this.superGridControl1.Size = new System.Drawing.Size(868, 240);
             this.superGridControl1.TabIndex = 9;
             this.superGridControl1.Text = "superGridControl1";
+            this.superGridControl1.DataBindingComplete += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridDataBindingCompleteEventArgs>(this.superGridControl1_DataBindingComplete);
             this.superGridControl1.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.superGridControl1_RowClick);
             // 
             // gridColumn1
@@ -429,7 +430,7 @@
             // 
             this.gridColumn4.AllowEdit = false;
             this.gridColumn4.DataPropertyName = "Total";
-            this.gridColumn4.HeaderText = "可用金额";
+            this.gridColumn4.HeaderText = "预算金额";
             this.gridColumn4.Name = "Total";
             // 
             // gridColumn5

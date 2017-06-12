@@ -80,6 +80,7 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.txtCompanyName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.gridColumn20 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtiCreated)).BeginInit();
@@ -156,6 +157,7 @@
             // 
             // 
             this.superGridControl1.PrimaryGrid.AllowEmptyCellSelection = true;
+            this.superGridControl1.PrimaryGrid.AutoGenerateColumns = false;
             this.superGridControl1.PrimaryGrid.ColumnAutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.Fill;
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn17);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn1);
@@ -177,11 +179,13 @@
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn14);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn15);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn19);
+            this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn20);
             this.superGridControl1.PrimaryGrid.MultiSelect = false;
             this.superGridControl1.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.RowWithCellHighlight;
             this.superGridControl1.Size = new System.Drawing.Size(934, 250);
             this.superGridControl1.TabIndex = 17;
             this.superGridControl1.Text = "superGridControl1";
+            this.superGridControl1.DataBindingComplete += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridDataBindingCompleteEventArgs>(this.superGridControl1_DataBindingComplete);
             this.superGridControl1.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.superGridControl1_RowClick);
             // 
             // gridColumn17
@@ -198,6 +202,7 @@
             this.gridColumn1.DataPropertyName = "CompanyName";
             this.gridColumn1.HeaderText = "企业名称";
             this.gridColumn1.Name = "CompanyName";
+            this.gridColumn1.Visible = false;
             // 
             // TypeName
             // 
@@ -217,9 +222,10 @@
             // gridColumn2
             // 
             this.gridColumn2.AllowEdit = false;
-            this.gridColumn2.DataPropertyName = "Name";
-            this.gridColumn2.HeaderText = "姓名";
-            this.gridColumn2.Name = "Name";
+            this.gridColumn2.DataPropertyName = "truename";
+            this.gridColumn2.FillWeight = 150;
+            this.gridColumn2.HeaderText = "名称";
+            this.gridColumn2.Name = "turename";
             // 
             // gridColumn3
             // 
@@ -835,6 +841,12 @@
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "企业名称：";
             // 
+            // gridColumn20
+            // 
+            this.gridColumn20.DataPropertyName = "Name";
+            this.gridColumn20.Name = "Name";
+            this.gridColumn20.Visible = false;
+            // 
             // Stakeholder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -906,5 +918,6 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn18;
         private Control.PagerControl pagerControl1;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn19;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn20;
     }
 }

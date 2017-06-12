@@ -24,7 +24,7 @@ namespace DataAccessDLL
         public DataTable GetContractList(List<QueryField> qf)
         {
             StringBuilder sql = new StringBuilder();
-            sql.Append(" select c1.ID,c2.A_Name||'('||c2.A_No||')' as A,c2.B_Name||'('||c2.B_No||')' as B from SubContract c1, SubContract c2");
+            sql.Append(" select c1.ID,c2.A_Name||'('||c2.A_No||')' as A,c2.B_Name as B from SubContract c1, SubContract c2");
             sql.Append(" where substr(c1.ID, 38) = '1' and substr(c1.ID, 1, 37) = substr(c2.ID, 1, 37)");
             sql.Append(" and c2.PID=@PID  and c2.status=@Status order by c2.A_No ");
             DataTable dt = NHHelper.ExecuteDataTable(sql.ToString(), qf);

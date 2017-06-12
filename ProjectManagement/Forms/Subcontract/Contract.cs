@@ -294,6 +294,11 @@ namespace ProjectManagement.Forms.Subcontract
                 MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "分包合同");
                 return;
             }
+            if (string.IsNullOrEmpty(txtLCBName.Text))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "里程碑名称");
+                return;
+            }
             #endregion
             SubContractLCB lcb = new SubContractLCB();
             lcb.Condition = txtLCBCondition.Text;
@@ -343,6 +348,12 @@ namespace ProjectManagement.Forms.Subcontract
             if (string.IsNullOrEmpty(SubID))
             {
                 MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "分包合同");
+                return;
+            }
+            ComboItem itemfkxx = (ComboItem)cmbSKXXFinishStatus.SelectedItem;
+            if (itemfkxx == null || string.IsNullOrEmpty(itemfkxx.Value.ToString()))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "付款信息");
                 return;
             }
             #endregion

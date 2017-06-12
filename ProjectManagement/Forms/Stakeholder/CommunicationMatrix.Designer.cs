@@ -101,6 +101,7 @@
             // 
             this.listBoxAdv1.BackgroundStyle.Class = "ListBoxAdv";
             this.listBoxAdv1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.listBoxAdv1.CheckStateMember = null;
             this.listBoxAdv1.ContainerControlProcessDialogKey = true;
             this.listBoxAdv1.DragDropSupport = true;
             this.listBoxAdv1.Location = new System.Drawing.Point(267, 94);
@@ -176,6 +177,7 @@
             this.superGridControl1.Size = new System.Drawing.Size(294, 523);
             this.superGridControl1.TabIndex = 1;
             this.superGridControl1.Text = "superGridControl1";
+            this.superGridControl1.DataBindingComplete += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridDataBindingCompleteEventArgs>(this.superGridControl1_DataBindingComplete);
             this.superGridControl1.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.superGridControl1_RowClick);
             // 
             // gridColumn1

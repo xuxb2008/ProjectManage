@@ -38,7 +38,7 @@ namespace ProjectManagement.Forms.Income
 
         private void Cost_Load(object sender, EventArgs e)
         {            
-            DataBind();
+            DataBind();           
         }
 
         /// <summary>
@@ -62,9 +62,11 @@ namespace ProjectManagement.Forms.Income
             txtRemaining.Clear();
             txtRemark.Clear();
             txtTag.Clear();
-            txtTotal.Text = "0";
+            var amount = GetAmount();
+            txtTotal.Text = amount < 0 ? "0" : amount.ToString();
             txtTransit.Text = "0";
             txtUsed.Text = "0";
+            txtRemaining.Text = "0";
             superGridControl1.PrimaryGrid.ClearSelectedRows();
         }
 
@@ -80,7 +82,7 @@ namespace ProjectManagement.Forms.Income
             {
                 MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "项目");
                 return;
-            }
+            }            
             try
             {
                 var total = Convert.ToDecimal(txtTotal.Text.ToString());
@@ -97,7 +99,13 @@ namespace ProjectManagement.Forms.Income
                 MessageBox.Show("输入的金额不符合规范！");
                 return;
             }
-
+            decimal amount = GetAmount();
+            amount = amount - Convert.ToDecimal(txtTotal.Text.ToString());
+            if (amount < 0)
+            {
+                MessageBox.Show("超出合同金额");
+                return;
+            }
             #endregion
 
             DomainDLL.Cost cost = new DomainDLL.Cost();
@@ -114,7 +122,8 @@ namespace ProjectManagement.Forms.Income
             cost.UPDATED = DateTime.Now;
 
             JsonResult json = bll.SaveCost(cost);
-            MessageHelper.ShowRstMsg(json.result);
+            if (!json.result)
+                MessageHelper.ShowRstMsg(json.result);
             if (json.result)
                 ClearButton_Click(null, null);
             DataBind();
@@ -209,9 +218,52 @@ namespace ProjectManagement.Forms.Income
                 txtTransit.Clear();
             }
         }
+
+        /// <summary>
+        /// 计算预算金额剩余金额
+        /// 2017/6/12(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void superGridControl1_DataBindingComplete(object sender, GridDataBindingCompleteEventArgs e)
+        {
+            decimal amount = GetAmount();
+            txtTotal.Text = amount <= 0 ? "0" : amount.ToString();
+        }
+
         #endregion
 
         #region 方法
+        /// <summary>
+        /// 获取剩余的预算资金总额
+        /// 2017/6/12(zhuguanjun)
+        /// </summary>
+        /// <returns></returns>
+        private decimal GetAmount()
+        {
+            decimal amount = 0;
+            ContractJBXX jbxx = new ProjectInfoBLL().GetJBXX(ProjectId);
+            if (!string.IsNullOrEmpty(jbxx.Amount))
+            {
+                decimal.TryParse(jbxx.Amount,out amount);
+            }
+            if (superGridControl1.PrimaryGrid.Rows != null && superGridControl1.PrimaryGrid.Rows.Count > 0)
+            {
+                foreach (var item in superGridControl1.PrimaryGrid.Rows)
+                {
+                    GridRow row = (GridRow)item;
+                    string amountstr = row.Cells["Total"].Value == null ? "" : row.Cells["Total"].Value.ToString();
+                    if (!string.IsNullOrEmpty(amountstr))
+                    {
+                        decimal temp = 0;
+                        decimal.TryParse(amountstr, out temp);
+                        amount = amount - temp;
+                    }
+                }                
+            }
+            return amount;
+        }
         #endregion
+
     }
 }

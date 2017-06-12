@@ -60,11 +60,11 @@ namespace ProjectManagement.Forms.Income
                 MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "项目");
                 return;
             }
-            //if (string.IsNullOrEmpty(txtStep.Text.ToString()))
-            //{
-            //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "收入阶段");
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(txtStep.Text.ToString()))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "收入阶段");
+                return;
+            }
             //if (string.IsNullOrEmpty(txtExplanation.Text.ToString()))
             //{
             //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "收入说明");
