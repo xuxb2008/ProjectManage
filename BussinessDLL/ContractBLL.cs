@@ -10,7 +10,7 @@ using System.Text;
 
 namespace BussinessDLL
 {
-    
+
     /// <summary>
     /// 分包合同管理BLL
     /// 2017/4/11(zhuguanjun)
@@ -25,7 +25,7 @@ namespace BussinessDLL
         /// <param name="dicFile"></param>
         /// <param name="_id"></param>
         /// <returns></returns>
-        public JsonResult SaveSubContract(SubContract contract,Dictionary<int,string> dicFile, out string _id)
+        public JsonResult SaveSubContract(SubContract contract, Dictionary<int, string> dicFile, out string _id)
         {
             return new ContractDao().SaveSubContract(contract, dicFile, out _id);
         }
@@ -39,8 +39,10 @@ namespace BussinessDLL
         /// <returns></returns>
         public List<SubContractFiles> GetFiles(string SubID, int? Type)
         {
+            if (string.IsNullOrEmpty(SubID))
+                return new List<SubContractFiles>();
             List<QueryField> qf = new List<QueryField>();
-            qf.Add(new QueryField() { Name = "SubID", Type = QueryFieldType.String, Comparison = QueryFieldComparison.eq, Value = SubID });
+            qf.Add(new QueryField() { Name = "SubID", Type = QueryFieldType.String, Comparison = QueryFieldComparison.eq, Value = SubID.Substring(0, 36) });
             if (Type != null)
                 qf.Add(new QueryField() { Name = "Type", Comparison = QueryFieldComparison.eq, Type = QueryFieldType.Numeric, Value = (int)Type });
             qf.Add(new QueryField() { Name = "Status", Comparison = QueryFieldComparison.eq, Type = QueryFieldType.Numeric, Value = 1 });
@@ -72,7 +74,7 @@ namespace BussinessDLL
         /// <param name="files">返回附件集合</param>
         /// <param name="LCB">返回里程碑集合</param>
         /// <param name="SKXX">返回付款信息集合</param>
-        public void GetSubContractAll(string id, out SubContract subContract,out DataTable files,out DataTable LCB,out DataTable SKXX)
+        public void GetSubContractAll(string id, out SubContract subContract, out DataTable files, out DataTable LCB, out DataTable SKXX)
         {
             new ContractDao().GetSubContractAll(id, out subContract, out files, out LCB, out SKXX);
         }
@@ -172,6 +174,35 @@ namespace BussinessDLL
                 return JsonHelper.TableToList<Supplier>(dt);
             }
             return null;
+        }
+
+        /// <summary>
+        /// 文件保存
+        ///  Created:20170612(ChengMengjia)
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public JsonResult SaveFile(SubContractFiles entity)
+        {
+            JsonResult jsonreslut = new JsonResult();
+            try
+            {
+                string _id;
+                if (string.IsNullOrEmpty(entity.ID))
+                    new Repository<SubContractFiles>().Insert(entity, true, out _id);
+                else
+                    new Repository<SubContractFiles>().Update(entity, true, out _id);
+                jsonreslut.data = _id;
+                jsonreslut.result = true;
+                jsonreslut.msg = "保存成功！";
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteException(ex, LogType.BussinessDLL);
+                jsonreslut.result = false;
+                jsonreslut.msg = ex.Message;
+            }
+            return jsonreslut;
         }
 
     }
