@@ -205,10 +205,11 @@ namespace ProjectManagement
         /// </summary>
         /// <param name="advTree1"></param>
         /// <param name="ProjectID"></param>
-        public static void SetAdvTreeData(DevComponents.AdvTree.AdvTree advTree1, string ProjectID)
+        /// <param name="NodeType">节点类型</param>
+        public static void SetAdvTreeData(DevComponents.AdvTree.AdvTree advTree1, string ProjectID, int? NodeType)
         {
             advTree1.Nodes.Clear();
-            List<PNode> listNode = new WBSBLL().GetNodes(ProjectID, 0);
+            List<PNode> listNode = new WBSBLL().GetNodes(ProjectID, NodeType);
             IEnumerable<PNode> parentNode = null;
             DevComponents.AdvTree.Node node = null;
             parentNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.CREATED);
@@ -225,7 +226,7 @@ namespace ProjectManagement
                 SetSubTreeDataWithCheckBox(listNode, child, node);
                 advTree1.Nodes.Add(node);
             }
-
+            advTree1.ExpandAll();
         }
         /// <summary>
         /// 根据CODE设定数的选定值

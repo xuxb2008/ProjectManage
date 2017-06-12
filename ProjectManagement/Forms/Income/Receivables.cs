@@ -27,6 +27,9 @@ namespace ProjectManagement.Forms.Income
         #endregion
 
         #region 变量
+
+        ContractJBXX jbxx;//项目合同
+
         #endregion
 
         #region 事件
@@ -36,6 +39,7 @@ namespace ProjectManagement.Forms.Income
             dtSInDate.Value = DateTime.Now;
             DataHelper.LoadDictItems(cbSFinishStatus, DictCategory.Receivables_FinshStatus);
             LoadSK();
+            jbxx = new ProjectInfoBLL().GetJBXX(ProjectId);//项目合同
         }
 
         /// <summary>
@@ -66,11 +70,27 @@ namespace ProjectManagement.Forms.Income
             txtSBtachNo.Text = listS[3].Trim();
             txtExplanation.Text = listS[4] == "<null>" ? "" : listS[4].Trim();
             intSRatio.Value = listS[5] == "<null>" ? 0 : int.Parse(listS[5].Trim());
-            intSAmount.Value = listS[6] == "<null>" ? 0 : int.Parse(listS[6].Trim());
+            txtSAmount.Text = listS[6] == "<null>" ? "" : listS[6].Trim();
             txtSCondition.Text = listS[7] == "<null>" ? "" : listS[7].Trim();
             dtSInDate.Value = listS[9] == "<null>" ? DateTime.Now : DateTime.Parse(listS[9].Trim());
             DataHelper.SetComboBoxSelectItemByText(cbSFinishStatus, listS[8] == "<null>" ? "-1" : listS[8].Trim());
             txtSRemark.Text = listS[10] == "<null>" ? "" : listS[10].Trim();
+        }
+
+        /// <summary>
+        ///  收款-比例变化事件
+        ///  Created：20170609(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void intSRatio_ValueChanged(object sender, EventArgs e)
+        {
+            if (jbxx == null || string.IsNullOrEmpty(jbxx.Amount))
+                return;
+            decimal amount = 0;
+            decimal.TryParse(jbxx.Amount, out amount);
+            amount = amount * intSRatio.Value / 10;
+            txtSAmount.Text = amount.ToString();
         }
 
         /// <summary>
@@ -89,17 +109,19 @@ namespace ProjectManagement.Forms.Income
             if (item != null)
                 entity.FinishStatus = int.Parse(item.Value.ToString());
             entity.Ratio = intSRatio.Value;
-            entity.Amount = intSAmount.Value;
+            decimal amount = 0;
+            decimal.TryParse(txtSAmount.Text,out amount);
+            entity.Amount = amount;
             entity.Condition = txtSCondition.Text;
             entity.Remark = txtSRemark.Text;
             entity.InDate = dtSInDate.Value;
             entity.Explanation = txtExplanation.Text.ToString();
             #region 判断空值
-            //if (string.IsNullOrEmpty(entity.BatchNo))
-            //{
-            //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "收款批次");
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(entity.BatchNo))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "收款批次");
+                return;
+            }
             //if (entity.FinishStatus == null)
             //{
             //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "完成情况");
@@ -148,7 +170,7 @@ namespace ProjectManagement.Forms.Income
             txtExplanation.Clear();
             cbSFinishStatus.SelectedIndex = -1;
             intSRatio.Value = 0;
-            intSAmount.Value = 0;
+            txtSAmount.Text = "0";
             txtSCondition.Clear();
             dtSInDate.Value = DateTime.Now;
             txtSRemark.Clear();
@@ -180,8 +202,6 @@ namespace ProjectManagement.Forms.Income
 
 
         #endregion
-
-
 
     }
 }

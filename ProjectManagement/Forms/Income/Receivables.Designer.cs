@@ -41,6 +41,7 @@
             this.gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtSAmount = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtExplanation = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.txtSBtachNo = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -50,7 +51,6 @@
             this.dtSInDate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.txtSRemark = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtSCondition = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.intSAmount = new DevComponents.Editors.IntegerInput();
             this.labelX54 = new DevComponents.DotNetBar.LabelX();
             this.labelX53 = new DevComponents.DotNetBar.LabelX();
             this.labelX52 = new DevComponents.DotNetBar.LabelX();
@@ -62,7 +62,6 @@
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtSInDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.intSAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSRatio)).BeginInit();
             this.SuspendLayout();
             // 
@@ -197,6 +196,7 @@
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel2.Controls.Add(this.txtSAmount);
             this.groupPanel2.Controls.Add(this.txtExplanation);
             this.groupPanel2.Controls.Add(this.labelX1);
             this.groupPanel2.Controls.Add(this.txtSBtachNo);
@@ -206,7 +206,6 @@
             this.groupPanel2.Controls.Add(this.dtSInDate);
             this.groupPanel2.Controls.Add(this.txtSRemark);
             this.groupPanel2.Controls.Add(this.txtSCondition);
-            this.groupPanel2.Controls.Add(this.intSAmount);
             this.groupPanel2.Controls.Add(this.labelX54);
             this.groupPanel2.Controls.Add(this.labelX53);
             this.groupPanel2.Controls.Add(this.labelX52);
@@ -251,6 +250,19 @@
             this.groupPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel2.TabIndex = 0;
             this.groupPanel2.Text = "编辑收款信息";
+            // 
+            // txtSAmount
+            // 
+            // 
+            // 
+            // 
+            this.txtSAmount.Border.Class = "TextBoxBorder";
+            this.txtSAmount.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSAmount.Location = new System.Drawing.Point(104, 112);
+            this.txtSAmount.Name = "txtSAmount";
+            this.txtSAmount.PreventEnterBeep = true;
+            this.txtSAmount.Size = new System.Drawing.Size(251, 21);
+            this.txtSAmount.TabIndex = 32;
             // 
             // txtExplanation
             // 
@@ -419,22 +431,6 @@
             this.txtSCondition.Size = new System.Drawing.Size(251, 43);
             this.txtSCondition.TabIndex = 5;
             // 
-            // intSAmount
-            // 
-            // 
-            // 
-            // 
-            this.intSAmount.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.intSAmount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.intSAmount.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.intSAmount.Location = new System.Drawing.Point(104, 110);
-            this.intSAmount.Margin = new System.Windows.Forms.Padding(2);
-            this.intSAmount.MinValue = 0;
-            this.intSAmount.Name = "intSAmount";
-            this.intSAmount.ShowUpDown = true;
-            this.intSAmount.Size = new System.Drawing.Size(251, 21);
-            this.intSAmount.TabIndex = 4;
-            // 
             // labelX54
             // 
             this.labelX54.BackColor = System.Drawing.Color.Transparent;
@@ -475,7 +471,7 @@
             this.labelX52.Name = "labelX52";
             this.labelX52.Size = new System.Drawing.Size(74, 18);
             this.labelX52.TabIndex = 27;
-            this.labelX52.Text = "*收款日期：";
+            this.labelX52.Text = "收款日期：";
             // 
             // labelX51
             // 
@@ -515,11 +511,13 @@
             this.intSRatio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.intSRatio.Location = new System.Drawing.Point(104, 77);
             this.intSRatio.Margin = new System.Windows.Forms.Padding(2);
+            this.intSRatio.MaxValue = 10;
             this.intSRatio.MinValue = 0;
             this.intSRatio.Name = "intSRatio";
             this.intSRatio.ShowUpDown = true;
             this.intSRatio.Size = new System.Drawing.Size(251, 21);
             this.intSRatio.TabIndex = 3;
+            this.intSRatio.ValueChanged += new System.EventHandler(this.intSRatio_ValueChanged);
             // 
             // labelX49
             // 
@@ -547,7 +545,7 @@
             this.labelX48.Name = "labelX48";
             this.labelX48.Size = new System.Drawing.Size(74, 18);
             this.labelX48.TabIndex = 21;
-            this.labelX48.Text = "收款批次：";
+            this.labelX48.Text = "*收款批次：";
             // 
             // FormReceivables
             // 
@@ -561,7 +559,6 @@
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtSInDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.intSAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSRatio)).EndInit();
             this.ResumeLayout(false);
 
@@ -577,7 +574,6 @@
         private DevComponents.Editors.DateTimeAdv.DateTimeInput dtSInDate;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSRemark;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSCondition;
-        private DevComponents.Editors.IntegerInput intSAmount;
         private DevComponents.DotNetBar.LabelX labelX54;
         private DevComponents.DotNetBar.LabelX labelX53;
         private DevComponents.DotNetBar.LabelX labelX52;
@@ -600,5 +596,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtExplanation;
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtSAmount;
     }
 }

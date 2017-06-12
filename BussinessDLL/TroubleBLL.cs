@@ -281,7 +281,22 @@ namespace BussinessDLL
         /// <returns></returns>
         public DataTable GetTroubleWorkList(string TroubleID)
         {
-            return new TroubleDAO().GetTroubleWorkList(TroubleID.Substring(0, 36));
+            return dao.GetTroubleWorkList(TroubleID.Substring(0, 36));
         }
+
+
+        /// <summary>
+        /// 根据NodeID获取-项目问题文件
+        /// Created:20170612(ChengMengjia)
+        /// Updated:2017.04.25(Xuxb) 追加文件类型
+        /// </summary>
+        /// <param name="TroubleID"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public List<TroubleFiles> GetFilesByNodeID(string NodeID, int? type)
+        {
+            return dao.GetFilesByNodeID(NodeID, type);
+        }
+
     }
 }

@@ -248,6 +248,17 @@ namespace BussinessDLL
         }
 
         /// <summary>
+        /// 根据NodeID获取-日常工作文件
+        /// Created:20170612(ChengMengjia)
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public List<RoutineFiles> GetFilesByNodeID(string NodeID)
+        {
+            return dao.GetFilesByNodeID(NodeID);
+        }
+
+        /// <summary>
         /// 获取日常工作负责人列表
         /// 2017/06/01(zhuguanjun)
         /// </summary>

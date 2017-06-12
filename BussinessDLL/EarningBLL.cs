@@ -52,7 +52,7 @@ namespace BussinessDLL
         }
 
         /// <summary>
-        /// 获取全部六条信息
+        /// 获取全部信息
         /// </summary>
         /// <returns></returns>
         public DataTable GetIncomeList(string PID)
@@ -64,7 +64,7 @@ namespace BussinessDLL
             sql.Append(" select i.*,d.Name as FinishStatusName from Income i");
             sql.Append(" left join DictItem d on d.No = i.FinishStatus and d.DictNo = " + (int)DictCategory.EarningStatus);
             sql.Append(" where PID=@PID and Status=@Status");
-            sql.Append(" order by Step");
+            sql.Append(" order by Created");
             DataTable dt = NHHelper.ExecuteDataTable(sql.ToString(), qf);
             return dt;
         }

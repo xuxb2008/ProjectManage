@@ -29,9 +29,9 @@ namespace ProjectManagement
         string _SelectedNodeID;//左侧wbs节点树所选NodeID
         bool IsRightClick = false;//当前对左侧树是否为右击选择
 
-        NormalOperation nodePage;
-        ProjectManagement.Forms.Others.Routine nodeRoutine;
-        ProjectManagement.Forms.Others.Trouble nodeTrouble;
+        private NormalOperation nodePage { get; set; }
+        private ProjectManagement.Forms.Others.Routine nodeRoutine { get; set; }
+        private ProjectManagement.Forms.Others.Trouble nodeTrouble { get; set; }
 
 
         string[] NodeTabs = { "NormalOperation" };//切换节点时所需关闭的页面
@@ -166,11 +166,7 @@ namespace ProjectManagement
                     case (int)WBSPType.PType0:
                     case (int)WBSPType.PType1:
                         #region 打开当前操作
-                        if (nodePage == null)
-                            nodePage = new NormalOperation();
-                        else
-                            nodePage.init();
-                        ShowChildForm(nodePage);
+                        OpenNormalOperation();
                         if (nodeRoutine != null)
                             CloseTab(nodeRoutine.Name);
                         if (nodeTrouble != null)
@@ -179,11 +175,7 @@ namespace ProjectManagement
                         break;
                     case (int)WBSPType.PType2:
                         #region 打开日常工作
-                        if (nodeRoutine == null)
-                            nodeRoutine = new Forms.Others.Routine(CurrentNode.ID);
-                        else
-                            nodeRoutine.LoadContent(CurrentNode.ID);
-                        ShowChildForm(nodeRoutine);
+                        OpenRoutine();
                         if (nodePage != null)
                             CloseTab(nodePage.Name);
                         if (nodeTrouble != null)
@@ -192,11 +184,7 @@ namespace ProjectManagement
                         break;
                     case (int)WBSPType.PType3:
                         #region 打开问题
-                        if (nodeTrouble == null)
-                            nodeTrouble = new Forms.Others.Trouble(CurrentNode.ID);
-                        else
-                            nodeTrouble.LoadPageData(CurrentNode.ID);
-                        ShowChildForm(nodeTrouble);
+                        OpenTrouble();
                         if (nodePage != null)
                             CloseTab(nodePage.Name);
                         if (nodeRoutine != null)
@@ -207,8 +195,6 @@ namespace ProjectManagement
             }
             else e.Cancel = true;
         }
-
-
 
         /// <summary>
         /// Node上下文菜单-节点类型转换
@@ -275,7 +261,7 @@ namespace ProjectManagement
                 JsonResult result = wbsBll.SaveNode(node);
                 if (result.result)
                 {
-                    FileHelper.WBSMoveFloder(UploadType.WBS,node.ID);//迁移文件夹
+                    FileHelper.WBSMoveFloder(UploadType.WBS, node.ID);//迁移文件夹
                     ReloadCurrentNode(node);
                     RelaodTree();
                 }
@@ -809,6 +795,47 @@ namespace ProjectManagement
 
         #region 窗体-常用方法代码块
         /// <summary>
+        /// 打开当前操作
+        /// Created:20170409 (ChengMengjia)
+        /// </summary>
+        public void OpenNormalOperation()
+        {
+            if (nodePage == null)
+                nodePage = new NormalOperation();
+            else
+                nodePage.init();
+            ShowChildForm(nodePage);
+        }
+
+        /// <summary>
+        /// 打开日常工作
+        /// Created:20170409 (ChengMengjia)
+        /// </summary>
+        public void OpenRoutine()
+        {
+            if (nodeRoutine == null)
+                nodeRoutine = new Forms.Others.Routine(CurrentNode.ID);
+            else
+                nodeRoutine.LoadContent(CurrentNode.ID);
+            ShowChildForm(nodeRoutine);
+        }
+
+        /// <summary>
+        /// 打开问题
+        /// Created:20170409 (ChengMengjia)
+        /// </summary>
+        public void OpenTrouble()
+        {
+            if (nodeTrouble == null)
+                nodeTrouble = new Forms.Others.Trouble(CurrentNode.ID);
+            else
+                nodeTrouble.LoadPageData(CurrentNode.ID);
+            ShowChildForm(nodeTrouble);
+        }
+
+
+
+        /// <summary>
         /// 加载一个窗体到TabControl中
         /// </summary>
         /// <param name="form"></param>
@@ -1218,6 +1245,6 @@ namespace ProjectManagement
             }
         }
 
-        
+
     }
 }

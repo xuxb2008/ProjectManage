@@ -20,101 +20,24 @@ namespace ProjectManagement.Forms.InfomationPublish
 {
     public partial class InfomationPublish : BaseForm
     {
-
+        #region 业务类初期化
         WBSBLL wbsBll = new WBSBLL();
         PubInfoBLL pubBll = new PubInfoBLL();
+        RoutineBLL routineBll = new RoutineBLL();
+        TroubleBLL troubleBll = new TroubleBLL();
+        #endregion
 
+        #region 画面变量
         List<DeliverablesFiles> EmailFiles = new List<DeliverablesFiles>();//邮件附件
+        #endregion
 
+        #region 事件
         public InfomationPublish()
         {
             InitializeComponent();
             LoadTree();
             LoadPubInfo();
             LoadEmailFile();
-        }
-
-
-        /// <summary>
-        /// 加载树节点
-        /// Created:20170527(ChengMengjia)
-        /// </summary>
-        void LoadTree()
-        {
-            wbsTree.Nodes.Clear();
-            List<PNode> listNode = wbsBll.GetNodes(ProjectId,null);
-            IEnumerable<PNode> parentNode = null;
-            parentNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.No);
-            foreach (PNode parent in parentNode)
-            {
-                DevComponents.AdvTree.Node node = new DevComponents.AdvTree.Node()
-                {
-                    Name = parent.ID,
-                    Text = parent.Name,
-                    Tag = JsonHelper.EntityToString<PNode>(parent)
-                };
-                SetSubTreeData(listNode, parent, node);
-                wbsTree.Nodes.Add(node);
-            }
-            wbsTree.ExpandAll();
-        }
-
-        /// <summary>
-        /// 设定子节点
-        /// Created:20170330(Xuxb)
-        /// Updated:20170527(ChengMengjia) 增加Check框
-        /// </summary>
-        /// <param name="advTree1"></param>
-        /// <param name="ProjectID"></param>
-        void SetSubTreeData(IList<PNode> listNode, PNode parent, DevComponents.AdvTree.Node node)
-        {
-            string parentID = parent.ID.Substring(0, 36);
-            IEnumerable<PNode> children = listNode.Where(t => t.ParentID == parentID).OrderBy(t => t.No);
-            if (children.Count<PNode>() < 1)
-            {
-                return;
-            }
-            DevComponents.AdvTree.Node node2;
-            foreach (PNode child in children)
-            {
-                node2 = new DevComponents.AdvTree.Node()
-                {
-                    CheckBoxVisible = true,
-                    Name = child.ID,
-                    Text = child.Name,
-                    Tag = JsonHelper.EntityToString<PNode>(child)
-                };
-                SetSubTreeData(listNode, child, node2);
-                node.Nodes.Add(node2);
-            }
-        }
-
-        /// <summary>
-        ///  发布信息-配置加载
-        /// Created：20170527(ChengMengjia)
-        /// </summary>
-        void LoadPubInfo()
-        {
-            #region 发送
-            IList<dynamic> listSendTo = new SettingBLL().GetSendToList(ProjectId);//配置里的发送人
-            if (listSendTo != null)
-                foreach (var member in listSendTo)
-                {
-                    if (string.IsNullOrEmpty(member.Email))
-                        continue;
-                    txtSend.Text += member.Email + "(" + member.Name + ")" + ";";
-                }
-            #endregion
-            #region 抄送
-            IList<dynamic> listCC = new SettingBLL().GetCCList(ProjectId);//配置里的抄送人
-            if (listCC != null)
-                foreach (var member in listCC)
-                {
-                    if (string.IsNullOrEmpty(member.Email))
-                        continue;
-                    txtCC.Text += member.Email + "(" + member.Name + ")" + ";";
-                }
-            #endregion
         }
 
         /// <summary>
@@ -176,21 +99,6 @@ namespace ProjectManagement.Forms.InfomationPublish
                     LoadEmailFile();
                 }
             }
-        }
-
-        /// <summary>
-        /// 邮件附件-列表加载
-        /// Created：20170527(ChengMengjia)
-        /// </summary>
-        private void LoadEmailFile()
-        {
-            int? i = 1;
-            foreach (DeliverablesFiles file in EmailFiles)
-            {
-                file.RowNo = i;
-                i++;
-            }
-            gridFile.PrimaryGrid.DataSource = EmailFiles;
         }
 
         /// <summary>
@@ -283,12 +191,38 @@ namespace ProjectManagement.Forms.InfomationPublish
             PNode node = JsonHelper.StringToEntity<PNode>(e.Cell.TagString);
             if (e.Cell.Checked)
             {
-                //选中
-                List<DeliverablesFiles> listF = wbsBll.GetFiles(node.ID);
-                if (listF.Count > 0)
+                switch (node.PType)
                 {
-                    EmailFiles.AddRange(listF);
-                    LoadEmailFile();
+                    case 1:
+                        //交付物
+                        List<DeliverablesFiles> listF = wbsBll.GetFiles(node.ID);
+                        if (listF.Count > 0)
+                        {
+                            EmailFiles.AddRange(listF);
+                            LoadEmailFile();
+                        }
+                        break;
+                    case 2:
+                        //日常工作
+                        List<RoutineFiles> listR = routineBll.GetFilesByNodeID(node.ID);
+                        if (listR.Count > 0)
+                        {
+                            foreach (var r in listR)
+                                EmailFiles.Add(new DeliverablesFiles() { Name = r.Name, Path = r.Path, NodeID = node.ID.Substring(0, 36) });
+                            LoadEmailFile();
+                        }
+                        break;
+                    case 3:
+                        //问题
+                        List<TroubleFiles> listT = troubleBll.GetFilesByNodeID(node.ID, null);
+                        if (listT.Count > 0)
+                        {
+                            foreach (var r in listT)
+                                EmailFiles.Add(new DeliverablesFiles() { Name = r.Name, Path = r.Path, NodeID = node.ID.Substring(0, 36) });
+                            LoadEmailFile();
+                        }
+                        break;
+
                 }
             }
             else
@@ -301,10 +235,117 @@ namespace ProjectManagement.Forms.InfomationPublish
             }
         }
 
+        /// <summary>
+        ///关闭按钮点击事件
+        /// Created：20170612(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
-
+            MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
+            mainForm.CloseTab(this.Name);
         }
 
+        #endregion
+
+        #region 方法
+        /// <summary>
+        /// 加载树节点
+        /// Created:20170527(ChengMengjia)
+        /// </summary>
+        void LoadTree()
+        {
+            wbsTree.Nodes.Clear();
+            List<PNode> listNode = wbsBll.GetNodes(ProjectId, null);
+            IEnumerable<PNode> parentNode = null;
+            parentNode = listNode.Where(t => string.IsNullOrEmpty(t.ParentID)).OrderBy(t => t.No);
+            foreach (PNode parent in parentNode)
+            {
+                DevComponents.AdvTree.Node node = new DevComponents.AdvTree.Node()
+                {
+                    Name = parent.ID,
+                    Text = parent.Name,
+                    Tag = JsonHelper.EntityToString<PNode>(parent)
+                };
+                SetSubTreeData(listNode, parent, node);
+                wbsTree.Nodes.Add(node);
+            }
+            wbsTree.ExpandAll();
+        }
+
+        /// <summary>
+        /// 设定子节点
+        /// Created:20170330(Xuxb)
+        /// Updated:20170527(ChengMengjia) 增加Check框
+        /// </summary>
+        /// <param name="advTree1"></param>
+        /// <param name="ProjectID"></param>
+        void SetSubTreeData(IList<PNode> listNode, PNode parent, DevComponents.AdvTree.Node node)
+        {
+            string parentID = parent.ID.Substring(0, 36);
+            IEnumerable<PNode> children = listNode.Where(t => t.ParentID == parentID).OrderBy(t => t.No);
+            if (children.Count<PNode>() < 1)
+            {
+                return;
+            }
+            DevComponents.AdvTree.Node node2;
+            foreach (PNode child in children)
+            {
+                node2 = new DevComponents.AdvTree.Node()
+                {
+                    CheckBoxVisible = true,
+                    Name = child.ID,
+                    Text = (child.PType == null || child.PType == 0) ? child.Name : child.Name + "(" + EnumsHelper.GetDescription((WBSPType)child.PType) + ")",
+                    Tag = JsonHelper.EntityToString<PNode>(child)
+                };
+                SetSubTreeData(listNode, child, node2);
+                node.Nodes.Add(node2);
+            }
+        }
+
+        /// <summary>
+        ///  发布信息-配置加载
+        /// Created：20170527(ChengMengjia)
+        /// </summary>
+        void LoadPubInfo()
+        {
+            #region 发送
+            IList<dynamic> listSendTo = new SettingBLL().GetSendToList(ProjectId);//配置里的发送人
+            if (listSendTo != null)
+                foreach (var member in listSendTo)
+                {
+                    if (string.IsNullOrEmpty(member.Email))
+                        continue;
+                    txtSend.Text += member.Email + "(" + member.Name + ")" + ";";
+                }
+            #endregion
+            #region 抄送
+            IList<dynamic> listCC = new SettingBLL().GetCCList(ProjectId);//配置里的抄送人
+            if (listCC != null)
+                foreach (var member in listCC)
+                {
+                    if (string.IsNullOrEmpty(member.Email))
+                        continue;
+                    txtCC.Text += member.Email + "(" + member.Name + ")" + ";";
+                }
+            #endregion
+        }
+
+        /// <summary>
+        /// 邮件附件-列表加载
+        /// Created：20170527(ChengMengjia)
+        /// </summary>
+        private void LoadEmailFile()
+        {
+            int? i = 1;
+            foreach (DeliverablesFiles file in EmailFiles)
+            {
+                file.RowNo = i;
+                i++;
+            }
+            gridFile.PrimaryGrid.DataSource = EmailFiles;
+        }
+        #endregion
     }
 }

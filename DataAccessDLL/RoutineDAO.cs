@@ -1,4 +1,5 @@
-﻿using DomainDLL;
+﻿using CommonDLL;
+using DomainDLL;
 using NHibernate;
 using System;
 using System.Collections.Generic;
@@ -167,6 +168,32 @@ namespace DataAccessDLL
             else
             {
                 return new DataTable();
+            }
+        }
+
+
+        /// <summary>
+        /// 通过NodeID获取附件列表
+        /// Created:20170612 (ChengMengjia)
+        /// </summary>
+        /// <param name="NodeID"></param>
+        /// <returns></returns>
+        public List<RoutineFiles> GetFilesByNodeID(string NodeID)
+        {
+            List<QueryField> qf = new List<QueryField>();
+            qf.Add(new QueryField() { Name = "NodeID", Type = QueryFieldType.String, Value = NodeID.Substring(0,36) });
+            StringBuilder sql = new StringBuilder();
+            sql.Append(" SELECT a.*  FROM RoutineFiles a");
+            sql.Append(" LEFT JOIN Routine b ON a.RoutineID= substr(b.ID,1,36) and b.Status=1 ");
+            sql.Append(" WHERE a.Status =1 and b.NodeID=@NodeID ");
+            DataSet ds = NHHelper.ExecuteDataset(sql.ToString(), qf);
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                return JsonHelper.TableToList<RoutineFiles>(ds.Tables[0]);
+            }
+            else
+            {
+                return new List<RoutineFiles>();
             }
         }
 

@@ -53,7 +53,7 @@ namespace ProjectManagement.Forms.Others
             DataHelper.SetComboxTreeData(this.cmbtSource, ProjectId);
             //加载结点下拉列表
             DataHelper.SetComboxTreeData(this.cmbtDepenency, ProjectId);
-            DataHelper.SetAdvTreeData(this.advTree1, ProjectId);
+            DataHelper.SetAdvTreeData(this.advTree1, ProjectId,0);
 
             //加载等级下拉列表
             DataHelper.LoadDictItems(cmbLevel, DictCategory.Level);

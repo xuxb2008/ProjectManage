@@ -11,6 +11,7 @@ using BussinessDLL;
 using ProjectManagement.Common;
 using DevComponents.DotNetBar.SuperGrid;
 using System.Windows.Forms.DataVisualization.Charting;
+using DomainDLL;
 
 namespace ProjectManagement
 {
@@ -75,12 +76,11 @@ namespace ProjectManagement
         /// <param name="e"></param>
         private void superGridLastWork_CellClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs e)
         {
-            SuperGridControl obj = (SuperGridControl)sender;
-            if (obj.ActiveCell.ColumnIndex == 4)
+            if (e.GridCell.GridColumn.Name == "Operate")
             {
                 string WorkType = e.GridCell.GridRow.Cells["WorkType"].Value.ToString();
                 MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
-                
+
                 if (WorkType == "日常工作")
                 {
                     Forms.Others.Routine form = new Forms.Others.Routine("");
@@ -93,9 +93,41 @@ namespace ProjectManagement
                     form.TroubleId = e.GridCell.GridRow.Cells["Id"].Value.ToString();
                     mainForm.ShowChildForm(form);
                 }
-                
+
             }
         }
+
+        /// <summary>
+        /// 双击近期工作和问题一览时
+        /// Created：20170609(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void superGridLastWork_RowDoubleClick(object sender, GridRowDoubleClickEventArgs e)
+        {
+            GridCell cell = e.GridRow.SuperGrid.GetCell(e.GridRow.RowIndex, 5);
+            if (cell != null)
+            {
+                string WorkType = e.GridRow.SuperGrid.GetCell(e.GridRow.RowIndex, 1).Value.ToString();
+                MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
+
+                if (WorkType == "日常工作")
+                {
+                    Forms.Others.Routine form = new Forms.Others.Routine("");
+                    form.WorkId = cell.Value.ToString();
+                    mainForm.ShowChildForm(form);
+                }
+                else
+                {
+                    Forms.Others.Trouble form = new Forms.Others.Trouble("");
+                    form.TroubleId = cell.Value.ToString();
+                    mainForm.ShowChildForm(form);
+                }
+
+            }
+
+        }
+
 
         /// <summary>
         /// 按F5时刷新首页
@@ -139,7 +171,8 @@ namespace ProjectManagement
         {
             List<double> list = new List<double>();
             DataTable dt = projectBll.GetProjectResult(ProjectId);
-            if(dt != null && dt.Rows.Count > 0){
+            if (dt != null && dt.Rows.Count > 0)
+            {
                 double totalWork = double.Parse(dt.Rows[0]["TotalWork"].ToString());
                 double completeWork = double.Parse(dt.Rows[0]["CompleteWork"].ToString());
                 //项目总工作量
@@ -182,7 +215,7 @@ namespace ProjectManagement
                 s4.Color = System.Drawing.Color.LightGreen;
                 s4.LegendText = "剩余金额";
                 Random r = new Random();
-                
+
                 string[] tags = new string[dt.Rows.Count];
                 for (int i = 1; i <= dt.Rows.Count; i++)
                 {
@@ -219,7 +252,7 @@ namespace ProjectManagement
                     }
 
                 }
-            }  
+            }
         }
 
         /// <summary>
@@ -303,6 +336,63 @@ namespace ProjectManagement
         }
 
         #endregion
+
+
+        /// <summary>
+        /// 预警一览 行双击
+        /// Created：20170609(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void superGridWarning_RowDoubleClick(object sender, GridRowDoubleClickEventArgs e)
+        {
+            SuperGridControl obj = (SuperGridControl)sender;
+            string WorkType = e.GridRow.SuperGrid.GetCell(e.GridRow.RowIndex, 1).Value.ToString();
+            MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
+            switch (WorkType)
+            {
+                case "项目交付物预警":
+                    CurrentNode = new WBSBLL().GetNode(e.GridRow.SuperGrid.GetCell(e.GridRow.RowIndex, 4).Value.ToString());
+                    mainForm.RelaodTree();
+                    mainForm.OpenNormalOperation();
+                    break;
+                case "项目问题预警":
+                    Forms.Others.Trouble form = new Forms.Others.Trouble("");
+                    form.TroubleId = e.GridRow.SuperGrid.GetCell(e.GridRow.RowIndex, 4).Value.ToString();
+                    mainForm.ShowChildForm(form);
+                    break;
+            }
+        }
+        /// <summary>
+        /// 预警一览 单元格单击
+        /// Created：20170609(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void superGridWarning_CellClick(object sender, GridCellClickEventArgs e)
+        {
+            if (e.GridCell.GridColumn.Name == "Operate")
+            {
+                string WorkType = e.GridCell.GridRow.Cells["WarnningName"].Value.ToString();
+                MainFrame mainForm = (MainFrame)this.Parent.TopLevelControl;
+                switch (WorkType)
+                {
+                    case "项目交付物预警":
+                        CurrentNode = new WBSBLL().GetNode(e.GridCell.GridRow.Cells["Id"].Value.ToString());
+                        mainForm.RelaodTree();
+                        mainForm.OpenNormalOperation();
+                        break;
+                    case "项目问题预警":
+                        Forms.Others.Trouble form = new Forms.Others.Trouble("");
+                        form.TroubleId = e.GridCell.GridRow.Cells["Id"].Value.ToString();
+                        mainForm.ShowChildForm(form);
+                        break;
+                }
+
+            }
+        }
+
+
 
     }
 }
