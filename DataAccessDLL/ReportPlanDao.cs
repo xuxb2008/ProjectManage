@@ -25,6 +25,10 @@ namespace DataAccessDLL
             List<QueryField> qlist = new List<QueryField>();
             qlist.Add(new QueryField { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
             qlist.Add(new QueryField { Name = "PID", Type = QueryFieldType.String, Value = PID });
+            qlist.Add(new QueryField() { Name = "Manager", Type = QueryFieldType.String, Value = Manager });
+            qlist.Add(new QueryField() { Name = "StarteDate", Type = QueryFieldType.DateTime, Value = StarteDate });
+            qlist.Add(new QueryField() { Name = "EndDate", Type = QueryFieldType.DateTime, Value = EndDate });
+            qlist.Add(new QueryField() { Name = "PType", Type = QueryFieldType.Numeric, Value = PType });
             #region 2017/05/10 verson
             //StringBuilder sql = new StringBuilder();
             //sql.Append(" select d.ID,d.Name,(cast(d.Workload as varchar) || '(天)') as Workload,date(d.StarteDate) as StarteDate,date(d.EndDate) as EndDate,d.Manager");
@@ -114,12 +118,31 @@ namespace DataAccessDLL
             sql.Append(@" With CT
                         AS
                         (
-                            select M.*, N.startedate, N.EndDate, N.name As N_name  from pnode M  left join deliverablesjbxx N on substr(M.id, 1, 36) = N.nodeid where m.status = @Status and n.status = @Status
-                            union all
+                            select M.*, N.startedate, N.EndDate, N.name As N_name  from pnode M  left join deliverablesjbxx N on substr(M.id, 1, 36) = N.nodeid ");
+            if (PType > 0)
+            {
+                sql.Append(" inner join nodeprogress ng on ng.nodeid = substr(m.id,1,36) and ng.ptype=@PType");
+            }
+            if (!string.IsNullOrEmpty(Manager))
+            {
+                sql.Append(" inner join deliverableswork dw on dw.jbxxid = substr(N.id,1,36) and dw.manager=@Manager");
+            }
+            sql.Append("  where m.status = @Status and n.status = @Status ");
+            if (StarteDate != DateTime.MinValue)
+            {
+                sql.Append(" and date(N.StarteDate)>=date(@StarteDate)");
+            }
+
+            if (EndDate != DateTime.MinValue)
+            {
+                sql.Append(" and date(N.EndDate)<=date(@EndDate)");
+            }
+            sql.Append(@" union all
                             select M1.*, CT.startedate, ct.enddate, CT.N_name from CT inner join pnode M1
                                 on CT.parentid = substr(M1.id, 1, 36)
-                            where m1.status = @Status
-                        )");
+                            where m1.status = @Status");
+            
+            sql.Append(")");
             //最外层
             sql.Append(" select * from (");
             //查询交付物
@@ -130,8 +153,7 @@ namespace DataAccessDLL
             sql.Append(" left join PNode p on substr(p.ID, 1, 36) = d.NodeID");
 
             if (!string.IsNullOrEmpty(Manager))
-            {
-                qlist.Add(new QueryField() { Name = "Manager", Type = QueryFieldType.String, Value = Manager });
+            {                
                 sql.Append(" inner join deliverableswork dw on dw.jbxxid = substr(d.id,1,36) and dw.manager=@Manager");
             }
 
@@ -139,18 +161,15 @@ namespace DataAccessDLL
 
             if (StarteDate != DateTime.MinValue)
             {
-                qlist.Add(new QueryField() { Name = "StarteDate", Type = QueryFieldType.DateTime, Value = StarteDate });
                 sql.Append(" and date(d.StarteDate)>=date(@StarteDate)");
             }
 
             if (EndDate != DateTime.MinValue)
             {
-                qlist.Add(new QueryField() { Name = "EndDate", Type = QueryFieldType.DateTime, Value = EndDate });
                 sql.Append(" and date(d.EndDate)<=date(@EndDate)");
             }
             if (PType > 0)
             {
-                qlist.Add(new QueryField() { Name = "PType", Type = QueryFieldType.Numeric, Value = PType });
                 sql.Append(" and n.PType=@PType");
             }
             //sql.Append(" order by d.CREATED");
