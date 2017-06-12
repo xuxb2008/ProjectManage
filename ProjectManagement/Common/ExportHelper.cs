@@ -334,7 +334,8 @@ namespace ProjectManagement
         /// <param name="text">合并后Range的值</param>
         public void MergeCells(int beginRowIndex, int beginColumnIndex, int endRowIndex, int endColumnIndex, string text)
         {
-            range = workSheet.get_Range(workSheet.Cells[beginRowIndex, beginColumnIndex], workSheet.Cells[endRowIndex, endColumnIndex]);
+            //range = workSheet.get_Range(workSheet.Cells[beginRowIndex, beginColumnIndex], workSheet.Cells[endRowIndex, endColumnIndex]);
+            range = excelApp.get_Range(workSheet.Cells[beginRowIndex, beginColumnIndex], workSheet.Cells[endRowIndex, endColumnIndex]);
 
             range.ClearContents(); //先把Range内容清除，合并才不会出错
             range.MergeCells = true;
@@ -428,6 +429,32 @@ namespace ProjectManagement
         {
             dynamic range = excelApp.get_Range(excelApp.Cells[startRow, startColumn], excelApp.Cells[endRow, endColumn]);
             range.HorizontalAlignment = align;
+        }
+
+        /// <summary>
+        /// 设置单元格居中、粗体、背景颜色
+        /// </summary>
+        /// <param name="columnIndex"></param>
+        /// <param name="align"></param>
+        public void SetCellsStyle(int startRow, int startColumn, int endRow, int endColumn, XlHAlign align,bool IsBold, ColorIndex color)
+        {
+            dynamic range = excelApp.get_Range(excelApp.Cells[startRow, startColumn], excelApp.Cells[endRow, endColumn]);
+            range.HorizontalAlignment = align;
+            range.Font.Bold = IsBold;
+            range.Interior.ColorIndex = color;
+        }
+
+        /// <summary>
+        /// 设置边框
+        /// </summary>
+        /// <param name="startRow"></param>
+        /// <param name="startColumn"></param>
+        /// <param name="endRow"></param>
+        /// <param name="endColumn"></param>
+        public void SetCellsBorder(int startRow, int startColumn, int endRow, int endColumn)
+        {
+            dynamic range = excelApp.get_Range(excelApp.Cells[startRow, startColumn], excelApp.Cells[endRow, endColumn]);
+            range.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
         }
 
         #endregion

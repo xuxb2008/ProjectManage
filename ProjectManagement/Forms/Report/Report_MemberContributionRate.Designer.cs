@@ -40,6 +40,7 @@
             this.gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.btnExport = new DevComponents.DotNetBar.ButtonX();
+            this.gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -130,15 +131,15 @@
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn6);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn7);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn8);
+            this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn9);
             this.superGridControl1.PrimaryGrid.EnsureVisibleAfterGrouping = true;
-            this.superGridControl1.PrimaryGrid.GridLines = DevComponents.DotNetBar.SuperGrid.GridLines.None;
             this.superGridControl1.PrimaryGrid.MultiSelect = false;
             this.superGridControl1.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
             this.superGridControl1.PrimaryGrid.ShowColumnHeader = false;
-            this.superGridControl1.PrimaryGrid.ShowRowGridIndex = true;
             this.superGridControl1.Size = new System.Drawing.Size(791, 348);
             this.superGridControl1.TabIndex = 9;
             this.superGridControl1.Text = "superGridControl1";
+            this.superGridControl1.DataBindingComplete += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridDataBindingCompleteEventArgs>(this.superGridControl1_DataBindingComplete);
             // 
             // gridColumn1
             // 
@@ -200,6 +201,13 @@
             this.btnExport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnExport.TabIndex = 8;
             this.btnExport.Text = "导出";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.DataPropertyName = "type";
+            this.gridColumn9.Name = "type";
+            this.gridColumn9.Visible = false;
             // 
             // Report_MemberContributionRate
             // 
@@ -228,5 +236,6 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9;
     }
 }
