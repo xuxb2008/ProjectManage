@@ -35,6 +35,12 @@ namespace ProjectManagement.Forms.Subcontract
 
         private string SKXXID = null;//收款信息id
         private DateTime SKXXCREATED = DateTime.MinValue;//收款信息创建时间
+
+        string _fileContractHTSMJName;
+        string _fileContractHTDZDName;
+        string _fileContractGZSMJName;
+        string _fileContractGZDZDName;
+        string _fileContractOtherName;
         #endregion
 
         #region 事件
@@ -53,6 +59,7 @@ namespace ProjectManagement.Forms.Subcontract
             dtiSignDate.Value = DateTime.Now;
             dtiLCBFinishDate.Value = DateTime.Now;//里程碑完成日期
             dtiSKXXInDate.Value = DateTime.Now;
+            LoadFile();//合同文件
         }
 
         /// <summary>
@@ -176,6 +183,31 @@ namespace ProjectManagement.Forms.Subcontract
         /// <param name="e"></param>
         private void File_Upload(object sender, EventArgs e)
         {
+            //ButtonX button = (ButtonX)sender;
+            //int Type = int.Parse(button.Name.Substring(3, 1));
+            //using (OpenFileDialog dialog = new OpenFileDialog())
+            //{
+            //    dialog.Multiselect = false;
+            //    if (dialog.ShowDialog() == DialogResult.OK)
+            //    {
+            //        string path = string.Empty;
+            //        if (!string.IsNullOrEmpty(dialog.FileName))
+            //            path = FileHelper.UploadFile(dialog.FileName, UploadType.SubContract, ProjectId, null);
+            //        if (!string.IsNullOrEmpty(path))
+            //        {
+            //            if (dicFile.ContainsKey(Type))
+            //            {
+            //                dicFile.Remove(Type);
+            //            }
+            //            dicFile.Add(Type, path);
+            //        }                        
+            //    }
+            //}
+            if (string.IsNullOrEmpty(SubID))
+            {
+                MessageBox.Show("请选择分包合同");
+                return;
+            }
             ButtonX button = (ButtonX)sender;
             int Type = int.Parse(button.Name.Substring(3, 1));
             using (OpenFileDialog dialog = new OpenFileDialog())
@@ -183,17 +215,40 @@ namespace ProjectManagement.Forms.Subcontract
                 dialog.Multiselect = false;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    string path = string.Empty;
-                    if (!string.IsNullOrEmpty(dialog.FileName))
-                        path = FileHelper.UploadFile(dialog.FileName, UploadType.SubContract, ProjectId, null);
-                    if (!string.IsNullOrEmpty(path))
+                    SubContractFiles entity = new SubContractFiles();
+                    entity.SubID = SubID;
+                    switch (Type)
                     {
-                        if (dicFile.ContainsKey(Type))
-                        {
-                            dicFile.Remove(Type);
-                        }
-                        dicFile.Add(Type, path);
-                    }                        
+                        case 1:
+                            entity.Path = FileHelper.UploadFile(dialog.FileName, UploadType.SubContract, ProjectId, null);
+                            entity.Name = "合同扫描件";
+                            _fileContractHTSMJName = entity.Path;
+                            break;
+                        case 2:
+                            entity.Path = FileHelper.UploadFile(dialog.FileName, UploadType.SubContract, ProjectId, null);
+                            entity.Name = "合同电子档";
+                            _fileContractHTDZDName = entity.Path;
+                            break;
+                        case 3:
+                            entity.Path = FileHelper.UploadFile(dialog.FileName, UploadType.SubContract, ProjectId, null);
+                            entity.Name = "工作说明书扫描件";
+                            _fileContractGZSMJName = entity.Path;
+                            break;
+                        case 4:
+                            entity.Path = FileHelper.UploadFile(dialog.FileName, UploadType.SubContract, ProjectId, null);
+                            entity.Name = "工作说明书电子档";
+                            _fileContractGZDZDName = entity.Path;
+                            break;
+                    }
+                    if (string.IsNullOrEmpty(entity.Path))
+                        MessageHelper.ShowRstMsg(false);
+                    else
+                    {
+                        entity.Type = Type;
+                        JsonResult result = bll.SaveFile(entity,true);
+                        MessageHelper.ShowRstMsg(result.result);
+                        LoadFile();
+                    }
                 }
             }
         }
@@ -268,8 +323,12 @@ namespace ProjectManagement.Forms.Subcontract
             dtiSignDate.Value = sub.SignDate.Value;
             CREATED = sub.CREATED;
             _id = sub.ID;//实际id
-            SubID = sub.ID.Substring(0, 36) + "-1";//版本id
+            SubID = sub.ID.Substring(0, 36);//版本id
             #endregion
+
+            //附件信息
+            LoadFile();
+            LoadFileList();
 
             #region 里程碑信息
             superGridControl1.PrimaryGrid.DataSource = lcb;
@@ -466,10 +525,231 @@ namespace ProjectManagement.Forms.Subcontract
             dtiSKXXInDate.Value = Convert.ToDateTime(row.Cells["InDate"].Value.ToString());
             SKXXID = row.Cells["ID"].Value.ToString();
         }
+
+        /// <summary>
+        /// 相关文件-打开
+        /// Created：20170330(ChengMengjia)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFOpen_Click(object sender, EventArgs e)
+        {
+            LinkLabel link = (LinkLabel)sender;
+
+            switch (link.Name)
+            {
+                case "lblFile1":
+                    FileHelper.OpenFile(UploadType.SubContract, ProjectId, null, _fileContractHTSMJName);
+                    break;
+                case "lblFile2":
+                    FileHelper.OpenFile(UploadType.SubContract, ProjectId, null, _fileContractHTDZDName);
+                    break;
+                case "lblFile3":
+                    FileHelper.OpenFile(UploadType.SubContract, ProjectId, null, _fileContractGZSMJName);
+                    break;
+                case "lblFile4":
+                    FileHelper.OpenFile(UploadType.SubContract, ProjectId, null, _fileContractGZDZDName);
+                    break;
+            }
+
+        }
         #endregion
 
         #region 方法
+        /// <summary>
+        /// 主要文件加载
+        /// 2017/06/13(zhuguanjun)
+        /// </summary>
+        private void LoadFile()
+        {
+            List<SubContractFiles> list = new List<SubContractFiles>();
+
+            //加载项目合同扫描件
+            list = bll.GetFiles(SubID, 1);
+            if (list.Count > 0)
+            {
+                _fileContractHTSMJName = list[0].Path;
+                lblFile1.Show();
+                btnD1.Show();
+            }
+            else
+            {
+                lblFile1.Hide();
+                btnD1.Hide();
+            }
+
+            //加载项目合同电子档
+            list = bll.GetFiles(SubID, 2);
+            if (list.Count > 0)
+            {
+                _fileContractHTDZDName = list[0].Path;
+                lblFile2.Show();
+                btn2.Show();
+            }
+            else
+            {
+                lblFile2.Hide();
+                btnD2.Hide();
+            }
+
+            //加载项目工作说明书扫描件
+            list = bll.GetFiles(SubID, 3);
+            if (list.Count > 0)
+            {
+                _fileContractGZSMJName = list[0].Path;
+                lblFile3.Show();
+                btnD3.Show();
+            }
+            else
+            {
+                lblFile3.Hide();
+                btnD3.Hide();
+            }
+
+            //加载项目工作说明书电子档
+            list = bll.GetFiles(SubID, 4);
+            if (list.Count > 0)
+            {
+                _fileContractGZDZDName = list[0].Path;
+                lblFile4.Show();
+                btnD4.Show();
+            }
+            else
+            {
+                lblFile4.Hide();
+                btnD4.Hide();
+            }
+
+        }
         #endregion
 
+        /// <summary>
+        /// 选择附件
+        /// 2017/06/13(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFSelect_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(SubID))
+            {
+                MessageBox.Show("请选择分包合同");
+                return;
+            }
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Multiselect = false;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    txtFPath.Text = dialog.FileName;
+                    txtFPath.Tag = 1;
+                    string[] temp = dialog.SafeFileName.Split('.');
+                    txtFName.Text = temp[0];
+                }
+            }
+        }
+
+        /// <summary>
+        /// 其他附件清空
+        /// 2017/06/13(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFClear_Click(object sender, EventArgs e)
+        {
+            txtFPath.Tag = 0;
+            txtFPath.Clear();
+            txtFName.Tag = "";
+            txtFName.Clear();
+            txtFDesc.Clear();
+            gridFile.GetSelectedRows().Select(false);//取消选择
+        }
+
+        /// <summary>
+        /// 其他附件编辑保存
+        /// 2017/06/13(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFSave_Click(object sender, EventArgs e)
+        {
+            SubContractFiles entity = new SubContractFiles();
+            entity.ID = txtFName.Tag == null ? "" : txtFName.Tag.ToString();
+            entity.SubID = SubID;
+            entity.Type = 0;
+            entity.Path = txtFPath.Text;
+            entity.Name = txtFName.Text;
+            #region 填写判断
+            if (string.IsNullOrEmpty(entity.Path))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "附件");
+                return;
+            }
+            if (string.IsNullOrEmpty(entity.Name))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000002, MessageType.Alert, "附件名称");
+                return;
+            }
+            #endregion
+
+            #region 文件上传
+            //判断是否有选择文件上传
+            bool ReUpload = txtFPath.Tag != null && txtFPath.Tag.Equals(1);
+            if (ReUpload)
+                entity.Path = FileHelper.UploadFile(entity.Path, UploadType.ContractQTFJ, ProjectId, null);
+            #endregion
+
+            if (string.IsNullOrEmpty(entity.Path))
+                MessageHelper.ShowRstMsg(false);
+            else
+            {
+                JsonResult result = bll.SaveFile(entity, ReUpload);
+                MessageHelper.ShowRstMsg(result.result);
+                if (result.result)
+                {
+                    btnFClear_Click(sender, e);
+                    LoadFileList();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 其他附件文件下载
+        /// 2017/06/13(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridFile_CellClick(object sender, DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs e)
+        {
+            if (e.GridCell.GridColumn.Name == "RowDownLoad")
+            {
+                string fileName = e.GridCell.GridRow.GetCell("Path").Value.ToString();
+                if (string.IsNullOrEmpty(fileName))
+                {
+                    MessageHelper.ShowMsg(MessageID.W000000005, MessageType.Alert);
+                    return;
+                }
+
+                //文件下载
+                FileHelper.DownLoadFile(UploadType.ContractQTFJ, ProjectId, null, fileName);
+            }
+
+        }
+
+        /// <summary>
+        /// 其他附件
+        /// 2017/06/13(zhuguanjun)
+        /// </summary>
+        private void LoadFileList()
+        {
+            List<SubContractFiles> list = bll.GetFiles(SubID, 0);
+            int? i = 1;
+            foreach (SubContractFiles file in list)
+            {
+                file.RowNo = i;
+                i++;
+            }
+            gridFile.PrimaryGrid.DataSource = list;
+        }
     }
 }

@@ -178,7 +178,7 @@ namespace BussinessDLL
 
         /// <summary>
         /// 文件保存
-        ///  Created:20170612(ChengMengjia)
+        ///  2017/6/13(zhuguanjun)
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -192,6 +192,47 @@ namespace BussinessDLL
                     new Repository<SubContractFiles>().Insert(entity, true, out _id);
                 else
                     new Repository<SubContractFiles>().Update(entity, true, out _id);
+                jsonreslut.data = _id;
+                jsonreslut.result = true;
+                jsonreslut.msg = "保存成功！";
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteException(ex, LogType.BussinessDLL);
+                jsonreslut.result = false;
+                jsonreslut.msg = ex.Message;
+            }
+            return jsonreslut;
+        }
+
+        /// <summary>
+        /// 文件保存
+        ///  2017/6/13(zhuguanjun)
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="ReUpload"></param>
+        /// <returns></returns>
+        public JsonResult SaveFile(SubContractFiles entity, bool ReUpload)
+        {
+            JsonResult jsonreslut = new JsonResult();
+            try
+            {
+                string _id;
+                if (entity.Type != 0)
+                {
+                    //不是其他文件
+                    List<SubContractFiles> listOld = GetFiles(entity.SubID, entity.Type);
+                    entity.ID = listOld.Count > 0 ? listOld[0].ID : "";
+                }
+                if (string.IsNullOrEmpty(entity.ID))
+                    new Repository<SubContractFiles>().Insert(entity, true, out _id);
+                else
+                {
+                    SubContractFiles old = new Repository<SubContractFiles>().Get(entity.ID);
+                    old.Name = entity.Name;
+                    old.Path = ReUpload ? entity.Path : old.Path;
+                    new Repository<SubContractFiles>().Update(old, true, out _id);
+                }
                 jsonreslut.data = _id;
                 jsonreslut.result = true;
                 jsonreslut.msg = "保存成功！";
