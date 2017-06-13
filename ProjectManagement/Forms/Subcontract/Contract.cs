@@ -121,11 +121,11 @@ namespace ProjectManagement.Forms.Subcontract
             //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "分包合同编号");
             //    return;
             //}
-            //if (string.IsNullOrEmpty(txtB_Name.Text))
-            //{
-            //    MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "分包合同名称");
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(txtB_Name.Text))
+            {
+                MessageHelper.ShowMsg(MessageID.W000000001, MessageType.Alert, "分包合同名称");
+                return;
+            }
             #endregion
 
             #region 分包合同信息

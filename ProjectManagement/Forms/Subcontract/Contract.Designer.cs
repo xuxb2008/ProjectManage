@@ -600,7 +600,7 @@
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(123, 18);
             this.labelX4.TabIndex = 0;
-            this.labelX4.Text = "分包合同名称：";
+            this.labelX4.Text = "*分包合同名称：";
             // 
             // labelX3
             // 
@@ -1699,7 +1699,7 @@
             this.gridFile.PrimaryGrid.Columns.Add(this.gridColumn47);
             this.gridFile.PrimaryGrid.MultiSelect = false;
             this.gridFile.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridFile.Size = new System.Drawing.Size(267, 106);
+            this.gridFile.Size = new System.Drawing.Size(250, 106);
             this.gridFile.TabIndex = 91;
             this.gridFile.Text = "superGridControl4";
             this.gridFile.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridFile_CellClick);
@@ -1761,7 +1761,7 @@
             this.txtFDesc.Name = "txtFDesc";
             this.txtFDesc.PreventEnterBeep = true;
             this.txtFDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFDesc.Size = new System.Drawing.Size(173, 90);
+            this.txtFDesc.Size = new System.Drawing.Size(156, 90);
             this.txtFDesc.TabIndex = 85;
             // 
             // labelX23
@@ -1782,7 +1782,7 @@
             this.buttonX26.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonX26.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX26.Location = new System.Drawing.Point(214, 322);
+            this.buttonX26.Location = new System.Drawing.Point(197, 322);
             this.buttonX26.Margin = new System.Windows.Forms.Padding(2);
             this.buttonX26.Name = "buttonX26";
             this.buttonX26.Size = new System.Drawing.Size(56, 18);
@@ -1796,7 +1796,7 @@
             this.btnFSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnFSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnFSelect.Location = new System.Drawing.Point(214, 288);
+            this.btnFSelect.Location = new System.Drawing.Point(197, 288);
             this.btnFSelect.Margin = new System.Windows.Forms.Padding(2);
             this.btnFSelect.Name = "btnFSelect";
             this.btnFSelect.Size = new System.Drawing.Size(56, 18);
@@ -1821,7 +1821,7 @@
             this.txtFName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFName.Name = "txtFName";
             this.txtFName.PreventEnterBeep = true;
-            this.txtFName.Size = new System.Drawing.Size(112, 21);
+            this.txtFName.Size = new System.Drawing.Size(95, 21);
             this.txtFName.TabIndex = 84;
             // 
             // txtFPath
@@ -1842,7 +1842,7 @@
             this.txtFPath.Name = "txtFPath";
             this.txtFPath.PreventEnterBeep = true;
             this.txtFPath.ReadOnly = true;
-            this.txtFPath.Size = new System.Drawing.Size(112, 21);
+            this.txtFPath.Size = new System.Drawing.Size(95, 21);
             this.txtFPath.TabIndex = 82;
             // 
             // labelX55
