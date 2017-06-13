@@ -166,7 +166,7 @@
             this.groupPanel1.Location = new System.Drawing.Point(0, 0);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(292, 409);
+            this.groupPanel1.Size = new System.Drawing.Size(292, 443);
             // 
             // 
             // 
@@ -714,10 +714,10 @@
             this.groupPanel2.Controls.Add(this.labelX9);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupPanel2.Location = new System.Drawing.Point(0, 409);
+            this.groupPanel2.Location = new System.Drawing.Point(0, 443);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(292, 198);
+            this.groupPanel2.Size = new System.Drawing.Size(292, 164);
             // 
             // 
             // 

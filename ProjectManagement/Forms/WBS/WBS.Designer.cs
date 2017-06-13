@@ -398,7 +398,7 @@
             this.panelJFW.Location = new System.Drawing.Point(573, 3);
             this.panelJFW.Margin = new System.Windows.Forms.Padding(2);
             this.panelJFW.Name = "panelJFW";
-            this.panelJFW.Size = new System.Drawing.Size(300, 490);
+            this.panelJFW.Size = new System.Drawing.Size(300, 518);
             // 
             // 
             // 
