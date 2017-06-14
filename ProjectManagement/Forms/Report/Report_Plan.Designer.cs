@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtClear = new DevComponents.DotNetBar.ButtonX();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.Namee = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.WBSNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.Workload = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.StarteDate = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.EndDate = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.Manager = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.Progress = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.WBSNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.btnExport = new DevComponents.DotNetBar.ButtonX();
             this.btnSearch = new DevComponents.DotNetBar.ButtonX();
@@ -74,6 +75,7 @@
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.txtClear);
             this.groupPanel1.Controls.Add(this.treeList1);
             this.groupPanel1.Controls.Add(this.btnExport);
             this.groupPanel1.Controls.Add(this.btnSearch);
@@ -122,6 +124,19 @@
             this.groupPanel1.TabIndex = 0;
             this.groupPanel1.Text = "计划预览";
             // 
+            // txtClear
+            // 
+            this.txtClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.txtClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.txtClear.Location = new System.Drawing.Point(512, 3);
+            this.txtClear.Margin = new System.Windows.Forms.Padding(2);
+            this.txtClear.Name = "txtClear";
+            this.txtClear.Size = new System.Drawing.Size(56, 18);
+            this.txtClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.txtClear.TabIndex = 8;
+            this.txtClear.Text = "清空";
+            this.txtClear.Click += new System.EventHandler(this.txtClear_Click);
+            // 
             // treeList1
             // 
             this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -129,15 +144,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.Namee,
+            this.WBSNo,
             this.Workload,
             this.StarteDate,
             this.EndDate,
             this.Manager,
             this.Progress,
-            this.WBSNo,
             this.ID});
             this.treeList1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treeList1.Location = new System.Drawing.Point(0, 66);
+            this.treeList1.Location = new System.Drawing.Point(-3, 62);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.Editable = false;
             this.treeList1.Size = new System.Drawing.Size(796, 447);
@@ -150,7 +165,16 @@
             this.Namee.Name = "Namee";
             this.Namee.Visible = true;
             this.Namee.VisibleIndex = 0;
-            this.Namee.Width = 100;
+            this.Namee.Width = 135;
+            // 
+            // WBSNo
+            // 
+            this.WBSNo.Caption = "WBS代码";
+            this.WBSNo.FieldName = "WBSNo";
+            this.WBSNo.Name = "WBSNo";
+            this.WBSNo.Visible = true;
+            this.WBSNo.VisibleIndex = 1;
+            this.WBSNo.Width = 130;
             // 
             // Workload
             // 
@@ -158,7 +182,8 @@
             this.Workload.FieldName = "Workload";
             this.Workload.Name = "Workload";
             this.Workload.Visible = true;
-            this.Workload.VisibleIndex = 1;
+            this.Workload.VisibleIndex = 2;
+            this.Workload.Width = 129;
             // 
             // StarteDate
             // 
@@ -166,7 +191,8 @@
             this.StarteDate.FieldName = "StarteDate";
             this.StarteDate.Name = "StarteDate";
             this.StarteDate.Visible = true;
-            this.StarteDate.VisibleIndex = 2;
+            this.StarteDate.VisibleIndex = 3;
+            this.StarteDate.Width = 128;
             // 
             // EndDate
             // 
@@ -174,7 +200,8 @@
             this.EndDate.FieldName = "EndDate";
             this.EndDate.Name = "EndDate";
             this.EndDate.Visible = true;
-            this.EndDate.VisibleIndex = 3;
+            this.EndDate.VisibleIndex = 4;
+            this.EndDate.Width = 128;
             // 
             // Manager
             // 
@@ -188,15 +215,8 @@
             this.Progress.FieldName = "Progress";
             this.Progress.Name = "Progress";
             this.Progress.Visible = true;
-            this.Progress.VisibleIndex = 4;
-            // 
-            // WBSNo
-            // 
-            this.WBSNo.Caption = "WBS代码";
-            this.WBSNo.FieldName = "WBSNo";
-            this.WBSNo.Name = "WBSNo";
-            this.WBSNo.Visible = true;
-            this.WBSNo.VisibleIndex = 5;
+            this.Progress.VisibleIndex = 5;
+            this.Progress.Width = 128;
             // 
             // ID
             // 
@@ -208,7 +228,7 @@
             // 
             this.btnExport.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnExport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExport.Location = new System.Drawing.Point(532, 34);
+            this.btnExport.Location = new System.Drawing.Point(590, 32);
             this.btnExport.Margin = new System.Windows.Forms.Padding(2);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(56, 18);
@@ -221,7 +241,7 @@
             // 
             this.btnSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSearch.Location = new System.Drawing.Point(532, 2);
+            this.btnSearch.Location = new System.Drawing.Point(590, 2);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(56, 18);
@@ -545,5 +565,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn Progress;
         private DevExpress.XtraTreeList.Columns.TreeListColumn WBSNo;
         private DevExpress.XtraTreeList.Columns.TreeListColumn ID;
+        private DevComponents.DotNetBar.ButtonX txtClear;
     }
 }

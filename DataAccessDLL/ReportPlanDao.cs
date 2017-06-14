@@ -183,7 +183,7 @@ namespace DataAccessDLL
             sql.Append(" )");
 
             sql.Append(" where PID=@PID"); //如果显示所有项目则注释掉此行
-            sql.Append(" order by PID,CREATED");
+            sql.Append(" order by WBSNo,PID,CREATED");
             DataTable dt = NHHelper.ExecuteDataTable(sql.ToString(), qlist);
             return dt;
         }

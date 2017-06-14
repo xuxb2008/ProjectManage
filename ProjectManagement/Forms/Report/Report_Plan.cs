@@ -183,5 +183,18 @@ namespace ProjectManagement.Forms.Report
         }
         #endregion
 
+        /// <summary>
+        /// 清空按钮
+        /// 2017/06/14(zhuguanjun)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtClear_Click(object sender, EventArgs e)
+        {
+            dtiStartDate.Value = DateTime.MinValue;
+            dtiEndDate.Value = DateTime.MinValue;
+            cmbFinishStatus.SelectedIndex = 0;
+            cmbManager.SelectedIndex = 0;
+        }
     }
 }
