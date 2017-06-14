@@ -403,7 +403,7 @@ namespace ProjectManagement.Forms.Stakeholder
                 if (type != 0)
                 {
                     CellVisualStyles style = new CellVisualStyles();
-                    style.Default.Background.Color1 = Color.Green;
+                    style.Default.Background.Color1 = Color.CornflowerBlue;
                     row.CellStyles = style;
                 }
             }

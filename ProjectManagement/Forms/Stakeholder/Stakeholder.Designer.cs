@@ -51,6 +51,7 @@
             this.gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.gridColumn20 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cmbSendType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
@@ -80,7 +81,6 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.txtCompanyName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.gridColumn20 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtiCreated)).BeginInit();
@@ -164,6 +164,7 @@
             this.superGridControl1.PrimaryGrid.Columns.Add(this.TypeName);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn11);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn2);
+            this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn20);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn3);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn9);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn4);
@@ -179,7 +180,6 @@
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn14);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn15);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn19);
-            this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn20);
             this.superGridControl1.PrimaryGrid.MultiSelect = false;
             this.superGridControl1.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.RowWithCellHighlight;
             this.superGridControl1.Size = new System.Drawing.Size(934, 250);
@@ -202,7 +202,6 @@
             this.gridColumn1.DataPropertyName = "CompanyName";
             this.gridColumn1.HeaderText = "企业名称";
             this.gridColumn1.Name = "CompanyName";
-            this.gridColumn1.Visible = false;
             // 
             // TypeName
             // 
@@ -226,6 +225,7 @@
             this.gridColumn2.FillWeight = 150;
             this.gridColumn2.HeaderText = "名称";
             this.gridColumn2.Name = "turename";
+            this.gridColumn2.Visible = false;
             // 
             // gridColumn3
             // 
@@ -325,6 +325,12 @@
             this.gridColumn19.DataPropertyName = "SendType";
             this.gridColumn19.Name = "SendType";
             this.gridColumn19.Visible = false;
+            // 
+            // gridColumn20
+            // 
+            this.gridColumn20.DataPropertyName = "Name";
+            this.gridColumn20.HeaderText = "名称";
+            this.gridColumn20.Name = "Name";
             // 
             // groupPanel2
             // 
@@ -840,12 +846,6 @@
             this.labelX1.Size = new System.Drawing.Size(88, 18);
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "企业名称：";
-            // 
-            // gridColumn20
-            // 
-            this.gridColumn20.DataPropertyName = "Name";
-            this.gridColumn20.Name = "Name";
-            this.gridColumn20.Visible = false;
             // 
             // Stakeholder
             // 
