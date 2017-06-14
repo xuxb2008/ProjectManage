@@ -88,6 +88,7 @@
             this.txtFrenquence2 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtCommunicateDate1 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtFrenquence1 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.gridColumn4 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtiCREATED)).BeginInit();
             this.groupPanel2.SuspendLayout();
@@ -101,7 +102,6 @@
             // 
             this.listBoxAdv1.BackgroundStyle.Class = "ListBoxAdv";
             this.listBoxAdv1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.listBoxAdv1.CheckStateMember = null;
             this.listBoxAdv1.ContainerControlProcessDialogKey = true;
             this.listBoxAdv1.DragDropSupport = true;
             this.listBoxAdv1.Location = new System.Drawing.Point(267, 94);
@@ -169,6 +169,7 @@
             this.superGridControl1.PrimaryGrid.AllowEdit = false;
             this.superGridControl1.PrimaryGrid.ColumnAutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.Fill;
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn1);
+            this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn4);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn2);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.gridColumn3);
             this.superGridControl1.PrimaryGrid.Columns.Add(this.IsPublic);
@@ -193,6 +194,7 @@
             this.gridColumn2.DataPropertyName = "Name";
             this.gridColumn2.HeaderText = "名称";
             this.gridColumn2.Name = "Name";
+            this.gridColumn2.Visible = false;
             // 
             // gridColumn3
             // 
@@ -1154,6 +1156,12 @@
             this.txtFrenquence1.Size = new System.Drawing.Size(190, 21);
             this.txtFrenquence1.TabIndex = 27;
             // 
+            // gridColumn4
+            // 
+            this.gridColumn4.DataPropertyName = "showName";
+            this.gridColumn4.HeaderText = "名称";
+            this.gridColumn4.Name = "showName";
+            // 
             // CommunicationMatrix
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1236,5 +1244,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtFrenquence2;
         private DevComponents.DotNetBar.Controls.TextBoxX txtCommunicateDate1;
         private DevComponents.DotNetBar.Controls.TextBoxX txtFrenquence1;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn4;
     }
 }
