@@ -40,7 +40,6 @@ namespace ProjectManagement.Forms.Subcontract
         string _fileContractHTDZDName;
         string _fileContractGZSMJName;
         string _fileContractGZDZDName;
-        string _fileContractOtherName;
         #endregion
 
         #region 事件
@@ -167,6 +166,7 @@ namespace ProjectManagement.Forms.Subcontract
             dtiSignDate.Value = DateTime.Today;
             SubID = null;
             _id = null;
+            LoadFile();
             superGridControl3.PrimaryGrid.ClearSelectedRows();
 
             btnClearLCB_Click(null, null);

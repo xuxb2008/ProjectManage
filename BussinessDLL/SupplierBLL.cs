@@ -51,5 +51,23 @@ namespace BussinessDLL
             return new SupplierDao().GetSupplierList(qf);
         }
 
+        /// <summary>
+        /// 获取供应商
+        /// 2017/06/13(zhuguanjun)
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public DomainDLL.Supplier GetSupplier(string ID)
+        {
+            try
+            {
+                var supplier = new Repository<DomainDLL.Supplier>().Get(ID);
+                return supplier;
+            }
+            catch
+            {
+                return null;
+            }
+        } 
     }
 }
