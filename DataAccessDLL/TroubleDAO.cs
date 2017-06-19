@@ -116,7 +116,7 @@ namespace DataAccessDLL
             //完成状态判断 参加PNode的Entity中FinishStatus说明
             sql.Append(" case when r.HandleStatus=3 then 1   ");
             sql.Append(" when r.EndDate<date('now') and (r.HandleStatus is null or r.HandleStatus<>3) then 3 ");
-            sql.Append(" when r.StarteDate>date('now') and (r.HandleStatus is null or r.HandleStatus<>3) then 0 else 2 end FinishType ");
+            sql.Append(" when r.StarteDate>=date('now','+1 day') and (r.HandleStatus is null or r.HandleStatus<>3) then 0 else 2 end FinishType ");
 
             sql.Append(" from Trouble r inner join PNode p on r.NodeID = substr(p.ID,1,36) and p.Status = 1");
             sql.Append(" left join DictItem d on r.HandleStatus = d.No and d.DictNo = " + (int)CommonDLL.DictCategory.TroubleHandleStatus);
@@ -207,7 +207,7 @@ namespace DataAccessDLL
             qf.Add(new QueryField() { Name = "TROUBLEID", Type = QueryFieldType.String, Value = TroubleID });
             StringBuilder sql = new StringBuilder();
             sql.Append(" SELECT r.*,s.Name as ManagerName FROM TROUBLEWORK r");
-            sql.Append(" LEFT JOIN STAKEHOLDERS s ON r.Manager= substr(s.Id,1,36)");
+            sql.Append(" LEFT JOIN STAKEHOLDERS s ON r.Manager= substr(s.Id,1,36) and s.status=1 ");
             sql.Append(" WHERE r.TROUBLEID =@TROUBLEID ");
 
 

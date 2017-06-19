@@ -39,98 +39,105 @@ namespace CommonDLL
         /// <summary>
         /// 项目里程碑完成情况
         /// </summary>
-        [EnumDesc("项目里程碑完成情况")]
+        [EnumDesc("里程碑-完成情况")]
         Milestones_FinshStatus = 0,
         /// <summary>
         /// 收款批次
         /// </summary>
-        [EnumDesc("收款批次")]
+        [EnumDesc("收款-批次")]
         Receivables_BatchNo = 1,
-        /// <summary>
-        /// 责任人
-        /// </summary>
-        [EnumDesc("责任人")]
-        WBS_Manager = 2,
         /// <summary>
         /// 收款完成情况
         /// </summary>
-        [EnumDesc("收款完成情况")]
+        [EnumDesc("收款-完成情况")]
         Receivables_FinshStatus = 3,
+
+        ///// <summary>
+        ///// 责任人
+        ///// </summary>
+        //[EnumDesc("责任人")]
+        //WBS_Manager = 2,
+
         /// <summary>
-        /// 干系人类型
+        /// 干系人-类型
         /// </summary>
-        [EnumDesc("干系人类型")]
+        [EnumDesc("干系人-类型")]
         StakehoderType = 4,
         /// <summary>
-        /// 日常工作完成情况
+        /// 日常工作-完成情况
         /// </summary>
-        [EnumDesc("日常工作完成情况")]
+        [EnumDesc("日常工作-完成情况")]
         WorkHandleStatus = 5,
         /// <summary>
-        /// 日常工作完成情况
+        /// 问题管理-处理情况
         /// </summary>
-        [EnumDesc("问题处理情况")]
+        [EnumDesc("问题管理-处理情况")]
         TroubleHandleStatus = 6,
+
+        /// <summary>
+        /// 问题管理级别
+        /// </summary>
+        [EnumDesc("问题管理-级别")]
+        TroubleLevel = 13,
+
+
         /// <summary>
         /// 沟通频率
         /// </summary>
-        [EnumDesc("沟通频率")]
+        [EnumDesc("沟通管理-频率")]
         Frequency = 7,
         /// <summary>
-        /// 邮箱配置类型
+        /// "基础配置-邮箱类型
         /// </summary>
-        [EnumDesc("邮箱配置类型")]
+        [EnumDesc("基础配置-邮箱类型")]
         Pub_EmailType = 8,
         /// <summary>
-        /// 风险等级
+        /// 基础配置-发送方式
         /// </summary>
-        [EnumDesc("风险等级")]
+        [EnumDesc("基础配置-发送方式")]
+        SendType = 14,
+
+        /// <summary>
+        /// 风险-等级
+        /// </summary>
+        [EnumDesc("风险-等级")]
         Level = 9,
         /// <summary>
-        /// 概率
+        /// 风险-概率
         /// </summary>
-        [EnumDesc("概率")]
+        [EnumDesc("风险-概率")]
         Probability = 10,
         /// <summary>
         /// 对应策略
         /// </summary>
-        [EnumDesc("对应策略")]
+        [EnumDesc("风险-对应策略")]
         HandType = 11,
         /// <summary>
         /// 监理方式
         /// </summary>
-        [EnumDesc("监理方式")]
+        [EnumDesc("监理-方式")]
         Supervisor_Way = 12,
+
         /// <summary>
-        /// 问题级别
+        /// 收入计划-完成情况
         /// </summary>
-        [EnumDesc("问题级别")]
-        TroubleLevel = 13,
-        /// <summary>
-        /// 发送方式
-        /// </summary>
-        [EnumDesc("发送方式")]
-        SendType = 14,
-        /// <summary>
-        /// 收入计划完成情况
-        /// </summary>
-        [EnumDesc("收入计划完成情况")]
+        [EnumDesc("收入计划-完成情况")]
         EarningStatus = 15,
-        /// <summary>
-        /// 分包合同-里程碑完成情况
-        /// </summary>
-        [EnumDesc("分包合同-里程碑完成情况")]
-        LCBFinishStatus = 16,
-        /// <summary>
-        /// 分包合同-收款信息完成情况
-        /// </summary>
-        [EnumDesc("分包合同-收款信息完成情况")]
-        SKXXFnishStatus = 17,
-        /// <summary>
-        /// 分包合同-收款信息收款批次
-        /// </summary>
-        [EnumDesc("分包合同-收款信息收款批次")]
-        SKXXBatchNo = 18,
+        ///// <summary>
+        ///// 分包合同-里程碑完成情况
+        ///// </summary>
+        //[EnumDesc("分包合同-里程碑完成情况")]
+        //LCBFinishStatus = 16,
+        ///// <summary>
+        ///// 分包合同-收款信息完成情况
+        ///// </summary>
+        //[EnumDesc("分包合同-收款信息完成情况")]
+        //SKXXFnishStatus = 17,
+        ///// <summary>
+        ///// 分包合同-收款信息收款批次
+        ///// </summary>
+        //[EnumDesc("分包合同-收款信息收款批次")]
+        //SKXXBatchNo = 18,
         /// <summary>
         /// 项目计划报表-完成情况
         /// </summary>
@@ -280,7 +287,7 @@ namespace CommonDLL
         /// 交付物
         /// </summary>
         [EnumDesc("交付物")]
-        PType1= 1,
+        PType1 = 1,
         /// <summary>
         /// 日常工作
         /// </summary>

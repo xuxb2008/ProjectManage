@@ -95,7 +95,7 @@ namespace ProjectManagement
         /// <summary>
         /// 节点背景色
         /// Created:20170605(ChengMengjia)
-        /// 未开始的没有背景色（值为0），已完成的为绿色（1），正在执行的为黄色（2），超期的为红色（3）
+        /// 未开始的没有背景色（值为0），已完成的为蓝色（1），正在执行的为黄色（2），超期的为红色（3）
         /// </summary>
         /// <param name="status"></param>
         /// <returns></returns>
@@ -117,7 +117,7 @@ namespace ProjectManagement
         /// <summary>
         /// 节点背景色
         /// Created:20170607(ChengMengjia)
-        /// 未开始的没有背景色（值为0），已完成的为绿色（1），正在执行的为黄色（2），超期的为红色（3）
+        /// 未开始的没有背景色（值为0），已完成的为蓝色（1），正在执行的为黄色（2），超期的为红色（3）
         /// </summary>
         /// <param name="status"></param>
         /// <returns></returns>

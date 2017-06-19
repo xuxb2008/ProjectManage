@@ -22,6 +22,8 @@ namespace ProjectManagement.Forms.Subcontract
         #region 业务逻辑类初始化
         ContractBLL bll = new ContractBLL();
         SupplierBLL supplierbll = new SupplierBLL();
+
+        string MainName, MainNo;//主合同编号、名称
         #endregion
 
         #region 变量
@@ -46,14 +48,23 @@ namespace ProjectManagement.Forms.Subcontract
         /// <summary>
         /// 构造函数
         /// 2017/04/11(ZhuGuanJun)
+        /// Updated：20170619（ChengMengjia） 加载主合同编号、名称；里程碑完成情况绑定和付款完成情况绑定
         /// </summary>
         public Contract()
         {
             InitializeComponent();
+
+            //主合同编号、名称
+            ContractJBXX conJBXX = new ProjectInfoBLL().GetJBXX(ProjectId);
+            MainName = conJBXX.Name;
+            MainNo = conJBXX.No;
+            txtA_Name.Text = MainName;
+            txtA_No.Text = MainNo;
+
             DataBind();
-            DataHelper.LoadDictItems(cmbLCBFinishStatus, DictCategory.LCBFinishStatus);
-            DataHelper.LoadDictItems(cmbSKXXFinishStatus, DictCategory.SKXXFnishStatus);
-            DataHelper.LoadDictItems(cmbSKXXBatchNo, DictCategory.SKXXBatchNo);
+            DataHelper.LoadDictItems(cmbLCBFinishStatus, DictCategory.Milestones_FinshStatus);
+            DataHelper.LoadDictItems(cmbSKXXFinishStatus, DictCategory.Receivables_FinshStatus);
+            DataHelper.LoadDictItems(cmbSKXXBatchNo, DictCategory.Receivables_BatchNo);
             LoadSupplierItems(cmbCompanyName, "");
             dtiSignDate.Value = DateTime.Now;
             dtiLCBFinishDate.Value = DateTime.Now;//里程碑完成日期
@@ -151,23 +162,29 @@ namespace ProjectManagement.Forms.Subcontract
         /// <summary>
         /// 分包合同清空事件
         /// 2017/04/11(zhugaunjun)
+        /// Updated：20170619（ChengMengjia） 不清空主合同名称、编号；清空下方文件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnClearContract_Click(object sender, EventArgs e)
         {
+            SubID = null;
+            _id = null;
+
+            //分包内容信息清空
             txtAmount.Clear();
-            txtA_Name.Clear();
-            txtA_No.Clear();
             txtB_Name.Clear();
             txtB_No.Clear();
             cmbCompanyName.SelectedIndex = -1;
             txtDesc.Clear();
             dtiSignDate.Value = DateTime.Today;
-            SubID = null;
-            _id = null;
+            superGridControl3.PrimaryGrid.DataSource=null;
+
+            //下方文件清空
             LoadFile();
-            superGridControl3.PrimaryGrid.ClearSelectedRows();
+            btnFClear_Click(null, null);
+            gridFile.PrimaryGrid.DataSource = null;
+             
 
             btnClearLCB_Click(null, null);
             btnClearSKXX_Click(null, null);
@@ -245,7 +262,7 @@ namespace ProjectManagement.Forms.Subcontract
                     else
                     {
                         entity.Type = Type;
-                        JsonResult result = bll.SaveFile(entity,true);
+                        JsonResult result = bll.SaveFile(entity, true);
                         MessageHelper.ShowRstMsg(result.result);
                         LoadFile();
                     }
@@ -584,7 +601,7 @@ namespace ProjectManagement.Forms.Subcontract
             {
                 _fileContractHTDZDName = list[0].Path;
                 lblFile2.Show();
-                btn2.Show();
+                btnD2.Show();
             }
             else
             {

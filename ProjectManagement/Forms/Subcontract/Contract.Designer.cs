@@ -192,7 +192,7 @@
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
             this.tableLayoutPanel1.SetRowSpan(this.groupPanel1, 2);
-            this.groupPanel1.Size = new System.Drawing.Size(333, 536);
+            this.groupPanel1.Size = new System.Drawing.Size(333, 733);
             // 
             // 
             // 
@@ -241,7 +241,7 @@
             this.superGridControl3.PrimaryGrid.Columns.Add(this.gridColumn27);
             this.superGridControl3.PrimaryGrid.MultiSelect = false;
             this.superGridControl3.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.superGridControl3.Size = new System.Drawing.Size(327, 512);
+            this.superGridControl3.Size = new System.Drawing.Size(327, 709);
             this.superGridControl3.TabIndex = 0;
             this.superGridControl3.Text = "superGridControl3";
             this.superGridControl3.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.superGridControl3_RowClick);
@@ -726,7 +726,7 @@
             this.tableLayoutPanel1.SetRowSpan(this.superTabControl1, 2);
             this.superTabControl1.SelectedTabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
             this.superTabControl1.SelectedTabIndex = 0;
-            this.superTabControl1.Size = new System.Drawing.Size(335, 536);
+            this.superTabControl1.Size = new System.Drawing.Size(335, 733);
             this.superTabControl1.TabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.superTabControl1.TabIndex = 2;
             this.superTabControl1.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -743,7 +743,7 @@
             this.superTabControlPanel1.Location = new System.Drawing.Point(0, 26);
             this.superTabControlPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(335, 510);
+            this.superTabControlPanel1.Size = new System.Drawing.Size(335, 707);
             this.superTabControlPanel1.TabIndex = 1;
             this.superTabControlPanel1.TabItem = this.superTabItem1;
             // 
@@ -769,7 +769,7 @@
             this.groupPanel3.Location = new System.Drawing.Point(0, 251);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(335, 259);
+            this.groupPanel3.Size = new System.Drawing.Size(335, 456);
             // 
             // 
             // 
@@ -1602,7 +1602,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 350F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1013, 540);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1013, 737);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // groupPanel5
@@ -1644,7 +1644,7 @@
             this.groupPanel5.Location = new System.Drawing.Point(339, 352);
             this.groupPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel5.Name = "groupPanel5";
-            this.groupPanel5.Size = new System.Drawing.Size(333, 186);
+            this.groupPanel5.Size = new System.Drawing.Size(333, 383);
             // 
             // 
             // 
@@ -1699,7 +1699,7 @@
             this.gridFile.PrimaryGrid.Columns.Add(this.gridColumn47);
             this.gridFile.PrimaryGrid.MultiSelect = false;
             this.gridFile.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.gridFile.Size = new System.Drawing.Size(250, 106);
+            this.gridFile.Size = new System.Drawing.Size(233, 106);
             this.gridFile.TabIndex = 91;
             this.gridFile.Text = "superGridControl4";
             this.gridFile.CellClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellClickEventArgs>(this.gridFile_CellClick);
@@ -1761,7 +1761,7 @@
             this.txtFDesc.Name = "txtFDesc";
             this.txtFDesc.PreventEnterBeep = true;
             this.txtFDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFDesc.Size = new System.Drawing.Size(156, 90);
+            this.txtFDesc.Size = new System.Drawing.Size(139, 90);
             this.txtFDesc.TabIndex = 85;
             // 
             // labelX23
@@ -1782,7 +1782,7 @@
             this.buttonX26.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonX26.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX26.Location = new System.Drawing.Point(197, 322);
+            this.buttonX26.Location = new System.Drawing.Point(180, 322);
             this.buttonX26.Margin = new System.Windows.Forms.Padding(2);
             this.buttonX26.Name = "buttonX26";
             this.buttonX26.Size = new System.Drawing.Size(56, 18);
@@ -1796,7 +1796,7 @@
             this.btnFSelect.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnFSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFSelect.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnFSelect.Location = new System.Drawing.Point(197, 288);
+            this.btnFSelect.Location = new System.Drawing.Point(180, 288);
             this.btnFSelect.Margin = new System.Windows.Forms.Padding(2);
             this.btnFSelect.Name = "btnFSelect";
             this.btnFSelect.Size = new System.Drawing.Size(56, 18);
@@ -1821,7 +1821,7 @@
             this.txtFName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFName.Name = "txtFName";
             this.txtFName.PreventEnterBeep = true;
-            this.txtFName.Size = new System.Drawing.Size(95, 21);
+            this.txtFName.Size = new System.Drawing.Size(78, 21);
             this.txtFName.TabIndex = 84;
             // 
             // txtFPath
@@ -1842,7 +1842,7 @@
             this.txtFPath.Name = "txtFPath";
             this.txtFPath.PreventEnterBeep = true;
             this.txtFPath.ReadOnly = true;
-            this.txtFPath.Size = new System.Drawing.Size(95, 21);
+            this.txtFPath.Size = new System.Drawing.Size(78, 21);
             this.txtFPath.TabIndex = 82;
             // 
             // labelX55
@@ -2128,7 +2128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1023, 543);
+            this.ClientSize = new System.Drawing.Size(1023, 740);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Contract";
             this.Text = "分包合同";

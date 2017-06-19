@@ -169,7 +169,7 @@ namespace DataAccessDLL
 
             #region 里程碑
             sqlLCB.Append(" select s.*,d1.Name as FinishStatusName from SubContractLCB s");
-            sqlLCB.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.LCBFinishStatus);
+            sqlLCB.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.Milestones_FinshStatus);
             sqlLCB.Append(" where s.SubID=@SubID and s.Status=@Status");
             sqlLCB.Append(" order by s.CREATED");
             LCB = NHHelper.ExecuteDataTable(sqlLCB.ToString(), qlist);
@@ -177,8 +177,8 @@ namespace DataAccessDLL
 
             #region 收款信息
             sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName,d2.Name as BatchNoName from SubContractSKXX s");
-            sqlSKXX.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.SKXXFnishStatus);
-            sqlSKXX.Append(" left join DictItem d2 on s.BtachNo = d2.No and d2.DictNo=" + (int)DictCategory.SKXXBatchNo);
+            sqlSKXX.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.Receivables_FinshStatus);
+            sqlSKXX.Append(" left join DictItem d2 on s.BtachNo = d2.No and d2.DictNo=" + (int)DictCategory.Receivables_BatchNo);
             sqlSKXX.Append(" where SubID=@SubID and Status=@Status");
             sqlSKXX.Append(" order by s.CREATED");
             SKXX = NHHelper.ExecuteDataTable(sqlSKXX.ToString(), qlist);
@@ -199,7 +199,7 @@ namespace DataAccessDLL
             qlist.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
             qlist.Add(new QueryField() { Name = "SubID", Type = QueryFieldType.String, Value = SubID });
             sqlLCB.Append(" select s.*,d1.Name as FinishStatusName from SubContractLCB s");
-            sqlLCB.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.LCBFinishStatus);
+            sqlLCB.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.Milestones_FinshStatus);
             sqlLCB.Append(" where s.SubID=@SubID and s.Status=@Status");
             return NHHelper.ExecuteDataTable(sqlLCB.ToString(), qlist);
         }
@@ -217,8 +217,8 @@ namespace DataAccessDLL
             qlist.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
             qlist.Add(new QueryField() { Name = "SubID", Type = QueryFieldType.String, Value = SubID });
             sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName,d2.Name as BatchNoName from SubContractSKXX s");
-            sqlSKXX.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.SKXXFnishStatus);
-            sqlSKXX.Append(" left join DictItem d2 on s.BtachNo = d2.No and d2.DictNo=" + (int)DictCategory.SKXXBatchNo);
+            sqlSKXX.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.Receivables_FinshStatus);
+            sqlSKXX.Append(" left join DictItem d2 on s.BtachNo = d2.No and d2.DictNo=" + (int)DictCategory.Receivables_BatchNo);
             sqlSKXX.Append(" where SubID=@SubID and Status=@Status");
             return NHHelper.ExecuteDataTable(sqlSKXX.ToString(), qlist);
         }

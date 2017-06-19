@@ -386,15 +386,15 @@ namespace BussinessDLL
             //交付物
             sql.Append(" when 1 then (case when d.PType=5 then 1 ");
             sql.Append(" when c.EndDate<date('now') and (d.PType is null or d.PType<>5) then 3 ");
-            sql.Append(" when c.StarteDate>date('now') and (d.PType is null or d.PType<>5) then 0  else 2 end) ");
+            sql.Append(" when c.StarteDate>=date('now','+1 day') and (d.PType is null or d.PType<>5) then 0  else 2 end) ");
             //日常
             sql.Append(" when 2 then (case when e.FinishStatus=3 then 1 ");
             sql.Append(" when e.EndDate<date('now') and (e.FinishStatus is null or e.FinishStatus<>3) then 3 ");
-            sql.Append(" when e.StartDate>date('now') and (e.FinishStatus is null or e.FinishStatus<>3) then 0 else 2 end ) ");
+            sql.Append(" when e.StartDate>=date('now','+1 day') and (e.FinishStatus is null or e.FinishStatus<>3) then 0 else 2 end ) ");
             //问题
             sql.Append(" when 3 then (case when f.HandleStatus=3 then 1 ");
             sql.Append(" when f.EndDate<date('now') and (f.HandleStatus is null or f.HandleStatus<>3) then 3  ");
-            sql.Append(" when f.StarteDate>date('now') and (f.HandleStatus is null or f.HandleStatus<>3) then 0 else 2 end ) ");
+            sql.Append(" when f.StarteDate>=date('now','+1 day') and (f.HandleStatus is null or f.HandleStatus<>3) then 0 else 2 end ) ");
 
             sql.Append(" else null end) else null end FinishStatus from pnode a ");
             sql.Append(" left join (select parentid,count(*)cc from pnode where status=1 and PID=@PID group by parentid)b on a.id=b.parentid   ");

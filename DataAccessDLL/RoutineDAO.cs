@@ -35,7 +35,7 @@ namespace DataAccessDLL
             //完成状态判断 参加PNode的Entity中FinishStatus说明
             sql.Append(" case when r.FinishStatus=3 then 1   ");
             sql.Append(" when r.EndDate<date('now') and (r.FinishStatus is null or r.FinishStatus<>3) then 3 ");
-            sql.Append(" when r.StartDate>date('now') and (r.FinishStatus is null or r.FinishStatus<>3) then 0 else 2 end FinishType ");
+            sql.Append(" when r.StartDate>=date('now','+1 day') and (r.FinishStatus is null or r.FinishStatus<>3) then 0 else 2 end FinishType ");
 
             sql.Append(" from Routine r inner join PNode p on r.NodeID = substr(p.ID,1,36) and p.Status = 1");
             sql.Append(" left join DictItem d on r.FinishStatus = d.No and d.DictNo = " + (int)CommonDLL.DictCategory.WorkHandleStatus);
@@ -155,7 +155,7 @@ namespace DataAccessDLL
             qf.Add(new QueryField() { Name = "ROUTINEID", Type = QueryFieldType.String, Value = RoutineID });
             StringBuilder sql = new StringBuilder();
             sql.Append(" SELECT r.*,s.Name as ManagerName FROM ROUTINEWORK r");
-            sql.Append(" LEFT JOIN STAKEHOLDERS s ON r.Manager= substr(s.Id,0,37)");
+            sql.Append(" LEFT JOIN STAKEHOLDERS s ON r.Manager= substr(s.Id,0,37)  and s.status=1  ");
             sql.Append(" WHERE r.ROUTINEID =@ROUTINEID ");
 
 
