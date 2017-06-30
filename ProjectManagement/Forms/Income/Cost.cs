@@ -62,11 +62,15 @@ namespace ProjectManagement.Forms.Income
             txtRemaining.Clear();
             txtRemark.Clear();
             txtTag.Clear();
+            //清除预算金额，如果不清除的话，txtRemaining的值不会自动计算出来。还注销了txtRemaining.Text = "0";此行代码
+            //liuxuexian 2017/6/30
+            txtTotal.Clear();
+            //结束
             var amount = GetAmount();
             txtTotal.Text = amount < 0 ? "0" : amount.ToString();
             txtTransit.Text = "0";
             txtUsed.Text = "0";
-            txtRemaining.Text = "0";
+            //txtRemaining.Text = "0";
             superGridControl1.PrimaryGrid.ClearSelectedRows();
         }
 
@@ -99,13 +103,20 @@ namespace ProjectManagement.Forms.Income
                 MessageBox.Show("输入的金额不符合规范！");
                 return;
             }
-            decimal amount = GetAmount();
-            amount = amount - Convert.ToDecimal(txtTotal.Text.ToString());
-            if (amount < 0)
+            //判断一下是修改还是新增，如果是修改，则不执行下面的代码
+            //liuxuexian 2017/6/30
+            #region
+            if (ID.IsNullOrEmpty())
             {
-                MessageBox.Show("超出合同金额");
-                return;
+                decimal amount = GetAmount();
+                amount = amount - Convert.ToDecimal(txtTotal.Text.ToString());
+                if (amount < 0)
+                {
+                    MessageBox.Show("超出合同金额");
+                    return;
+                }
             }
+            #endregion
             #endregion
 
             DomainDLL.Cost cost = new DomainDLL.Cost();

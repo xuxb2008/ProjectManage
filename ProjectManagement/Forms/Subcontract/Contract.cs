@@ -64,12 +64,13 @@ namespace ProjectManagement.Forms.Subcontract
             DataBind();
             DataHelper.LoadDictItems(cmbLCBFinishStatus, DictCategory.Milestones_FinshStatus);
             DataHelper.LoadDictItems(cmbSKXXFinishStatus, DictCategory.Receivables_FinshStatus);
-            DataHelper.LoadDictItems(cmbSKXXBatchNo, DictCategory.Receivables_BatchNo);
+            //DataHelper.LoadDictItems(cmbSKXXBatchNo, DictCategory.Receivables_BatchNo);
             LoadSupplierItems(cmbCompanyName, "");
             dtiSignDate.Value = DateTime.Now;
             dtiLCBFinishDate.Value = DateTime.Now;//里程碑完成日期
             dtiSKXXInDate.Value = DateTime.Now;
             LoadFile();//合同文件
+
         }
 
         /// <summary>
@@ -178,7 +179,7 @@ namespace ProjectManagement.Forms.Subcontract
             cmbCompanyName.SelectedIndex = -1;
             txtDesc.Clear();
             dtiSignDate.Value = DateTime.Today;
-            superGridControl3.PrimaryGrid.DataSource=null;
+            //superGridControl3.PrimaryGrid.DataSource=null;
 
             //下方文件清空
             LoadFile();
@@ -434,10 +435,11 @@ namespace ProjectManagement.Forms.Subcontract
             }
             #endregion
             SubContractSKXX skxx = new SubContractSKXX();
-            skxx.Amount = itiSKXXAmount.Value;
-            ComboItem item = (ComboItem)cmbSKXXBatchNo.SelectedItem;
-            if (item != null)
-                skxx.BtachNo = item.Value.ToString();
+            skxx.Amount = int.Parse(SKXXAmount.Text);
+            //ComboItem item = (ComboItem)cmbSKXXBatchNo.SelectedItem;
+            //if (item != null)
+            //    skxx.BtachNo = item.Value.ToString();
+            skxx.BtachNo = SKXXBatchNo.Text;
             skxx.Condition = txtSKXXCondition.Text;
             ComboItem item1 = (ComboItem)cmbSKXXFinishStatus.SelectedItem;
             if (item1 != null)
@@ -463,8 +465,9 @@ namespace ProjectManagement.Forms.Subcontract
         /// <param name="e"></param>
         private void btnClearSKXX_Click(object sender, EventArgs e)
         {
-            itiSKXXAmount.Value = 0;
-            cmbSKXXBatchNo.SelectedIndex = -1;
+            SKXXAmount.Clear();
+            SKXXBatchNo.Clear();
+            //cmbSKXXBatchNo.SelectedIndex = -1;
             txtSKXXCondition.Clear();
             cmbSKXXFinishStatus.SelectedIndex = -1;
             dtiSKXXInDate.Value = DateTime.Now;
@@ -535,9 +538,10 @@ namespace ProjectManagement.Forms.Subcontract
             GridRow row = (GridRow)rows[0];
             txtSKXXCondition.Text = row.Cells["Condition"].Value.ToString();
             txtSKXXRemark.Text = row.Cells["Remark"].Value.ToString();
-            DataHelper.SetComboBoxSelectItemByText(cmbSKXXBatchNo, row.Cells["BatchNoName"].Value.ToString());
+            SKXXBatchNo.Text = row.Cells["BatchNo"].Value.ToString();
+            //DataHelper.SetComboBoxSelectItemByText(cmbSKXXBatchNo, row.Cells["BatchNoName"].Value.ToString());
             DataHelper.SetComboBoxSelectItemByText(cmbSKXXFinishStatus, row.Cells["FinishStatusName"].Value.ToString());
-            itiSKXXAmount.Value = int.Parse(row.Cells["Amount"].Value.ToString());
+            SKXXAmount.Text = row.Cells["Amount"].Value.ToString();
             itiSKXXRatio.Value = int.Parse(row.Cells["Ratio"].Value.ToString());
             dtiSKXXInDate.Value = Convert.ToDateTime(row.Cells["InDate"].Value.ToString());
             SKXXID = row.Cells["ID"].Value.ToString();
@@ -767,6 +771,19 @@ namespace ProjectManagement.Forms.Subcontract
                 i++;
             }
             gridFile.PrimaryGrid.DataSource = list;
+        }
+
+        private void itiSKXXRatio_ValueChanged(object sender, EventArgs e)
+        {
+            if(!txtAmount.Text.IsNullOrEmpty())
+            {
+                decimal temp = 0;
+
+                if(decimal.TryParse(txtAmount.Text, out temp))
+                {
+                    SKXXAmount.Text = (temp * itiSKXXRatio.Value / 100).ToString();
+                }
+            }
         }
     }
 }

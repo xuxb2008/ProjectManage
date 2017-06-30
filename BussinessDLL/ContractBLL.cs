@@ -108,7 +108,7 @@ namespace BussinessDLL
         }
 
         /// <summary>
-        /// 保存收款信息
+        /// 保存付款信息
         /// 2017/04/14(zhuguanjun)
         /// </summary>
         /// <param name="skxx"></param>

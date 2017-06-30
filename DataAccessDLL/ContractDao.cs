@@ -216,9 +216,10 @@ namespace DataAccessDLL
             List<QueryField> qlist = new List<QueryField>();
             qlist.Add(new QueryField() { Name = "Status", Type = QueryFieldType.Numeric, Value = 1 });
             qlist.Add(new QueryField() { Name = "SubID", Type = QueryFieldType.String, Value = SubID });
-            sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName,d2.Name as BatchNoName from SubContractSKXX s");
+            //sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName,d2.Name as BatchNoName from SubContractSKXX s");
+            sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName from SubContractSKXX s");
             sqlSKXX.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.Receivables_FinshStatus);
-            sqlSKXX.Append(" left join DictItem d2 on s.BtachNo = d2.No and d2.DictNo=" + (int)DictCategory.Receivables_BatchNo);
+            //sqlSKXX.Append(" left join DictItem d2 on s.BtachNo = d2.No and d2.DictNo=" + (int)DictCategory.Receivables_BatchNo);
             sqlSKXX.Append(" where SubID=@SubID and Status=@Status");
             return NHHelper.ExecuteDataTable(sqlSKXX.ToString(), qlist);
         }

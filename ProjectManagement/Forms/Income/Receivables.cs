@@ -172,7 +172,7 @@ namespace ProjectManagement.Forms.Income
             {
                 decimal.TryParse(jbxx.Amount, out temp);
             }
-            txtAmount.Text = (temp * intSRatio.Value / 10).ToString();
+            txtAmount.Text = (temp * intSRatio.Value / 100).ToString();
         }
 
         #endregion
