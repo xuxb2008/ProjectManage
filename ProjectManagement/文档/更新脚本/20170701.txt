@@ -1,0 +1,1 @@
+SubContractSKXX表的BtachNo字段名改为BatchNo
