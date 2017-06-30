@@ -44,7 +44,7 @@
             this.txtAmount = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtExplanation = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.txtSBtachNo = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtSBatchNo = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.cbSFinishStatus = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.btnSSave = new DevComponents.DotNetBar.ButtonX();
             this.btnSClear = new DevComponents.DotNetBar.ButtonX();
@@ -199,7 +199,7 @@
             this.groupPanel2.Controls.Add(this.txtAmount);
             this.groupPanel2.Controls.Add(this.txtExplanation);
             this.groupPanel2.Controls.Add(this.labelX1);
-            this.groupPanel2.Controls.Add(this.txtSBtachNo);
+            this.groupPanel2.Controls.Add(this.txtSBatchNo);
             this.groupPanel2.Controls.Add(this.cbSFinishStatus);
             this.groupPanel2.Controls.Add(this.btnSSave);
             this.groupPanel2.Controls.Add(this.btnSClear);
@@ -291,18 +291,18 @@
             this.labelX1.TabIndex = 30;
             this.labelX1.Text = "收款说明：";
             // 
-            // txtSBtachNo
+            // txtSBatchNo
             // 
             // 
             // 
             // 
-            this.txtSBtachNo.Border.Class = "TextBoxBorder";
-            this.txtSBtachNo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSBtachNo.Location = new System.Drawing.Point(104, 11);
-            this.txtSBtachNo.Name = "txtSBtachNo";
-            this.txtSBtachNo.PreventEnterBeep = true;
-            this.txtSBtachNo.Size = new System.Drawing.Size(251, 21);
-            this.txtSBtachNo.TabIndex = 29;
+            this.txtSBatchNo.Border.Class = "TextBoxBorder";
+            this.txtSBatchNo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSBatchNo.Location = new System.Drawing.Point(104, 11);
+            this.txtSBatchNo.Name = "txtSBatchNo";
+            this.txtSBatchNo.PreventEnterBeep = true;
+            this.txtSBatchNo.Size = new System.Drawing.Size(251, 21);
+            this.txtSBatchNo.TabIndex = 29;
             // 
             // cbSFinishStatus
             // 
@@ -591,7 +591,7 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtSBtachNo;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtSBatchNo;
         private DevComponents.DotNetBar.Controls.TextBoxX txtExplanation;
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn2;

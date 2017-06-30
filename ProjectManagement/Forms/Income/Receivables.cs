@@ -62,8 +62,8 @@ namespace ProjectManagement.Forms.Income
             s = s.Replace("{", ",");
             s = s.Replace("}", ",");
             string[] listS = s.Split(',');
-            txtSBtachNo.Tag = listS[1].Trim();
-            txtSBtachNo.Text = listS[3].Trim();
+            txtSBatchNo.Tag = listS[1].Trim();
+            txtSBatchNo.Text = listS[3].Trim();
             txtExplanation.Text = listS[4] == "<null>" ? "" : listS[4].Trim();
             intSRatio.Value = listS[5] == "<null>" ? 0 : int.Parse(listS[5].Trim());
             txtAmount.Text = listS[6] == "<null>" ? "0" : listS[6].Trim();
@@ -82,9 +82,9 @@ namespace ProjectManagement.Forms.Income
         private void btnSave_Click(object sender, EventArgs e)
         {
             Receivables entity = new Receivables();
-            entity.ID = txtSBtachNo.Tag == null ? "" : txtSBtachNo.Tag.ToString();
+            entity.ID = txtSBatchNo.Tag == null ? "" : txtSBatchNo.Tag.ToString();
             entity.PID = ProjectId;
-            entity.BatchNo = txtSBtachNo.Text;
+            entity.BatchNo = txtSBatchNo.Text;
             ComboItem item = (ComboItem)cbSFinishStatus.SelectedItem;
             if (item != null)
                 entity.FinishStatus = int.Parse(item.Value.ToString());
@@ -145,8 +145,8 @@ namespace ProjectManagement.Forms.Income
         /// <param name="e"></param>
         private void btnSClear_Click(object sender, EventArgs e)
         {
-            txtSBtachNo.Tag = null;
-            txtSBtachNo.Clear();
+            txtSBatchNo.Tag = null;
+            txtSBatchNo.Clear();
             txtExplanation.Clear();
             cbSFinishStatus.SelectedIndex = -1;
             intSRatio.Value = 0;
@@ -155,7 +155,7 @@ namespace ProjectManagement.Forms.Income
             dtSInDate.Value = DateTime.Now;
             txtSRemark.Clear();
             gridSK.GetSelectedRows().Select(false);//取消选择
-            txtSBtachNo.Clear();
+            txtSBatchNo.Clear();
         }
 
         /// <summary>

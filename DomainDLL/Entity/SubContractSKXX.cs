@@ -20,7 +20,7 @@ namespace DomainDLL
         /// <summary>
         /// 批次号
         /// </summary>
-        public virtual string BtachNo
+        public virtual string BatchNo
         {
             get;
             set;

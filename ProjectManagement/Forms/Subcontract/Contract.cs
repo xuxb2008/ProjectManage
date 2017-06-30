@@ -326,7 +326,7 @@ namespace ProjectManagement.Forms.Subcontract
             DataTable lcb = new DataTable();
             DataTable skxx = new DataTable();
             SubContract sub = new SubContract();
-            bll.GetSubContractAll(row.Cells["ID"].Value.ToString(), out sub, out file, out lcb, out skxx);
+            bll.GetSubContractAll(row.Cells["ID"].Value.ToString().Substring(0,36), out sub, out file, out lcb, out skxx);
 
             #region 合同信息
             txtA_Name.Text = sub.A_Name;
@@ -438,8 +438,8 @@ namespace ProjectManagement.Forms.Subcontract
             skxx.Amount = int.Parse(SKXXAmount.Text);
             //ComboItem item = (ComboItem)cmbSKXXBatchNo.SelectedItem;
             //if (item != null)
-            //    skxx.BtachNo = item.Value.ToString();
-            skxx.BtachNo = SKXXBatchNo.Text;
+            //    skxx.BatchNo = item.Value.ToString();
+            skxx.BatchNo = SKXXBatchNo.Text;
             skxx.Condition = txtSKXXCondition.Text;
             ComboItem item1 = (ComboItem)cmbSKXXFinishStatus.SelectedItem;
             if (item1 != null)

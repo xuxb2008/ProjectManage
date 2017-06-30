@@ -8,8 +8,8 @@
     <property name="SubID" type="String">
       <column name="SubID" sql-type="varchar" not-null="true"/>
     </property>
-    <property name="BtachNo" type="String">
-      <column name="BtachNo" sql-type="varchar" not-null="false"/>
+    <property name="BatchNo" type="String">
+      <column name="BatchNo" sql-type="varchar" not-null="false"/>
     </property>
     <property name="Ratio" type="decimal">
       <column name="Ratio" sql-type="decimal" not-null="false"/>

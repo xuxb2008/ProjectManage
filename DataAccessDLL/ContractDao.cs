@@ -154,7 +154,8 @@ namespace DataAccessDLL
             
             #region  分包合同
             sqlSub.Append(" select * from SubContract s");
-            sqlSub.Append(" where Status=@status and substr(s.Id,1,37)||'1'=@SubID");
+            //sqlSub.Append(" where Status=@status and substr(s.Id,1,37)||'1'=@SubID");
+            sqlSub.Append(" where Status=@status and substr(s.Id,1,36)=@SubID");
             sqlSub.Append(" order by s.CREATED");
             DataTable Sub = NHHelper.ExecuteDataTable(sqlSub.ToString(), qlist);
             subContract = Sub == null ? new SubContract() : JsonHelper.TableToEntity<SubContract>(Sub);
@@ -176,9 +177,10 @@ namespace DataAccessDLL
             #endregion
 
             #region 收款信息
-            sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName,d2.Name as BatchNoName from SubContractSKXX s");
+            //sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName,d2.Name as BatchNoName from SubContractSKXX s");
+            sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName from SubContractSKXX s");
             sqlSKXX.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.Receivables_FinshStatus);
-            sqlSKXX.Append(" left join DictItem d2 on s.BtachNo = d2.No and d2.DictNo=" + (int)DictCategory.Receivables_BatchNo);
+            //sqlSKXX.Append(" left join DictItem d2 on s.BatchNo = d2.No and d2.DictNo=" + (int)DictCategory.Receivables_BatchNo);
             sqlSKXX.Append(" where SubID=@SubID and Status=@Status");
             sqlSKXX.Append(" order by s.CREATED");
             SKXX = NHHelper.ExecuteDataTable(sqlSKXX.ToString(), qlist);
@@ -219,7 +221,7 @@ namespace DataAccessDLL
             //sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName,d2.Name as BatchNoName from SubContractSKXX s");
             sqlSKXX.Append(" select s.*,d1.Name as FinishStatusName from SubContractSKXX s");
             sqlSKXX.Append(" left join DictItem d1 on s.FinishStatus = d1.No and d1.DictNo=" + (int)DictCategory.Receivables_FinshStatus);
-            //sqlSKXX.Append(" left join DictItem d2 on s.BtachNo = d2.No and d2.DictNo=" + (int)DictCategory.Receivables_BatchNo);
+            //sqlSKXX.Append(" left join DictItem d2 on s.BatchNo = d2.No and d2.DictNo=" + (int)DictCategory.Receivables_BatchNo);
             sqlSKXX.Append(" where SubID=@SubID and Status=@Status");
             return NHHelper.ExecuteDataTable(sqlSKXX.ToString(), qlist);
         }

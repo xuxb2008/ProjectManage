@@ -1433,7 +1433,7 @@ String_Id,Data,Overflow,ConstantString,Row_Time_Stamp
 126,PK5,0,0,0
 127,签订日期,0,0,0
 128,SignDate,0,0,0
-129,BtachNo,0,0,0
+129,BatchNo,0,0,0
 130,评价日期,0,0,0
 131,JudgeDate,0,0,0
 134,里程碑,0,0,0

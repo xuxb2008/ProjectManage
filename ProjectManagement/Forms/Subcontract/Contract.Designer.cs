@@ -96,7 +96,6 @@
             this.gridColumn35 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn36 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn37 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            this.gridColumn38 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridColumn40 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
@@ -1118,7 +1117,6 @@
             this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn35);
             this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn36);
             this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn37);
-            this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn38);
             this.superGridControl2.PrimaryGrid.Columns.Add(this.gridColumn40);
             this.superGridControl2.PrimaryGrid.MultiSelect = false;
             this.superGridControl2.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
@@ -1135,7 +1133,7 @@
             // 
             // gridColumn18
             // 
-            this.gridColumn18.DataPropertyName = "BatchNoName";
+            this.gridColumn18.DataPropertyName = "BatchNo";
             this.gridColumn18.HeaderText = "付款批次";
             this.gridColumn18.Name = "BatchNo";
             // 
@@ -1204,12 +1202,6 @@
             this.gridColumn37.DataPropertyName = "SubID";
             this.gridColumn37.Name = "SubID";
             this.gridColumn37.Visible = false;
-            // 
-            // gridColumn38
-            // 
-            this.gridColumn38.DataPropertyName = "BtachNo";
-            this.gridColumn38.Name = "batchNo";
-            this.gridColumn38.Visible = false;
             // 
             // gridColumn40
             // 
@@ -2276,7 +2268,6 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn30;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn31;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn32;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn38;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn40;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn39;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn41;
