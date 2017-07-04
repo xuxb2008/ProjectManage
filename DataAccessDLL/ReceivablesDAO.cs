@@ -36,7 +36,7 @@ namespace DataAccessDLL
             sql.Append(" strftime('%Y-%m-%d',r.InDate)InDate,d1.Name FinishStatusName ");
             sql.Append(" from Receivables r ");
             sql.Append(" left join DictItem d1 on d1.DictNo=" + (int)DictCategory.Receivables_FinshStatus + " and r.FinishStatus=d1.No ");
-            sql.Append(" where r.PID=@PID  and r.status=1 order by r.BatchNo asc");
+            sql.Append(" where r.PID=@PID  and r.status=1 order by r.CREATED");
             qf.Add(new QueryField() { Name = "PID", Type = QueryFieldType.String, Value = PID });
             GridData result = new GridData();
             result.data = NHHelper.ExecuteDataTable(sql.ToString(), qf);
