@@ -206,7 +206,7 @@ namespace ProjectManagement
         /// <param name="advTree1"></param>
         /// <param name="ProjectID"></param>
         /// <param name="NodeType">节点类型</param>
-        public static void SetAdvTreeData(DevComponents.AdvTree.AdvTree advTree1, string ProjectID, int? NodeType)
+        public static void SetAdvTreeData(DevComponents.AdvTree.AdvTree advTree1, string ProjectID, int? NodeType,string[] checks)
         {
             advTree1.Nodes.Clear();
             List<PNode> listNode = new WBSBLL().GetNodes(ProjectID, NodeType);
@@ -218,12 +218,13 @@ namespace ProjectManagement
             {
                 node = new DevComponents.AdvTree.Node()
                 {
+                    Checked = checks != null && checks.Contains(child.ID) ? true : false,
                     CheckBoxVisible = true,
                     Name = child.ID,
                     Text = child.Name,
                     Tag = JsonHelper.EntityToString<PNode>(child)
                 };
-                SetSubTreeDataWithCheckBox(listNode, child, node);
+                SetSubTreeDataWithCheckBox(listNode, child, node,checks);
                 advTree1.Nodes.Add(node);
             }
             advTree1.ExpandAll();
@@ -344,7 +345,7 @@ namespace ProjectManagement
         /// </summary>
         /// <param name="advTree1"></param>
         /// <param name="ProjectID"></param>
-        private static void SetSubTreeDataWithCheckBox(IList<PNode> listNode, PNode parent, DevComponents.AdvTree.Node node)
+        private static void SetSubTreeDataWithCheckBox(IList<PNode> listNode, PNode parent, DevComponents.AdvTree.Node node,string[] checks)
         {
             string parentID = parent.ID.Substring(0, 36);
             IEnumerable<PNode> children = listNode.Where(t => t.ParentID == parentID).OrderBy(t => t.No);
@@ -357,12 +358,13 @@ namespace ProjectManagement
             {
                 node2 = new DevComponents.AdvTree.Node()
                 {
+                    Checked = checks != null && checks.Contains(child.ID) ? true : false,
                     CheckBoxVisible = true,
                     Name = child.ID,
                     Text = child.Name,
                     Tag = JsonHelper.EntityToString<PNode>(child)
                 };
-                SetSubTreeDataWithCheckBox(listNode, child, node2);
+                SetSubTreeDataWithCheckBox(listNode, child, node2,checks);
                 node.Nodes.Add(node2);
             }
         }

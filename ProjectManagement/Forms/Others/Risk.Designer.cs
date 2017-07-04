@@ -209,6 +209,7 @@
             this.superGridControl1.Size = new System.Drawing.Size(878, 241);
             this.superGridControl1.TabIndex = 20;
             this.superGridControl1.Text = "superGridControl1";
+            this.superGridControl1.DataBindingComplete += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridDataBindingCompleteEventArgs>(this.superGridControl1_DataBindingComplete);
             this.superGridControl1.RowClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs>(this.superGridControl1_RowClick);
             // 
             // gridColumn1
@@ -419,6 +420,7 @@
             this.groupPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel4.TabIndex = 2;
             this.groupPanel4.Text = "应对风险";
+            this.groupPanel4.Click += new System.EventHandler(this.groupPanel4_Click);
             // 
             // btnSave3
             // 
@@ -539,6 +541,7 @@
             this.cmbtDepenency.Size = new System.Drawing.Size(38, 18);
             this.cmbtDepenency.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbtDepenency.TabIndex = 10;
+            this.cmbtDepenency.Visible = false;
             // 
             // labelX10
             // 
@@ -641,6 +644,7 @@
             this.groupPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel3.TabIndex = 3;
             this.groupPanel3.Text = "评估风险";
+            this.groupPanel3.Click += new System.EventHandler(this.groupPanel3_Click);
             // 
             // advTree1
             // 

@@ -49,20 +49,19 @@ namespace ProjectManagement.Forms.Others
         /// <param name="e"></param>
         private void Risk_Load(object sender, EventArgs e)
         {
+            DataBind(null, null);
+            pagerControl1.OnPageChanged += new EventHandler(DataBind);
             //加载结点下拉列表
             DataHelper.SetComboxTreeData(this.cmbtSource, ProjectId);
-            //加载结点下拉列表
-            DataHelper.SetComboxTreeData(this.cmbtDepenency, ProjectId);
-            DataHelper.SetAdvTreeData(this.advTree1, ProjectId,0);
-
+            //加载结点下拉列表 （这个不支持多选）
+            //DataHelper.SetComboxTreeData(this.cmbtDepenency, ProjectId);
+            DataHelper.SetAdvTreeData(this.advTree1, ProjectId, 0, null);
             //加载等级下拉列表
             DataHelper.LoadDictItems(cmbLevel, DictCategory.Level);
             //加载策略下拉列表
             DataHelper.LoadDictItems(cmbHandleType, DictCategory.HandType);
             //加载概率下拉列表
-            DataHelper.LoadDictItems(cmbProbability, DictCategory.Probability);
-            pagerControl1.OnPageChanged += new EventHandler(DataBind);
-            DataBind(null, null);
+            DataHelper.LoadDictItems(cmbProbability, DictCategory.Probability);                       
         }
 
         /// <summary>
@@ -123,6 +122,7 @@ namespace ProjectManagement.Forms.Others
                 risk.Level = Convert.ToInt32(cbi.Value);
             risk.CostTime = txtCostTime.Text.ToString();
             //risk.Dependency = cmbtDepenency.SelectedNode.Name;
+            risk.Dependency = txtDependency.Tag.ToString();
             ComboItem cbi1 = (ComboItem)cmbProbability.SelectedItem;
             if (cbi != null)
                 risk.Probability = Convert.ToInt32(cbi1.Value);
@@ -134,7 +134,6 @@ namespace ProjectManagement.Forms.Others
             if (json.result)
                 btnClear2_Click(null, null);
             DataBind(null, null);
-
             //重新加载首页的风险列表
             startPage.LoadProjectRisk();
         }
@@ -163,7 +162,7 @@ namespace ProjectManagement.Forms.Others
             if (json.result)
                 btnClear3_Click(null, null);
             DataBind(null, null);
-
+            
             //重新加载首页的风险列表
             startPage.LoadProjectRisk();
         }
@@ -191,6 +190,11 @@ namespace ProjectManagement.Forms.Others
         {
             txtCostTime.Clear();
             cmbtDepenency.SelectedIndex = -1;
+            txtDependency.Clear();
+            foreach (var node in advTree1.CheckedNodes)
+            {
+                node.Checked = false;
+            }
             cmbLevel.SelectedIndex = -1;
             cmbProbability.SelectedIndex = -1;
             txtAcessDesc.Clear();
@@ -216,6 +220,11 @@ namespace ProjectManagement.Forms.Others
         /// <param name="e"></param>
         private void superGridControl1_RowClick(object sender, DevComponents.DotNetBar.SuperGrid.GridRowClickEventArgs e)
         {
+            txtDependency.Clear();
+            foreach (var node in advTree1.CheckedNodes)
+            {
+                node.Checked = false;
+            }
             var rows = superGridControl1.PrimaryGrid.GetSelectedRows();
             if (rows.Count != 1)
             {
@@ -244,7 +253,28 @@ namespace ProjectManagement.Forms.Others
             DataHelper.SetComboBoxSelectItemByValue(cmbLevel, select1);
             //依赖关系
             if (!string.IsNullOrEmpty(row.Cells["Dependency"].Value.ToString()))
-                DataHelper.SetTreeSelectByValue(cmbtDepenency.AdvTree, row.Cells["Dependency"].Value.ToString());
+            {
+                string[] str = row.Cells["Dependency"].Value.ToString().Split(',');
+                DataHelper.SetAdvTreeData(this.advTree1, ProjectId, 0, str);
+                string text = "";//显示值
+                string vall = "";//实际值
+                txtDependency.Clear();
+                foreach (dynamic node in advTree1.Nodes)
+                {
+                    if (node.Checked)
+                    {
+                        text += node.Text + ",";
+                        vall += node.Name + ",";
+
+                    }
+                    nodetext(node, text, vall);
+
+                }
+                this.txtDependency.Text = text;
+                this.txtDependency.Tag = vall;
+            }
+            //DataHelper.SetTreeSelectByValue(cmbtDepenency.AdvTree, row.Cells["Dependency"].Value.ToString());
+
             txtAcessDesc.Text = row.Cells["AssessDesc"].Value.ToString();
             if (!string.IsNullOrEmpty(row.Cells["AssessDate"].Value.ToString()))
                 dtiAccessDesc.Value = Convert.ToDateTime(row.Cells["AssessDate"].Value.ToString());
@@ -301,28 +331,25 @@ namespace ProjectManagement.Forms.Others
         /// <param name="e"></param>
         private void advTree1_AfterCheck(object sender, AdvTreeCellEventArgs e)
         {
-            string text = "";
+            string text = "";//显示值
+            string vall = "";//实际值
             txtDependency.Clear();
             foreach (dynamic node in advTree1.Nodes)
             {
                 if (node.Checked)
                 {
                     text += node.Text + ",";
+                    vall += node.Name + ",";
 
                 }
-                text = nodetext(node, text);
+                nodetext(node,  text,  vall);
+                 
             }
             this.txtDependency.Text = text;
+            this.txtDependency.Tag = vall;
         }
 
-        /// <summary>
-        /// 回调函数设置文本
-        /// 2017/05/22(zhuguanjun)
-        /// </summary>
-        /// <param name="pnode"></param>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        private string nodetext(dynamic pnode, string text)
+        private void nodetext(dynamic pnode,  string text, string vall)
         {
             var nodes = pnode.Nodes;
             foreach (dynamic node in nodes)
@@ -330,11 +357,56 @@ namespace ProjectManagement.Forms.Others
                 if (node.Checked)
                 {
                     text += node.Text + ",";
+                    vall += node.Name + ",";
                 }
-                text = nodetext(node, text);
+                nodetext(node,  text,  vall);
             }
-            return text;
         }
 
+
+        /// <summary>
+        /// panel点击隐藏node
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void groupPanel3_Click(object sender, EventArgs e)
+        {
+            this.advTree1.Visible = false;
+        }
+
+        /// <summary>
+        /// panel点击隐藏node
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void groupPanel4_Click(object sender, EventArgs e)
+        {
+            this.advTree1.Visible = false;
+        }
+
+        private void superGridControl1_DataBindingComplete(object sender, GridDataBindingCompleteEventArgs e)
+        {
+            BindComplete();
+        }
+
+        private void BindComplete()
+        {
+            foreach (var item in superGridControl1.PrimaryGrid.Rows)
+            {
+                var str = ((GridRow)item).Cells["Dependency"].Value.ToString();
+                if (!string.IsNullOrEmpty(str))
+                {
+                    string[] strlist = str.Split(',');
+                    List<PNode> listNode = new WBSBLL().GetNodes(ProjectId, 0);
+                    foreach (var node in listNode)
+                    {
+                        if (strlist.Contains(node.ID))
+                        {
+                            ((GridRow)item)["DependencyName"].Value += node.Name + ",";
+                        }
+                    }
+                }
+            }
+        }
     }
 }

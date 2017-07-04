@@ -30,10 +30,12 @@ namespace DataAccessDLL
             QueryBody.Append(" left join DictItem d2 on r.Probability = d2.No and d2.DictNo=" + (int)DictCategory.Probability);
             QueryBody.Append(" left join DictItem d3 on r.HandleType = d3.No and d3.DictNo=" + (int)DictCategory.HandType);
             QueryBody.Append(" left join PNode p1 on r.Source = p1.ID");
+            //QueryBody.Append(" left join PNode p2 on r.Dependency = p2.ID");
             QueryBody.Append(" left join PNode p2 on r.Dependency = p2.ID");
-            QueryBody.Append(" where r.PID=@PID  and r.status=@Status order by r.updated desc,r.created desc");
+            QueryBody.Append(" where r.PID=@PID  and r.status=@Status order by r.created");
 
             return NHHelper.GetGridData(PageIndex, PageSize, QueryHead.ToString(), QueryBody.ToString(), qlist);
         }
+
     }
 }
