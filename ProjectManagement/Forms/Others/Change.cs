@@ -228,6 +228,8 @@ namespace ProjectManagement.Forms.Others
                 dialog.Multiselect = false;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    string[] temp = dialog.SafeFileName.Split('.');
+                    txtDateFileName.Text = temp[0];
                     string path = string.Empty;
                     if (!string.IsNullOrEmpty(dialog.FileName))
                         path = FileHelper.UploadFile(dialog.FileName, UploadType.Change, ProjectId, null);
@@ -481,6 +483,8 @@ namespace ProjectManagement.Forms.Others
                 dialog.Multiselect = false;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    string[] temp = dialog.SafeFileName.Split('.');
+                    txtNEEDFileName.Text = temp[0];
                     string path = string.Empty;
                     if (!string.IsNullOrEmpty(dialog.FileName))
                         path = FileHelper.UploadFile(dialog.FileName, UploadType.Change, ProjectId, null);
@@ -729,6 +733,8 @@ namespace ProjectManagement.Forms.Others
                 dialog.Multiselect = false;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    string[] temp = dialog.SafeFileName.Split('.');
+                    txtRangeFileName.Text = temp[0];
                     string path = string.Empty;
                     if (!string.IsNullOrEmpty(dialog.FileName))
                         path = FileHelper.UploadFile(dialog.FileName, UploadType.Change, ProjectId, null);
