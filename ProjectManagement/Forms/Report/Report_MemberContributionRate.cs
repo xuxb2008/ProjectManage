@@ -1,5 +1,7 @@
 ﻿using BussinessDLL;
+using CommonDLL;
 using DevComponents.DotNetBar.SuperGrid.Style;
+using DevComponents.Editors;
 using ProjectManagement.Common;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,30 @@ namespace ProjectManagement.Forms.Report
         public Report_MemberContributionRate()
         {
             InitializeComponent();
+            //加载完成情况下拉框
+            for (int i = 0; i < 3; i++)
+            {
+                ComboItem item = new ComboItem();
+                switch (i)
+                {
+                    case 0:
+                        item.Text = "请选择";
+                        item.Value = i;
+                        cmbFinishStatus.Items.Add(item);
+                        break;
+                    case 1:
+                        item.Text = "未完成";
+                        item.Value = i;
+                        cmbFinishStatus.Items.Add(item);
+                        break;
+                    case 2:
+                        item.Text = "已完成";
+                        item.Value = 5;
+                        cmbFinishStatus.Items.Add(item);
+                        break;
+                }
+                cmbFinishStatus.SelectedIndex = 0;
+            }
             DataBind();
         }
 
@@ -33,7 +59,13 @@ namespace ProjectManagement.Forms.Report
         /// 数据绑定
         /// </summary>
         private void DataBind() {
-            dt = bll.GetMemberRate(ProjectId);
+            //完成情款
+            int FinishStatus = 0;
+            ComboItem item = (ComboItem)cmbFinishStatus.SelectedItem;
+            if (item != null)
+                FinishStatus = int.Parse(item.Value.ToString());
+
+            dt = bll.GetMemberRate(ProjectId,dtis.Value,dtie.Value, FinishStatus);
             this.superGridControl1.PrimaryGrid.DataSource = dt;
             project = bll.GetProject(ProjectId);
             
@@ -163,5 +195,26 @@ namespace ProjectManagement.Forms.Report
             return style;
         }
 
+        /// <summary>
+        /// 查询按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            DataBind();
+        }
+
+        /// <summary>
+        /// 清空
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            dtis.Value = DateTime.MinValue;
+            dtie.Value = DateTime.MinValue;
+            cmbFinishStatus.SelectedIndex = 0;
+        }
     }
 }

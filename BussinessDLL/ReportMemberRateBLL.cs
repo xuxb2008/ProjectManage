@@ -18,9 +18,9 @@ namespace BussinessDLL
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public DataTable GetMemberRate(string projectId)
+        public DataTable GetMemberRate(string projectId,DateTime s,DateTime e,int finishStatus)
         {
-            return new ReportMemberRateDao().GetMemberRate(projectId);
+            return new ReportMemberRateDao().GetMemberRate(projectId,s,e, finishStatus);
         }
 
         /// <summary>
