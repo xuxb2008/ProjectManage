@@ -206,6 +206,7 @@ namespace DataAccessDLL
         /// <summary>
         /// 项目近期工作和问题取得
         /// Created:20170329(xuxb)
+        /// updated:20170706(zhugj)近期不显示已完成的
         /// </summary>
         /// <param name="PID"></param>
         /// <returns></returns>
@@ -216,10 +217,12 @@ namespace DataAccessDLL
             sql.Append(" select r.ID,r.Name,r.Desc,'日常工作' as WorkType from Routine r ");
             sql.Append(" inner join PNode p on substr(p.ID,1,36) = r.NodeId and p.status = 1 ");
             sql.Append(" where r.StartDate < date('now','+' || @Days || ' day') and r.status = 1 and p.PID=@PID ");
+            sql.Append(" and r.FinishStatus != 3");
             sql.Append(" union all ");
             sql.Append(" select t.ID,t.Name,t.Desc,'项目问题' as WorkType from Trouble t  ");
             sql.Append(" inner join PNode p on substr(p.ID,1,36) = t.NodeId and p.status = 1 ");
             sql.Append(" where t.StarteDate < date('now','+' || @Days || ' day') and t.status = 1 and p.PID=@PID");
+            sql.Append(" and t.HandleStatus != 3");
             qf.Add(new QueryField() { Name = "PID", Type = QueryFieldType.String, Value = PID });
             qf.Add(new QueryField() { Name = "Days", Type = QueryFieldType.Numeric, Value = days });
             return NHHelper.ExecuteDataset(sql.ToString(), qf).Tables[0];

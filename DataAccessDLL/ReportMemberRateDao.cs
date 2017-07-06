@@ -41,7 +41,7 @@ namespace DataAccessDLL
             //日常 时间、完成情况
             (Startedate != DateTime.MinValue?"and date(r.startdate)>=date(@StarteDate) ":"and 1=1 ")+ 
             (Enddate != DateTime.MinValue?"and date(r.enddate )<=date(@EndDate)":"and 1=1 ")+
-            (FinishStatus != 0 ? (FinishStatus == 5 ? "and r.finishstatus=5 " : "and r.finishstatus!=5") : "and 1=1 ") +
+            (FinishStatus != 0 ? (FinishStatus == 3 ? "and r.finishstatus=3 " : "and r.finishstatus!=3") : "and 1=1 ") +
             @"
             order by rw.manager,rw.created)
             union
@@ -73,7 +73,7 @@ namespace DataAccessDLL
             //问题 时间、完成情况
             (Startedate != DateTime.MinValue ? "and date(t.startedate)>=date(@StarteDate) " : "and 1=1 ") +
             (Enddate != DateTime.MinValue ? "and date(t.enddate)<=date(@EndDate) " : "and 1=1 ") +
-            (FinishStatus != 0 ? (FinishStatus == 5 ? "and t.handleresult=5 " : "and t.handleresult!=5 ") : "and 1=1 ") +
+            (FinishStatus != 0 ? (FinishStatus == 5 ? "and t.handlestatus=3 " : "and t.handlestatus!=3 ") : "and 1=1 ") +
             @"order by tw.manager,tw.created)
 
             )
