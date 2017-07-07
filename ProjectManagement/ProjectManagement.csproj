@@ -285,6 +285,12 @@
     <Compile Include="Forms\Report\Report_MemberContributionRate.Designer.cs">
       <DependentUpon>Report_MemberContributionRate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Report\Report_PersonnelExecutiveEfficiency.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_PersonnelExecutiveEfficiency.Designer.cs">
+      <DependentUpon>Report_PersonnelExecutiveEfficiency.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Report\Report_Plan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -520,6 +526,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Report\Report_MemberContributionRate.resx">
       <DependentUpon>Report_MemberContributionRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_PersonnelExecutiveEfficiency.resx">
+      <DependentUpon>Report_PersonnelExecutiveEfficiency.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Report\Report_Plan.resx">
       <DependentUpon>Report_Plan.cs</DependentUpon>

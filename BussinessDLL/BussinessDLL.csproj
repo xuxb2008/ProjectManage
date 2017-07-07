@@ -72,6 +72,7 @@
     <Compile Include="MainFrameBLL.cs" />
     <Compile Include="MilestoneBLL.cs" />
     <Compile Include="NormalOperationBLL.cs" />
+    <Compile Include="ReportPersonEfficieBLL.cs" />
     <Compile Include="ProjectInfoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceivablesBLL.cs" />

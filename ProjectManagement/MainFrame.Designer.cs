@@ -270,19 +270,19 @@
             this.CloseAllWindows,
             this.CloseAllWindows_ExcludeSelf});
             this.CloseTabContextMenu.Name = "CloseTabContextMenu";
-            this.CloseTabContextMenu.Size = new System.Drawing.Size(167, 48);
+            this.CloseTabContextMenu.Size = new System.Drawing.Size(173, 48);
             // 
             // CloseAllWindows
             // 
             this.CloseAllWindows.Name = "CloseAllWindows";
-            this.CloseAllWindows.Size = new System.Drawing.Size(166, 22);
+            this.CloseAllWindows.Size = new System.Drawing.Size(172, 22);
             this.CloseAllWindows.Text = "关闭所有窗口";
             this.CloseAllWindows.Click += new System.EventHandler(this.CloseAllWindows_Click);
             // 
             // CloseAllWindows_ExcludeSelf
             // 
             this.CloseAllWindows_ExcludeSelf.Name = "CloseAllWindows_ExcludeSelf";
-            this.CloseAllWindows_ExcludeSelf.Size = new System.Drawing.Size(166, 22);
+            this.CloseAllWindows_ExcludeSelf.Size = new System.Drawing.Size(172, 22);
             this.CloseAllWindows_ExcludeSelf.Text = "除此以外全部关闭";
             this.CloseAllWindows_ExcludeSelf.Click += new System.EventHandler(this.CloseAllWindows_ExcludeSelf_Click);
             // 
@@ -294,26 +294,26 @@
             this.toolNodeExchange,
             this.toolNodeRename});
             this.EditNodeMenu.Name = "EditNodeMenu";
-            this.EditNodeMenu.Size = new System.Drawing.Size(185, 70);
+            this.EditNodeMenu.Size = new System.Drawing.Size(190, 70);
             // 
             // toolNodeUp
             // 
             this.toolNodeUp.Name = "toolNodeUp";
-            this.toolNodeUp.Size = new System.Drawing.Size(184, 22);
+            this.toolNodeUp.Size = new System.Drawing.Size(189, 22);
             this.toolNodeUp.Text = "上移一级";
             this.toolNodeUp.Click += new System.EventHandler(this.toolNodeUp_Click);
             // 
             // toolNodeExchange
             // 
             this.toolNodeExchange.Name = "toolNodeExchange";
-            this.toolNodeExchange.Size = new System.Drawing.Size(184, 22);
+            this.toolNodeExchange.Size = new System.Drawing.Size(189, 22);
             this.toolNodeExchange.Text = "转为结点/转为交付物";
             this.toolNodeExchange.Click += new System.EventHandler(this.toolNodeExchange_Click);
             // 
             // toolNodeRename
             // 
             this.toolNodeRename.Name = "toolNodeRename";
-            this.toolNodeRename.Size = new System.Drawing.Size(184, 22);
+            this.toolNodeRename.Size = new System.Drawing.Size(189, 22);
             this.toolNodeRename.Text = "修改名称";
             this.toolNodeRename.Click += new System.EventHandler(this.toolNodeRename_Click);
             // 
@@ -585,8 +585,8 @@
             // 
             this.MainRibbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MainRibbonControl.CaptionVisible = true;
-            this.MainRibbonControl.Controls.Add(this.ribbonPanel1);
             this.MainRibbonControl.Controls.Add(this.ribbonPanel3);
+            this.MainRibbonControl.Controls.Add(this.ribbonPanel1);
             this.MainRibbonControl.Controls.Add(this.ribbonPanel4);
             this.MainRibbonControl.Controls.Add(this.ribbonPanel2);
             this.MainRibbonControl.Dock = System.Windows.Forms.DockStyle.Top;
@@ -656,6 +656,7 @@
             // 
             this.ribbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel1.TabIndex = 1;
+            this.ribbonPanel1.Visible = false;
             // 
             // ribbonBar4
             // 
@@ -1144,7 +1145,6 @@
             // 
             this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel3.TabIndex = 3;
-            this.ribbonPanel3.Visible = false;
             // 
             // ribbonBar2
             // 
@@ -1296,6 +1296,7 @@
             this.buttonItem7.Name = "buttonItem7";
             this.buttonItem7.SubItemsExpandWidth = 14;
             this.buttonItem7.Text = "工作执行效率";
+            this.buttonItem7.Click += new System.EventHandler(this.buttonItem7_Click);
             // 
             // ribbonPanel4
             // 
@@ -1588,13 +1589,13 @@
             // 
             // ribbonTabItem1
             // 
-            this.ribbonTabItem1.Checked = true;
             this.ribbonTabItem1.Name = "ribbonTabItem1";
             this.ribbonTabItem1.Panel = this.ribbonPanel1;
             this.ribbonTabItem1.Text = "项目过程管理";
             // 
             // ribbonTabItem3
             // 
+            this.ribbonTabItem3.Checked = true;
             this.ribbonTabItem3.Name = "ribbonTabItem3";
             this.ribbonTabItem3.Panel = this.ribbonPanel3;
             this.ribbonTabItem3.Text = "报表";
@@ -1685,12 +1686,12 @@
             this.EditProMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolProRename});
             this.EditProMenu.Name = "contextMenuStrip1";
-            this.EditProMenu.Size = new System.Drawing.Size(119, 26);
+            this.EditProMenu.Size = new System.Drawing.Size(125, 26);
             // 
             // toolProRename
             // 
             this.toolProRename.Name = "toolProRename";
-            this.toolProRename.Size = new System.Drawing.Size(118, 22);
+            this.toolProRename.Size = new System.Drawing.Size(124, 22);
             this.toolProRename.Text = "修改名称";
             this.toolProRename.Click += new System.EventHandler(this.toolProRename_Click);
             // 

@@ -1245,6 +1245,14 @@ namespace ProjectManagement
             }
         }
 
-
+        /// <summary>
+        /// 工作执行效率
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonItem7_Click(object sender, EventArgs e)
+        {
+            ShowChildForm(new Forms.Report.Report_PersonnelExecutiveEfficiency());
+        }
     }
 }
