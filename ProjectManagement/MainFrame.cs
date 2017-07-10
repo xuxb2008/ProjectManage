@@ -1254,5 +1254,15 @@ namespace ProjectManagement
         {
             ShowChildForm(new Forms.Report.Report_PersonnelExecutiveEfficiency());
         }
+
+        /// <summary>
+        /// 工作难度系数
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DifficutyDegree_Click(object sender, EventArgs e)
+        {
+            ShowChildForm(new Forms.Report.Report_DifficutyDegreeNew());
+        }
     }
 }

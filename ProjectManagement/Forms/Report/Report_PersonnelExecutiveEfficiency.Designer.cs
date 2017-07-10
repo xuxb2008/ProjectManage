@@ -202,7 +202,7 @@
             // 
             // gridColumn4
             // 
-            this.gridColumn4.DataPropertyName = "desc";
+            this.gridColumn4.DataPropertyName = "Desc";
             this.gridColumn4.Name = "desc";
             // 
             // gridColumn5
@@ -445,9 +445,9 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn4;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7;
+        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8;
     }
 }

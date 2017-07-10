@@ -273,6 +273,18 @@
     <Compile Include="Forms\Report\Report_Cost.Designer.cs">
       <DependentUpon>Report_Cost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Report\Report_DifficutyDegreeNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_DifficutyDegreeNew.Designer.cs">
+      <DependentUpon>Report_DifficutyDegreeNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\Report_DifficutyDegree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\Report_DifficutyDegree.Designer.cs">
+      <DependentUpon>Report_DifficutyDegree.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Report\Report_Earning.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -520,6 +532,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Report\Report_Cost.resx">
       <DependentUpon>Report_Cost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_DifficutyDegreeNew.resx">
+      <DependentUpon>Report_DifficutyDegreeNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\Report_DifficutyDegree.resx">
+      <DependentUpon>Report_DifficutyDegree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Report\Report_Earning.resx">
       <DependentUpon>Report_Earning.cs</DependentUpon>

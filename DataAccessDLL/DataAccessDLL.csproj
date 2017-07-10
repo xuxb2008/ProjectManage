@@ -72,6 +72,7 @@
     <Compile Include="ContractDao.cs" />
     <Compile Include="MilestoneDAO.cs" />
     <Compile Include="NormalOperationDAO.cs" />
+    <Compile Include="ReportDefficutyDegreeDao.cs" />
     <Compile Include="ReportPersonEfficiencyDao.cs" />
     <Compile Include="ProjectDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
