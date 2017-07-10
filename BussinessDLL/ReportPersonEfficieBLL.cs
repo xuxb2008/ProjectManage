@@ -22,5 +22,15 @@ namespace BussinessDLL
         {
             return new ReportPersonEfficiencyDao().GetPersonEfficiency(projectId, s, e, finishStatus);
         }
+
+        /// <summary>
+        /// 查询项目
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public DomainDLL.Project GetProject(string projectId)
+        {
+            return new Repository<DomainDLL.Project>().Get(projectId);
+        }
     }
 }

@@ -92,6 +92,7 @@
             this.Ribbon_Report_Weekly = new DevComponents.DotNetBar.ButtonItem();
             this.MemberContributionRate = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem7 = new DevComponents.DotNetBar.ButtonItem();
+            this.DifficutyDegree = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel1 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar4 = new DevComponents.DotNetBar.RibbonBar();
             this.RibbonBtn_Risk = new DevComponents.DotNetBar.ButtonItem();
@@ -157,7 +158,6 @@
             this.buttonItem15 = new DevComponents.DotNetBar.ButtonItem();
             this.EditProMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolProRename = new System.Windows.Forms.ToolStripMenuItem();
-            this.DifficutyDegree = new DevComponents.DotNetBar.ButtonItem();
             this.CloseTabContextMenu.SuspendLayout();
             this.EditNodeMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.collapsibleSplitContainer1)).BeginInit();
@@ -801,8 +801,15 @@
             // 
             this.buttonItem7.Name = "buttonItem7";
             this.buttonItem7.SubItemsExpandWidth = 14;
-            this.buttonItem7.Text = "工作执行效率";
+            this.buttonItem7.Text = "人员执行效率";
             this.buttonItem7.Click += new System.EventHandler(this.buttonItem7_Click);
+            // 
+            // DifficutyDegree
+            // 
+            this.DifficutyDegree.Name = "DifficutyDegree";
+            this.DifficutyDegree.SubItemsExpandWidth = 14;
+            this.DifficutyDegree.Text = "工作难度系数";
+            this.DifficutyDegree.Click += new System.EventHandler(this.DifficutyDegree_Click);
             // 
             // ribbonPanel1
             // 
@@ -1696,13 +1703,6 @@
             this.toolProRename.Size = new System.Drawing.Size(124, 22);
             this.toolProRename.Text = "修改名称";
             this.toolProRename.Click += new System.EventHandler(this.toolProRename_Click);
-            // 
-            // DifficutyDegree
-            // 
-            this.DifficutyDegree.Name = "DifficutyDegree";
-            this.DifficutyDegree.SubItemsExpandWidth = 14;
-            this.DifficutyDegree.Text = "工作难度系数";
-            this.DifficutyDegree.Click += new System.EventHandler(this.DifficutyDegree_Click);
             // 
             // MainFrame
             // 

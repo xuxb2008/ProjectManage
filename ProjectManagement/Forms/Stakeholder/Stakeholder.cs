@@ -98,9 +98,9 @@ namespace ProjectManagement.Forms.Stakeholder
                     s = s.Replace("{", ",");
                     s = s.Replace("}", ",");
                     string[] listS = s.Split(',');
-                    if (int.Parse(listS[12].Trim()) != 0) {
+                    if (int.Parse(listS[13].Trim()) != 0) {
                         flag = 1;
-                        flagid = listS[17].Trim();
+                        flagid = listS[18].Trim();
                     }
                 }
             }

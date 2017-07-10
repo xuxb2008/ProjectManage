@@ -97,7 +97,7 @@
             // 
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 8;
-            this.groupPanel1.Text = "成员贡献率";
+            this.groupPanel1.Text = "人员执行效率";
             // 
             // tableLayoutPanel1
             // 
@@ -271,6 +271,7 @@
             this.btnExport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnExport.TabIndex = 8;
             this.btnExport.Text = "导出";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // label3
             // 

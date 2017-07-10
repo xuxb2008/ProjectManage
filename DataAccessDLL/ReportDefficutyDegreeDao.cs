@@ -99,13 +99,15 @@ namespace DataAccessDLL
                 inner join project p on pn.pid=substr(p.id,1,36) and p.id=@PID 
                 where t.status=1) 
 
-                select * from(select '综合' as source, null as name,null as Desc ,null as startdate,null as enddate,'4' as type,null as workload,
-                null as actualworkload ,
+                select * from(select null as source, null as name,null as Desc ,null as startdate,null as enddate,'4' as type,null as workload, 
+                '平均系数' as actualworkload ,
                 round(sum(degree)/count(1),1) as degree from cte 
                 union 
                 select * from cte) order by type
             ");
             DataTable dt = NHHelper.ExecuteDataTable(sql.ToString(), qlist);
+            if (dt != null && dt.Rows.Count > 0)
+                dt.Rows[dt.Rows.Count - 1]["RowNo"] = "";
             return dt;
         }
     }

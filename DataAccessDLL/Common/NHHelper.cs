@@ -258,8 +258,9 @@ namespace DataAccessDLL
                 for (int i = 0; i < schemaTable.Rows.Count; i++)
                 {
                     string columnName = schemaTable.Rows[i][0].ToString();
-                    Type t = (Type)schemaTable.Rows[i]["DataType"];
-                    result.Columns.Add(columnName, t);
+                    //Type t = (Type)schemaTable.Rows[i]["DataType"];
+                    //result.Columns.Add(columnName, t);
+                    result.Columns.Add(columnName);
                 }
                 while (reader.Read())
                 {

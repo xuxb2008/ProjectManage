@@ -66,6 +66,7 @@
             this.btnExport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnExport.TabIndex = 8;
             this.btnExport.Text = "导出";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // gridColumn10
             // 
@@ -260,7 +261,7 @@
             // 
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 9;
-            this.groupPanel1.Text = "成员贡献率";
+            this.groupPanel1.Text = "工作难度系数";
             // 
             // Report_DifficutyDegreeNew
             // 
