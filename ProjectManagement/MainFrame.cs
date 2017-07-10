@@ -873,8 +873,8 @@ namespace ProjectManagement
             form.Dock = DockStyle.Fill;
             //开始 liuxuexian
             //为了适应不同屏幕的分辨率，设置最小出现滚动条的值
-            form.AutoScroll = true;
-            form.AutoScrollMinSize = new Size(this.MainSuperTabControl.Width - 20, this.MainSuperTabControl.Height - 20);
+            //form.AutoScroll = true;
+            //form.AutoScrollMinSize = new Size(this.MainSuperTabControl.Width - 20, this.MainSuperTabControl.Height - 20);
             //结束
             form.TopLevel = false;
             form.Visible = true;
@@ -897,8 +897,8 @@ namespace ProjectManagement
             form.Dock = DockStyle.Fill;
             //开始 liuxuexian
             //为了适应不同屏幕的分辨率，设置最小出现滚动条的值
-            form.AutoScroll = true;
-            form.AutoScrollMinSize = new Size(this.MainSuperTabControl.Width - 20, this.MainSuperTabControl.Height - 20);
+            //form.AutoScroll = true;
+            //form.AutoScrollMinSize = new Size(this.MainSuperTabControl.Width - 20, this.MainSuperTabControl.Height - 20);
             //结束
             form.TopLevel = false;
             form.Visible = true;
@@ -926,8 +926,8 @@ namespace ProjectManagement
                 form.Dock = DockStyle.Fill;
                 //开始 liuxuexian
                 //为了适应不同屏幕的分辨率，设置最小出现滚动条的值
-                form.AutoScroll = true;
-                form.AutoScrollMinSize = new Size(this.MainSuperTabControl.Width - 20, this.MainSuperTabControl.Height - 20);
+                //form.AutoScroll = true;
+                //form.AutoScrollMinSize = new Size(this.MainSuperTabControl.Width - 20, this.MainSuperTabControl.Height - 20);
                 //结束
                 form.TopLevel = false;
                 form.Visible = true;

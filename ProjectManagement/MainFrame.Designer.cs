@@ -586,8 +586,8 @@
             // 
             this.MainRibbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MainRibbonControl.CaptionVisible = true;
-            this.MainRibbonControl.Controls.Add(this.ribbonPanel3);
             this.MainRibbonControl.Controls.Add(this.ribbonPanel1);
+            this.MainRibbonControl.Controls.Add(this.ribbonPanel3);
             this.MainRibbonControl.Controls.Add(this.ribbonPanel4);
             this.MainRibbonControl.Controls.Add(this.ribbonPanel2);
             this.MainRibbonControl.Dock = System.Windows.Forms.DockStyle.Top;
@@ -650,6 +650,7 @@
             // 
             this.ribbonPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel3.TabIndex = 3;
+            this.ribbonPanel3.Visible = false;
             // 
             // ribbonBar2
             // 
@@ -841,7 +842,6 @@
             // 
             this.ribbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel1.TabIndex = 1;
-            this.ribbonPanel1.Visible = false;
             // 
             // ribbonBar4
             // 
@@ -1598,13 +1598,13 @@
             // 
             // ribbonTabItem1
             // 
+            this.ribbonTabItem1.Checked = true;
             this.ribbonTabItem1.Name = "ribbonTabItem1";
             this.ribbonTabItem1.Panel = this.ribbonPanel1;
             this.ribbonTabItem1.Text = "项目过程管理";
             // 
             // ribbonTabItem3
             // 
-            this.ribbonTabItem3.Checked = true;
             this.ribbonTabItem3.Name = "ribbonTabItem3";
             this.ribbonTabItem3.Panel = this.ribbonPanel3;
             this.ribbonTabItem3.Text = "报表";
